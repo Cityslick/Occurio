@@ -8,8 +8,13 @@ usersController.create = (req, res) => {
     const hash = bcrypt.hashSync(req.body.password, salt);
     User.create({
         username: req.body.username,
-        email: req.body.email,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
         password: hash,
+        email: req.body.email,
+        img_url: req.body.img_url,
+        proj_link: req.body.proj_link,
+        user_type: req.body.user_type,
     }).then(user => {
         req.login(user, (err) => {
             if (err) return next(err);
@@ -27,17 +32,41 @@ usersController.create = (req, res) => {
 
 usersController.index = (req, res) => {
     console.log("User Controller!");
-    User.findUserProjects(req.user.id)
-    .then(movies => {
+    User.findAll(req.user.id)
+    .then(users => {
         res.json({
         user: req.user,
-        data: 'List all projects a user is a part of',
-        projects: projects,
+
         });
     }).catch(err => {
         console.log(err);
         res.status(500).json({err: err});
     });
 }
+
+usersController.update = (req, res) => {
+  User.update(
+    {
+      username: req.body.username,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      password: hash,
+      email: req.body.email,
+      img_url: req.body.img_url,
+      proj_link: req.body.proj_link,
+      user_type: req.body.user_type,
+    },
+    req.params.id,
+  )
+    .then(user => {
+      res.json({
+        user: user,
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ err });
+    });
+};
 
 module.exports = usersController;
