@@ -43,6 +43,18 @@ usersController.index = (req, res) => {
     });
 }
 
+usersController.show = (req, res) => {
+  User.findByUserName(req.params.username)
+    .then(user => {
+      res.json({
+        user: user,
+      });
+    }).catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+};
+
 usersController.update = (req, res) => {
   const salt = bcrypt.genSaltSync();
   const hash = bcrypt.hashSync(req.body.password, salt);
