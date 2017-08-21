@@ -19,7 +19,6 @@ usersController.create = (req, res) => {
         req.login(user, (err) => {
             if (err) return next(err);
                 res.json({
-                    message: 'ok',
                     user: user,
                 auth: true,
             })
@@ -45,6 +44,8 @@ usersController.index = (req, res) => {
 }
 
 usersController.update = (req, res) => {
+  const salt = bcrypt.genSaltSync();
+  const hash = bcrypt.hashSync(req.body.password, salt);
   User.update(
     {
       username: req.body.username,
