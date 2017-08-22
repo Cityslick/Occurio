@@ -27,14 +27,14 @@ handleInputChange(e) {
 render() {
   return (
     <div className="project-create">
-      <form onSubmit={(e) => this.props.handleCreateProject(e, this.state.name,
+      <form onSubmit={(e) => this.props.handleCreateProject(e,
+        this.state.name,
         this.state.description,
         this.state.category,
         this.state.status,
         this.state.planned_start_date,
-        this.state.planned_end_date,
-        this.state.act_start_date,
-        this.state.act_end_date)}>
+        this.state.planned_end_date
+      )}>
         <label> Name
           <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleInputChange} />
         </label>
