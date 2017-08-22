@@ -4,20 +4,20 @@ const User = {
 
   findByUserName: function(userName) {
     return db.oneOrNone(`
-      SELECT * FROM users
+      SELECT *, concat(firstname , ' ' , lastname) as fullname FROM users
       WHERE username = $1
     `, [userName]);
   },
 
   findByUserId: function(userId){
     return db.one(`
-      SELECT * FROM users
+      SELECT * , concat(firstname , ' ', lastname) as fullname FROM users
       WHERE id = $1
     `, [userId]);
   },
 
   findAll: function(){
-    return db.query('SELECT * FROM users');
+    return db.query("SELECT *, concat(firstname , ' ', lastname) as fullname FROM users")
   },
 
   create: function(user){
