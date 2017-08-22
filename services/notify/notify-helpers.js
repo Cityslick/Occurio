@@ -1,30 +1,34 @@
-const Notify = require('app-notify');
-const notify = new Notify(cfg);
+const nodemailer = require('nodemailer');
+const user = require('../models/user.js');
 
-let cfg = {};
-
-//setup smtp server
-cfg.smtp = {
-    host: xxx,
-    user: user,
-    pass: pass,
-    port: port
-};
-
-//setup email headers
-cfg.email = {
-    to: 'user@example.com',
-    from: 'sender@example.com'
-};
-
-//send an email
-notify.email({
-    subject: 'This is a test',
-    message: 'Hello world!'
-})
-.then(function(data){
-    console.log(data);
-})
-.catch(function(err){
-    console.error(err);
+// create reusable transporter object using the default SMTP transport
+let transporter = nodemailer.createTransport({
+    host: 'smtp.example.com',
+    port: 465,
+    secure: true, // secure:true for port 465, secure:false for port 587
+    auth: {
+        user: 'username@example.com',
+        pass: 'userpass'
+    }
 });
+
+// setup email data with unicode symbols
+let mailOptions = {
+    from: '"Fred Foo 👻" <foo@blurdybloop.com>', // sender address
+    to: 'bar@blurdybloop.com, baz@blurdybloop.com', // list of receivers
+    subject: 'Hello ✔', // Subject line
+    text: 'Hello world ?', // plain text body
+    html: '<b>Hello world ?</b>' // html body
+};
+
+// send mail with defined transport object
+transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+        return console.log(error);
+    }
+    console.log('Message %s sent: %s', info.messageId, info.response);
+});
+
+module.exports = {
+    transporter,
+}
