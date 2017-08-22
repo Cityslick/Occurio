@@ -144,6 +144,7 @@ viewProject() {
     return (
       <div className="App">
         <Header />
+        </Task />
         <Login handleLoginSubmit={this.handleLoginSubmit} username={this.username} password={this.password} />
         <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}
         firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}

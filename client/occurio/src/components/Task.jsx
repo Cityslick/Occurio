@@ -39,7 +39,7 @@ class Task extends Component {
 
   render(){
     return(
-      <div>
+      <div className="taskbox">
         <div>
           <h2>Create a Task</h2>
         </div>

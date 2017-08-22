@@ -19,19 +19,18 @@ class UserProfile extends Component {
     }
 
     render() {
-    return (
-        <div>
-        <div>
-            <h1>User Profile</h1>
-        </div>
-        <div>
-            <h6>Name</h6>
-            <h6>Role</h6>
-            <h6>Description</h6>
-        </div>
-        </div>
-    )
-    }
+    
+    <div className="project">
+      <h3>{props.project.name}</h3>
+      <p>{props.project.description}</p>
+      <p>{props.project.category}</p>
+      <p>{props.project.status}</p>
+      <p>{props.project.planned_start_date}</p>
+      <p>{props.project.planned_end_date}</p>
+      <p>{props.project.act_start_date}</p>
+      <p>{props.project.act_end_date}</p>
+    </div>
+  )
 }
 
-export default UserProfile;
+export default Project;
