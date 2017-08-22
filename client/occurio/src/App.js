@@ -106,7 +106,8 @@ class App extends Component {
 
 handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
   e.preventDefault();
-  axios.post('/projects', {
+  console.log("Im here");
+  axios.post('/project', {
     name,
     description,
     category,
@@ -116,7 +117,6 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
   }).then(res => {
     this.setState({
       user: res.data.user,
-      currentPage: 'project/:id',
       project: res.data,
     })
   }).catch(err => console.log(err));
@@ -144,10 +144,10 @@ viewProject() {
         firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
         user_type={this.user_type}  />
         <ProjectCreate handleCreateProject={this.handleCreateProject}/>
-        <ProjectView project={this.state.project}/>
+
         <UserProfile />
         <UserProfileAll />
-        <ViewUserProjects viewProject={this.viewProject}/>
+
         {/* <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </div> */}
