@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 
 class ProjectCreate extends Component {
-constructor() {
-  super();
-  this.state = {
-    name: '',
-    description: '',
-    category: '',
-    status: '',
-    planned_start_date: '',
-    planned_end_date: '',
-    act_start_date: '',
-    act_end_date: '',
+  constructor() {
+    super();
+    this.state = {
+      name: '',
+      description: '',
+      category: '',
+      status: '',
+      planned_start_date: '',
+      planned_end_date: '',
+      act_start_date: '',
+      act_end_date: '',
+    }
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
-  this.handleInputChange = this.handleInputChange.bind(this);
-}
 
 handleInputChange(e) {
   const name = e.target.name;
