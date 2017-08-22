@@ -20,7 +20,7 @@ import ProjectView from './components/ProjectView.jsx';
 import ViewUserProjects from './components/ViewUserProjects.jsx';
 
 // TASKS
-import Task from './components/Task.jsx';
+import Task from './components/Login.jsx';
 
 // USERS
 import UserProfile from './components/UserProfile.jsx';
@@ -41,6 +41,12 @@ class App extends Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit= this.handleRegisterSubmit.bind(this);
     this.logOut =  this.logOut.bind(this);
+
+    // Create Project
+    this.handleCreateProject = this.handleCreateProject.bind(this);
+    // View Project
+    this.viewProject = this.viewProject.bind(this);
+
   }
 
     setPage(page) {
@@ -84,7 +90,6 @@ class App extends Component {
         }).catch(err => console.log(err));
     }
 
-
     logOut() {
         axios.get('/auth/logout')
         .then(res => {
@@ -96,20 +101,53 @@ class App extends Component {
             });
         }).catch(err => console.log(err));
     }
-  
+
+// Handle Create Project
+
+handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
+  e.preventDefault();
+  axios.post('/projects', {
+    name,
+    description,
+    category,
+    status,
+    planned_start_date,
+    planned_end_date,
+  }).then(res => {
+    this.setState({
+      user: res.data.user,
+      currentPage: 'project/:id',
+      project: res.data,
+    })
+  }).catch(err => console.log(err));
+}
+
+// View Single Project
+
+viewProject() {
+  axios.get('/projects')
+  .then(res => {
+        this.setState({
+          user: res.data.user,
+          currentPage: 'project/:id',
+          project: res.data,
+        })
+      }).catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
         <Login handleLoginSubmit={this.handleLoginSubmit} username={this.username} password={this.password} />
-        <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}  
+        <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}
         firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
         user_type={this.user_type}  />
-        <ProjectCreate />
-        <ProjectView />
+        <ProjectCreate handleCreateProject={this.handleCreateProject}/>
+        <ProjectView project={this.state.project}/>
         <UserProfile />
         <UserProfileAll />
-        <ViewUserProjects />
+        <ViewUserProjects viewProject={this.viewProject}/>
         {/* <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </div> */}
