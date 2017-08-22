@@ -101,18 +101,16 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Login handleLoginSubmit={this.handleLoginSubmit} username={this.username} password={this.password} />
-        <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}  
-        firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
-        user_type={this.user_type}  />
-        <ProjectCreate />
-        <ProjectView />
+        {/* <Task /> */}
+        {/* <Login handleLoginSubmit={this.handleLoginSubmit} username={this.username} password={this.password} /> */}
+        {/* <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}   */}
+        {/* firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
+        user_type={this.user_type}  /> */}
+        {/* <ProjectCreate /> */}
+        {/* <ProjectView /> */}
         <UserProfile />
-        <UserProfileAll />
-        <ViewUserProjects />
-        {/* <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </div> */}
+        {/* <UserProfileAll /> */}
+        {/* <ViewUserProjects /> */}
         <Footer />
       </div>
     );
