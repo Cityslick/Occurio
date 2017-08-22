@@ -13,8 +13,8 @@ projectController={
       planned_end_date:req.body.planned_end_date,
     }).then( project =>{
       res.json({
-        message:"Data Loaded",
-        projects:project,
+        message:"Done",
+        data:project,
       })
     }).catch( err => {
         console.log(err);
@@ -52,6 +52,14 @@ projectController={
   },
 
   delete: function (req, res){
+    project.delete(req.params.id)
+    .then(()=>{
+      res.json({
+        message:"Done",
+      })
+    }).catch(err => {
+      res.status(500).json(err);
+    })
 
   },
 
@@ -73,8 +81,9 @@ projectController={
   findCollaboratorProjects: function(req, res){
 
   },
-  //COLLABORATORS
 
+
+  //COLLABORATORS
   assignTasks: function(req, res){
 
   },
