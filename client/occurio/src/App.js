@@ -19,6 +19,9 @@ import ProjectCreate from './components/ProjectCreate.jsx';
 import ProjectView from './components/ProjectView.jsx';
 import ViewUserProjects from './components/ViewUserProjects.jsx';
 
+// TASKS
+import Task from './components/Login.jsx';
+
 // USERS
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
@@ -206,13 +209,14 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Login />
-        <Register />
-        <ProjectCreate />
-        <ProjectView />
-        <UserProfile />
-        <UserProfileAll />
-        <ViewUserProjects />
+        <Task />
+        {/* <Login /> */}
+        {/* <Register /> */}
+        {/* <ProjectCreate /> */}
+        {/* <ProjectView /> */}
+        {/* <UserProfile /> */}
+        {/* <UserProfileAll /> */}
+        {/* <ViewUserProjects /> */}
         {/* <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </div> */}
