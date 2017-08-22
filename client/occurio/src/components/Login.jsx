@@ -3,12 +3,11 @@ import React, { Component } from 'react';
 class Login extends Component {
     constructor() {
         super();
-        // assume we need this
         this.state = {
             username: '',
             password: '',
         }
-        this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     }
 
     handleInputChange(e) {
@@ -50,4 +49,3 @@ class Login extends Component {
 }
 
 export default Login;
-
