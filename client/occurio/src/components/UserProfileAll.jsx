@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-const UserProfileAll = (props) => {
+class UserProfileAll extends Component {
+  constructor() {
+    super();
+    this.getAllUsers = this.getAllUsers.bind(this);
+  }
 
-  axios.get('/users', { //refactor to actual route
-    username,
-    firstname,
-    lastname,
-    img_url,
-  }).then(res => {
-    console.log(res); //logging response
-    this.setState({
-      userData: res.data.user
+  getAllUsers() {
+    axios.get('/user').then(res => {
+      console.log(res); //logging response
+      this.setState({
+        userData: res.data.user
+      })
     })
-  })
+  }
 
-
+  render() {
     return (
         <div className='userList'>
           <select>
-            {props.userData.map(users => {
-              return <option>{users.img_url}{users.username}{users.name}</option>
-            })}
+            {this.getAllUsers};
           </select>
         </div>
     )
+  }
 }
 
 export default UserProfileAll;

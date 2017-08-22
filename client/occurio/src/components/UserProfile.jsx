@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
-const UserProfile = () => {
+class UserProfile extends Component {
+    render() {
     return (
         <div>
         <div>
@@ -13,6 +15,7 @@ const UserProfile = () => {
         </div>
         </div>
     )
+    }
 }
 
 export default UserProfile;
