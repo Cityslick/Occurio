@@ -114,13 +114,16 @@ class App extends Component {
      }
 
 
-    handleRegisterSubmit(e, username, password, email) {
+    handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
         console.log(e);
         e.preventDefault();
         axios.post('/auth', {
             username,
+            firstname,
+            lastname,
             password,
             email,
+            user_type,
         }).then(res => {
             this.setState({
                 auth: res.data.auth,
@@ -207,7 +210,9 @@ class App extends Component {
       <div className="App">
         <Header />
         <Login />
-        <Register />
+        <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}  
+        firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
+        user_type={this.user_type}  />
         <ProjectCreate />
         <ProjectView />
         <UserProfile />
