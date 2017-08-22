@@ -1,4 +1,6 @@
-class ProjectCreate extends Component {
+import React from 'react';
+
+class ProjectCreate extends React.Component {
 constructor() {
   super();
   this.state = {
