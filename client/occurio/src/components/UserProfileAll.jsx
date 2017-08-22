@@ -4,14 +4,18 @@ import axios from 'axios';
 class UserProfileAll extends Component {
   constructor() {
     super();
-    this.getAllUsers = this.getAllUsers.bind(this);
+    this.state= {
+      userData: '',
+      apiDataloaded: false,
+    }
   }
 
-  getAllUsers() {
-    axios.get('/user').then(res => {
-      console.log(res); //logging response
+  componentDidMount() {
+    axios.get('/user')
+    .then(res => {
       this.setState({
-        userData: res.data.user
+        userData: res.data.users,
+        apiDataloaded: true,
       })
     })
   }
@@ -20,7 +24,11 @@ class UserProfileAll extends Component {
     return (
         <div className='userList'>
           <select>
-            {this.getAllUsers};
+            { (this.state.apiDataloaded) ? 
+              this.state.userData.map(user => {
+                return <option key={user.id}>{user.firstname} {user.lastname}</option>
+              })
+             : ""}
           </select>
         </div>
     )
