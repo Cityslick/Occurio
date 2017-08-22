@@ -8,6 +8,15 @@ class Login extends Component {
             username: '',
             password: '',
         }
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    handleInputChange(e) {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({
+            [name]: value,
+        })
     }
 
     render(){
@@ -24,10 +33,10 @@ class Login extends Component {
                     )}>
 
                     <div>
-                    <input className="form" type="text" name="username" value="" placeholder="Username" onChange="" />
+                    <input className="form" type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleInputChange} />
                     </div>
                     <div>
-                    <input className="form" type="text" name="password" value="" placeholder="Password" onChange="" />
+                    <input className="form" type="text" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} />
                     </div>
                     <div>
                     <input className="form" type="submit" value="Enter" />

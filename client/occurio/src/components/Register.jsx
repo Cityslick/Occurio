@@ -33,9 +33,8 @@ class Register extends Component {
                   <h2 className="hero-text2">Create an Occurio Account!</h2>
                 </h1>
 
-                  <form onSubmit={(e) => this.props.handleLoginSubmit(
+                  <form onSubmit={(e) => this.props.handleRegisterSubmit(
                     e, 
-                    this.state.id,
                     this.state.username,
                     this.state.firstname,
                     this.state.lastname,
