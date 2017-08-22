@@ -4,7 +4,7 @@ const Project = {
   // PROJECTS
   create : function(project){
     return db.one(`INSERT INTO projects(name, description, category , status ,
-                  planned_start_date , planned_end_date ) VALUES( $1, $2, $3, $4, $5, 6$) RETURN *`,
+                  planned_start_date , planned_end_date ) VALUES( $1, $2, $3, $4, $5, $6) RETURNING *`,
                   [project.name, project.description, project.category, project.status,
                   project.planned_start_date, project.planned_end_date])
   },

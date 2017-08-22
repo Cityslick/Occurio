@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
-const UserProfile = (props) => {
-    return (
-        <div>
-        <div>
-            <h1>User Profile</h1>
-        </div>
-        <div>
-            <h3></h3>
-            <h3></h3>
-            <h3></h3>
-        </div>
-        </div>
-    )
-}
+class UserProfile extends Component {
+    constructor() {
+        super();
+        this.state = {
+            username: '',
+            firstname: '',
+            lastname: '',
+        }
+    }
 
-const Project = (props) => {
-  return (
+    componentDidMount() {
+        axios.get('/user/id/:id')
+            .then(res => {
+                console.log(res);
+            })
+    }
+
+    render() {
+    
     <div className="project">
       <h3>{props.project.name}</h3>
       <p>{props.project.description}</p>

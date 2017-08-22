@@ -1,17 +1,38 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
-const UserProfileAll = () => {
+class UserProfileAll extends Component {
+  constructor() {
+    super();
+    this.state= {
+      userData: '',
+      apiDataloaded: false,
+    }
+  }
+
+  componentDidMount() {
+    axios.get('/user')
+    .then(res => {
+      this.setState({
+        userData: res.data.users,
+        apiDataloaded: true,
+      })
+    })
+  }
+
+  render() {
     return (
-        <div>
-          <div>
-            <div>Thomas</div>
-            <div>Aury</div>
-            <div>Raj</div>
-            <div>Jason</div>
-            <div>Ramsey</div>
-          </div>
+        <div className='userList'>
+          <select>
+            { (this.state.apiDataloaded) ? 
+              this.state.userData.map(user => {
+                return <option key={user.id}>{user.firstname} {user.lastname}</option>
+              })
+             : ""}
+          </select>
         </div>
     )
+  }
 }
 
 export default UserProfileAll;
