@@ -7,11 +7,18 @@ const User = {
       SELECT * FROM users
       WHERE username = $1
     `, [userName]);
-  };
+  },
+
+  findByUserId: userId => {
+    return db.one(`
+      SELECT * FROM users
+      WHERE id = $1
+    `, [userId]);
+  },
 
   findAll: () => {
     return db.query('SELECT * FROM users');
-  }
+  },
 
   create :user => {
     return db.one(`
@@ -20,9 +27,9 @@ const User = {
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
       RETURNING *
     `, [user.username, user.firstname, user.lastname, user.password, user.email, user.img_url, user.proj_link, user.user_type]);
-  };
+  },
 
-  update: (movie, id) => {
+  update: (user, id) => {
     return db.one(`
       UPDATE users SET
       username = $1,
@@ -32,10 +39,11 @@ const User = {
       email = $5,
       img_url = $6,
       proj_link = $7,
-      user_type = $8,
+      user_type = $8
       WHERE id = $9
       RETURNING *
     `, [user.username, user.firstname, user.lastname, user.password, user.email, user.img_url, user.proj_link, user.user_type, id]);
   }
 }
+
 module.exports = User;

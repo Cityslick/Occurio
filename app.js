@@ -37,7 +37,8 @@ app.get("/", (req, res)=>{
 
 //routes goes here
 
-
+const authRoutes = require("./routes/user-routes")
+app.use("/auth", authRoutes)
 
 //
 
