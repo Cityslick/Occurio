@@ -36,22 +36,31 @@ render() {
         this.state.planned_end_date
       )}>
         <label> Name
-          <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleInputChange} />
+          <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleInputChange} required />
         </label>
         <label> Description
-          <input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleInputChange} />
+          <input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleInputChange} required />
         </label>
         <label> Category
-          <input type="text" name="category" placeholder="Category" value={this.state.category} onChange={this.handleInputChange} />
+          <select name="category" value={this.state.name} sonChange={this.handleInputChange} required>
+            <option>Administrative</option>
+            <option>Design</option>
+            <option>Back End</option>
+            <option>Front End</option>
+          </select>
         </label>
         <label> Status
-          <input type="text" name="status" placeholder="Status" value={this.state.status} onChange={this.handleInputChange} />
+          <select name="status" value={this.state.name} sonChange={this.handleInputChange} required>
+            <option>Started</option>
+            <option>Pending</option>
+            <option>Complete</option>
+          </select>
         </label>
         <label>Start Date
-          <input type="text" name="planned_start_date" placeholder="Start Date" value={this.state.planned_start_date} onChange={this.handleInputChange} />
+          <input type="date" name="planned_start_date" placeholder="Start Date" value={this.state.planned_start_date} onChange={this.handleInputChange} required />
         </label>
-        <label>Planned End Date
-          <input type="text" name="planned_end_date" placeholder="End Date" value={this.state.planned_end_date} onChange={this.handleInputChange} />
+        <label>End Date
+          <input type="date" name="planned_end_date" placeholder="End Date" value={this.state.planned_end_date} onChange={this.handleInputChange} required />
         </label>
         <input type="submit" value="Create Project" />
       </form>
