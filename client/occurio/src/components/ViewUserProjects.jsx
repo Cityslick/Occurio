@@ -1,18 +1,18 @@
 import React from 'react';
 
-const ViewUserProjects = () => {
-    return (
-        <div>
-          <div>
-            <h1>Here's what everyone's working on:</h1>
-            <div>Painting the living room</div>
-            <div>Building a website</div>
-            <div>Doing laundry</div>
-            <div>Walking the dog</div>
-            <div>Filing taxes</div>
-          </div>
+import ProjectView from './ProjectView';
+
+const ProjectsList = (props) => {
+  return (
+    <div className="project-list">
+      {props.projects.map(project => {
+        return <div className="projects">
+        <h2>{project.name}</h2>
+        <h3 onClick={this.viewProject}>View Project</h3>
         </div>
-    )
+      })}
+    </div>
+  )
 }
 
-export default ViewUserProjects;
+export default ProjectsList;

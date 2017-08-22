@@ -16,13 +16,13 @@ const usersController = {
           proj_link: req.body.proj_link,
           user_type: req.body.user_type,
       }).then(user => {
-          // req.login(user, (err) => {
-          //   if (err) return next(err);
+          req.login(user, (err) => {
+            if (err) return next(err);
               res.json({
                 user: user,
                 auth: true,
               })
-          // });
+          });
       }).catch(err => {
           console.log(err);
           res.status(500).json({error: err});

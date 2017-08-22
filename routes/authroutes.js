@@ -5,30 +5,41 @@ const authHelpers = require('../services/auth/auth-helpers');
 const usersController = require('../controllers/usersController');
 
 
-authRouter.get('/login', authHelpers.loginRedirect, (req, res) => {
-  res.render('auth/login', {
-    currentPage: 'login',
-  });
-});
 
-authRouter.get('/register', authHelpers.loginRedirect, (req, res) => {
-    res.render('/auth/register', {
-        currentPage: 'register',
+authRouter.post('/', usersController.create);
+authRouter.put('/:id', usersController.update);
+
+authRouter.post('/login', passport.authenticate('local', {
+    successRedirect: '/auth/success',
+    failureRedirect: '/auth/failure',
+    failureFlash: false,
+  })
+);
+
+
+authRouter.get('/success', (req, res) => {
+    res.json({
+      auth: true,
+      message: 'ok',
+      user: req.user,
     });
 });
 
-authRouter.post('/register', usersController.create);
+authRouter.get('/failure', (req, res) => {
+  res.json({
+    auth: false,
+    message: 'Login failed',
+    user: null,
+  });
+});
 
-authRouter.post('/login', passport.authenticate('local', {
-    successRedirect: '/user',
-    failureRedirect: '/auth/login',
-    failureFlash: true,
-    })
-);
 
 authRouter.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
+  req.logout();
+  res.json({
+    message: 'logged out',
+    auth: false,
+  })
 });
 
 module.exports = authRouter;

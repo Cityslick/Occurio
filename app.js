@@ -31,21 +31,16 @@ app.listen(PORT,()=>{
   console.log(`App listening on port ${PORT}`)
 });
 
-app.get("/", (req, res)=>{
-  send.res("Page Loaded")
+app.get('/', (req, res) => {
+  send.res('Page loaded');
 });
 
-//routes goes here
-
-const authRoutes = require("./routes/user-routes")
+const authRoutes = require("./routes/authroutes")
 app.use("/auth", authRoutes)
-
-//
-
 
 
 app.get("*",(req, res)=>{
-  req.status("404").json({
+  res.status("404").json({
     message: "Page Not found(404)",
   })
 })
