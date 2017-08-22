@@ -128,21 +128,30 @@
   
   .footer {
     text-align: center;
-    display: inline-block;
+    display: flex;
     display: inline-flex;
     height: 100%;
     width: 100%;
     text-align: left;
     font-weight: 400px;
-    font-size: 20px; 
+    font-size: 14px; 
+    color: white;
     background-color: #6D1CDF;
     background-image: none;
     background-repeat: repeat;
     background-attachment: scroll;
     background-position: 0% 0%;
-    padding: 10px 0px 10px 10px;
+    padding: 20px 0px 20px 20px;
     bottom: 0pt;
   }   
+
+  .footer2 {
+    padding: 20px;
+  }
+
+  .footer2-element {
+    color: red;
+  }
 
   .footer-text {
     text-align: center;
@@ -161,6 +170,10 @@
     justify-content: flex-start;
     float: left;
   
+  }
+
+  .taskbox {
+    height: 100%px;
   }
   
   /* PARALLAX */
