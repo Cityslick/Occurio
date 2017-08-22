@@ -35,8 +35,11 @@ app.get('/', (req, res) => {
   send.res('Page loaded');
 });
 
-const authRoutes = require("./routes/authroutes");
+const authRoutes = require("./routes/authRoutes");
 app.use("/auth", authRoutes)
+
+const userRoutes = require("./routes/userRoutes");
+app.use("/user", userRoutes)
 
 const projectRoutes = require("./routes/projectRoutes");
 app.use("/project", projectRoutes);
