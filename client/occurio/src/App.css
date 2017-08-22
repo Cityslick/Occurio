@@ -67,14 +67,14 @@
   }
   
   form input[type=text]:focus, form input[type=number]:focus {
-    border-bottom: 10px solid #8B1BD2;
+    border-bottom: 6px solid #8B1BD2;
     /* outline: 0; */
     transition: .4s;
   }
 
   input[type=text], select {
     width: 250px;
-    padding: 10px 10px;
+    padding: 5px 5px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;

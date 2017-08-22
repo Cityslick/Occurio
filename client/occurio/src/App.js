@@ -149,10 +149,10 @@ viewProject() {
         firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
         user_type={this.user_type}  />
         <ProjectCreate handleCreateProject={this.handleCreateProject}/>
-        <ProjectView project={this.state.project}/>
+        {/* <ProjectView project={this.state.project}/> */}
         <UserProfile />
         <UserProfileAll />
-        <ViewUserProjects viewProject={this.viewProject}/>
+        {/* <ViewUserProjects viewProject={this.viewProject}/> */}
         {/* <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </div> */}

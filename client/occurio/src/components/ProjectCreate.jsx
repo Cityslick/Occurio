@@ -35,24 +35,36 @@ render() {
         this.state.planned_start_date,
         this.state.planned_end_date
       )}>
-        <label> Name
+        <div>
+        <label>
           <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleInputChange} />
         </label>
-        <label> Description
+        </div>
+        <div>
+        <label>
           <input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleInputChange} />
         </label>
-        <label> Category
+        </div>
+        <div>
+        <label> 
           <input type="text" name="category" placeholder="Category" value={this.state.category} onChange={this.handleInputChange} />
         </label>
-        <label> Status
+        </div>
+        <div>
+        <label>
           <input type="text" name="status" placeholder="Status" value={this.state.status} onChange={this.handleInputChange} />
         </label>
-        <label>Start Date
+        </div>
+        <div>
+        <label>
           <input type="text" name="planned_start_date" placeholder="Start Date" value={this.state.planned_start_date} onChange={this.handleInputChange} />
         </label>
-        <label>Planned End Date
+        </div>
+        <div>
+        <label>
           <input type="text" name="planned_end_date" placeholder="End Date" value={this.state.planned_end_date} onChange={this.handleInputChange} />
         </label>
+        </div>
         <input type="submit" value="Create Project" />
       </form>
     </div>
