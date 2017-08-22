@@ -148,11 +148,11 @@ viewProject() {
         <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}
         firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
         user_type={this.user_type}  />
-        <ProjectCreate handleCreateProject={this.handleCreateProject}/>
-        <ProjectView project={this.state.project}/>
-        <UserProfile />
+        {/* <ProjectCreate handleCreateProject={this.handleCreateProject}/>
+        <ProjectView project={this.state.project}/> */}
+        <UserProfile user={this.user}/>
         <UserProfileAll />
-        <ViewUserProjects viewProject={this.viewProject}/>
+        {/* <ViewUserProjects viewProject={this.viewProject}/> */}
         {/* <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </div> */}
