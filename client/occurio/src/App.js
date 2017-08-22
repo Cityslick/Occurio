@@ -20,7 +20,7 @@ import ProjectView from './components/ProjectView.jsx';
 import ViewUserProjects from './components/ViewUserProjects.jsx';
 
 // TASKS
-import Task from './components/Login.jsx';
+import Task from './components/Task.jsx';
 
 // USERS
 import UserProfile from './components/UserProfile.jsx';
@@ -193,6 +193,9 @@ class App extends Component {
     })
   }
 
+  // EXTRA FEATURES
+  // THESE ARE NAMED BEFORE ADDING
+
   // RENDER
 
   resetMovies() {
@@ -211,7 +214,7 @@ class App extends Component {
         <Header />
         <Task />
         {/* <Login /> */}
-        {/* <Register /> */}
+        <Register />
         {/* <ProjectCreate /> */}
         {/* <ProjectView /> */}
         {/* <UserProfile /> */}

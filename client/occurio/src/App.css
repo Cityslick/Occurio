@@ -1,6 +1,9 @@
+/* FONTS */
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
 * {
     list-style-type: none;
-    font-family: Gotham, Helvetica, sans-serif;
+    font-family: Quicksand, Helvetica, sans-serif;
   }
   
 .button {
