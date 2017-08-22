@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const Project = (props) => {
+const ProjectView = (props) => {
   return (
     <div className="project">
       <h3>{props.project.name}</h3>
@@ -15,4 +15,4 @@ const Project = (props) => {
   )
 }
 
-export default Project;
+export default ProjectView;
