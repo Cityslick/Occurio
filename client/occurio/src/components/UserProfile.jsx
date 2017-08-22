@@ -2,6 +2,22 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class UserProfile extends Component {
+    constructor() {
+        super();
+        this.state = {
+            username: '',
+            firstname: '',
+            lastname: '',
+        }
+    }
+
+    componentDidMount() {
+        axios.get('/user/id/:id')
+            .then(res => {
+                console.log(res);
+            })
+    }
+
     render() {
     return (
         <div>
