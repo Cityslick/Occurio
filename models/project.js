@@ -29,18 +29,6 @@ const Project = {
     return db.query("SELECT u.username, concat(u.firstname , ' ' , u.lastname) as fullname ,p.* FROM projects p   INNER JOIN collaborators c ON  p.id = c.proj_id  INNER JOIN users u  ON u.id= c.user_id WHERE  proj_id=$1 ",[projectId])
   },
 
-  // PROJECTS COLLABORATOR
-  assignCollaborators : function(projectId,userId){
-    return db.none("INSERT INTO collaborators VALUES($1,$2)",[projectId, userId]);
-  },
-
-  deleteCollaborators : function(projectId,userId){
-    return db.none("DELETE FROM  collaborators WHERE projectId = $1 AND  userId= $2", [projectId,userId]);
-  },
-
-  findCollaboratorProjects : function(userId){
-    return db.query("SELECT u.username, concat(u.firstname , ' ' , u.lastname) as fullname ,p.* FROM projects p   INNER JOIN collaborators c ON  p.id = c.proj_id  INNER JOIN users u  ON u.id= c.user_id WHERE  user_id=$1 ",[userId])
-  },
 
   // COLLABORATORS TASKS
   assignTasks: function(task){
