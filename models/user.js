@@ -2,25 +2,25 @@ const db = require('../db/config');
 
 const User = {
 
-  findByUserName: userName => {
+  findByUserName: function(userName) {
     return db.oneOrNone(`
       SELECT * FROM users
       WHERE username = $1
     `, [userName]);
   },
 
-  findByUserId: userId => {
+  findByUserId: function(userId){
     return db.one(`
       SELECT * FROM users
       WHERE id = $1
     `, [userId]);
   },
 
-  findAll: () => {
+  findAll: function(){
     return db.query('SELECT * FROM users');
   },
 
-  create :user => {
+  create: function(user){
     return db.one(`
       INSERT INTO users
       (username, firstname, lastname, password, email, img_url, proj_link, user_type)
@@ -29,7 +29,7 @@ const User = {
     `, [user.username, user.firstname, user.lastname, user.password, user.email, user.img_url, user.proj_link, user.user_type]);
   },
 
-  update: (user, id) => {
+  update: function(user, id){
     return db.one(`
       UPDATE users SET
       username = $1,
