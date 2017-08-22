@@ -1,8 +1,7 @@
 const Project = require("../models/project.js")
 
-
+//PROJECTS
 projectController={
-  //PROJECTS
   create: function(req, res){
     Project.create({
       name :req.body.name,
@@ -24,7 +23,21 @@ projectController={
   },
 
   update: function(req,res){
-
+    Project.update({
+      name :req.body.name,
+      description:req.body.description,
+      category:req.body.category,
+      status:req.body.status,
+      planned_start_date:req.body.planned_start_date,
+      planned_end_date:req.body.planned_end_date,
+    }, req.params.id).then(project=>{
+      res.json({
+        message:"Done",
+        data:project,
+      })
+    }).catch(err=>{
+        res.status(500).json(err);
+    })
   },
 
   findAll: function (req, res){
@@ -52,7 +65,7 @@ projectController={
   },
 
   delete: function (req, res){
-    project.delete(req.params.id)
+    Project.delete(req.params.id)
     .then(()=>{
       res.json({
         message:"Done",
@@ -64,26 +77,18 @@ projectController={
   },
 
   findCollaborators: function(req, res){
-
+    Project.findCollaborators(req.params.id)
+    .then(project=>{
+      res.json({
+        message:"Done",
+        data:project,
+      })
+    }).catch(err=>{
+      res.status(500).json(err);
+    })
   },
 
-  // PROJECTS COLLABORATOR
-  assignCollaborators : function(req, res){
-
-  },
-
-
-  deleteCollaborators: function(){
-
-  },
-
-
-  findCollaboratorProjects: function(req, res){
-
-  },
-
-
-  //COLLABORATORS
+    //TASKS
   assignTasks: function(req, res){
 
   },
