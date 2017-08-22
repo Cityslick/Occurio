@@ -13,7 +13,16 @@ class Register extends Component {
             img_url: '',
             proj_link: '',
             user_type: '',
-        }   
+        }
+        this.handleInputChange = this.handleInputChange.bind(this);   
+    }
+
+    handleInputChange(e) {
+        const name = e.target.name;
+        const value = e.target.value;
+        this.setState({
+            [name]: value,
+        })
     }
 
     render(){
@@ -24,9 +33,8 @@ class Register extends Component {
                   <h2 className="hero-text2">Create an Occurio Account!</h2>
                 </h1>
 
-                  <form onSubmit={(e) => this.props.handleLoginSubmit(
+                  <form onSubmit={(e) => this.props.handleRegisterSubmit(
                     e, 
-                    this.state.id,
                     this.state.username,
                     this.state.firstname,
                     this.state.lastname,
@@ -37,28 +45,28 @@ class Register extends Component {
                     this.state.user_type
                     )}>
                     <div>
-                    <input className="form" type="text" name="username" value="" placeholder="Username" onChange="" />
+                    <input className="form" type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleInputChange} />
                     </div>
                     <div>
-                    <input className="form" type="text" name="firstname" value="" placeholder="First Name" onChange="" />
+                    <input className="form" type="text" name="firstname" value={this.state.firstname} placeholder="First Name" onChange={this.handleInputChange} />
                     </div>
                     <div>
-                    <input className="form" type="text" name="lastname" value="" placeholder="Last Name" onChange="" />
+                    <input className="form" type="text" name="lastname" value={this.state.lastname} placeholder="Last Name" onChange={this.handleInputChange} />
                     </div>
                     <div>
-                    <input className="form" type="text" name="password" value="" placeholder="Password" onChange="" />
+                    <input className="form" type="text" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} />
                     </div>
                     <div>
-                    <input className="form" type="text" name="email" value="" placeholder="Email Address" onChange="" />
+                    <input className="form" type="text" name="email" value={this.state.email} placeholder="Email Address" onChange={this.handleInputChange} />
                     </div>
                     <div>
-                    <input className="form" type="text" name="img_url" value="" placeholder="Image URL" onChange="" />
+                    <input className="form" type="text" name="img_url" value={this.state.img_url} placeholder="Image URL" onChange={this.handleInputChange} />
                     </div>
                     <div>
-                    <input className="form" type="text" name="proj_link" value="" placeholder="Link to Project" onChange="" />
+                    <input className="form" type="text" name="proj_link" value={this.state.proj_link} placeholder="Link to Project" onChange={this.handleInputChange} />
                     </div>
                     <div>
-                    <input className="form" type="text" name="user_type" value="" placeholder="User Type" onChange="" />
+                    <input className="form" type="text" name="user_type" value={this.state.user_type} placeholder="User Type" onChange={this.handleInputChange} />
                     </div>
                     <div>
                     <input className="form" type="submit" value="Enter" />

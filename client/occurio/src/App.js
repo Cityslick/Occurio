@@ -35,34 +35,12 @@ class App extends Component {
         auth: false,
         user: null,
         currentPage: 'home',
-        currentMovieId: null,
-        movieData: null,
     }
     // AUTH
     this.setPage = this.setPage.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit= this.handleRegisterSubmit.bind(this);
     this.logOut =  this.logOut.bind(this);
-
-    // USERS/PROJECTS
-    this.handleMovieSubmit = this.handleMovieSubmit.bind(this);
-
-    this.handleMovieEditSubmit = this.handleMovieEditSubmit.bind(this);
-
-    this.selectEditedMovie = this.selectEditedMovie.bind(this);
-    
-    // handledeleteproject
-    this.handleDeleteProject = this.handleDeleteProject.bind(this);
-    
-    // handle
-    this.handleMovieSubmit = this.handleMovieSubmit.bind(this);
-
-    this.handleMovieEditSubmit = this.handleMovieEditSubmit.bind(this);
-
-    this.selectEditedMovie = this.selectEditedMovie.bind(this);
-
-    // this.handleDeleteMovie = this.handleDeleteMovie.bind(this);
-
   }
 
     setPage(page) {
@@ -71,36 +49,6 @@ class App extends Component {
         })
     }
 
-    decideWhichPage() {
-        switch(this.state.currentPage) {
-            case 'home':
-                return <Home />;
-                // break;
-            case 'login':
-                if (!this.state.auth) {
-                    return <Login handleLoginSubmit={this.handleLoginSubmit} />;
-                } else return <Home />;
-                // break;
-          case 'register':
-            if (!this.state.auth) {
-                return <Register handleRegisterSubmit={this.handleRegisterSubmit} />;
-            } else return <Home />;
-
-          case 'userprofile':
-            return (
-                <UserProfile
-                movieData={this.state.movieData}
-                userData={this.state.user}
-                handleMovieSubmit={this.handleMovieSubmit}
-                handleMovieEditSubmit={this.handleMovieEditSubmit}
-                selectEditedMovie={this.selectEditedMovie}
-                handleDeleteProject={this.handleDeleteMovie}
-                currentMovieId={this.state.currentMovieId}/>)
-                ;
-          default:
-            break;
-        }
-    }
    handleLoginSubmit(e, username, password) {
         e.preventDefault();
         axios.post('/auth/login', {
@@ -117,13 +65,16 @@ class App extends Component {
      }
 
 
-    handleRegisterSubmit(e, username, password, email) {
-        console.log(e);
+    handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
+        console.log(username);
         e.preventDefault();
         axios.post('/auth', {
             username,
+            firstname,
+            lastname,
             password,
             email,
+            user_type,
         }).then(res => {
             this.setState({
                 auth: res.data.auth,
@@ -145,78 +96,20 @@ class App extends Component {
             });
         }).catch(err => console.log(err));
     }
-    componentDidMount() {
-    axios.get('/movies')
-      .then(res => {
-        this.setState({
-          movieData: res.data.data,
-        });
-      }).catch(err => console.log(err));
-    }
-
-    handleMovieSubmit(e, title, description, genre,director) {
-        e.preventDefault();
-        axios.post('/movies', {
-            title,
-            description,
-            genre,
-            director,
-        }).then(res => {
-            this.resetMovies();
-        }).catch(err => console.log(err));
-    }
-
-    handleMovieEditSubmit(e, title, description, genre,director) {
-        e.preventDefault();
-        axios.put(`/movies/${this.state.currentMovieId}`, {
-            title,
-            description,
-            genre,
-            director,
-        }).then(res => {
-            this.resetMovies();
-        }).catch(err => console.log(err));
-    }
-
-  handleDeleteProject(id) {
-    axios.delete(`/movies/${id}`,{
-        id,
-    }).then(res => {
-        console.log("reset");
-        this.resetMovies();
-    }).catch(err => console.log(err));
-  }
-
-  selectEditedMovie(id) {
-    this.setState({
-      currentMovieId: id,
-    })
-  }
-
-  // RENDER
-
-  resetMovies() {
-      axios.get('/movies')
-      .then(res => {
-          this.setState({
-              movieData: res.data.data,
-              currentMovieId: null,
-          })
-      }).catch(err => console.log(err));
-  }
   
   render() {
     return (
       <div className="App">
         <Header />
-        <Task />
-        {/* <Login /> */}
-        {/* <Register /> */}
-        {/* <ProjectCreate /> */}
-        {/* <ProjectView /> */}
-        {/* <UserProfile /> */}
-        {/* <UserProfileAll /> */}
-        {/* <ViewUserProjects /> */}
+        <Login handleLoginSubmit={this.handleLoginSubmit} username={this.username} password={this.password} />
+        <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}  
+        firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
+        user_type={this.user_type}  />
+        <ProjectCreate />
+        <ProjectView />
+        <UserProfile />
+        <UserProfileAll />
+        <ViewUserProjects />
         {/* <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </div> */}
