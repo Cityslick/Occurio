@@ -34,6 +34,7 @@ class App extends Component {
     this.state = {
         auth: false,
         user: null,
+        apiDataloaded:false,
         currentPage: 'home',
     }
     // AUTH
@@ -86,6 +87,7 @@ class App extends Component {
                 auth: res.data.auth,
                 user: res.data.user,
                 currentPage: 'home',
+                apiDataloaded:true,
             });
         }).catch(err => console.log(err));
     }
@@ -145,7 +147,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
         user_type={this.user_type}  />
         {/* <ProjectCreate handleCreateProject={this.handleCreateProject}/>
         <ProjectView project={this.state.project}/> */}
-        <UserProfile user={this.user}/>
+        <UserProfile user={this.user} apiDataloaded={this.apiDataloaded}/>
         <UserProfileAll />
         {/* <ViewUserProjects viewProject={this.viewProject} project={this.state.project}/> */}
         {/* <div className="App-header">
