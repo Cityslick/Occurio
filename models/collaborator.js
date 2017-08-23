@@ -1,14 +1,14 @@
 const db = require("../db/config")
 const Collaborators={
 // PROJECTS COLLABORATOR
-  assignCollaborators : function(projectId,userId){
+  assignCollaborators : function(collaborator){
     return db.none("INSERT INTO collaborators VALUES($1,$2)",
-    [projectId, userId]);
+    [collaborator.projectId, collaborator.userId]);
   },
 
-  deleteCollaborators : function(projectId,userId){
+  deleteCollaborators : function(collaborator){
     return db.none("DELETE FROM  collaborators WHERE proj_Id = $1 AND  user_Id= $2",
-    [projectId,userId]);
+    [collaborator.projectId,collaborator.userId]);
   },
 
   findCollaboratorProjects : function(userId){
@@ -16,6 +16,5 @@ const Collaborators={
       [userId])
   }
 }
-
 
 module.exports = Collaborators;
