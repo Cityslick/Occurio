@@ -168,9 +168,9 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               email={this.email}
               user_type={this.user_type} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
-            <Route exact path="/user-projects" render={() => <ViewUserProjects viewProject={this.viewProject} project={this.state.project} />} />
+            <Route exact path="/user-projects" render={() => <ViewUserProjects viewProject={this.viewProject} projects={this.projects} />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
-            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.state.project} />} />
+            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} />} />
           </main>
           <Footer />
         </div>

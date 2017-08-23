@@ -4,7 +4,7 @@
 /* MEDIA QUERY */
 /* @media only screen and (max-width: 500px) {
   .header {
-    justify-content: space-between;    
+    justify-content: space-between;
   }
 } */
 
@@ -39,7 +39,6 @@ a:active {
   text-decoration: none;
   color: none;
 }
-  
 
 .button {
   border: 2px solid black
@@ -122,16 +121,16 @@ a:active {
 }
 
 .home-page3 {
-  height: 100vh;  
+  height: 100vh;
 }
 
 .hero {
-  min-height: 100vh; 
-  display: flex; 
-  flex-direction: column; 
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
 }
-  
+
   .h-btn {
     padding: 32px 24px 32px 24px;
     font-size: 20px;
