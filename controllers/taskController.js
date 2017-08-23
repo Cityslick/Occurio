@@ -29,7 +29,7 @@ const taskController={
       end_date:req.body.end_date,
       status:req.body.status,
       ticket:req.body.ticket,
-    },req.params.id).then(()=>{
+    },req.params.task_id).then(()=>{
       res.json({
         message:"Done",
       })
@@ -50,10 +50,11 @@ const taskController={
   },
 
   findProjectTasks :function(req, res){
-    Task.findProjectTasks(req.body.proj_id)
-    .then(()=>{
+    Task.findProjectTasks(req.params.proj_id)
+    .then((task)=>{
       res.json({
         message:"Done",
+        data:task
       })
     }).catch(err=>{
         res.status(500).json(err);
@@ -61,10 +62,13 @@ const taskController={
   },
 
   findCollaboratorsTasks :function(req, res){
-    Task.findCollaboratorsTasks(req.body.user_id)
-    .then(()=>{
+    Task.findCollaboratorsTasks({
+      user_id:req.body.user_id,
+      proj_id:req.body.proj_id,
+    }).then((task)=>{
       res.json({
         message:"Done",
+        data:task
       })
     }).catch(err=>{
         res.status(500).json(err);
