@@ -11,14 +11,17 @@ class UserProfile extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/user/id/1`)
-            .then(res => {
-                console.log(res);
-                this.setState({
-                    username: res.data.user.username,
-                    fullname: res.data.user.fullname,
-                })
-            })
+        { (this.props.apiDataloaded) ?
+            axios.get(`/user/id/${this.props.user.user_id}`)
+                .then(res => {
+                    console.log(res);
+                    this.setState({
+                        username: res.data.user.username,
+                        fullname: res.data.user.fullname,
+                    })
+                }
+                )
+        : ""}
     }
 
     render() {

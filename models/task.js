@@ -18,11 +18,11 @@ const task={
   },
 
   findProjectTasks :function(projectId){
-    return db.query("SELECT * FROM tasks WHERE proj_id = $1", [projectId])
+    return db.query("SELECT *, to_char(start_date,'yyyy-MM-dd') as start_dateStr, to_char(end_date,'yyyy-MM-dd') as end_dateStr FROM tasks WHERE proj_id = $1", [projectId])
   },
 
   findCollaboratorsTasks :function(task){
-    return db.query("SELECT * FROM tasks WHERE proj_id=$1 and user_id = $2 ", [task.proj_id, task.user_id])
+    return db.query("SELECT *, to_char(start_date,'yyyy-MM-dd') as start_dateStr, to_char(end_date,'yyyy-MM-dd') as end_dateStr FROM tasks WHERE proj_id=$1 and user_id = $2 ", [task.proj_id, task.user_id])
   }
 
 }
