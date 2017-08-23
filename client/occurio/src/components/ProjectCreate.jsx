@@ -65,7 +65,7 @@ render() {
           <input type="text" name="planned_end_date" placeholder="End Date" value={this.state.planned_end_date} onChange={this.handleInputChange} />
         </label>
         </div>
-        <input type="submit" value="Create Project" />
+        <input type="submit"/>
       </form>
     </div>
   )

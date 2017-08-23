@@ -22,7 +22,9 @@ class UserProfileAll extends Component {
 
   render() {
     return (
-        <div className='userList'>
+      <div className='userList'>
+        <div>
+          <h1>Select a user!</h1>
           <select>
             { (this.state.apiDataloaded) ? 
               this.state.userData.map(user => {
@@ -31,6 +33,7 @@ class UserProfileAll extends Component {
              : ""}
           </select>
         </div>
+      </div>
     )
   }
 }

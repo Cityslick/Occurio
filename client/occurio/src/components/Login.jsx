@@ -22,8 +22,9 @@ class Login extends Component {
         return(
             <div>
             <h1>
-                <h2 className="welcome-txt">Welcome to Occurio</h2>
+                <h2 className="hero-text2">Welcome to Okurio</h2>
             </h1>
+            <div className="login-container">
             <div className="form">
                 <form onSubmit={(e) => this.props.handleLoginSubmit(
                     e, 
@@ -42,6 +43,7 @@ class Login extends Component {
                     </div>
                     
                 </form>
+            </div>
             </div>
             </div>
         )

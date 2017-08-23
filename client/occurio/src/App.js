@@ -70,7 +70,6 @@ class App extends Component {
         }).catch(err => console.log(err));
      }
 
-
     handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
         console.log(username);
         e.preventDefault();
@@ -136,22 +135,22 @@ viewProject() {
       }).catch(err => console.log(err));
   }
 
-
-
-
-
   render() {
     return (
       <div className="App">
         <Header />
-        <Login handleLoginSubmit={this.handleLoginSubmit} username={this.username} password={this.password} />
-        <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}
+        <Home />
+        {/* <Login handleLoginSubmit={this.handleLoginSubmit} username={this.username} password={this.password} /> */}
+        {/* <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}
         firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
-        user_type={this.user_type}  />
-        <ProjectCreate handleCreateProject={this.handleCreateProject}/>
+        user_type={this.user_type}  /> */}
+        {/* <ProjectCreate handleCreateProject={this.handleCreateProject}/> */}
         {/* <ProjectView project={this.state.project}/> */}
-        <UserProfile />
-        <UserProfileAll />
+        {/* <UserProfile /> */}
+        {/* <ProjectCreate handleCreateProject={this.handleCreateProject}/> */}
+        {/* <ProjectView project={this.state.project}/> */}
+        {/* <UserProfile user={this.user}/> */}
+        {/* <UserProfileAll /> */}
         {/* <ViewUserProjects viewProject={this.viewProject}/> */}
         {/* <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />

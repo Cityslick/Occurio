@@ -6,15 +6,18 @@ class UserProfile extends Component {
         super();
         this.state = {
             username: '',
-            firstname: '',
-            lastname: '',
+            fullname: '',
         }
     }
 
     componentDidMount() {
-        axios.get('/user/id/:id')
+        axios.get(`/user/id/${this.props.user.user_id}`)
             .then(res => {
                 console.log(res);
+                this.setState({
+                    username: res.data.user.username,
+                    fullname: res.data.user.fullname,
+                })
             })
     }
 
@@ -23,11 +26,10 @@ class UserProfile extends Component {
         <div>
         <div>
             <h1>User Profile</h1>
+            <h2>{this.state.username}</h2>
         </div>
         <div>
-            <h6>Name</h6>
-            <h6>Role</h6>
-            <h6>Description</h6>
+            <h6>{this.state.fullname}</h6>
         </div>
         </div>
     )
