@@ -23,7 +23,7 @@ class Login extends Component {
       const { fireRedirect } = this.state;
 
         return(
-            <div>
+            <div className="login-page">
             <div>
                 <h2 className="welcome-txt">Welcome to Occurio</h2>
             </div>
