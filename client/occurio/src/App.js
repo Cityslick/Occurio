@@ -71,7 +71,6 @@ class App extends Component {
         }).catch(err => console.log(err));
      }
 
-
     handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
         console.log(username);
         e.preventDefault();
@@ -141,8 +140,9 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
     return (
       <div className="App">
         <Header />
-        <Login handleLoginSubmit={this.handleLoginSubmit} username={this.username} password={this.password} />
-        <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}
+        <Home />
+        {/* <Login handleLoginSubmit={this.handleLoginSubmit} username={this.username} password={this.password} /> */}
+        {/* <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}
         firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
         user_type={this.user_type}  />
         {/* <ProjectCreate handleCreateProject={this.handleCreateProject}/>

@@ -30,7 +30,7 @@ class Register extends Component {
             <div>
               <div className="form">
                 <h1>
-                  <h2 className="hero-text2">Create an Occurio Account!</h2>
+                  <h2 className="hero-text2">Create an Okurio Account!</h2>
                 </h1>
 
                   <form onSubmit={(e) => this.props.handleRegisterSubmit(
@@ -72,7 +72,7 @@ class Register extends Component {
                     <input className="form" type="submit" value="Enter" />
                     </div>
                     <div>
-                    <h1>Okurio is the easiest way to manage.</h1>
+                    <h1 className="hero-text2">Okurio is the easiest way to manage.</h1>
                     </div>
                   </form>
               </div>
