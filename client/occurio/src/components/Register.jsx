@@ -29,9 +29,9 @@ class Register extends Component {
         return(
             <div>
               <div className="form">
-                <h1>
+                <div>
                   <h2 className="hero-text2">Create an Occurio Account!</h2>
-                </h1>
+                </div>
 
                   <form onSubmit={(e) => this.props.handleRegisterSubmit(
                     e, 

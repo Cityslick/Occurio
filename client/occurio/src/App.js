@@ -26,6 +26,7 @@ class App extends Component {
         auth: false,
         user: null,
         apiDataloaded:false,
+        userDataLoaded: false,
         currentPage: 'home',
     }
     // AUTH
@@ -74,7 +75,7 @@ class App extends Component {
                 auth: res.data.auth,
                 user: res.data.user,
                 currentPage: 'home',
-                apiDataloaded:true,
+                userDataLoaded:true,
             });
         }).catch(err => console.log(err));
     }
@@ -146,10 +147,10 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
         <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}
         firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
         user_type={this.user_type}  />
-        {/* <ProjectCreate handleCreateProject={this.handleCreateProject}/>
-        <ProjectView project={this.state.project}/> */}
-        {/* <UserProfile user={this.user} apiDataloaded={this.apiDataloaded}/>
-        <UserProfileAll /> */}
+        <ProjectCreate handleCreateProject={this.handleCreateProject}/>
+        {/* <ProjectView project={this.state.project}/>  */}
+        <UserProfile user={this.user} userDataloaded={this.userDataloaded}/>
+        <UserProfileAll /> 
         <Task handleTaskSubmit={this.handleTaskSubmit}/>
         {/* <ViewUserProjects viewProject={this.viewProject} project={this.state.project}/> */}
         {/* <div className="App-header">

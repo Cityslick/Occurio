@@ -11,7 +11,7 @@ class UserProfile extends Component {
     }
 
     componentDidMount() {
-        { (this.props.apiDataloaded) ?
+        (this.props.userDataLoaded) ?
             axios.get(`/user/id/${this.props.user.user_id}`)
                 .then(res => {
                     console.log(res);
@@ -20,8 +20,8 @@ class UserProfile extends Component {
                         fullname: res.data.user.fullname,
                     })
                 }
-                )
-        : ""}
+            )
+        : ""
     }
 
     render() {

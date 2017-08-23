@@ -1,3 +1,5 @@
+\c simplemgmt_dev;
+
 ALTER TABLE  IF EXISTS tasks
 ADD COLUMN IF NOT EXISTS proj_id INTEGER REFERENCES projects(id);
 
