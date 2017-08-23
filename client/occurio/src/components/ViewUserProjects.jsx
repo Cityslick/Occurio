@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import ProjectView from './ProjectView';
-
 const ProjectsList = (props) => {
   return (
     <div className="project-list">

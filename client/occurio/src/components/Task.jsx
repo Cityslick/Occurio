@@ -55,7 +55,7 @@ class Task extends Component {
             <input className="form" type="text" name="name" value={this.state.name} placeholder="What's your task name?" onChange={this.handleInputChange} />
             </div>
             <div>
-            <input className="form" type="text" name="description" value={this.state.description} placeholder="Add a description" onChange={this.handleInputChange} />
+            <input className="form" type="textarea" name="description" value={this.state.description} placeholder="Add a description" onChange={this.handleInputChange} />
             </div>
             <div>
             <input className="form" type="date" name="start_date" value={this.state.start_date} placeholder="Start Date?" onChange={this.handleInputChange} />
