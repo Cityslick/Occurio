@@ -27,6 +27,7 @@ import Task from './components/Task.jsx';
 // USERS
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
+
 class App extends Component {
   constructor() {
     super();
@@ -35,6 +36,7 @@ class App extends Component {
         user: null,
         fireRedirect: false,
         apiDataloaded:false,
+        userDataLoaded: false,
         currentPage: 'home',
     }
     // AUTH
@@ -81,7 +83,7 @@ class App extends Component {
 
                 fireRedirect: true,
                 currentPage: 'home',
-                apiDataloaded:true,
+                userDataLoaded:true,
             });
             window.location = "/user";
         }).catch(err => console.log(err));
@@ -172,7 +174,6 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
           <Footer />
         </div>
       </Router>
-
     );
   }
 }
