@@ -22,11 +22,17 @@ const User = {
 
   create: function(user){
     return db.one(`
-      INSERT INTO users
-      (username, firstname, lastname, password, email, img_url, proj_link, user_type)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-      RETURNING *
-    `, [user.username, user.firstname, user.lastname, user.password, user.email, user.img_url, user.proj_link, user.user_type]);
+      DO
+      $do$
+      BEGIN
+        IF NOT EXISTS(SELECT * FROM users where username=$1) THEN
+          INSERT INTO users
+          (username, firstname, lastname, password, email, img_url, proj_link, user_type)
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+          RETURNING *
+        END IF;
+      END
+      $do$ `, [user.username, user.firstname, user.lastname, user.password, user.email, user.img_url, user.proj_link, user.user_type]);
   },
 
   update: function(user, id){
