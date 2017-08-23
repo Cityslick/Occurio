@@ -143,18 +143,11 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
         <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}
         firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
         user_type={this.user_type}  />
-        <ProjectCreate handleCreateProject={this.handleCreateProject}/>
-        {this.state.project ?
-        <ProjectView project={this.state.project}/>
-        : ''
-        }
-        {this.state.project ?
-        <ViewUserProjects viewProject={this.viewProject} project={this.state.project} />
-        : ''
-        }
-        <UserProfile />
+        {/* <ProjectCreate handleCreateProject={this.handleCreateProject}/>
+        <ProjectView project={this.state.project}/> */}
+        <UserProfile user={this.user}/>
         <UserProfileAll />
-
+        {/* <ViewUserProjects viewProject={this.viewProject} project={this.state.project}/> */}
         {/* <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </div> */}
