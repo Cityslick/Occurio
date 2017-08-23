@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 
 class Login extends Component {
     constructor() {
@@ -19,6 +20,8 @@ class Login extends Component {
     }
 
     render(){
+      const { fireRedirect } = this.state;
+
         return(
             <div>
             <h1>
@@ -26,8 +29,8 @@ class Login extends Component {
             </h1>
             <div className="form">
                 <form onSubmit={(e) => this.props.handleLoginSubmit(
-                    e, 
-                    this.state.username, 
+                    e,
+                    this.state.username,
                     this.state.password
                     )}>
 
@@ -40,8 +43,11 @@ class Login extends Component {
                     <div>
                     <input className="form" type="submit" value="Enter" />
                     </div>
-                    
+
                 </form>
+                {fireRedirect && (
+                  <Redirect to={'/user'}/>
+                )}
             </div>
             </div>
         )

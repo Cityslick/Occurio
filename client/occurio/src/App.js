@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+import { Redirect } from 'react-router';
+
 // AXIOS
 import axios from 'axios';
 // HEADER/FOOTER/HOME
@@ -25,11 +33,11 @@ class App extends Component {
     this.state = {
         auth: false,
         user: null,
+        fireRedirect: false,
         apiDataloaded:false,
         currentPage: 'home',
     }
     // AUTH
-    this.setPage = this.setPage.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit= this.handleRegisterSubmit.bind(this);
     this.logOut =  this.logOut.bind(this);
@@ -40,11 +48,7 @@ class App extends Component {
     // Create Tasks
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
   }
-    setPage(page) {
-        this.setState({
-            currentPage: page,
-        })
-    }
+
    handleLoginSubmit(e, username, password) {
         e.preventDefault();
         axios.post('/auth/login', {
@@ -55,8 +59,9 @@ class App extends Component {
             this.setState({
                 auth: res.data.auth,
                 user: res.data.user,
-                currentPage: 'home',
+                fireRedirect: true,
             });
+            window.location = "/user"; // dont tell the router team :(
         }).catch(err => console.log(err));
      }
     handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
@@ -73,9 +78,12 @@ class App extends Component {
             this.setState({
                 auth: res.data.auth,
                 user: res.data.user,
+
+                fireRedirect: true,
                 currentPage: 'home',
                 apiDataloaded:true,
             });
+            window.location = "/user";
         }).catch(err => console.log(err));
     }
     logOut() {
@@ -84,9 +92,10 @@ class App extends Component {
             console.log(res);
             this.setState({
                 auth: false,
-                currentPage: 'home',
                 user:null,
+                fireRedirect: true,
             });
+            window.location = "/home";
         }).catch(err => console.log(err));
     }
 // Handle Create Project
@@ -104,6 +113,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
     this.setState({
       user: res.data.user,
       project: res.data,
+      fireRedirect: true,
     })
   }).catch(err => console.log(err));
 }
@@ -115,6 +125,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       this.setState({
         user: res.data.user,
         project: res.data,
+        fireRedirect: true,
       })
     }).catch(err => console.log(err));
   }
@@ -140,23 +151,28 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
   }
   render() {
     return (
-      <div className="App">
-        <Header />
-        <Login handleLoginSubmit={this.handleLoginSubmit} username={this.username} password={this.password} />
-        <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}
-        firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
-        user_type={this.user_type}  />
-        {/* <ProjectCreate handleCreateProject={this.handleCreateProject}/>
-        <ProjectView project={this.state.project}/> */}
-        {/* <UserProfile user={this.user} apiDataloaded={this.apiDataloaded}/>
-        <UserProfileAll /> */}
-        <Task handleTaskSubmit={this.handleTaskSubmit}/>
-        {/* <ViewUserProjects viewProject={this.viewProject} project={this.state.project}/> */}
-        {/* <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </div> */}
-        <Footer />
-      </div>
+      <Router>
+        <div className="App">
+          <Header />
+          <main>
+            <Route exact path='/home' render={() => <Home />} />
+            <Route exact path='/login' render={() => <Login handleLoginSubmit={this.handleLoginSubmit} />} />
+            <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit}
+              username={this.props.username}
+              firstname={this.firstname}
+              lastname={this.lastname}
+              password={this.password}
+              email={this.email}
+              user_type={this.user_type} />} />
+            <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
+            <Route exact path="/user-projects" render={() => <ViewUserProjects viewProject={this.viewProject} project={this.state.project} />} />
+            <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
+            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.state.project} />} />
+          </main>
+          <Footer />
+        </div>
+      </Router>
+
     );
   }
 }
