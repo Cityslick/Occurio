@@ -20,7 +20,7 @@ import ProjectView from './components/ProjectView.jsx';
 import ViewUserProjects from './components/ViewUserProjects.jsx';
 
 // TASKS
-import Task from './components/Task.jsx';
+import Task from './components/Login.jsx';
 
 // USERS
 import UserProfile from './components/UserProfile.jsx';
@@ -90,7 +90,6 @@ class App extends Component {
         }).catch(err => console.log(err));
     }
 
-
     logOut() {
         axios.get('/auth/logout')
         .then(res => {
@@ -107,7 +106,8 @@ class App extends Component {
 
 handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
   e.preventDefault();
-  axios.post('/projects', {
+  console.log("Im here");
+  axios.post('/project', {
     name,
     description,
     category,
@@ -117,28 +117,23 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
   }).then(res => {
     this.setState({
       user: res.data.user,
-      currentPage: 'project/:id',
       project: res.data,
     })
   }).catch(err => console.log(err));
 }
 
-//View Single Project
+// View Single Project
 
-viewProject() {
-  axios.get('/projects')
-  .then(res => {
-        this.setState({
-          user: res.data.user,
-          currentPage: 'project/:id',
-          project: res.data,
-        })
-      }).catch(err => console.log(err));
+  viewProject() {
+    console.log("Im here");
+    axios.get('/project/:id')
+    .then(res => {
+      this.setState({
+        user: res.data.user,
+        project: res.data,
+      })
+    }).catch(err => console.log(err));
   }
-
-
-
-
 
   render() {
     return (
@@ -152,7 +147,7 @@ viewProject() {
         <ProjectView project={this.state.project}/> */}
         <UserProfile user={this.user}/>
         <UserProfileAll />
-        {/* <ViewUserProjects viewProject={this.viewProject}/> */}
+        {/* <ViewUserProjects viewProject={this.viewProject} project={this.state.project}/> */}
         {/* <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </div> */}
