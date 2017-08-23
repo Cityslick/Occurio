@@ -147,7 +147,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
         <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}
         firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
         user_type={this.user_type}  />
-        <ProjectCreate handleCreateProject={this.handleCreateProject}/>
+        {/* <ProjectCreate handleCreateProject={this.handleCreateProject}/> */}
         {/* <ProjectView project={this.state.project}/>  */}
         <UserProfile user={this.user} userDataloaded={this.userDataloaded}/>
         <UserProfileAll /> 
