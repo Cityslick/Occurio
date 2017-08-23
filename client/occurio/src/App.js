@@ -156,6 +156,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       <Router>
         <div className="App">
           <Header />
+          {/* <Home /> */}
           <main>
             <Route exact path='/home' render={() => <Home />} />
             <Route exact path='/login' render={() => <Login handleLoginSubmit={this.handleLoginSubmit} />} />
