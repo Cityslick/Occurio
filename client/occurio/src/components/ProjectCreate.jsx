@@ -42,7 +42,7 @@ render() {
           <input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleInputChange} required />
         </label>
         <label>
-          <select name="category" value={this.state.name} sonChange={this.handleInputChange} required>
+          <select name="category" value={this.state.category} onChange={this.handleInputChange} required>
             <option>Administrative</option>
             <option>Design</option>
             <option>Back End</option>
@@ -50,7 +50,7 @@ render() {
           </select>
         </label>
         <label>
-          <select name="status" value={this.state.name} sonChange={this.handleInputChange} required>
+          <select name="status" value={this.state.status} onChange={this.handleInputChange} required>
             <option>Started</option>
             <option>Pending</option>
             <option>Complete</option>
