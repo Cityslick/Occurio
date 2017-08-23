@@ -13,9 +13,30 @@
   /* top: 0; */
   text-decoration: none;
 }
-a:active {
-  color: none;
+
+a {
+  color: white;
+  text-decoration: none; /* no underline */
+}
+
+a:link{
   text-decoration: none;
+  color: none;
+}
+
+a:visited {
+  text-decoration: none;
+
+  color: none;
+}
+a:hover {
+  text-decoration: none;
+  color: none;
+}
+
+a:active {
+  text-decoration: none;
+  color: none;
 }
 
 .button {
@@ -44,24 +65,28 @@ a:active {
 }
 /* HEADER */
 .nav {
-  /* display:inline-block; */
-  font-size:40px;
+  display:inline-block;
+  /* font-size:40px; */
   font-weight:900;
 }
+
 .nav-list {
-  padding: 20px;
+  padding-left: 960px;
 }
+
 .nav-item {
-  padding: 20px;
+  height: 2vw;
+  padding: 0px .5em 0px .5em;
   color: white
 }
 .nav-item a {
   display:block;
-  padding:15px 20px;
   color:#FFF;
 }
 .nav-item a:hover {
-  background:#2C3E50;
+  background: white;
+  color: #6D1CDF;
+  transition: .3s;
 }
 .header {
   position: fixed;
@@ -106,6 +131,20 @@ a:active {
   .form {
     padding-top: 0px;
   }
+
+  /* REGISTER PAGE */
+
+  .register {
+    padding-top: 10vh;
+    height: 120vh;
+  }
+
+  /* SIGN-IN PAGE */
+  .sign-in {
+    padding-top: 10vh;
+    height: 100vh;
+  }
+
   /* FORM STYLES */
   .register-form {
     display: inline-flex;
