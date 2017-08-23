@@ -17,8 +17,14 @@ const Home = () => {
           </div>
       </div>
     </div>
-    <div className="home-page2"></div>
-    <div className="home-page3"></div>
+    <div className="home-page2">
+      <div className="home-page2-container">
+      </div>
+    </div>
+    <div className="home-page3">
+      <div className="home-page3-container">
+      </div>
+    </div>
     </div>
   )
 }
