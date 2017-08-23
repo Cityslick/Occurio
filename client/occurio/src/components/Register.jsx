@@ -72,15 +72,17 @@ class Register extends Component {
                         <input className="form" type="text" name="proj_link" value={this.state.proj_link} placeholder="Link to Project" onChange={this.handleInputChange} />
                     </div>
 
-                    <div>
-                        <select className="dropDown">
+                    <div className="drop-down">
+                        <div>
+                        <select>
                             <option>Manager</option>
                             <option>Collaborator</option>
-                            <option>Something Else</option>
+                            <option>Other</option>
                         </select>
-
-
+                        </div>
+                        <div>
                         <input className="form" type="text" name="user_type" value={this.state.user_type} placeholder="User Type" onChange={this.handleInputChange} />
+                        </div>
                     </div>
 
                     <div>
