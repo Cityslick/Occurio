@@ -24,6 +24,7 @@ import ProjectView from './components/ProjectView.jsx';
 import ViewUserProjects from './components/ViewUserProjects.jsx';
 // TASKS
 import Task from './components/Task.jsx';
+import TaskList from './components/TaskList.jsx';
 // USERS
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
@@ -168,6 +169,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               password={this.password}
               email={this.email}
               user_type={this.user_type} />} />
+            <Route exact path="/task" render={() => <TaskList proj_id={1} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
             <Route exact path="/user-projects" render={() => <ViewUserProjects viewProject={this.viewProject} projects={this.projects} />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
