@@ -78,19 +78,25 @@ a:active {
   font-weight:900;
 }
 
+.nav-list {
+  padding-left: 960px;
+}
+
 .nav-item {
-  padding: .5em;
+  height: 2vw;
+  padding: 0px .5em 0px .5em;
   color: white
 }
 
 .nav-item a {
   display:block;
-  /* padding:15px 20px; */
   color:#FFF;
 }
 
 .nav-item a:hover {
-  background:#2C3E50;
+  background: white;
+  color: #6D1CDF;
+  transition: .3s;
 }
 
 .header {
@@ -146,12 +152,14 @@ a:active {
   /* REGISTER PAGE */
 
   .register {
-    padding-top: 10vw;
+    padding-top: 10vh;
+    height: 120vh;
   }
 
   /* SIGN-IN PAGE */
   .sign-in {
-    padding-top: 10vw;
+    padding-top: 10vh;
+    height: 100vh;
   }
 
   /* FORM STYLES */
