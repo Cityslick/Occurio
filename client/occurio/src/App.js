@@ -127,6 +127,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       this.setState({
         user: res.data.user,
         project: res.data,
+        projectTasks: res.task,
         fireRedirect: true,
       })
     }).catch(err => console.log(err));
@@ -170,7 +171,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
             <Route exact path="/user-projects" render={() => <ViewUserProjects viewProject={this.viewProject} project={this.state.project} />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
-            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.state.project} />} />
+            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.state.project} projectTasks={this.state.taskDats}  />} />
           </main>
           <Footer />
         </div>

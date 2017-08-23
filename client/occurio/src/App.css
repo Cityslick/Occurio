@@ -1,13 +1,11 @@
 /* FONTS */
 @import url('https://fonts.googleapis.com/css?family=Quicksand');
-
 /* MEDIA QUERY */
 /* @media only screen and (max-width: 500px) {
   .header {
-    justify-content: space-between;    
+    justify-content: space-between;
   }
 } */
-
 * {
   list-style-type: none;
   font-family: Quicksand, Helvetica, sans-serif;
@@ -15,43 +13,35 @@
   /* top: 0; */
   text-decoration: none;
 }
-
 a:active {
   color: none;
   text-decoration: none;
 }
-  
 
 .button {
   border: 2px solid black
 }
-
 .App {
   text-align: center;
 }
-
 .logo {
   color: white;
   font-size: 24px;
   font-weight: 400;
   padding: 0px 0px 0px 20px;
 }
-
 .hero-container {
   display: flex-end;
   padding: 60px;
 }
-
 .hero-text {
   font-size: 72px;
   font-weight: 800;
 }
-
 .hero-quote {
   font-size: 48px;
   font-weight: 400;
 }
-
 /* HEADER */
 .nav {
   /* display:inline-block; */
@@ -65,17 +55,14 @@ a:active {
   padding: 20px;
   color: white
 }
-
 .nav-item a {
   display:block;
   padding:15px 20px;
   color:#FFF;
 }
-
 .nav-item a:hover {
   background:#2C3E50;
 }
-
 .header {
   position: fixed;
   display: flex;
@@ -83,13 +70,11 @@ a:active {
   width: 100%;
   color: white;
 }
-
 .home-page {
   padding-top: 10vh;
   display: inline-block;
   height: 100vh;
 }
-
 .home-page2 {
   width: 100vw;
   background: url(http://www.pngmart.com/files/4/Macbook-PNG-Photos.png);
@@ -97,46 +82,39 @@ a:active {
   background-size: cover;
   height: 100vh;
 }
-
 .home-page3 {
-  height: 100vh;  
+  height: 100vh;
 }
-
 .hero {
-  min-height: 100vh; 
-  display: flex; 
-  flex-direction: column; 
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
 }
-  
+
   .h-btn {
     padding: 32px 24px 32px 24px;
     font-size: 20px;
     font-style: uppercase;
     font-weight: 400;
   }
-
   .h-btn:hover {
     background-color: white;
     color: #6D1CDF;
     transition: all 0.3s ease 0s;
   }
-
   .form {
     padding-top: 0px;
   }
-
   /* FORM STYLES */
   .register-form {
     display: inline-flex;
   }
-
   form input[type=text]:focus, form input[type=number]:focus {
     border-bottom: 10px solid #8B1BD2;
     /* outline: 0; */
     transition: .4s;
   }
-
   input[type=text], select {
     width: 250px;
     padding: 10px 10px;
@@ -147,7 +125,6 @@ a:active {
     box-sizing: border-box;
     font-size: 20px;
   }
-
   input[type=password], select {
     width: 250px;
     padding: 10px 10px;
@@ -158,7 +135,6 @@ a:active {
     box-sizing: border-box;
     font-size: 20px;
   }
-
   input[type=email], select {
     width: 75%;
     padding: 10px 10px;
@@ -169,7 +145,6 @@ a:active {
     box-sizing: border-box;
     font-size: 20px;
   }
-
   input[type=submit] {
     display: inline-block;
     width: 100px;
@@ -184,13 +159,11 @@ a:active {
     cursor: pointer;
     transition: all 0.5s ease 0s;
   }
-
   input[type=submit]:hover {
     background-color: white;
     color: #6D1CDF;
     box-shadow: inset 0 0 0 0px #211F1F;
   }
-
   .footer {
     /* height: 300px; */
     justify-content: space-between;
@@ -204,41 +177,33 @@ a:active {
     background-position: 0% 0%;
     bottom: 0pt;
   }
-
   .footer-col {
     align-content: center;
     padding: 20px;
     /* width: 20vw; */
   }
-
   .footer-col:hover {
     background-color: white;
     color: #6D1CDF;
     transition: .3s;
   }
-
   .footer-nav {
     /* text-align: center; */
     /* display: flex; */
     justify-content: center;
     color: white;
   }
-
   .App-intro {
     font-size: large;
   }
-
   ul {
     width: 100%;
     text-align: center;
     display: flex;
     justify-content: flex-start;
     float: left;
-
   }
-
   /* PARALLAX */
-
   /* .parallax { */
     /* background-image: url("http://www.saga.co.uk/contentlibrary/saga/publishing/verticals/entertainment/films-and-tv/films-hero-1260x600.jpg"); */
     /* min-height: 800px;  */
@@ -250,8 +215,6 @@ a:active {
     /* background-size: cover; */
     /* position: absolute; */
   /* } */
-
-
   @keyframes App-logo-spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
@@ -263,29 +226,24 @@ a:active {
       background-color: rgba(255,255,153,0.5);
     }
   }
-
   td, th {
       border: 1px solid silver;
       text-align: left;
       height: 30px;
       padding: 8px;
   }
-
   th {
       background-color:lightblue;
       color: black;
       font-weight: bold;
   }
-
   td, tr{
     width: 100px;
     word-wrap: break-word;
   }
-
   .tdDescription{
     width:40%;
   }
-
   /*change the color of each row depending if its odd or even*/
   tr:nth-child(odd) {
       background-color: silver;
@@ -299,7 +257,6 @@ a:active {
       font-size: 1.5em;
       width: 100px;
   }
-
 /* TESTING */
 .testing {
   border-bottom: 20px purple;
