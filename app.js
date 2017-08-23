@@ -21,6 +21,7 @@ app.use(
         saveUninitialized: true,
     }),
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -44,6 +45,11 @@ app.use("/user", userRoutes)
 const projectRoutes = require("./routes/projectRoutes");
 app.use("/project", projectRoutes);
 
+const collaboratorsRoutes= require("./routes/collaboratorRoutes");
+app.use("/collaborator",collaboratorsRoutes);
+
+const taskRoutes= require("./routes/taskRoutes");
+app.use("/task",taskRoutes);
 
 app.get("*",(req, res)=>{
   res.status("404").json({

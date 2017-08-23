@@ -20,7 +20,7 @@ import ProjectView from './components/ProjectView.jsx';
 import ViewUserProjects from './components/ViewUserProjects.jsx';
 
 // TASKS
-import Task from './components/Task.jsx';
+import Task from './components/Login.jsx';
 
 // USERS
 import UserProfile from './components/UserProfile.jsx';
@@ -34,6 +34,7 @@ class App extends Component {
     this.state = {
         auth: false,
         user: null,
+        apiDataloaded:false,
         currentPage: 'home',
     }
     // AUTH
@@ -85,10 +86,10 @@ class App extends Component {
                 auth: res.data.auth,
                 user: res.data.user,
                 currentPage: 'home',
+                apiDataloaded:true,
             });
         }).catch(err => console.log(err));
     }
-
 
     logOut() {
         axios.get('/auth/logout')
@@ -106,7 +107,8 @@ class App extends Component {
 
 handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
   e.preventDefault();
-  axios.post('/projects', {
+  console.log("Im here");
+  axios.post('/project', {
     name,
     description,
     category,
@@ -116,23 +118,22 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
   }).then(res => {
     this.setState({
       user: res.data.user,
-      currentPage: 'project/:id',
       project: res.data,
     })
   }).catch(err => console.log(err));
 }
 
-//View Single Project
+// View Single Project
 
-viewProject() {
-  axios.get('/projects')
-  .then(res => {
-        this.setState({
-          user: res.data.user,
-          currentPage: 'project/:id',
-          project: res.data,
-        })
-      }).catch(err => console.log(err));
+  viewProject() {
+    console.log("Im here");
+    axios.get('/project/:id')
+    .then(res => {
+      this.setState({
+        user: res.data.user,
+        project: res.data,
+      })
+    }).catch(err => console.log(err));
   }
 
   render() {
@@ -143,15 +144,12 @@ viewProject() {
         {/* <Login handleLoginSubmit={this.handleLoginSubmit} username={this.username} password={this.password} /> */}
         {/* <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}
         firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
-        user_type={this.user_type}  /> */}
-        {/* <ProjectCreate handleCreateProject={this.handleCreateProject}/> */}
-        {/* <ProjectView project={this.state.project}/> */}
-        {/* <UserProfile /> */}
-        {/* <ProjectCreate handleCreateProject={this.handleCreateProject}/> */}
-        {/* <ProjectView project={this.state.project}/> */}
-        {/* <UserProfile user={this.user}/> */}
-        {/* <UserProfileAll /> */}
-        {/* <ViewUserProjects viewProject={this.viewProject}/> */}
+        user_type={this.user_type}  />
+        {/* <ProjectCreate handleCreateProject={this.handleCreateProject}/>
+        <ProjectView project={this.state.project}/> */}
+        <UserProfile user={this.user} apiDataloaded={this.apiDataloaded}/>
+        <UserProfileAll />
+        {/* <ViewUserProjects viewProject={this.viewProject} project={this.state.project}/> */}
         {/* <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </div> */}

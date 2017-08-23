@@ -6,8 +6,8 @@ const usersController = require('../controllers/usersController');
 
 
 
-authRouter.post('/', usersController.create);
-authRouter.put('/:id', usersController.update);
+// authRouter.post('/', usersController.create);
+// authRouter.put('/:id', usersController.update);
 
 authRouter.post('/login', passport.authenticate('local', {
     successRedirect: '/auth/success',
@@ -15,7 +15,6 @@ authRouter.post('/login', passport.authenticate('local', {
     failureFlash: false,
   })
 );
-
 
 authRouter.get('/success', (req, res) => {
     res.json({
@@ -32,7 +31,6 @@ authRouter.get('/failure', (req, res) => {
     user: null,
   });
 });
-
 
 authRouter.get('/logout', (req, res) => {
   req.logout();
