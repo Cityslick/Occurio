@@ -26,8 +26,6 @@ import Task from './components/Login.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
 
-
-
 class App extends Component {
   constructor() {
     super();
@@ -141,14 +139,15 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
     return (
       <div className="App">
         <Header />
-        <Login handleLoginSubmit={this.handleLoginSubmit} username={this.username} password={this.password} />
-        <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username}
-        firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
-        user_type={this.user_type}  />
+        <Home />
+        {/* <Login handleLoginSubmit={this.handleLoginSubmit} username={this.username} password={this.password} /> */}
+        {/* <Register handleRegisterSubmit={this.handleRegisterSubmit} username={this.username} */}
+        {/* firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email} */}
+        {/* user_type={this.user_type}  /> */}
         {/* <ProjectCreate handleCreateProject={this.handleCreateProject}/>
         <ProjectView project={this.state.project}/> */}
-        <UserProfile user={this.user} apiDataloaded={this.apiDataloaded}/>
-        <UserProfileAll />
+        {/* <UserProfile user={this.user} apiDataloaded={this.apiDataloaded}/> */}
+        {/* <UserProfileAll /> */}
         {/* <ViewUserProjects viewProject={this.viewProject} project={this.state.project}/> */}
         {/* <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />

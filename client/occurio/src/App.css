@@ -1,10 +1,25 @@
 /* FONTS */
 @import url('https://fonts.googleapis.com/css?family=Quicksand');
 
-* {
-    list-style-type: none;
-    font-family: Quicksand, Helvetica, sans-serif;
+/* MEDIA QUERY */
+/* @media only screen and (max-width: 500px) {
+  .header {
+    justify-content: space-between;    
   }
+} */
+
+* {
+  list-style-type: none;
+  font-family: Quicksand, Helvetica, sans-serif;
+  box-sizing: border-box;
+  /* top: 0; */
+  text-decoration: none;
+}
+
+a:active {
+  color: none;
+  text-decoration: none;
+}
   
 .button {
   border: 2px solid black
@@ -16,31 +31,81 @@
   
 .logo {
   color: white;
-  align-content: left;
-  align-content: flex-start;
   font-size: 24px;
   font-weight: 400;
   padding: 0px 0px 0px 20px;
-  /* letter-spacing: -0.0em; */
 }
 
+.hero-container {
+  display: flex-end;
+  padding: 60px;
+}
 
-.hero-text1 {
+.hero-text {
   font-size: 72px;
+  font-weight: 800;
 }
 
-.hero-text2 {
-  font-size: 18px;
+.hero-quote {
+  font-size: 48px;
   font-weight: 400;
-  letter-spacing: .01em;
+}
+
+/* HEADER */
+.nav {
+  /* display:inline-block; */
+  font-size:40px;
+  font-weight:900;
+}
+.nav-list {
+  padding: 20px;
+}
+.nav-item {
+  padding: 20px;
+  color: white
+}
+
+.nav-item a {
+  display:block;
+  padding:15px 20px;
+  color:#FFF;
+}
+
+.nav-item a:hover {
+  background:#2C3E50;
 }
 
 .header {
+  position: fixed;
   display: flex;
   background-color: #6D1CDF;
-  height: 60px;
   width: 100%;
   color: white;
+}
+
+.home-page {
+  padding-top: 10vh;
+  display: inline-block;
+  height: 100vh;
+}
+
+.home-page2 {
+  width: 100vw;
+  background: url(http://www.pngmart.com/files/4/Macbook-PNG-Photos.png);
+  background-color: #6D1CDF;
+  background-size: cover;
+  height: 100vh;
+}
+
+.home-page3 {
+  height: 100vh;  
+}
+
+.hero {
+  min-height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center;
 }
   
   .h-btn {
@@ -48,7 +113,6 @@
     font-size: 20px;
     font-style: uppercase;
     font-weight: 400;
-    letter-spacing: .1em;
   }
   
   .h-btn:hover {
@@ -127,12 +191,9 @@
   }
   
   .footer {
-    text-align: center;
-    display: inline-block;
-    display: inline-flex;
+    /* height: 300px; */
+    justify-content: space-between;
     height: 100%;
-    width: 100%;
-    text-align: left;
     font-weight: 400px;
     font-size: 20px; 
     background-color: #6D1CDF;
@@ -140,13 +201,25 @@
     background-repeat: repeat;
     background-attachment: scroll;
     background-position: 0% 0%;
-    padding: 10px 0px 10px 10px;
     bottom: 0pt;
   }   
 
-  .footer-text {
-    text-align: center;
-    display: flex;
+  .footer-col {
+    align-content: center;
+    padding: 20px;
+    /* width: 20vw; */
+  }
+
+  .footer-col:hover {
+    background-color: white;
+    color: #6D1CDF;
+    transition: .3s;
+  }
+
+  .footer-nav {
+    /* text-align: center; */
+    /* display: flex; */
+    justify-content: center;
     color: white;
   }
   
@@ -164,22 +237,22 @@
   }
   
   /* PARALLAX */
-  .parallax {
-    background-image: url("http://www.saga.co.uk/contentlibrary/saga/publishing/verticals/entertainment/films-and-tv/films-hero-1260x600.jpg");
-    min-height: 800px; 
-    width: 100%;
+  /* .parallax { */
+    /* background-image: url("http://www.saga.co.uk/contentlibrary/saga/publishing/verticals/entertainment/films-and-tv/films-hero-1260x600.jpg"); */
+    /* min-height: 800px;  */
+    /* width: 100%; */
     /* SCROLL */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-  }
-  
+    /* background-attachment: fixed; */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+    /* position: absolute; */
+  /* } */
+
   @keyframes App-logo-spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
-  table {
+    table {
       font-family: georgia;
       font-size: 14px;
       border-collapse: collapse;
