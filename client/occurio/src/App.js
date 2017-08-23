@@ -124,15 +124,15 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
 
 // View Single Project
 
-viewProject() {
-  axios.get('/projects')
-  .then(res => {
-        this.setState({
-          user: res.data.user,
-          currentPage: 'project/:id',
-          project: res.data,
-        })
-      }).catch(err => console.log(err));
+  viewProject() {
+    console.log("Im here");
+    axios.get('/project/:id')
+    .then(res => {
+      this.setState({
+        user: res.data.user,
+        project: res.data,
+      })
+    }).catch(err => console.log(err));
   }
 
   render() {
@@ -144,7 +144,14 @@ viewProject() {
         firstname={this.firstname} lastname={this.lastname} password={this.password} email={this.email}
         user_type={this.user_type}  />
         <ProjectCreate handleCreateProject={this.handleCreateProject}/>
-
+        {this.state.project ?
+        <ProjectView project={this.state.project}/>
+        : ''
+        }
+        {this.state.project ?
+        <ViewUserProjects viewProject={this.viewProject} project={this.state.project} />
+        : ''
+        }
         <UserProfile />
         <UserProfileAll />
 
