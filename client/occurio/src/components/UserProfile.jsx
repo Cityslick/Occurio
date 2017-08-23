@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 
 class UserProfile extends Component {
     constructor() {
@@ -22,19 +27,20 @@ class UserProfile extends Component {
                 }
                 )
         : ""}
-
     }
 
     render() {
     return (
         <div>
-        <div>
-            <h1>User Profile</h1>
-            <h2>{this.state.username}</h2>
-        </div>
-        <div>
-            <h6>{this.state.fullname}</h6>
-        </div>
+          <div>
+              <h1>User Profile</h1>
+              <h2>{this.state.username}</h2>
+          </div>
+          <div>
+              <h6>{this.state.fullname}</h6>
+          </div>
+          <Link to={'/project'}>Create A Project</Link>
+          <Link to={'/user-projects'}>View Your Projects</Link>
         </div>
     )
     }

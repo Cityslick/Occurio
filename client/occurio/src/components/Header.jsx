@@ -1,4 +1,10 @@
 import React from 'react';
+// LOGIN/REGISTER
+import Login from './Login';
+import Register from './Register';
+
+import { Link } from 'react-router-dom';
+
 
 const Header = () => {
     return (
@@ -15,6 +21,9 @@ const Header = () => {
                 <li class="nav-item">Sign In</li>
               </ul>
             </div>  
+          <Link to={'/home'}>Home</Link>
+          <Link to={'/login'}>Log In</Link>
+          <Link to={'/register'}>Register</Link>
         </div>
     )
 }
