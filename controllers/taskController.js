@@ -50,7 +50,7 @@ const taskController={
   },
 
   findProjectTasks :function(req, res){
-    Task.findProjectTasks(req.params.proj_id)
+    Task.findProjectTasks(req.params.proj_id, req.body.filter || "")
     .then((task)=>{
       res.json({
         message:"Done",
