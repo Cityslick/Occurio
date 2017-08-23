@@ -11,7 +11,7 @@ class UserProfile extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/user/id/${this.props.user.user_id}`)
+        axios.get(`/user/id/1`)
             .then(res => {
                 console.log(res);
                 this.setState({

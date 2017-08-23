@@ -4,16 +4,17 @@ class Task extends Component {
   constructor() {
     super();
     this.state = {
-      // needs review
-      id: '',
       user_id: '',
-      desc: '',
+      proj_id: '',
+      name: '',
+      description: '',
       start_date: '',
       end_date: '',
-      status: null,
+      status: '',
       ticket: '',
     }
     this.handleInputChange = this.handleInputChange.bind(this);
+    
   }
 
   handleInputChange(e) {
@@ -22,19 +23,8 @@ class Task extends Component {
     this.setState({
       [name]: value
 
-    // const id = e.target.id;
-    // const user_id = e.target.value;
-    // // we should add a row for task names in DB
-    // const taskname = e.target.taskname;
-
-    // const desc = e.target.desc;
-    // const start_date = e.target.start_date;
-    // const end_date = e.target.end_date;
-    // const status = e.target.status;
-    // const ticket = e.target.ticket;
-    // this.setState({
-    // //   name: null,
     });
+    console.log(value);
   }
 
   render(){
@@ -44,10 +34,10 @@ class Task extends Component {
           <h2>Create a Task</h2>
         </div>
         <div className="form">
-          <form onSubmit={(e) => this.props.handleLoginSubmit(
+          <form onSubmit={(e) => this.props.handleTaskSubmit(
             e,
-            this.state.id,
             this.state.user_id,
+            this.state.proj_id,
             this.state.name,
             this.state.description,
             this.state.start_date,
@@ -56,16 +46,22 @@ class Task extends Component {
             this.state.ticket
           )}>
             <div>
+            <input className="form" type="text" name="user_id" value={this.state.user_id} placeholder="User Id" onChange={this.handleInputChange} />
+            </div>
+            <div>
+            <input className="form" type="text" name="proj_id" value={this.state.proj_id} placeholder="Proj Id" onChange={this.handleInputChange} />
+            </div>
+            <div>
             <input className="form" type="text" name="name" value={this.state.name} placeholder="What's your task name?" onChange={this.handleInputChange} />
             </div>
             <div>
-            <input className="form" type="text" name="desc" value={this.state.desc} placeholder="Add a description" onChange={this.handleInputChange} />
+            <input className="form" type="text" name="description" value={this.state.description} placeholder="Add a description" onChange={this.handleInputChange} />
             </div>
             <div>
-            <input className="form" type="text" name="start_date" value={this.state.start_date} placeholder="Start Date?" onChange={this.handleInputChange} />
+            <input className="form" type="date" name="start_date" value={this.state.start_date} placeholder="Start Date?" onChange={this.handleInputChange} />
             </div>
             <div>
-            <input className="form" type="text" name="end_date" value={this.state.end_date} placeholder="End Date?" onChange={this.handleInputChange} />
+            <input className="form" type="date" name="end_date" value={this.state.end_date} placeholder="End Date?" onChange={this.handleInputChange} />
             </div>
             <div>
             <input className="form" type="text" name="status" value={this.state.status} placeholder="What's the status?" onChange={this.handleInputChange} />
