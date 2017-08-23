@@ -12,8 +12,7 @@ const Home = () => {
             <p>Okurio is a simple project management tool - optimized for stress free lives.</p>
           </div>
           <div>
-            <input className="form" type="text" placeholder="Let's get started!" />
-            <button className="form" type="submit">Send</button>
+            <button className="form" type="submit"></button>
           </div>
       </div>
     </div>

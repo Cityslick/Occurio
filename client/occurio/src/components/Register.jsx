@@ -27,7 +27,7 @@ class Register extends Component {
 
     render(){
         return(
-            <div>
+            <div className="register">
               <div className="form">
                 <div>
                   <h2 className="hero-text2">Create an Occurio Account!</h2>
