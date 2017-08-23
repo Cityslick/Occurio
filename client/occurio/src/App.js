@@ -127,6 +127,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       this.setState({
         user: res.data.user,
         project: res.data,
+        projectTasks: res.task,
         fireRedirect: true,
       })
     }).catch(err => console.log(err));

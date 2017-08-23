@@ -12,7 +12,6 @@ const Header = () => {
             <div>
               <h1 className="logo"><Link to={'/home'}>okurio</Link></h1>
             </div>
-
           <Link to={'/home'}>Home</Link>
           <Link to={'/login'}>Log In</Link>
           <Link to={'/register'}>Register</Link>
