@@ -48,6 +48,8 @@ app.use("/project", projectRoutes);
 const collaboratorsRoutes= require("./routes/collaboratorRoutes");
 app.use("/collaborator",collaboratorsRoutes);
 
+const taskRoutes= require("./routes/taskRoutes");
+app.use("/task",taskRoutes);
 
 app.get("*",(req, res)=>{
   res.status("404").json({

@@ -16,7 +16,6 @@ authRouter.post('/login', passport.authenticate('local', {
   })
 );
 
-
 authRouter.get('/success', (req, res) => {
     res.json({
       auth: true,
@@ -32,7 +31,6 @@ authRouter.get('/failure', (req, res) => {
     user: null,
   });
 });
-
 
 authRouter.get('/logout', (req, res) => {
   req.logout();

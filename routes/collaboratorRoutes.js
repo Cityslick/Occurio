@@ -1,6 +1,6 @@
 const express = require("express");
 const collaboratorRoutes = express.Router();
-const collaboratorController = require("../controllers/collaboratorsController");
+const collaboratorController = require("../controllers/collaboratorController");
 
 collaboratorRoutes.post("/", collaboratorController.assignCollaborators);
 collaboratorRoutes.get("/:proj_id", collaboratorController.findCollaboratorProjects);

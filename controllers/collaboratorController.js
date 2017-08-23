@@ -3,10 +3,10 @@ const Collaborator = require("../models/collaborator");
 const collaboratorController={
 // PROJECTS COLLABORATOR
   assignCollaborators : function(req, res){
-    Collaborator.assignCollaborators(
-      req.body.proj_id,
-      req.body.user_id,
-    ).then(()=>{
+    Collaborator.assignCollaborators({
+      proj_id:req.body.proj_id,
+      user_id:req.body.user_id,
+    }).then(()=>{
       res.json({
         message:"Done",
       })
@@ -28,10 +28,10 @@ const collaboratorController={
   },
 
   deleteCollaborators: function(req, res){
-    Collaborator.deleteCollaborators(
-      req.body.proj_id,
-      req.body.user_id,
-    ).then(()=>{
+    Collaborator.deleteCollaborators({
+      proj_id:req.body.proj_id,
+      user_id:req.body.user_id,
+    }).then(()=>{
       res.json({
         message:"Done",
       })
