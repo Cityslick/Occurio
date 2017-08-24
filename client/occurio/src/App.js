@@ -34,6 +34,9 @@ import CollaboratorList from './components/CollaboratorList.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
 
+// TEST
+import Todolist from './components/sidenavtest.js'
+
 class App extends Component {
   constructor() {
     super();
@@ -197,7 +200,9 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       <Router>
         <div className="App">
           <Header />
-          <Task />
+          {/* <Todolist /> */}
+          {/* <Task /> */}
+
           {/* <Home /> */}
           <main>
             <Route exact path='/home' render={() => <Home />} />
@@ -208,7 +213,8 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               lastname={this.lastname}
               password={this.password}
               email={this.email}
-              user_type={this.user_type} />} />
+              user_type={this.user_type} />} 
+            /> 
             <Route exact path="/collaborators" render={() => <CollaboratorList proj_id={2}/>} />
             <Route exact path="/task" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
