@@ -11,9 +11,9 @@ const Collaborators={
     [collaborator.proj_id,collaborator.user_id]);
   },
 
-  findCollaboratorProjects : function(userId){
+  findCollaboratorProjects : function(proj_id){
     return db.query("SELECT u.username, concat(u.firstname , ' ' , u.lastname) as fullname,c.user_id as userid,p.* FROM projects p   INNER JOIN collaborators c ON  p.id = c.proj_id  INNER JOIN users u  ON u.id= c.user_id WHERE  c.proj_id=$1 ",
-      [userId])
+      [proj_id])
   }
 }
 

@@ -16,7 +16,6 @@ class TaskList extends Component {
     this.handlerDeleteTask = this.handlerDeleteTask.bind(this);
   }
 
-
   componentDidMount() {
     this.handlerReloadList();
   }
@@ -27,7 +26,6 @@ class TaskList extends Component {
     let proj_id=this.props.proj_id;
     let user_id=this.props.user_id;
     let filter="";
-    console.log("Getting task");
     (this.props.proj)?  taskRout=`/task/${this.props.proj_id}` : taskRout=(`/task/user/${this.props.user_id}`)
     axios.post(taskRout,{
        proj_id,
@@ -42,7 +40,6 @@ class TaskList extends Component {
     }).catch(err=>{
       console.log(err.json);
     })
-
   }
 
   handlerDeleteTask(task_Id){

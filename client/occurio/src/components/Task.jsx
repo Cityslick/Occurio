@@ -1,45 +1,67 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
-import UserProfileAll from "./UserProfileAll";
+import ProjectView from "./ProjectView";
+import TaskList from './TaskList';
 
 class Task extends Component {
   constructor() {
     super();
     this.state = {
       user_id: '',
-      proj_id: '',
+      proj_id: 1,
       name: '',
       description: '',
       start_date: '',
       end_date: '',
       status: '',
       ticket: '',
-      projectData:null,
-      projectDataLoaded:false,
+      collaboratorData:null,
+      collaboratorDataLoaded:false,
     }
+    this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleLoadProjects = this.handleLoadProjects.bind(this);
+    this.handlerLoadCollaborator = this.handlerLoadCollaborator.bind(this);
   }
 
   componentDidMount(){
-    this.handleLoadProjects();
+    console.log(this.props);
+    this.setState({
+      proj_id:'1',
+    })
+    this.handlerLoadCollaborator();
   }
 
-  handleLoadProjects(){
+  handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
+    e.preventDefault();
+    axios.post('/task', {
+      user_id,
+      proj_id,
+      name,
+      description,
+      start_date,
+      end_date,
+      status,
+      ticket,
+    }).then(res => {
+      console.log(res);
+      this.setState({
+        task: res.data.task,
+      })
+    }).catch(err => console.log(err));
+  }
+
+  handlerLoadCollaborator(){
     let filter="";
-    axios.get("/project",{
-       filter,
-    })
+    axios.get(`/collaborator/${this.state.proj_id}`)
     .then(res=>{
       this.setState({
-        projectData: res.data.data,
-        projectDataLoaded: true,
+        collaboratorData: res.data.data,
+        collaboratorDataLoaded: true,
       })
     }).catch(err=>{
       console.log(err.json);
     })
-
   }
 
   handleInputChange(e) {
@@ -47,17 +69,16 @@ class Task extends Component {
     const value = e.target.value;
     this.setState({
       [name]: value
-
     });
+    console.log(value);
   }
-
 
   allProjects(){
     return(
       <select>
-        { (this.state.projectDataLoaded) ?
-        this.state.projectData.map(project => {
-          return <option key={project.id}>{project.name}</option>
+        { (this.state.collaboratorDataLoaded) ?
+        this.state.collaboratorData.map(collaborator => {
+          return <option key={collaborator.id}>{collaborator.username}</option>
         })
        : ""}
       </select>
@@ -72,7 +93,7 @@ class Task extends Component {
           <h2>Create a Task</h2>
         </div>
         <div className="form">
-          <form onSubmit={(e) => this.props.handleTaskSubmit(
+          <form onSubmit={(e) => this.handleTaskSubmit(
             e,
             this.state.user_id,
             this.state.proj_id,
@@ -83,38 +104,59 @@ class Task extends Component {
             this.state.status,
             this.state.ticket
           )}>
+            <ProjectView id={this.state.proj_id}  presentDetail={false}/>
             <div>
-              <UserProfileAll/>
-            </div>
-            <div className='list'>
-              {this.allProjects()}
+              <label className="labelInput">Collaborator</label>
+              <select  name="user_id" onChange={this.handleInputChange}>
+                { (this.state.collaboratorDataLoaded) ?
+                this.state.collaboratorData.map(collaborator => {
+                  return <option key={collaborator.userid}
+                  name="user_id"  value={collaborator.userid} > {collaborator.username}</option>
+                })
+               : ""}
+              </select>
+
             </div>
 
             <div>
-              <input className="form" type="text" name="name" value={this.state.name} placeholder="What's your task name?" onChange={this.handleInputChange} />
+              <label className="labelInput" >Name </label>
+              <input className="form" type="text" name="name" value={this.state.name} placeholder="" onChange={this.handleInputChange} />
             </div>
 
             <div>
-              <textarea className="form" name="description" value={this.state.description} placeholder="Add a description" onChange={this.handleInputChange} />
+              <label className="labelInput" >Descripcion </label>
+              <textarea className="form" name="description" value={this.state.description} placeholder="" onChange={this.handleInputChange} />
             </div>
 
             <div>
-              <input className="form" type="date" name="start_date" value={this.state.start_date} placeholder="Start Date?" onChange={this.handleInputChange} />
-              <input className="form" type="date" name="end_date" value={this.state.end_date} placeholder="End Date?" onChange={this.handleInputChange} />
+              <label className="labelInput" >Planned start date </label>
+              <input className="form" type="date" name="start_date" value={this.state.start_date} placeholder="" onChange={this.handleInputChange} />
+
+              <label className="labelInput" >Planned end date </label>
+              <input className="form" type="date" name="end_date" value={this.state.end_date} placeholder="" onChange={this.handleInputChange} />
             </div>
 
             <div>
-              <input className="form" type="text" name="status" value={this.state.status} placeholder="What's the status?" onChange={this.handleInputChange} />
+              <label className="labelInput">Status</label>
+              <select name="status"  onChange={this.handleInputChange}>
+                <option name="status" key="1" value={"Pending"}>Pending</option>
+                <option name="status" key="2" value={"Done"}>Pending</option>
+                <option name="status" key="3" value={"In progress"}>In progress</option>
+                <option name="status" key="4"  value={"Canceled"}>Canceled</option>
+              </select>
             </div>
 
             <div>
-              <input className="form" type="text" name="ticket" value={this.state.ticket} placeholder="Ticket" onChange={this.handleInputChange} />
+              <label className="labelInput" >Ticket</label>
+              <input className="form" type="text" name="ticket" value={this.state.ticket} placeholder="" onChange={this.handleInputChange} />
             </div>
-
             <div>
                 <input className="form" type="submit" value="Enter" />
             </div>
-                </form>
+            <div>
+              <TaskList proj_id={this.state.proj_id} user_id={0}  proj={true} />
+            </div>
+          </form>
         </div>
       </div>
     )

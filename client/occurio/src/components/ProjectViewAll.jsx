@@ -32,7 +32,8 @@ class ViewUserProjects  extends Component {
         return this.state.projects.map((project) => {
           return <div className="projects">
                   <h2>{project.name}</h2>
-                  <Link className='viewProject'  to={`/project/${project.id}`} >View Project information</Link>
+                  <Link className='viewProject'  to={`/projectList/${project.id}`} >View Project information</Link>
+                  <Link className='viewProject'  to={`/projectList/task/${project.id}`} >Add Task</Link>
                 </div>
         })}
     }

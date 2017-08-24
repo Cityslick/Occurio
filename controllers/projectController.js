@@ -53,8 +53,6 @@ projectController={
     })
   },
 
-
-
   findById: function (req, res){
     Project.findById(req.params.id)
     .then(project => {
@@ -68,10 +66,7 @@ projectController={
           data: project,
           projectTasks: tasks,
         });
-
       })
-
-
     }).catch(err =>{
       res.status(500).json(err);
     })
