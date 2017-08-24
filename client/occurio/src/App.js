@@ -184,7 +184,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               password={this.password}
               email={this.email}
               user_type={this.user_type} />} />
-            <Route exact path="/task" render={() => <TaskList proj_id={1} />} />
+            <Route exact path="/task" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
             <Route exact path="/collaborator" render={() => <ViewUserProjects />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
