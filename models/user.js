@@ -21,6 +21,7 @@ const User = {
   },
 
   create: function(user){
+    console.log(user);
     return db.one(`
       INSERT INTO users
       (username, firstname, lastname, password, email, img_url, proj_link, user_type)

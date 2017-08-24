@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './Reset.css';
 
 import {
   BrowserRouter as Router,
@@ -23,6 +24,7 @@ import ProjectCreate from './components/ProjectCreate.jsx';
 import ProjectView from './components/ProjectView.jsx';
 import ViewUserProjects from './components/ViewUserProjects.jsx';
 import ProjectEdit from './components/ProjectEdit.jsx';
+import ProjectViewAll from './components/ProjectViewAll.jsx';
 // TASKS
 import Task from './components/Task.jsx';
 import TaskList from './components/TaskList.jsx';
@@ -32,6 +34,9 @@ import CollaboratorList from './components/CollaboratorList.jsx';
 // USERS
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
+
+// TEST
+import Todolist from './components/sidenavtest.js'
 
 class App extends Component {
   constructor() {
@@ -46,36 +51,30 @@ class App extends Component {
         toggleNav: false
     }
     // AUTH
-    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
-    this.handleRegisterSubmit= this.handleRegisterSubmit.bind(this);
     this.logOut =  this.logOut.bind(this);
+
     // Create Project
     this.handleCreateProject = this.handleCreateProject.bind(this);
     // Create Tasks
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
+
     // custom
     this.openNav = this.openNav.bind(this);
     this.closeNav = this.closeNav.bind(this);
   }
 
 
-// Handle Login/Register
 
-   handleLoginSubmit(e, username, password) {
-        console.log("logging in...");
-        e.preventDefault();
-        axios.post('/auth/login', {
-            username,
-            password,
-        }).then(res => {
-          console.log(res.data.user);
-          console.log(res.data.auth);
+  logOut() {
+      axios.get('/auth/logout')
+      .then(res => {
+          console.log(res);
           this.setState({
-              auth: res.data.auth,
-              user: res.data.user,
+              auth: false,
+              user:null,
               fireRedirect: true,
-              loggedIn: true,
           });
+
         }).catch(err => console.log(err));
      }
 
@@ -154,10 +153,11 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
         task: res.data.task,
       })
     }).catch(err => console.log(err));
+          window.location = "/home";
+      }).catch(err => console.log(err));
+
   }
 
-  // use state to change status of the page
-  // toggle nav is a key of state
   handleToggleNav(toggleNav){
     // run code here depending if toggle nav is true or false
     // make the state of the nav bar depend on toggle nav
@@ -176,6 +176,9 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       <Router>
         <div className="App">
           <Header />
+
+          {/* <Todolist /> */}
+          {/* <Task /> */}
           {/* <Home /> */}
           <main>
             <Route exact path='/home' render={() => <Home />} />
@@ -185,7 +188,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
                 ( <UserProfile user={this.state.user} /> )
                   } />
               else
-                return <Login handleLoginSubmit={this.handleLoginSubmit} />
+                return <Login />
               }} />
             <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit}
               username={this.props.username}
@@ -193,23 +196,26 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               lastname={this.lastname}
               password={this.password}
               email={this.email}
-              user_type={this.user_type} />} />
+              user_type={this.user_type} />} 
+            /> 
 
              <Route exact path="/user/id/:id" render={() => {
                if(!this.state.loggedIn)
-                  return <Login handleLoginSubmit={this.handleLoginSubmit} />
+                  return <Login/>
                 else
                   return <UserProfile  loggedIn={this.state.auth} user={this.state.user}/>
                }}/>
 
-            <Route exact path="/user-projects" render={() => <ViewUserProjects viewProject={this.viewProject} project={this.state.project} />} />
             <Route exact path="/collaborators" render={() => <CollaboratorList proj_id={2}/>} />
             <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
-            <Route exact path="/projectList" render={() => <ViewUserProjects />} />
+            <Route exact path="/projectList" render={() => <ProjectViewAll />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
             <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
             <Route exact path="/projectEdit/:id" render={(props) => <ProjectEdit id={props.match.params.id} project={this.project} />} />
+            <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project} />} />
+            <Route exact path="/projectList/task/:id" render={(props) => <Task id={props.match.params.id}  />} />
+
           </main>
           <Footer />
         </div>
