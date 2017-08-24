@@ -24,7 +24,7 @@ class UserProfileAll extends Component {
     return (
         <div className='userList'>
           <select>
-            { (this.state.apiDataloaded) ? 
+            { (this.state.apiDataloaded) ?
               this.state.userData.map(user => {
                 return <option key={user.id}>{user.firstname} {user.lastname}</option>
               })

@@ -47,7 +47,7 @@ class App extends Component {
     // Create Project
     this.handleCreateProject = this.handleCreateProject.bind(this);
     // View Project
-    this.viewProject = this.viewProject.bind(this);
+    // this.viewProject = this.viewProject.bind(this);
     // Create Tasks
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
   }
@@ -64,7 +64,7 @@ class App extends Component {
                 user: res.data.user,
                 fireRedirect: true,
             });
-            window.location = "/user"; // dont tell the router team :(
+            window.location = `/user/id/${this.state.user.id}`; // dont tell the router team :(
         }).catch(err => console.log(err));
      }
     handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
@@ -120,11 +120,27 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
     })
   }).catch(err => console.log(err));
 }
-// View Single Project
+
+// // View Users Projects
+//   viewProjectsAll() {
+//     console.log("Im here viewProjectsAll");
+//     axios.get('/project')
+//     .then(res => {
+//       console.log(res);
+//       this.setState({
+//         user: res.data.user,
+//         projects: res.data,
+//         fireRedirect: true,
+//       })
+//     }).catch(err => console.log(err));
+//   }
+
+// View  Project
   viewProject() {
-    console.log("Im here");
+    console.log("Im here viewProject ");
     axios.get('/project/:id')
     .then(res => {
+      console.log(res);
       this.setState({
         user: res.data.user,
         project: res.data,
@@ -135,7 +151,6 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
   }
 // Adding Tasks
   handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
-    alert("ssduuidjasdjosp");
     e.preventDefault();
     axios.post('/task', {
       user_id,
@@ -171,7 +186,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               user_type={this.user_type} />} />
             <Route exact path="/task" render={() => <TaskList proj_id={1} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
-            <Route exact path="/user-projects" render={() => <ViewUserProjects viewProject={this.viewProject} projects={this.projects} />} />
+            <Route exact path="/collaborator" render={() => <ViewUserProjects />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
             <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} />} />
           </main>
