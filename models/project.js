@@ -14,11 +14,11 @@ const Project = {
   },
 
   findAll : function(){
-    return db.query("SELECT * FROM projects ");
+    return db.query("SELECT *, to_char(planned_start_date,'yyyy-MM-dd') as planned_start_datesrt, to_char(planned_end_date,'yyyy-MM-dd') as planned_end_dateStr FROM projects ");
   },
 
   findById : function(projectId){
-    return db.one("SELECT * FROM projects WHERE id=$1", [projectId]);
+    return db.one("SELECT *, to_char(planned_start_date,'yyyy-MM-dd') as planned_start_datesrt, to_char(planned_end_date,'yyyy-MM-dd') as planned_end_dateStr FROM projects WHERE id=$1", [projectId]);
   },
 
   delete : function(projectId){

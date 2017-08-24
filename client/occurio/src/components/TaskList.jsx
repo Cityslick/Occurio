@@ -27,6 +27,7 @@ class TaskList extends Component {
     let proj_id=this.props.proj_id;
     let user_id=this.props.user_id;
     let filter="";
+    console.log("Getting task");
     (this.props.proj)?  taskRout=`/task/${this.props.proj_id}` : taskRout=(`/task/user/${this.props.user_id}`)
     axios.post(taskRout,{
        proj_id,
@@ -44,8 +45,6 @@ class TaskList extends Component {
 
   }
 
-
-
   handlerDeleteTask(task_Id){
     axios.delete(`task/${task_Id}`)
     .then(()=>{
@@ -61,7 +60,7 @@ class TaskList extends Component {
       return this.state.taskData.map((task,index) => {
         return <TaskView handlerDeleteTask={this.handlerDeleteTask} task={task} index={index+1} key={task.id} />
       });
-    } else return <h1> Loading </h1>
+    }
   }
 
   render() {

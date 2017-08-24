@@ -57,7 +57,7 @@ a:active {
   padding: 0px 20px 0px 20px;
 }
 .hero-container {
-  
+
   display: flex-end;
   padding: 40px;
 }
@@ -86,7 +86,7 @@ a:active {
 
 .nav2 {
   margin-right: 20px;
-} 
+}
 
 .nav-list {
   width: 100%;
@@ -133,7 +133,7 @@ a:active {
 
 .home-page4 {
   background-color: #6D1CDF;
-  height: 100vh;  
+  height: 100vh;
 }
 
 .hero {
@@ -381,6 +381,10 @@ a:active {
 @media screen and (max-height: 450px) {
 .sidenav {padding-top: 15px;}
 .sidenav a {font-size: 18px;}
+}
+
+.viewProject {
+  color: black;
 }
 
 /* </head>

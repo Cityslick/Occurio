@@ -58,7 +58,10 @@ projectController={
   findById: function (req, res){
     Project.findById(req.params.id)
     .then(project => {
-      Task.findProjectTasks(req.params.id,"")
+      Task.findProjectTasks({
+        proj_id:req.params.id,
+        filter:"",
+      })
       .then(tasks=>{
         res.json({
           message: 'Done',
