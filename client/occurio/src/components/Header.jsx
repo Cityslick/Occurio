@@ -22,7 +22,7 @@ const Header = () => {
           <Link to={'/home'}>Home</Link>
           <Link to={'/login'}>Log In</Link>
           <Link to={'/register'}>Register</Link>
-          <Link to={'/task'}>_______Task______</Link>
+          <Link to={'/taskList'}>_______Task______</Link>
           <Link to={'/collaborators'}> ______Collaborators______</Link>
         </div>
     )

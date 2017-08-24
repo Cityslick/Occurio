@@ -217,7 +217,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
 
             <Route exact path="/user-projects" render={() => <ViewUserProjects viewProject={this.viewProject} project={this.state.project} />} />
             <Route exact path="/collaborators" render={() => <CollaboratorList proj_id={2}/>} />
-            <Route exact path="/task" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
+            <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
             <Route exact path="/projectList" render={() => <ViewUserProjects />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
