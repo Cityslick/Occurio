@@ -44,6 +44,7 @@ class App extends Component {
         apiDataloaded:false,
         userDataLoaded: false,
         currentPage: 'home',
+        toggleNav: false
     }
     // AUTH
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -55,6 +56,9 @@ class App extends Component {
     // this.viewProject = this.viewProject.bind(this);
     // Create Tasks
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
+    // custom
+    this.openNav = this.openNav.bind(this);
+    this.closeNav = this.closeNav.bind(this);
   }
 
    handleLoginSubmit(e, username, password) {
@@ -173,6 +177,21 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       })
     }).catch(err => console.log(err));
   }
+  
+  // use state to change status of the page
+  // toggle nav is a key of state
+  handleToggleNav(toggleNav){
+    // run code here depending if toggle nav is true or false
+    // make the state of the nav bar depend on toggle nav
+  }
+  openNav() {
+    document.getElementById("mySidenav").style.width = `100%`;
+  }
+
+  closeNav() {
+    document.getElementById("mySidenav").style.width = "0px";
+  }
+
   render() {
     return (
       <Router>
@@ -204,3 +223,8 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
   }
 }
 export default App;
+
+// need redirecting function in render
+// which uses fire redirect
+// switch fire redirect: false
+// dont use window.location, instead use Redirect component
