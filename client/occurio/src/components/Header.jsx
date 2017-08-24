@@ -9,10 +9,10 @@ import { Link } from 'react-router-dom';
 const Header = () => {
     return (
         <div className="header">
-            <div>
+            <div className="nav">
               <h1 className="logo"><Link to={'/home'}>okurio</Link></h1>
             </div>
-            <div className="nav">
+            <div className="nav2">
               <ul className="nav-list">
                 <li className="nav-item"><Link to={'/home'}>Home</Link></li>
                 <li className="nav-item"><Link to={'/register'}>Register</Link></li>
