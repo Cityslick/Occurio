@@ -21,7 +21,7 @@ import Register from './components/Register.jsx';
 // PROJECTS
 import ProjectCreate from './components/ProjectCreate.jsx';
 import ProjectView from './components/ProjectView.jsx';
-import ViewUserProjects from './components/ViewUserProjects.jsx';
+import ProjectViewAll from './components/ProjectViewAll.jsx';
 // TASKS
 import Task from './components/Task.jsx';
 import TaskList from './components/TaskList.jsx';
@@ -62,7 +62,7 @@ class App extends Component {
     this.closeNav = this.closeNav.bind(this);
   }
 
-  
+
 // Handle Login/Register
 
    handleLoginSubmit(e, username, password) {
@@ -83,7 +83,7 @@ class App extends Component {
         }).catch(err => console.log(err));
      }
 
-    
+
 
     handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
         console.log(username);
@@ -103,7 +103,7 @@ class App extends Component {
                 currentPage: 'home',
                 userDataLoaded:true,
             });
-            
+
         }).catch(err => console.log(err));
     }
     logOut() {
@@ -137,7 +137,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
     })
   }).catch(err => console.log(err));
 }
-  
+
 // View Single Project
   viewProject() {
     console.log("Im here");
@@ -194,13 +194,13 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
           <Header />
           {/* <Todolist /> */}
           {/* <Task /> */}
-
           {/* <Home /> */}
           <main>
             <Route exact path='/home' render={() => <Home />} />
+            <Route exact path='/task' render={() => <Task />} />
             <Route exact path='/login' render={() => {
               if(this.state.loggedIn)
-                return <Redirect to={`user/id/:${this.state.user.id}`} Component={() => 
+                return <Redirect to={`user/id/:${this.state.user.id}`} Component={() =>
                 ( <UserProfile user={this.state.user} /> )
                   } />
               else
@@ -218,17 +218,16 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
              <Route exact path="/user/id/:id" render={() => {
                if(!this.state.loggedIn)
                   return <Login handleLoginSubmit={this.handleLoginSubmit} />
-                else 
-                  return <UserProfile  loggedIn={this.state.auth} user={this.state.user}/> 
-               }}/> 
-            
-            <Route exact path="/user-projects" render={() => <ViewUserProjects viewProject={this.viewProject} project={this.state.project} />} />
+                else
+                  return <UserProfile  loggedIn={this.state.auth} user={this.state.user}/>
+               }}/>
+
             <Route exact path="/collaborators" render={() => <CollaboratorList proj_id={2}/>} />
-            <Route exact path="/task" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
+            <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
-            <Route exact path="/collaborator" render={() => <ViewUserProjects />} />
+            <Route exact path="/projectList" render={() => <ProjectViewAll />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
-            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
+            <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
           </main>
           <Footer />
         </div>
@@ -239,4 +238,3 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
 
 
 export default App;
-

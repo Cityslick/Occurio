@@ -50,6 +50,7 @@ const taskController={
   },
 
   findProjectTasks :function(req, res){
+    console.log(req.body);
     Task.findProjectTasks({
       proj_id:req.body.proj_id,
       filter :req.body.filter || "",

@@ -56,7 +56,7 @@ a:active {
   padding: 0px 20px 0px 20px;
 }
 .hero-container {
-  
+
   display: flex-end;
   padding: 40px;
 }
@@ -85,7 +85,7 @@ a:active {
 
 .nav2 {
   margin-right: 20px;
-} 
+}
 
 .nav-list {
   width: 100%;
@@ -130,7 +130,7 @@ a:active {
 
 .home-page4 {
   background-color: #6D1CDF;
-  height: 100vh;  
+  height: 100vh;
 }
 
 .hero {
@@ -379,3 +379,25 @@ a:active {
 .sidenav {padding-top: 15px;}
 .sidenav a {font-size: 18px;}
 }
+
+.viewProject {
+  color: black;
+}
+
+/* </head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+<h1 class="logo">Okurio</h1>
+<a href="#">About</a>
+<a href="#">Services</a>
+<a href="#">Clients</a>
+<a href="#">Contact</a>
+</div>
+
+<h2>Animated Sidenav Example</h2>
+<p>Click on the element below to open the side navigation menu.</p>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Go</span> */
+
+/* SIDE NAV TEST */
