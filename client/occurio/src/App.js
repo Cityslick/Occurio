@@ -28,8 +28,6 @@ import TaskList from './components/TaskList.jsx';
 //COLLABORATORS
 import CollaboratorList from './components/CollaboratorList.jsx';
 
-
-
 // USERS
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
@@ -42,8 +40,8 @@ class App extends Component {
         user: null,
         fireRedirect: false,
         apiDataloaded:false,
-        userDataLoaded: false,
         currentPage: 'home',
+        loggedIn: false,
         toggleNav: false
     }
     // AUTH
@@ -53,7 +51,7 @@ class App extends Component {
     // Create Project
     this.handleCreateProject = this.handleCreateProject.bind(this);
     // View Project
-    // this.viewProject = this.viewProject.bind(this);
+    this.viewProject = this.viewProject.bind(this);
     // Create Tasks
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
     // custom
@@ -61,22 +59,29 @@ class App extends Component {
     this.closeNav = this.closeNav.bind(this);
   }
 
+  
 // Handle Login/Register
+
    handleLoginSubmit(e, username, password) {
+        console.log("logging in...");
         e.preventDefault();
         axios.post('/auth/login', {
             username,
             password,
         }).then(res => {
-            console.log(res.data.user);
-            this.setState({
-                auth: res.data.auth,
-                user: res.data.user,
-                fireRedirect: true,
-            });
-            window.location = `/user/id/${this.state.user.id}`; // dont tell the router team :(
+          console.log(res.data.user);
+          console.log(res.data.auth);
+          this.setState({
+              auth: res.data.auth,
+              user: res.data.user,
+              fireRedirect: true,
+              loggedIn: true,
+          });
         }).catch(err => console.log(err));
      }
+
+    
+
     handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
         console.log(username);
         e.preventDefault();
@@ -91,12 +96,11 @@ class App extends Component {
             this.setState({
                 auth: res.data.auth,
                 user: res.data.user,
-
                 fireRedirect: true,
                 currentPage: 'home',
                 userDataLoaded:true,
             });
-            window.location = "/user";
+            
         }).catch(err => console.log(err));
     }
     logOut() {
@@ -130,9 +134,23 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
     })
   }).catch(err => console.log(err));
 }
+  
+// View Single Project
+  viewProject() {
+    console.log("Im here");
+    axios.get('/project/:id')
+    .then(res => {
+      this.setState({
+        user: res.data.user,
+        project: res.data,
+        fireRedirect: true,
+      })
+    }).catch(err => console.log(err));
+  }
 
 // Adding Tasks
   handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
+    alert("ssduuidjasdjosp");
     e.preventDefault();
     axios.post('/task', {
       user_id,
@@ -166,6 +184,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
   }
 
   render() {
+
     return (
       <Router>
         <div className="App">
@@ -174,7 +193,14 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
           {/* <Home /> */}
           <main>
             <Route exact path='/home' render={() => <Home />} />
-            <Route exact path='/login' render={() => <Login handleLoginSubmit={this.handleLoginSubmit} />} />
+            <Route exact path='/login' render={() => {
+              if(this.state.loggedIn)
+                return <Redirect to={`user/id/:${this.state.user.id}`} Component={() => 
+                ( <UserProfile user={this.state.user} /> )
+                  } />
+              else
+                return <Login handleLoginSubmit={this.handleLoginSubmit} />
+              }} />
             <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit}
               username={this.props.username}
               firstname={this.firstname}
@@ -182,6 +208,15 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               password={this.password}
               email={this.email}
               user_type={this.user_type} />} />
+
+             <Route exact path="/user/id/:id" render={() => {
+               if(!this.state.loggedIn)
+                  return <Login handleLoginSubmit={this.handleLoginSubmit} />
+                else 
+                  return <UserProfile  loggedIn={this.state.auth} user={this.state.user}/> 
+               }}/> 
+            
+            <Route exact path="/user-projects" render={() => <ViewUserProjects viewProject={this.viewProject} project={this.state.project} />} />
             <Route exact path="/collaborators" render={() => <CollaboratorList proj_id={2}/>} />
             <Route exact path="/task" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
@@ -195,9 +230,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
     );
   }
 }
+
+
 export default App;
 
-// need redirecting function in render
-// which uses fire redirect
-// switch fire redirect: false
-// dont use window.location, instead use Redirect component
