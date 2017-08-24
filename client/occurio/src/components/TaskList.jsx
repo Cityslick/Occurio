@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import TaskView from './TaskView';
+import ProjectView from './ProjectView';
 
 class TaskList extends Component {
   constructor() {
@@ -14,7 +15,17 @@ class TaskList extends Component {
   }
 
   componentDidMount() {
-    axios.post(`/task/${this.props.proj_id}`)
+    //same view to render users or projects task
+    var taskRout;
+    let proj_id=this.props.proj_id;
+    let user_id=this.props.user_id;
+    let filter="";
+    (this.props.proj)?  taskRout=`/task/${this.props.proj_id}` : taskRout=(`/task/user/${this.props.user_id}`)
+    axios.post(taskRout,{
+       proj_id,
+       user_id,
+       filter,
+    })
     .then(res=>{
       this.setState({
         taskData: res.data.data,
@@ -23,7 +34,6 @@ class TaskList extends Component {
     }).catch(err=>{
       console.log(err.json);
     })
-
   }
 
   renderTaskList() {

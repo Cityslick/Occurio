@@ -50,7 +50,10 @@ const taskController={
   },
 
   findProjectTasks :function(req, res){
-    Task.findProjectTasks(req.params.proj_id, req.body.filter || "")
+    Task.findProjectTasks({
+      proj_id:req.body.proj_id,
+      filter :req.body.filter || "",
+    })
     .then((task)=>{
       res.json({
         message:"Done",
@@ -62,6 +65,7 @@ const taskController={
   },
 
   findCollaboratorsTasks :function(req, res){
+    console.log("collaborator",req.body);
     Task.findCollaboratorsTasks({
       user_id:req.body.user_id,
       proj_id:req.body.proj_id,
