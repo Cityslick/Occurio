@@ -14,10 +14,8 @@ class ProjectView extends Component {
   }
 
   componentDidMount() {
-    console.log("Im here componentDidMount",this.props,"slpl");
     axios.get(`/project/${this.props.id}`)
     .then(res => {
-      console.log(res.data);
       this.setState({
         project: res.data.data,
         projectDataLoaded: true,
@@ -28,17 +26,16 @@ class ProjectView extends Component {
 
   renderProject(){
     if (this.state.projectDataLoaded){
-        alert("blaj");
-        console.log(this.state.project);
         return <div key={this.state.project.id} className="project">
           <h3>{this.state.project.name}</h3>
           <p>{this.state.project.description}</p>
           <p>{this.state.project.category}</p>
           <p>{this.state.project.status}</p>
-          <p>{this.state.project.planned_start_date}</p>
-          <p>{this.state.project.planned_end_date}</p>
+          <p>{this.state.project.planned_start_datesrt}</p>
+          <p>{this.state.project.planned_end_datestr}</p>
           <p>{this.state.project.act_start_date}</p>
           <p>{this.state.project.act_end_date}</p>
+          <Link className='viewProject'  to={`/task`} >Add task</Link>
           <TaskList proj_id={this.state.project.id} user_id={0}  proj={true} />
         </div>
       }

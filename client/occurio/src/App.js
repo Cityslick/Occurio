@@ -21,7 +21,7 @@ import Register from './components/Register.jsx';
 // PROJECTS
 import ProjectCreate from './components/ProjectCreate.jsx';
 import ProjectView from './components/ProjectView.jsx';
-import ViewUserProjects from './components/ViewUserProjects.jsx';
+import ProjectViewAll from './components/ProjectViewAll.jsx';
 // TASKS
 import Task from './components/Task.jsx';
 import TaskList from './components/TaskList.jsx';
@@ -192,6 +192,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
           {/* <Home /> */}
           <main>
             <Route exact path='/home' render={() => <Home />} />
+            <Route exact path='/task' render={() => <Task />} />
             <Route exact path='/login' render={() => {
               if(this.state.loggedIn)
                 return <Redirect to={`user/id/:${this.state.user.id}`} Component={() =>
@@ -215,13 +216,12 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
                   return <UserProfile  loggedIn={this.state.auth} user={this.state.user}/>
                }}/>
 
-            <Route exact path="/user-projects" render={() => <ViewUserProjects viewProject={this.viewProject} project={this.state.project} />} />
             <Route exact path="/collaborators" render={() => <CollaboratorList proj_id={2}/>} />
             <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
-            <Route exact path="/projectList" render={() => <ViewUserProjects />} />
+            <Route exact path="/projectList" render={() => <ProjectViewAll />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
-            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
+            <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
           </main>
           <Footer />
         </div>
