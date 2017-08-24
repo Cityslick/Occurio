@@ -1,13 +1,7 @@
-// <select>
-//                 { (this.state.projectDataLoaded) ?
-//                   this.state.projectData.map(project => {
-//                     return <option key=project.id}>{project.name}</option>
-//                   })
-//                  : ""}
-//               </select>
 
 import React, { Component } from 'react';
 import axios from 'axios';
+import UserProfileAll from "./UserProfileAll";
 
 class Task extends Component {
   constructor() {
@@ -26,7 +20,6 @@ class Task extends Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleLoadProjects = this.handleLoadProjects.bind(this);
-
   }
 
   componentDidMount(){
@@ -34,7 +27,6 @@ class Task extends Component {
   }
 
   handleLoadProjects(){
-    //same view to render users or projects task
     let filter="";
     axios.get("/project",{
        filter,
@@ -42,7 +34,7 @@ class Task extends Component {
     .then(res=>{
       this.setState({
         projectData: res.data.data,
-        handleLoadProject: true,
+        projectDataLoaded: true,
       })
     }).catch(err=>{
       console.log(err.json);
@@ -57,10 +49,23 @@ class Task extends Component {
       [name]: value
 
     });
-    console.log(value);
+  }
+
+
+  allProjects(){
+    return(
+      <select>
+        { (this.state.projectDataLoaded) ?
+        this.state.projectData.map(project => {
+          return <option key={project.id}>{project.name}</option>
+        })
+       : ""}
+      </select>
+      )
   }
 
   render(){
+
     return(
       <div>
         <div>
@@ -79,11 +84,10 @@ class Task extends Component {
             this.state.ticket
           )}>
             <div>
-              <input className="form" type="text" name="user_id" value={this.state.user_id} placeholder="User Id" onChange={this.handleInputChange} />
+              <UserProfileAll/>
             </div>
-
             <div className='list'>
-
+              {this.allProjects()}
             </div>
 
             <div>
@@ -91,7 +95,7 @@ class Task extends Component {
             </div>
 
             <div>
-              <input className="form" type="textarea" name="description" value={this.state.description} placeholder="Add a description" onChange={this.handleInputChange} />
+              <textarea className="form" name="description" value={this.state.description} placeholder="Add a description" onChange={this.handleInputChange} />
             </div>
 
             <div>
@@ -110,7 +114,7 @@ class Task extends Component {
             <div>
                 <input className="form" type="submit" value="Enter" />
             </div>
-          </form>
+                </form>
         </div>
       </div>
     )
