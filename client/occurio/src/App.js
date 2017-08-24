@@ -24,6 +24,10 @@ import ProjectView from './components/ProjectView.jsx';
 import ViewUserProjects from './components/ViewUserProjects.jsx';
 // TASKS
 import Task from './components/Task.jsx';
+import TaskList from './components/TaskList.jsx';
+//COLLABORATORS
+import CollaboratorList from './components/CollaboratorList.jsx';
+
 // USERS
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
@@ -38,6 +42,7 @@ class App extends Component {
         apiDataloaded:false,
         currentPage: 'home',
         loggedIn: false,
+        toggleNav: false
     }
     // AUTH
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -49,8 +54,13 @@ class App extends Component {
     this.viewProject = this.viewProject.bind(this);
     // Create Tasks
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
+    // custom
+    this.openNav = this.openNav.bind(this);
+    this.closeNav = this.closeNav.bind(this);
   }
 
+  
+// Handle Login/Register
 
    handleLoginSubmit(e, username, password) {
         console.log("logging in...");
@@ -124,6 +134,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
     })
   }).catch(err => console.log(err));
 }
+  
 // View Single Project
   viewProject() {
     console.log("Im here");
@@ -136,6 +147,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       })
     }).catch(err => console.log(err));
   }
+
 // Adding Tasks
   handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
     alert("ssduuidjasdjosp");
@@ -156,12 +168,28 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       })
     }).catch(err => console.log(err));
   }
+
+  // use state to change status of the page
+  // toggle nav is a key of state
+  handleToggleNav(toggleNav){
+    // run code here depending if toggle nav is true or false
+    // make the state of the nav bar depend on toggle nav
+  }
+  openNav() {
+    document.getElementById("mySidenav").style.width = `100%`;
+  }
+
+  closeNav() {
+    document.getElementById("mySidenav").style.width = "0px";
+  }
+
   render() {
 
     return (
       <Router>
         <div className="App">
           <Header />
+          <Task />
           {/* <Home /> */}
           <main>
             <Route exact path='/home' render={() => <Home />} />
@@ -180,7 +208,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               password={this.password}
               email={this.email}
               user_type={this.user_type} />} />
-              
+
              <Route exact path="/user/id/:id" render={() => {
                if(!this.state.loggedIn)
                   return <Login handleLoginSubmit={this.handleLoginSubmit} />
@@ -189,8 +217,12 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
                }}/> 
             
             <Route exact path="/user-projects" render={() => <ViewUserProjects viewProject={this.viewProject} project={this.state.project} />} />
+            <Route exact path="/collaborators" render={() => <CollaboratorList proj_id={2}/>} />
+            <Route exact path="/task" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
+            <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
+            <Route exact path="/collaborator" render={() => <ViewUserProjects />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
-            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.state.project} />} />
+            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
           </main>
           <Footer />
         </div>
@@ -198,4 +230,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
     );
   }
 }
+
+
 export default App;
+
