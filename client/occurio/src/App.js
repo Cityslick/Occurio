@@ -24,6 +24,12 @@ import ProjectView from './components/ProjectView.jsx';
 import ViewUserProjects from './components/ViewUserProjects.jsx';
 // TASKS
 import Task from './components/Task.jsx';
+import TaskList from './components/TaskList.jsx';
+//COLLABORATORS
+import CollaboratorList from './components/CollaboratorList.jsx';
+
+
+
 // USERS
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
@@ -47,7 +53,7 @@ class App extends Component {
     // Create Project
     this.handleCreateProject = this.handleCreateProject.bind(this);
     // View Project
-    this.viewProject = this.viewProject.bind(this);
+    // this.viewProject = this.viewProject.bind(this);
     // Create Tasks
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
     // custom
@@ -67,7 +73,7 @@ class App extends Component {
                 user: res.data.user,
                 fireRedirect: true,
             });
-            window.location = "/user"; // dont tell the router team :(
+            window.location = `/user/id/${this.state.user.id}`; // dont tell the router team :(
         }).catch(err => console.log(err));
      }
     handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
@@ -123,21 +129,37 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
     })
   }).catch(err => console.log(err));
 }
-// View Single Project
+
+// // View Users Projects
+//   viewProjectsAll() {
+//     console.log("Im here viewProjectsAll");
+//     axios.get('/project')
+//     .then(res => {
+//       console.log(res);
+//       this.setState({
+//         user: res.data.user,
+//         projects: res.data,
+//         fireRedirect: true,
+//       })
+//     }).catch(err => console.log(err));
+//   }
+
+// View  Project
   viewProject() {
-    console.log("Im here");
+    console.log("Im here viewProject ");
     axios.get('/project/:id')
     .then(res => {
+      console.log(res);
       this.setState({
         user: res.data.user,
         project: res.data,
+        projectTasks: res.task,
         fireRedirect: true,
       })
     }).catch(err => console.log(err));
   }
 // Adding Tasks
   handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
-    alert("ssduuidjasdjosp");
     e.preventDefault();
     axios.post('/task', {
       user_id,
@@ -175,6 +197,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       <Router>
         <div className="App">
           <Header />
+          <Task />
           {/* <Home /> */}
           <main>
             <Route exact path='/home' render={() => <Home />} />
@@ -186,12 +209,12 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               password={this.password}
               email={this.email}
               user_type={this.user_type} />} />
+            <Route exact path="/collaborators" render={() => <CollaboratorList proj_id={2}/>} />
+            <Route exact path="/task" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
-            <Route exact path="/user-projects" render={() => <ViewUserProjects viewProject={this.viewProject} project={this.state.project} />} />
+            <Route exact path="/collaborator" render={() => <ViewUserProjects />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
-            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.state.project} />} />
-            {/* {this.redirect('/path')} */}
-          
+            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} />} />
           </main>
           <Footer />
         </div>
@@ -205,4 +228,3 @@ export default App;
 // which uses fire redirect
 // switch fire redirect: false
 // dont use window.location, instead use Redirect component
-

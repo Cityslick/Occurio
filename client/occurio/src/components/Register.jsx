@@ -74,14 +74,11 @@ class Register extends Component {
 
                     <div className="drop-down">
                         <div>
-                        <select>
-                            <option>Manager</option>
-                            <option>Collaborator</option>
-                            <option>Other</option>
-                        </select>
-                        </div>
-                        <div>
-                        <input className="form" type="text" name="user_type" value={this.state.user_type} placeholder="User Type" onChange={this.handleInputChange} />
+                            <select>
+                                <option>Manager</option>
+                                <option>Collaborator</option>
+                                <option>Other</option>
+                            </select>
                         </div>
                     </div>
 

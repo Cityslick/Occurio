@@ -28,6 +28,7 @@ const collaboratorController={
   },
 
   deleteCollaborators: function(req, res){
+    console.log(req.body);
     Collaborator.deleteCollaborators({
       proj_id:req.body.proj_id,
       user_id:req.body.user_id,

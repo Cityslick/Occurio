@@ -7,7 +7,7 @@ taskRoutes.post("/",taskController.assignTasks )
 taskRoutes.put("/:task_id",taskController.updateTasks )
 taskRoutes.delete("/:task_id",taskController.deleteTask);
 taskRoutes.post("/:proj_id",taskController.findProjectTasks);
-//taskRoutes.post("/:user_id",taskController.findCollaboratorsTasks);
+taskRoutes.post("/user/:user_id",taskController.findCollaboratorsTasks);
 
 
 module.exports= taskRoutes;

@@ -1,4 +1,5 @@
 const Project = require("../models/project.js")
+const Task = require("../models/task.js")
 
 //PROJECTS
 projectController={
@@ -52,13 +53,22 @@ projectController={
     })
   },
 
+
+
   findById: function (req, res){
     Project.findById(req.params.id)
     .then(project => {
-      res.json({
-        message: 'Done',
-        data: project,
-      });
+      Task.findProjectTasks(req.params.id,"")
+      .then(tasks=>{
+        res.json({
+          message: 'Done',
+          data: project,
+          projectTasks: tasks,
+        });
+
+      })
+
+
     }).catch(err =>{
       res.status(500).json(err);
     })
@@ -87,27 +97,6 @@ projectController={
       res.status(500).json(err);
     })
   },
-
-    //TASKS
-  assignTasks: function(req, res){
-
-  },
-
-  updateTasks : function(req, res){
-
-  },
-
-  deleteTask: function(req, res){
-
-  },
-
-  findProjectTasks: function(req, res){
-
-  },
-
-  findCollaboratorsTasks: function (req, res){
-
-  }
 
 
 

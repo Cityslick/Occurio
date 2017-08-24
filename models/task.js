@@ -17,16 +17,13 @@ const task={
     return db.none("DELETE FROM tasks WHERE id = $1", [tasksId])
   },
 
-  findProjectTasks :function(projectId,filter){
-    console.log(filter);
-    return db.query(" SELECT t.*, to_char(t.start_date,'yyyy-MM-dd') as start_dateStr, to_char(t.end_date,'yyyy-MM-dd') as end_dateStr, concat(u.firstname , ' ', u.lastname) as fullname FROM tasks t INNER JOIN users u ON  t.user_id = u.id WHERE t.proj_id = $1 " + filter, [projectId,filter])
+  findProjectTasks :function(task){
+      return db.query(" SELECT t.*, to_char(t.start_date,'yyyy-MM-dd') as start_dateStr, to_char(t.end_date,'yyyy-MM-dd') as end_dateStr, concat(u.firstname , ' ', u.lastname) as fullname FROM tasks t INNER JOIN users u ON  t.user_id = u.id WHERE t.proj_id = $1 " + task.filter, [task.proj_id])
   },
 
   findCollaboratorsTasks :function(task){
-    return db.query("SELECT *, to_char(start_date,'yyyy-MM-dd') as start_dateStr, to_char(end_date,'yyyy-MM-dd') as end_dateStr FROM tasks WHERE proj_id=$1 and user_id = $2 ", [task.proj_id, task.user_id])
+    return db.query("SELECT t.*, to_char(t.start_date,'yyyy-MM-dd') as start_dateStr, to_char(t.end_date,'yyyy-MM-dd') as end_dateStr, concat(u.firstname , ' ', u.lastname) as fullname FROM tasks t INNER JOIN users u ON  t.user_id = u.id WHERE proj_id=$1 and user_id = $2 ", [task.proj_id, task.user_id])
   }
-
 }
-
 
 module.exports = task
