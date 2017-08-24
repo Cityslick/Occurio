@@ -14,7 +14,7 @@ class ProjectView extends Component {
   }
 
   componentDidMount() {
-    console.log("Im here ProjectView",this.props);
+    console.log("Im here componentDidMount",this.props,"slpl");
     axios.get(`/project/${this.props.id}`)
     .then(res => {
       console.log(res.data);
@@ -28,8 +28,9 @@ class ProjectView extends Component {
 
   renderProject(){
     if (this.state.projectDataLoaded){
+        alert("blaj");
         console.log(this.state.project);
-        return <div className="project">
+        return <div key={this.state.project.id} className="project">
           <h3>{this.state.project.name}</h3>
           <p>{this.state.project.description}</p>
           <p>{this.state.project.category}</p>
