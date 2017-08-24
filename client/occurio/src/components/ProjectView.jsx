@@ -11,6 +11,7 @@ class ProjectView extends Component {
       projectDataLoaded: false,
       fireRedirect: null,
     }
+    this.showTask=this.showTask.bind(this);
   }
 
   componentDidMount() {
@@ -24,8 +25,15 @@ class ProjectView extends Component {
     }).catch(err => console.log(err));
   }
 
+  showTask(){
+    if(this.props.presentDetail){
+      return <TaskList proj_id={this.state.project.id} user_id={0}  proj={true} />
+    }
+  }
+
   renderProject(){
     if (this.state.projectDataLoaded){
+
         return <div key={this.state.project.id} className="project">
           <h3>{this.state.project.name}</h3>
           <p>{this.state.project.description}</p>
@@ -35,8 +43,7 @@ class ProjectView extends Component {
           <p>{this.state.project.planned_end_datestr}</p>
           <p>{this.state.project.act_start_date}</p>
           <p>{this.state.project.act_end_date}</p>
-          <Link className='viewProject'  to={`/task`} >Add task</Link>
-          <TaskList proj_id={this.state.project.id} user_id={0}  proj={true} />
+          {this.showTask()}
         </div>
       }
     }

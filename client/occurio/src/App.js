@@ -45,132 +45,28 @@ class App extends Component {
         toggleNav: false
     }
     // AUTH
-    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
-    this.handleRegisterSubmit= this.handleRegisterSubmit.bind(this);
     this.logOut =  this.logOut.bind(this);
-    // Create Project
-    this.handleCreateProject = this.handleCreateProject.bind(this);
-    // View Project
-    this.viewProject = this.viewProject.bind(this);
-    // Create Tasks
-    this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
+
     // custom
     this.openNav = this.openNav.bind(this);
     this.closeNav = this.closeNav.bind(this);
   }
 
 
-// Handle Login/Register
 
-   handleLoginSubmit(e, username, password) {
-        console.log("logging in...");
-        e.preventDefault();
-        axios.post('/auth/login', {
-            username,
-            password,
-        }).then(res => {
-          console.log(res.data.user);
-          console.log(res.data.auth);
+  logOut() {
+      axios.get('/auth/logout')
+      .then(res => {
+          console.log(res);
           this.setState({
-              auth: res.data.auth,
-              user: res.data.user,
+              auth: false,
+              user:null,
               fireRedirect: true,
-              loggedIn: true,
           });
-        }).catch(err => console.log(err));
-     }
-
-
-
-    handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
-        console.log(username);
-        e.preventDefault();
-        axios.post('/auth', {
-            username,
-            firstname,
-            lastname,
-            password,
-            email,
-            user_type,
-        }).then(res => {
-            this.setState({
-                auth: res.data.auth,
-                user: res.data.user,
-                fireRedirect: true,
-                currentPage: 'home',
-                userDataLoaded:true,
-            });
-
-        }).catch(err => console.log(err));
-    }
-    logOut() {
-        axios.get('/auth/logout')
-        .then(res => {
-            console.log(res);
-            this.setState({
-                auth: false,
-                user:null,
-                fireRedirect: true,
-            });
-            window.location = "/home";
-        }).catch(err => console.log(err));
-    }
-// Handle Create Project
-handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
-  e.preventDefault();
-  console.log("Im here");
-  axios.post('/project', {
-    name,
-    description,
-    category,
-    status,
-    planned_start_date,
-    planned_end_date,
-  }).then(res => {
-    this.setState({
-      user: res.data.user,
-      project: res.data,
-      fireRedirect: true,
-    })
-  }).catch(err => console.log(err));
-}
-
-// View Single Project
-  viewProject() {
-    console.log("Im here");
-    axios.get('/project/:id')
-    .then(res => {
-      this.setState({
-        user: res.data.user,
-        project: res.data,
-        fireRedirect: true,
-      })
-    }).catch(err => console.log(err));
+          window.location = "/home";
+      }).catch(err => console.log(err));
   }
 
-// Adding Tasks
-  handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
-    alert("ssduuidjasdjosp");
-    e.preventDefault();
-    axios.post('/task', {
-      user_id,
-      proj_id,
-      name,
-      description,
-      start_date,
-      end_date,
-      status,
-      ticket,
-    }).then(res => {
-      console.log(res);
-      this.setState({
-        task: res.data.task,
-      })
-    }).catch(err => console.log(err));
-  }
-
-  // use state to change status of the page
-  // toggle nav is a key of state
   handleToggleNav(toggleNav){
     // run code here depending if toggle nav is true or false
     // make the state of the nav bar depend on toggle nav
@@ -188,18 +84,16 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
     return (
       <Router>
         <div className="App">
-          <Header />
           {/* <Home /> */}
           <main>
             <Route exact path='/home' render={() => <Home />} />
-            <Route exact path='/task' render={() => <Task />} />
             <Route exact path='/login' render={() => {
               if(this.state.loggedIn)
                 return <Redirect to={`user/id/:${this.state.user.id}`} Component={() =>
                 ( <UserProfile user={this.state.user} /> )
                   } />
               else
-                return <Login handleLoginSubmit={this.handleLoginSubmit} />
+                return <Login />
               }} />
             <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit}
               username={this.props.username}
@@ -211,7 +105,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
 
              <Route exact path="/user/id/:id" render={() => {
                if(!this.state.loggedIn)
-                  return <Login handleLoginSubmit={this.handleLoginSubmit} />
+                  return <Login/>
                 else
                   return <UserProfile  loggedIn={this.state.auth} user={this.state.user}/>
                }}/>
@@ -221,7 +115,8 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
             <Route exact path="/projectList" render={() => <ProjectViewAll />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
-            <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
+            <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project} />} />
+            <Route exact path="/projectList/task/:id" render={(props) => <Task id={props.match.params.id}  />} />
           </main>
           <Footer />
         </div>

@@ -33,7 +33,7 @@ app.listen(PORT,()=>{
 });
 
 app.get('/', (req, res) => {
-  send.res('Page loaded');
+  res.send('Page loaded');
 });
 
 const authRoutes = require("./routes/authRoutes");
