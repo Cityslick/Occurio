@@ -25,6 +25,11 @@ import ViewUserProjects from './components/ViewUserProjects.jsx';
 // TASKS
 import Task from './components/Task.jsx';
 import TaskList from './components/TaskList.jsx';
+//COLLABORATORS
+import CollaboratorList from './components/CollaboratorList.jsx';
+
+
+
 // USERS
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
@@ -173,6 +178,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       <Router>
         <div className="App">
           <Header />
+          <Task />
           {/* <Home /> */}
           <main>
             <Route exact path='/home' render={() => <Home />} />
@@ -184,6 +190,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               password={this.password}
               email={this.email}
               user_type={this.user_type} />} />
+            <Route exact path="/collaborators" render={() => <CollaboratorList proj_id={2}/>} />
             <Route exact path="/task" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
             <Route exact path="/collaborator" render={() => <ViewUserProjects />} />

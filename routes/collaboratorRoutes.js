@@ -4,7 +4,7 @@ const collaboratorController = require("../controllers/collaboratorController");
 
 collaboratorRoutes.post("/", collaboratorController.assignCollaborators);
 collaboratorRoutes.get("/:proj_id", collaboratorController.findCollaboratorProjects);
-collaboratorRoutes.delete("/", collaboratorController.deleteCollaborators);
+collaboratorRoutes.post("/:proj_id", collaboratorController.deleteCollaborators);
 
 
 module.exports = collaboratorRoutes;

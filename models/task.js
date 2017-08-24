@@ -22,10 +22,8 @@ const task={
   },
 
   findCollaboratorsTasks :function(task){
-    return db.query("SELECT *, to_char(start_date,'yyyy-MM-dd') as start_dateStr, to_char(end_date,'yyyy-MM-dd') as end_dateStr FROM tasks WHERE proj_id=$1 and user_id = $2 ", [task.proj_id, task.user_id])
+    return db.query("SELECT t.*, to_char(t.start_date,'yyyy-MM-dd') as start_dateStr, to_char(t.end_date,'yyyy-MM-dd') as end_dateStr, concat(u.firstname , ' ', u.lastname) as fullname FROM tasks t INNER JOIN users u ON  t.user_id = u.id WHERE proj_id=$1 and user_id = $2 ", [task.proj_id, task.user_id])
   }
-
 }
-
 
 module.exports = task
