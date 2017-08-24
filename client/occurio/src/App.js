@@ -52,6 +52,7 @@ class App extends Component {
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
   }
 
+// Handle Login/Register
    handleLoginSubmit(e, username, password) {
         e.preventDefault();
         axios.post('/auth/login', {
@@ -67,88 +68,63 @@ class App extends Component {
             window.location = `/user/id/${this.state.user.id}`; // dont tell the router team :(
         }).catch(err => console.log(err));
      }
-    handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
-        console.log(username);
-        e.preventDefault();
-        axios.post('/auth', {
-            username,
-            firstname,
-            lastname,
-            password,
-            email,
-            user_type,
-        }).then(res => {
-            this.setState({
-                auth: res.data.auth,
-                user: res.data.user,
 
-                fireRedirect: true,
-                currentPage: 'home',
-                userDataLoaded:true,
-            });
-            window.location = "/user";
-        }).catch(err => console.log(err));
-    }
-    logOut() {
-        axios.get('/auth/logout')
-        .then(res => {
-            console.log(res);
-            this.setState({
-                auth: false,
-                user:null,
-                fireRedirect: true,
-            });
-            window.location = "/home";
-        }).catch(err => console.log(err));
-    }
+  handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
+      console.log(username);
+      e.preventDefault();
+      axios.post('/auth', {
+          username,
+          firstname,
+          lastname,
+          password,
+          email,
+          user_type,
+      }).then(res => {
+          this.setState({
+              auth: res.data.auth,
+              user: res.data.user,
+
+              fireRedirect: true,
+              currentPage: 'home',
+              userDataLoaded:true,
+          });
+          window.location = "/user";
+      }).catch(err => console.log(err));
+  }
+
+  logOut() {
+      axios.get('/auth/logout')
+      .then(res => {
+          console.log(res);
+          this.setState({
+              auth: false,
+              user:null,
+              fireRedirect: true,
+          });
+          window.location = "/home";
+      }).catch(err => console.log(err));
+  }
+
 // Handle Create Project
-handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
-  e.preventDefault();
-  console.log("Im here");
-  axios.post('/project', {
-    name,
-    description,
-    category,
-    status,
-    planned_start_date,
-    planned_end_date,
-  }).then(res => {
-    this.setState({
-      user: res.data.user,
-      project: res.data,
-      fireRedirect: true,
-    })
-  }).catch(err => console.log(err));
-}
-
-// // View Users Projects
-//   viewProjectsAll() {
-//     console.log("Im here viewProjectsAll");
-//     axios.get('/project')
-//     .then(res => {
-//       console.log(res);
-//       this.setState({
-//         user: res.data.user,
-//         projects: res.data,
-//         fireRedirect: true,
-//       })
-//     }).catch(err => console.log(err));
-//   }
-
-// View  Project
-  viewProject() {
-    console.log("Im here viewProject ");
-    axios.get('/project/:id')
-    .then(res => {
-      console.log(res);
+  handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
+    e.preventDefault();
+    console.log("Im here");
+    axios.post('/project', {
+      name,
+      description,
+      category,
+      status,
+      planned_start_date,
+      planned_end_date,
+    }).then(res => {
       this.setState({
         user: res.data.user,
         project: res.data,
-        projectTasks: res.task,
         fireRedirect: true,
       })
     }).catch(err => console.log(err));
   }
+
 // Adding Tasks
   handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
     e.preventDefault();
@@ -168,6 +144,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       })
     }).catch(err => console.log(err));
   }
+
   render() {
     return (
       <Router>
@@ -188,7 +165,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
             <Route exact path="/collaborator" render={() => <ViewUserProjects />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
-            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} />} />
+            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project}/>} />
           </main>
           <Footer />
         </div>
