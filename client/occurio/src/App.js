@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './Reset.css';
 
 import {
   BrowserRouter as Router,
@@ -31,6 +32,9 @@ import CollaboratorList from './components/CollaboratorList.jsx';
 // USERS
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
+
+// TEST
+import Todolist from './components/sidenavtest.js'
 
 class App extends Component {
   constructor() {
@@ -84,6 +88,10 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <Header />
+
+          {/* <Todolist /> */}
+          {/* <Task /> */}
           {/* <Home /> */}
           <main>
             <Route exact path='/home' render={() => <Home />} />
@@ -101,7 +109,8 @@ class App extends Component {
               lastname={this.lastname}
               password={this.password}
               email={this.email}
-              user_type={this.user_type} />} />
+              user_type={this.user_type} />} 
+            /> 
 
              <Route exact path="/user/id/:id" render={() => {
                if(!this.state.loggedIn)
