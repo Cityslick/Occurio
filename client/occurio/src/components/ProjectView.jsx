@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import TaskList from './TaskList';
 
 class ProjectView extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class ProjectView extends Component {
   }
 
   componentDidMount() {
-    console.log("Im here ProjectView");
+    console.log("Im here ProjectView",this.props);
     axios.get(`/project/${this.props.id}`)
     .then(res => {
       console.log(res.data);
@@ -27,8 +28,9 @@ class ProjectView extends Component {
 
   renderProject(){
     if (this.state.projectDataLoaded){
+        console.log(this.state.project);
         return <div className="project">
-          <h3>{this.props.project.name}</h3>
+          <h3>{this.state.project.name}</h3>
           <p>{this.state.project.description}</p>
           <p>{this.state.project.category}</p>
           <p>{this.state.project.status}</p>
@@ -36,6 +38,7 @@ class ProjectView extends Component {
           <p>{this.state.project.planned_end_date}</p>
           <p>{this.state.project.act_start_date}</p>
           <p>{this.state.project.act_end_date}</p>
+          <TaskList proj_id={this.state.project.id} user_id={0}  proj={true} />
         </div>
       }
     }
