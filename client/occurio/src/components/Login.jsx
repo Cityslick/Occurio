@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
+
 
 class Login extends Component {
     constructor() {
@@ -20,7 +20,6 @@ class Login extends Component {
     }
 
     render(){
-      const { fireRedirect } = this.state;
 
         return(
             <div className="sign-in">
