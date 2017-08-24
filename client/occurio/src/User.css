@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
+
+
+.user-container {
+    margin-top: 0 auto;
+    height: 80vh;
+    top: 50px;
+    font-family: 'Quicksand';
+}
+
+.user-flex {
+    position: relative;
+    top: 10%;
+    height: 70vh;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+}
+.user-info {
+    flex: 2;
+    background: linear-gradient(#c9a3ff 0%, black 45%, #7919FF 70%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 2%;
+}
+.user-pic > img {
+    border-radius: 30%;
+    height: 200px;
+    width: 200px;
+    padding: 10px;
+}
+
+.user-details > h1 {
+    font-size: 25pt;
+    padding: 5px;
+}
+.user-details > h2 {
+    font-size: 20pt;
+    padding: 5px;
+}
+.user-details > h3 {
+    font-size: 15pt;
+    padding: 5px;
+}
+#timenow {
+    font-size: 18pt;
+    line-height: 250%;
+    background: white;
+    /* background: linear-gradient(#6D1CDF 0%, #8a49e5 70%); */
+    color: #6D1CDF;
+    box-shadow: none;
+}
+#timenow > span > h2 {
+    font-size: 40pt;
+}
+#timenow h2 {
+    padding: 5px;
+    margin-top: 5px;
+}
+#timenow i {
+    color: #6D1CDF;
+    padding-top: 23px;
+}
+.user-links {
+    flex: 4;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.links {
+    height: 40%;
+    width: 45%;
+    box-shadow: 8px 8px 10px grey;
+    color: white;
+    background: linear-gradient(#6D1CDF 0%, #8a49e5 70%);
+    border-radius: 0.5%;
+}
+.links > a, i {
+    text-align: center;
+    padding: 5px;
+    color: white;
+    position: relative;
+    top: 40%;
+    font-size: 22pt;
+}
