@@ -22,6 +22,7 @@ import Register from './components/Register.jsx';
 import ProjectCreate from './components/ProjectCreate.jsx';
 import ProjectView from './components/ProjectView.jsx';
 import ViewUserProjects from './components/ViewUserProjects.jsx';
+import ProjectEdit from './components/ProjectEdit.jsx';
 // TASKS
 import Task from './components/Task.jsx';
 import TaskList from './components/TaskList.jsx';
@@ -50,8 +51,6 @@ class App extends Component {
     this.logOut =  this.logOut.bind(this);
     // Create Project
     this.handleCreateProject = this.handleCreateProject.bind(this);
-    // View Project
-    this.viewProject = this.viewProject.bind(this);
     // Create Tasks
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
     // custom
@@ -80,9 +79,7 @@ class App extends Component {
         }).catch(err => console.log(err));
      }
 
-
-
-    handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
+     handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
         console.log(username);
         e.preventDefault();
         axios.post('/auth', {
@@ -115,6 +112,7 @@ class App extends Component {
             window.location = "/home";
         }).catch(err => console.log(err));
     }
+
 // Handle Create Project
 handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
   e.preventDefault();
@@ -135,18 +133,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
   }).catch(err => console.log(err));
 }
 
-// View Single Project
-  viewProject() {
-    console.log("Im here");
-    axios.get('/project/:id')
-    .then(res => {
-      this.setState({
-        user: res.data.user,
-        project: res.data,
-        fireRedirect: true,
-      })
-    }).catch(err => console.log(err));
-  }
+
 
 // Adding Tasks
   handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
@@ -222,6 +209,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
             <Route exact path="/projectList" render={() => <ViewUserProjects />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
             <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
+            <Route exact path="/projectEdit/:id" render={(props) => <ProjectEdit id={props.match.params.id} project={this.project} />} />
           </main>
           <Footer />
         </div>

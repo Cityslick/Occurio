@@ -6,6 +6,9 @@
     justify-content: space-between;
   }
 } */
+.editProject {
+  color: black;
+}
 
 .project-create{
   padding-top: 100px;
