@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './Reset.css';
 
 import {
   BrowserRouter as Router,
@@ -192,6 +193,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       <Router>
         <div className="App">
           <Header />
+
           {/* <Todolist /> */}
           {/* <Task /> */}
           {/* <Home /> */}
