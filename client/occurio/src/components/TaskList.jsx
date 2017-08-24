@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
 import TaskView from './TaskView';
 import ProjectView from './ProjectView';
 
@@ -12,9 +13,15 @@ class TaskList extends Component {
       taskDataLoaded: false,
     },
     this.renderTaskList =this.renderTaskList.bind(this);
+    this.handlerDeleteTask = this.handlerDeleteTask.bind(this);
   }
 
+
   componentDidMount() {
+    this.handlerReloadList();
+  }
+
+  handlerReloadList() {
     //same view to render users or projects task
     var taskRout;
     let proj_id=this.props.proj_id;
@@ -34,12 +41,25 @@ class TaskList extends Component {
     }).catch(err=>{
       console.log(err.json);
     })
+
+  }
+
+
+
+  handlerDeleteTask(task_Id){
+    axios.delete(`task/${task_Id}`)
+    .then(()=>{
+      this.handlerReloadList();
+    })
+    .catch(err=>{
+      console.log(err);
+    })
   }
 
   renderTaskList() {
     if (this.state.taskDataLoaded) {
       return this.state.taskData.map((task,index) => {
-        return <TaskView task={task} index={index+1} key={task.id} />
+        return <TaskView handlerDeleteTask={this.handlerDeleteTask} task={task} index={index+1} key={task.id} />
       });
     } else return <h1> Loading </h1>
   }
@@ -55,6 +75,7 @@ class TaskList extends Component {
               <th>Start Date</th>
               <th>End Date</th>
               <th>Ticket</th>
+              <th>Status</th>
               <th>Collaborator</th>
             </tr>
           </thead>
