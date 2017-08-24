@@ -87,3 +87,11 @@
     top: 40%;
     font-size: 22pt;
 }
+
+.user-links > div:nth-child(2):hover,
+.user-links > div:nth-child(3):hover,
+.user-links > div:nth-child(4):hover {
+   background: linear-gradient(#f39c12 0%, #f1c40f 70%); 
+    
+}
+
