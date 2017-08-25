@@ -38,8 +38,8 @@ class TaskList extends Component {
     })
     .then(res=>{
       this.setState({
-        //taskData: res.data.data,
-       // taskDataLoaded: true,
+        taskData: res.data.data,
+        taskDataLoaded: true,
       })
     }).catch(err=>{
       console.log(err.json);

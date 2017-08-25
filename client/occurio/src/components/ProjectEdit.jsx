@@ -17,7 +17,7 @@ class ProjectEdit extends Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEditProject = this.handleEditProject.bind(this);
-    this.renderEditProject= this.renderEditProject.bind(this)
+    this.renderEditProject = this.renderEditProject.bind(this);
   }
 
   componentDidMount() {
@@ -54,13 +54,6 @@ class ProjectEdit extends Component {
       status,
       planned_start_date,
       planned_end_date,
-    }).then(res => {
-      this.setState({
-        user: res.data.user,
-        project: res.data.data,
-        newId: res.data.data.id,
-        fireRedirect: true,
-      })
     }).catch(err => console.log(err));
   }
 

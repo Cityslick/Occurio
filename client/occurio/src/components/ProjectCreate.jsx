@@ -17,6 +17,7 @@ class ProjectCreate extends Component {
       planned_end_date: '',
       act_start_date: '',
       act_end_date: '',
+      user_id:null,
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleCreateProject= this.handleCreateProject.bind(this);
@@ -24,7 +25,7 @@ class ProjectCreate extends Component {
 
   handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
     e.preventDefault();
-    console.log("Im here");
+    let user_id=this.props.user.id;
     axios.post('/project', {
       name,
       description,
@@ -32,6 +33,7 @@ class ProjectCreate extends Component {
       status,
       planned_start_date,
       planned_end_date,
+      user_id,
     }).then(res => {
       this.setState({
         user: res.data.user,

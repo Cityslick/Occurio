@@ -16,8 +16,6 @@ class ViewUserProjects  extends Component {
   componentDidMount() {
     axios.get('/project')
     .then(res => {
-      console.log(res.data);
-
       this.setState({
         projects: res.data.data,
         projectDataLoaded: true,
