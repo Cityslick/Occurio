@@ -29,10 +29,11 @@ import TaskList from './components/TaskList.jsx';
 //COLLABORATORS
 import CollaboratorList from './components/CollaboratorList.jsx';
 import Collaborator from './components/Collaborator.jsx';
-
 // USERS
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
+import UserProfileEdit from './components/UserProfileEdit.jsx';
+
 // TEST
 import Todolist from './components/sidenavtest.js'
 class App extends Component {
@@ -51,7 +52,6 @@ class App extends Component {
     this.logOut =  this.logOut.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit =this.handleRegisterSubmit.bind(this);
-
     // Create Project
     this.handleCreateProject = this.handleCreateProject.bind(this);
     // Create Tasks
@@ -61,8 +61,6 @@ class App extends Component {
     this.closeNav = this.closeNav.bind(this);
   }
   handleLoginSubmit(e, username, password) {
-
-      console.log("logging in...");
       e.preventDefault();
       axios.post('/auth/login', {
           username,
@@ -72,12 +70,11 @@ class App extends Component {
             auth: res.data.auth,
             user: res.data.user,
             fireRedirect: true,
-            loggedIn: true,
+            loggedIn: (res.data.user),
         });
          //window.location = "/home";
       }).catch(err => console.log(err));
   }
-
   handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
     console.log(username);
     e.preventDefault();
@@ -98,7 +95,6 @@ class App extends Component {
        });
     }).catch(err => console.log(err));
   }
-  
   logOut() {
       axios.get('/auth/logout')
       .then(res => {
@@ -179,17 +175,14 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       this.setState({
         task: res.data.task,
       })
-
     }).catch(err => console.log(err));
           window.location = "/home";
       // }).catch(err => console.log(err));
-
   }
   handleToggleNav(toggleNav){
     // run code here depending if toggle nav is true or false
     // make the state of the nav bar depend on toggle nav
   }
-
   openNav() {
     document.getElementById("mySidenav").style.width = `100%`;
   }
@@ -230,6 +223,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
 
             <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
+            <Route exact path="/userEdit/:id" render={(props) => <UserProfileEdit id={props.match.params.id} user={this.state.user} />} />
             <Route exact path="/projectList" render={() => <ProjectViewAll />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} user={this.state.user} />} />
             <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />

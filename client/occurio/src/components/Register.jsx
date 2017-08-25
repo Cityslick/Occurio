@@ -44,6 +44,7 @@ class Register extends Component {
                     <div>
                         <h2 className="hero-text2">Create an Okurio Account!</h2>
                     </div>
+
                     <div>
                         <input className="form" type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleInputChange} />
                     </div>
