@@ -57,7 +57,7 @@ class UserProfile extends Component {
                         <img alt="" src="http://www.doyouknowja.com/upload/profile-pic/default-user.jpg"/>
                     </div>
                     <div className="user-details">
-                        <h1>{this.state.fullname}</h1>
+                        <h1>Hey, {this.state.fullname}.</h1>
                         <h2>{this.state.username}</h2>
                         <h3>{this.state.email}</h3>
                         <Link className='viewProject'  to={`/userEdit/:1`} >Edit Profile</Link>
