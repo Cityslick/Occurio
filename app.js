@@ -32,7 +32,7 @@ app.listen(PORT,()=>{
   console.log(`App listening on port ${PORT}`)
 });
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
   res.send('Page loaded');
 });
 

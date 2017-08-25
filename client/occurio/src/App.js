@@ -130,6 +130,7 @@ class App extends Component {
         <div className="App">
           <Header />
           <main>
+            <Redirect from="/" to="home" />
             <Route exact path='/home' render={() => <Home />} />
             <Route exact path='/collaborator' render={() => <Collaborator />} />
             <Route exact path='/login' render={() => {
