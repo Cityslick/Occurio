@@ -23,15 +23,19 @@ class Task extends Component {
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handlerLoadCollaborator = this.handlerLoadCollaborator.bind(this);
+    this.renderTaskList=  this.renderTaskList.bind(this);
   }
 
   componentDidMount(){
-    console.log(this.props);
     this.setState({
       proj_id:this.props.proj_id,
     })
 
     this.handlerLoadCollaborator();
+  }
+
+  renderTaskList(){
+      return <TaskList proj_id={this.props.proj_id} user_id={0} task_id={this.state.task_id} proj={true} />
 
   }
 
@@ -56,10 +60,8 @@ class Task extends Component {
 
   handlerLoadCollaborator(){
     let filter="";
-    console.log(this.props.proj_id);
     axios.get(`/collaborator/${this.props.proj_id}`)
     .then(res=>{
-      console.log(res.data.data);
       this.setState({
         collaboratorData: res.data.data,
         collaboratorDataLoaded: true,
@@ -70,11 +72,9 @@ class Task extends Component {
   }
 
   handleInputChange(e) {
-    const name = e.target.name;
-    const value = e.target.value;
     this.setState({
-      [name]: value,
       user_id:document.querySelector("#user_id").value,
+      proj_id:document.querySelector("#proj_id").value,
 
     });
 
@@ -102,7 +102,7 @@ class Task extends Component {
     return(
       <div>
         <div>
-          <h2>Create a Task</h2>
+          <h2>{this.state.task_id}</h2>
         </div>
         <div className="form">
           <form onSubmit={(e) => this.handleTaskSubmit(
@@ -168,7 +168,7 @@ class Task extends Component {
                 <input className="form" type="submit" value="Enter" />
             </div>
             <div>
-              <TaskList proj_id={this.props.proj_id} user_id={0} task_id={this.state.task_id} proj={true} />
+              {this.renderTaskList()}
             </div>
           </form>
         </div>

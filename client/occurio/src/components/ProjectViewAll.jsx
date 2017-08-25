@@ -31,7 +31,7 @@ class ViewUserProjects  extends Component {
           return <div className="projects">
                   <h2>{project.name}</h2>
                   <Link className='viewProject'  to={`/projectList/${project.id}`} >View Project information</Link>
-                  <Link className='viewProject'  to={`/projectList/task/${project.id}`} >Add Task</Link>
+                  <Link className='viewProject'  to={`/projectTask/${project.id}`} >Add Task</Link>
                 </div>
         })}
     }

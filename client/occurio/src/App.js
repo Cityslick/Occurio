@@ -65,7 +65,6 @@ class App extends Component {
   }
 
   handleLoginSubmit(e, username, password) {
-      console.log("logging in...");
       e.preventDefault();
       axios.post('/auth/login', {
           username,
@@ -75,9 +74,10 @@ class App extends Component {
             auth: res.data.auth,
             user: res.data.user,
             fireRedirect: true,
-            loggedIn: true,
+            loggedIn: (res.data.user),
         });
          //window.location = "/home";
+        console.log("logging in...");
       }).catch(err => console.log(err));
   }
 
@@ -218,11 +218,12 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
           <main>
             <Route exact path='/' render={() => <Home />} />
             <Route exact path='/collaborator' render={() => <Collaborator />} />
-            <Route exact path='/login' render={() => {
-              if(this.state.loggedIn)
+            <Route exact path='/login' render={() => {console.log(this.state.loggedIn);
+              if(this.state.loggedIn){
                 return <Redirect to={`user/id/:${this.state.user.id}`} Component={() =>
                 ( <UserProfile user={this.state.user} /> )
                   } />
+                }
               else
                 return <Login handleLoginSubmit={this.handleLoginSubmit} />
               }} />
