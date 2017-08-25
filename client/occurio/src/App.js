@@ -73,6 +73,7 @@ class App extends Component {
             loggedIn: (res.data.user),
         });
          //window.location = "/home";
+        console.log("logging in...");
       }).catch(err => console.log(err));
   }
   handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
@@ -195,13 +196,14 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
         <div className="App">
           <Header />
           <main>
-            <Route exact path='/home' render={() => <Home />} />
+            <Route exact path='/' render={() => <Home />} />
             <Route exact path='/collaborators' render={() => <Collaborator />} />
             <Route exact path='/login' render={() => {
               if(this.state.loggedIn)
                 return <Redirect to={`user/id/:${this.state.user.id}`} Component={() =>
                 ( <UserProfile user={this.state.user} /> )
                   } />
+                }
               else
                 return <Login handleLoginSubmit={this.handleLoginSubmit} />
               }} />
