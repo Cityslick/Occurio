@@ -5,8 +5,12 @@
 }
 
 
-.project-create{
-  padding-top: 100px;
+.project-create {
+  height: 100vh;
+}
+
+.project-page {
+  padding-top: 15vh;
 }
 
 * {
@@ -216,13 +220,13 @@ a:active {
   .x {
     padding-left: 30px;
   }
-  
 
   form input[type=text]:focus, form input[type=number]:focus {
     border-bottom: 10px solid #8B1BD2;
     /* outline: 0; */
     transition: .7s;
   }
+
   input[type=text], select {
     width: 250px;
     padding: 10px 10px;
@@ -233,6 +237,7 @@ a:active {
     box-sizing: border-box;
     font-size: 20px;
   }
+
   input[type=password], select {
     width: 250px;
     padding: 10px 10px;
@@ -243,6 +248,7 @@ a:active {
     box-sizing: border-box;
     font-size: 20px;
   }
+
   input[type=email], select {
     width: 75%;
     padding: 10px 10px;
@@ -253,6 +259,18 @@ a:active {
     box-sizing: border-box;
     font-size: 20px;
   }
+
+  input[type=date], select {
+    width: 75%;
+    padding: 10px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    /* border-radius: 4px; */
+    box-sizing: border-box;
+    font-size: 20px;
+  }
+  
   input[type=submit] {
     display: inline-block;
     width: 100px;
@@ -267,6 +285,7 @@ a:active {
     cursor: pointer;
     transition: all 0.5s ease 0s;
   }
+
   input[type=submit]:hover {
     background-color: white;
     color: #6D1CDF;
