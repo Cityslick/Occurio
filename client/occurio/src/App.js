@@ -20,7 +20,6 @@ import Register from './components/Register.jsx';
 // PROJECTS
 import ProjectCreate from './components/ProjectCreate.jsx';
 import ProjectView from './components/ProjectView.jsx';
-import ViewUserProjects from './components/ViewUserProjects.jsx';
 import ProjectEdit from './components/ProjectEdit.jsx';
 import ProjectViewAll from './components/ProjectViewAll.jsx';
 // TASKS
