@@ -4,19 +4,18 @@ const Project = {
   // PROJECTS
   create : function(project){
     return db.one(`INSERT INTO projects(name, description, category , status ,
-                  planned_start_date , planned_end_date ) VALUES( $1, $2, $3, $4, $5, $6) RETURNING *`,
+                  planned_start_date , planned_end_date,user_id ) VALUES( $1, $2, $3, $4, $5, $6,  $7) RETURNING *`,
                   [project.name, project.description, project.category, project.status,
-                  project.planned_start_date, project.planned_end_date])
+                  project.planned_start_date, project.planned_end_date,project.user_id])
   },
 
   update : function(project,proj_id){
-    console.log(proj_id);
-    return db.one('UPDATE projects set name=$1, description=$2, category=$3, status=$4,planned_start_date=$5,planned_end_date=$6 WHERE id=$7',
+    return db.one('UPDATE projects set name=$1, description=$2, category=$3, status=$4,planned_start_date=$5,planned_end_date=$6 WHERE id=$7 RETURNING *',
                 [project.name, project.description, project.category, project.status,project.planned_start_date, project.planned_end_date,proj_id])
   },
 
   findAll : function(){
-    return db.query("SELECT *,to_char(planned_end_date,'yyyy-MM-dd') as planned_end_datestr, to_char(planned_start_date,'yyyy-MM-dd') as planned_start_datestr,'here' FROM projects ");
+    return db.query("SELECT u.username, concat(u.firstname , ' ' , u.lastname) as fullname ,p.*,to_char(p.planned_end_date,'yyyy-MM-dd') as planned_end_datestr, to_char(p.planned_start_date,'yyyy-MM-dd') as planned_start_datestr,'here' FROM projects p INNER JOIN  users u on p.user_id= u.id ");
   },
 
   findById : function(projectId){

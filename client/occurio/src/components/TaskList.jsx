@@ -11,6 +11,7 @@ class TaskList extends Component {
     this.state = {
       taskData: null,
       taskDataLoaded: false,
+      task_id:0,
     },
     this.renderTaskList =this.renderTaskList.bind(this);
     this.handlerDeleteTask = this.handlerDeleteTask.bind(this);
@@ -18,6 +19,9 @@ class TaskList extends Component {
 
   componentDidMount() {
     this.handlerReloadList();
+    this.setState({
+      task_id:this.props.task_id,
+    })
   }
 
   handlerReloadList() {
@@ -63,6 +67,7 @@ class TaskList extends Component {
   render() {
     return (
       <div className="List">
+        <h1>this.props.task_id</h1>
         <table>
           <thead>
             <tr>

@@ -8,13 +8,14 @@ class Task extends Component {
   constructor() {
     super();
     this.state = {
-      user_id: '',
-      proj_id: 1,
+      task_id:null,
+      user_id: null,
+      proj_id: null,
       name: '',
       description: '',
       start_date: '',
       end_date: '',
-      status: '',
+      status: 'Pending',
       ticket: '',
       collaboratorData:null,
       collaboratorDataLoaded:false,
@@ -27,9 +28,11 @@ class Task extends Component {
   componentDidMount(){
     console.log(this.props);
     this.setState({
-      proj_id:'1',
+      proj_id:this.props.proj_id,
     })
+
     this.handlerLoadCollaborator();
+
   }
 
   handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
@@ -44,17 +47,19 @@ class Task extends Component {
       status,
       ticket,
     }).then(res => {
-      console.log(res);
       this.setState({
-        task: res.data.task,
+        task: res.data.data,
+        task_id:res.data.data.id
       })
     }).catch(err => console.log(err));
   }
 
   handlerLoadCollaborator(){
     let filter="";
-    axios.get(`/collaborator/${this.state.proj_id}`)
+    console.log(this.props.proj_id);
+    axios.get(`/collaborator/${this.props.proj_id}`)
     .then(res=>{
+      console.log(res.data.data);
       this.setState({
         collaboratorData: res.data.data,
         collaboratorDataLoaded: true,
@@ -68,16 +73,23 @@ class Task extends Component {
     const name = e.target.name;
     const value = e.target.value;
     this.setState({
-      [name]: value
+      [name]: value,
+      user_id:document.querySelector("#user_id").value,
+
     });
-    console.log(value);
+
   }
 
   allProjects(){
     return(
       <select>
         { (this.state.collaboratorDataLoaded) ?
-        this.state.collaboratorData.map(collaborator => {
+        this.state.collaboratorData.map((collaborator,index )=> {
+          if (index==0){
+              this.setState({
+                user_id:collaborator.id,
+              })
+          }
           return <option key={collaborator.id}>{collaborator.username}</option>
         })
        : ""}
@@ -104,12 +116,15 @@ class Task extends Component {
             this.state.status,
             this.state.ticket
           )}>
-            <ProjectView id={this.state.proj_id}  presentDetail={false}/>
+
+
+
+            <ProjectView id={this.props.proj_id}  presentDetail={false}/>
             <div>
               <label className="labelInput">Collaborator</label>
-              <select  name="user_id" onChange={this.handleInputChange}>
+              <select id="user_id"  name="user_id" onChange={this.handleInputChange}>
                 { (this.state.collaboratorDataLoaded) ?
-                this.state.collaboratorData.map(collaborator => {
+                this.state.collaboratorData.map((collaborator,index) => {
                   return <option key={collaborator.userid}
                   name="user_id"  value={collaborator.userid} > {collaborator.username}</option>
                 })
@@ -139,10 +154,9 @@ class Task extends Component {
             <div>
               <label className="labelInput">Status</label>
               <select name="status"  onChange={this.handleInputChange}>
-                <option name="status" key="1" value={"Pending"}>Pending</option>
-                <option name="status" key="2" value={"Done"}>Pending</option>
-                <option name="status" key="3" value={"In progress"}>In progress</option>
-                <option name="status" key="4"  value={"Canceled"}>Canceled</option>
+                <option name="status" key="1" value={"Done"}>Pending</option>
+                <option name="status" key="2" value={"In progress"}>In progress</option>
+                <option name="status" key="3"  value={"Canceled"}>Canceled</option>
               </select>
             </div>
 
@@ -154,7 +168,7 @@ class Task extends Component {
                 <input className="form" type="submit" value="Enter" />
             </div>
             <div>
-              <TaskList proj_id={this.state.proj_id} user_id={0}  proj={true} />
+              <TaskList proj_id={this.props.proj_id} user_id={0} task_id={this.state.task_id} proj={true} />
             </div>
           </form>
         </div>

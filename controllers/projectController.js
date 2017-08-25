@@ -11,6 +11,7 @@ projectController={
       status:req.body.status,
       planned_start_date:req.body.planned_start_date,
       planned_end_date:req.body.planned_end_date,
+      user_id:req.body.user_id,
     }).then( project =>{
       res.json({
         message:"Done",
@@ -37,6 +38,7 @@ projectController={
         data:project,
       })
     }).catch(err=>{
+      console.log(err);
         res.status(500).json(err);
     })
   },

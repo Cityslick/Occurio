@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
-class Register extends Component {
+class UserProfileEdit extends Component {
     constructor() {
         super();
         // assume we need this
@@ -14,8 +15,48 @@ class Register extends Component {
             img_url: '',
             proj_link: '',
             user_type: '',
+            userdataLodaed: false,
         }
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit= this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        axios.get(`user/id/:${this.props.user.id}`)
+          .then((res) => {
+            this.setState({
+              username: res.data.data.username,
+              firstname: res.data.data.firstname,
+              lastname: res.data.data.lastname,
+              password: res.data.data.password,
+              email: res.data.data.email,
+              img_url: res.data.data.img_url,
+              proj_link: res.data.data.proj_link,
+              user_type: res.data.data.user_type,
+              userdataLodaed: true,
+            })
+          }).catch(err => console.log(err));
+      }
+
+    handleSubmit(e, username, firstname, lastname, password, email, img_url, proj_link,user_type) {
+        console.log(username);
+        e.preventDefault();
+        axios.put('/user', {
+            username,
+            firstname,
+            lastname,
+            password,
+            email,
+            user_type,
+        }).then(res => {
+            this.setState({
+                auth: res.data.auth,
+                user: res.data.user,
+                fireRedirect: true,
+                userDataLoaded:true,
+            });
+
+        }).catch(err => console.log(err));
     }
 
     handleInputChange(e) {
@@ -24,6 +65,7 @@ class Register extends Component {
         this.setState({
             [name]: value,
         })
+        console.log(value);
     }
 
     render(){
@@ -34,7 +76,7 @@ class Register extends Component {
                   <h2 className="hero-text2">Create an Okurio Account!</h2>
                 </div>
 
-                  <form onSubmit={(e) => this.props.handleRegisterSubmit(
+                  <form onSubmit={(e) => this.handleRegisterSubmit(
                     e,
                     this.state.username,
                     this.state.firstname,
@@ -45,10 +87,6 @@ class Register extends Component {
                     this.state.proj_link,
                     this.state.user_type
                     )}>
-                    <div className="register-hero">
-                        <h2 className="hero-text2">Create an Okurio Account!</h2>
-                    </div>
-                    
                     <div>
                         <input className="form" type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleInputChange} />
                     </div>
@@ -62,7 +100,7 @@ class Register extends Component {
                     </div>
 
                     <div>
-                        <input className="form" type="text" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} />
+                        <input className="form" type="Password" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} />
                     </div>
 
                     <div>
@@ -77,9 +115,9 @@ class Register extends Component {
                         <input className="form" type="text" name="proj_link" value={this.state.proj_link} placeholder="Link to Project" onChange={this.handleInputChange} />
                     </div>
 
-                    <div className="x">
-                        <div className="select">
-                            <select type="user" name="user_type" onChange={this.handleInputChange}>
+                    <div className="drop-down">
+                        <div>
+                            <select  name="user_type" onChange={this.handleInputChange}>
                                 <option value="Manager"      name="user_type">     Manager</option>
                                 <option value="Collaborator" name="user_type">Collaborator</option>
                                 <option value="Other"        name="user_type">       Other</option>
@@ -87,7 +125,7 @@ class Register extends Component {
                         </div>
                     </div>
 
-                    <div className="x">
+                    <div>
                         <input className="form" type="submit" value="Enter" />
                     </div>
 
@@ -101,4 +139,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default UserProfileEdit;

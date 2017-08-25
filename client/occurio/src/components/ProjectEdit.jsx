@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 class ProjectEdit extends Component {
   constructor() {
     super();
@@ -14,12 +18,12 @@ class ProjectEdit extends Component {
       planned_end_date: '',
       project:null,
       projectDataLoaded: false,
+      fireRedirect: false,
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEditProject = this.handleEditProject.bind(this);
-    this.renderEditProject= this.renderEditProject.bind(this)
+    this.renderEditProject = this.renderEditProject.bind(this);
   }
-
   componentDidMount() {
       axios.get(`/project/${this.props.id}`)
         .then((res) => {
@@ -35,7 +39,6 @@ class ProjectEdit extends Component {
           })
         }).catch(err => console.log(err));
     }
-
   handleInputChange(e) {
     const name = e.target.name;
     const value = e.target.value;
@@ -43,7 +46,6 @@ class ProjectEdit extends Component {
       [name]: value,
     });
   }
-
   // Handle Edit Project
   handleEditProject(e, name, description, category, status, planned_start_date, planned_end_date) {
     e.preventDefault();
@@ -55,13 +57,14 @@ class ProjectEdit extends Component {
       planned_start_date,
       planned_end_date,
     }).then(res => {
+      console.log(res);
       this.setState({
-        user: res.data.user,
         project: res.data.data,
-        newId: res.data.data.id,
         fireRedirect: true,
       })
-    }).catch(err => console.log(err));
+    }).catch(err =>{
+       console.log(err);
+     })
   }
 
   renderEditProject() {
@@ -110,17 +113,15 @@ class ProjectEdit extends Component {
       )
     }
   }
-
   render() {
     return (
       <div className="project-create">
         {this.renderEditProject()}
         {this.state.fireRedirect
-          ? <Redirect push to={`/project/${this.state.newId}`} />
+          ? <Redirect push to={`/project/${this.props.id}`} />
           : ''}
       </div>
     )
   }
 }
-
 export default ProjectEdit;
