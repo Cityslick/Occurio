@@ -121,13 +121,14 @@ class Collaborator extends Component {
   handleInputChange(e) {
     const name = e.target.name;
     const value = e.target.value;
+    this.setState({
+      [name]: value,
+    });
     if (name=="proj_id"){
       this.handlerLoadCollaborator();
       this.handlerCollaboratorList();
     }
-    this.setState({
-      [name]: value,
-    });
+    console.log("value " +value ,"state"+ this.state.proj_id)
   }
 
   render(){
@@ -155,7 +156,7 @@ class Collaborator extends Component {
               <select id="proj_id"  name="proj_id" onChange={this.handleInputChange}>
                 { (this.state.projectDataLoaded) ?
                 this.state.projectData.map((project,index) => {
-                  return <option key={project.id} name="proj_id"  value={project.id} > {project.name}</option>
+                  return <option key={project.id} name="proj_id"  value={project.id} >{project.id} {project.name}</option>
                 })
                : ""}
               </select>
@@ -166,13 +167,13 @@ class Collaborator extends Component {
                 { (this.state.collaboratorDataLoaded) ?
                 this.state.collaboratorData.map((collaborator,index) => {
                   return <option key={collaborator.id}
-                  name="user_id"  value={collaborator.id} > {collaborator.username}</option>
+                  name="user_id"  value={collaborator.id} >{collaborator.id} {collaborator.username}</option>
                 })
                : ""}
               </select>
             </div>
             <div>
-                <input className="form" type="submit" value="Enter" />
+                <input className="form" type="submit" value="Submit" onClick={()=>{alert("jjji")}}/>
             </div>
             {this.renderCollaboratorList()}
           </form>

@@ -216,8 +216,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
         <div className="App">
           <Header />
           <main>
-            <Redirect from="/" to="home" />
-            <Route exact path='/home' render={() => <Home />} />
+            <Route exact path='/' render={() => <Home />} />
             <Route exact path='/collaborator' render={() => <Collaborator />} />
             <Route exact path='/login' render={() => {
               if(this.state.loggedIn)
@@ -247,7 +246,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
             <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
             <Route exact path="/projectList" render={() => <ProjectViewAll />} />
-            <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
+            <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} user={this.state.user} />} />
             <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
             <Route exact path="/projectEdit/:id" render={(props) => <ProjectEdit id={props.match.params.id} project={this.project} />} />
             <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project} />} />
