@@ -32,7 +32,7 @@ class UserProfile extends Component {
             )
         }
     }
-    
+
     getDateTime() {
         var period;
         var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -60,6 +60,7 @@ class UserProfile extends Component {
                         <h1>{this.state.fullname}</h1>
                         <h2>{this.state.username}</h2>
                         <h3>{this.state.email}</h3>
+                        <Link className='viewProject'  to={`/userEdit/${this.state.id}`} >View Project</Link>
                     </div>
                 </div>
                 <div className="user-links">
@@ -77,7 +78,7 @@ class UserProfile extends Component {
                     <Link to={'/user-projects'}>View Your Projects</Link>
                     </div>
                     <div className="links">
-                    <i className="fa fa-tasks fa-2x" aria-hidden="true"></i>    
+                    <i className="fa fa-tasks fa-2x" aria-hidden="true"></i>
                     <Link to={'/tasks'}>View Your Tasks</Link>
                     </div>
                 </div>
