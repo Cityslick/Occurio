@@ -152,8 +152,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       this.setState({
         task: res.data.task,
       })
-    }).catch(err => console.log(err));
-          window.location = "/home";
+      window.location = "/home";
       }).catch(err => console.log(err));
 
   }
@@ -196,8 +195,8 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               lastname={this.lastname}
               password={this.password}
               email={this.email}
-              user_type={this.user_type} />} 
-            /> 
+              user_type={this.user_type} />}
+            />
 
              <Route exact path="/user/id/:id" render={() => {
                if(!this.state.loggedIn)
