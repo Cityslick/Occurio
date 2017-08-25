@@ -203,8 +203,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
           <Header />
           <main>
             <Route exact path='/home' render={() => <Home />} />
-            <Route exact path='/collaborator' render={() => <Collaborator />} />
-
+            <Route exact path='/collaborators' render={() => <Collaborator />} />
             <Route exact path='/login' render={() => {
               if(this.state.loggedIn)
                 return <Redirect to={`user/id/:${this.state.user.id}`} Component={() =>
