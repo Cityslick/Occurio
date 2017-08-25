@@ -25,7 +25,7 @@ class Login extends Component {
       const { fireRedirect } = this.state;
 
         return(
-            <div className="sign-in">
+            <div className="login-page">
             <div>
                 <h2 className="welcome-txt">Welcome to Okurio</h2>
             </div>
@@ -40,7 +40,7 @@ class Login extends Component {
                     <input className="form" type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleInputChange} />
                     </div>
                     <div>
-                    <input className="form" type="password" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} />
+                    <input className="form" type="text" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} />
                     </div>
                     <div>
                     <input className="form" type="submit" value="Enter" />
