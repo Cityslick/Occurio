@@ -54,6 +54,10 @@ class ProjectCreate extends Component {
   render() {
     return (
       <div className="project-create">
+        <div className="project-page">
+        <div className>
+          <h1 className="hero-text2">Create a Project!</h1>
+        </div>
         <form onSubmit={(e) => this.handleCreateProject(e,
           this.state.name,
           this.state.description,
@@ -72,7 +76,7 @@ class ProjectCreate extends Component {
           </div>
           <div>
             <label>Category</label>
-            <select name="category" value={this.state.category} onChange={this.handleInputChange} required>
+            <select className="select" name="category" value={this.state.category} onChange={this.handleInputChange} required>
               <option>Administrative</option>
               <option>Design</option>
               <option>Back End</option>
@@ -81,7 +85,7 @@ class ProjectCreate extends Component {
           </div>
           <div>
             <label> Status </label>
-            <select name="status" value={this.state.status} onChange={this.handleInputChange} required>
+            <select  className="select" name="status" value={this.state.status} onChange={this.handleInputChange} required>
               <option>Started</option>
               <option>Pending</option>
               <option>Complete</option>
@@ -93,8 +97,11 @@ class ProjectCreate extends Component {
             <label>End Date </label>
             <input type="date" name="planned_end_date" placeholder="End Date" value={this.state.planned_end_date} onChange={this.handleInputChange} required />
           </div>
-          <input type="submit" value="Create Project" />
+          <div>
+            <input type="submit" value="Create Project" />
+          </div>
         </form>
+        </div>
       </div>
     )
 }

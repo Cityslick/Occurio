@@ -30,10 +30,6 @@ class Register extends Component {
         return(
             <div className="register">
               <div className="form">
-                <div>
-                  <h2 className="hero-text2">Create an Okurio Account!</h2>
-                </div>
-
                   <form onSubmit={(e) => this.props.handleRegisterSubmit(
                     e,
                     this.state.username,
@@ -45,6 +41,10 @@ class Register extends Component {
                     this.state.proj_link,
                     this.state.user_type
                     )}>
+                    <div>
+                        <h2 className="hero-text2">Create an Okurio Account!</h2>
+                    </div>
+
                     <div>
                         <input className="form" type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleInputChange} />
                     </div>
@@ -58,7 +58,7 @@ class Register extends Component {
                     </div>
 
                     <div>
-                        <input className="form" type="Password" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} />
+                        <input className="form" type="text" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} />
                     </div>
 
                     <div>
@@ -73,9 +73,9 @@ class Register extends Component {
                         <input className="form" type="text" name="proj_link" value={this.state.proj_link} placeholder="Link to Project" onChange={this.handleInputChange} />
                     </div>
 
-                    <div className="drop-down">
-                        <div>
-                            <select  name="user_type" onChange={this.handleInputChange}>
+                    <div className="x">
+                        <div className="select">
+                            <select type="user" name="user_type" onChange={this.handleInputChange}>
                                 <option value="Manager"      name="user_type">     Manager</option>
                                 <option value="Collaborator" name="user_type">Collaborator</option>
                                 <option value="Other"        name="user_type">       Other</option>
@@ -83,7 +83,7 @@ class Register extends Component {
                         </div>
                     </div>
 
-                    <div>
+                    <div className="x">
                         <input className="form" type="submit" value="Enter" />
                     </div>
 

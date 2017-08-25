@@ -141,8 +141,8 @@ class Collaborator extends Component {
   render(){
 
     return(
-      <div>
-        <div>
+      <div className="collaborator-page">
+        <div className="xx">
           <h2>Assing Collaborators</h2>
           <h2>Assing Collaborators</h2>
           <h2>Assing Collaborators</h2>

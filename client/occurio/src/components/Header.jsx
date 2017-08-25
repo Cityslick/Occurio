@@ -8,18 +8,18 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
-        <div className="header">
+      <header className="header">
             <div className="nav">
               <h1 className="logo"><Link to={'/home'}>okurio</Link></h1>
             </div>
             <div className="nav2">
               <ul className="nav-list">
-                <li><Link to={'/login'}>Log In</Link></li>
-                <li><Link to={'/register'}>Register</Link></li>
-                <li><Link to={'/collaborators'}>Collaborators</Link></li>
+                <li className="nav-item"><Link to={'/login'}>Login</Link></li>
+                <li className="nav-item"><Link to={'/register'}>Register</Link></li>
+                <li className="nav-item"><Link to={'/collaborators'}>Collaborators</Link></li>
               </ul>
             </div>
-        </div>
+      </header>
     )
 }
 

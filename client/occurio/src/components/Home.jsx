@@ -11,13 +11,13 @@ const Home = () => {
         <a href="#">4</a>
       </div>
       <span onclick="openNav()">&#9776; Go</span> */}
-      <div id="mySidenav" class="sidenav">
+      {/* <div id="mySidenav" class="sidenav">
         <a href="javascript: void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">About</a>
         <a href="#">Home</a>
         <a href="#">Services</a>
         <a href="#">Contact</a>
-      </div>  
+      </div>   */}
       {/* <h2>Okurio nav</h2> */}
       {/* <span className="seeall-nav" onclick="openNav()">&#9776;</span> */}
       <div className="hero-container">
@@ -25,7 +25,7 @@ const Home = () => {
             <h1 className="hero-text">Okurio</h1>
           </div>
           <div className="hero-quote">
-            <p>Okurio is a simple project management tool - optimized for stress free lives.</p>
+            <p>Okurio is a simple project management tool optimized for small teams.</p>
           </div>
           <div>
             <input className="hero-button" type="submit" value="Register" />

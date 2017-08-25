@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import TaskList from './TaskList';
+import '../App.css';
+
 
 class ProjectView extends Component {
   constructor(props) {
@@ -13,7 +15,6 @@ class ProjectView extends Component {
     }
     this.showTask=this.showTask.bind(this);
   }
-
   componentDidMount() {
     axios.get(`/project/${this.props.id}`)
     .then(res => {
@@ -24,16 +25,13 @@ class ProjectView extends Component {
       })
     }).catch(err => console.log(err));
   }
-
   showTask(){
     if(this.props.presentDetail){
       return <TaskList proj_id={this.state.project.id} user_id={0}  proj={true} />
     }
   }
-
   renderProject(){
     if (this.state.projectDataLoaded){
-
         return <div key={this.state.project.id} className="project">
           <h2>*************</h2>
           <h2>*************</h2>
@@ -41,7 +39,6 @@ class ProjectView extends Component {
           <h2>*************</h2>
           <h2>*************</h2>
           <h2>*************</h2>
-
           <h3>{this.state.project.name}</h3>
           <p>{this.state.project.description}</p>
           <p>{this.state.project.category}</p>
@@ -51,11 +48,14 @@ class ProjectView extends Component {
           <p>{this.state.project.act_start_date}</p>
           <p>{this.state.project.act_end_date}</p>
           <Link className='editProject' to={`/projectEdit/${this.state.project.id}`}>Edit</Link>
+          <br/>
+          <Link className='viewProject'  to={`/projectList/task/${this.state.sproject.id}`} >Add Task</Link>
+          <br/>
+          <Link className='editProject' to={`/projectList`}>All Projects</Link>
           {this.showTask()}
         </div>
       }
     }
-
   render() {
     return (
       <div className="viewProject">
@@ -64,5 +64,4 @@ class ProjectView extends Component {
     )
   }
 }
-
 export default ProjectView;

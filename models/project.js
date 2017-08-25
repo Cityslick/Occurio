@@ -10,8 +10,7 @@ const Project = {
   },
 
   update : function(project,proj_id){
-    console.log(proj_id);
-    return db.none('UPDATE projects set name=$1, description=$2, category=$3, status=$4,planned_start_date=$5,planned_end_date=$6 WHERE id=$7',
+    return db.one('UPDATE projects set name=$1, description=$2, category=$3, status=$4,planned_start_date=$5,planned_end_date=$6 WHERE id=$7 RETURNING *',
                 [project.name, project.description, project.category, project.status,project.planned_start_date, project.planned_end_date,proj_id])
   },
 

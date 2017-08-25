@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import '../App.css';
+import '../Projects.css';
 
 class ViewUserProjects  extends Component {
   constructor() {
@@ -29,9 +31,19 @@ class ViewUserProjects  extends Component {
     if (this.state.projectDataLoaded){
         return this.state.projects.map((project) => {
           return <div className="projects">
-                  <h2>{project.name}</h2>
-                  <Link className='viewProject'  to={`/projectList/${project.id}`} >View Project information</Link>
-                  <Link className='viewProject'  to={`/projectTask/${project.id}`} >Add Task</Link>
+                    <div className="project-info">
+                      <div className="project-name">
+                        <h2>{project.name}</h2>
+                      </div>
+                      <div className="project-links">
+                        <div className="single-project">
+                          <Link className='viewProject'  to={`/projectList/${project.id}`} >More Info</Link>
+                        </div>
+                        <div className="add-task">
+                          <Link className='viewProject'  to={`/projectList/task/${project.id}`} >Add Task</Link>
+                        </div>
+                      </div>
+                    </div>
                 </div>
         })}
     }

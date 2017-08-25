@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div className="footer">
+        <footer className="footer">
           <div className="footer-nav">
             {/* <div className="footer-col">
               About
@@ -14,7 +14,7 @@ const Footer = () => {
             </div>
             <div className="footer-col">
             {/* <a href="#"> */}
-            Legal
+            Contact
             {/* </a> */}
             </div>
             <div className="footer-col">
@@ -23,7 +23,7 @@ const Footer = () => {
             {/* </a> */}
             </div>
           </div>
-        </div>
+        </footer>
     )
 }
 
