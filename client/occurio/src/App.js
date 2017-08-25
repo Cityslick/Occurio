@@ -216,7 +216,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
         <div className="App">
           <Header />
           <main>
-            <Route exact path='/' render={() => <Home />} />
+            <Route exact path='/home' render={() => <Home />} />
             <Route exact path='/collaborator' render={() => <Collaborator />} />
             <Route exact path='/login' render={() => {
               if(this.state.loggedIn)
@@ -234,14 +234,12 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               email={this.email}
               user_type={this.user_type} />}
             />
-
              <Route exact path="/user/id/:id" render={() => {
                if(!this.state.loggedIn)
                   return <Login/>
                 else
                   return <UserProfile  loggedIn={this.state.auth} user={this.state.user}/>
                }}/>
-
             <Route exact path="/CollaboratorList" render={() => <CollaboratorList proj_id={2}/>} />
             <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
