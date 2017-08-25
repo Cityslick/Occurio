@@ -22,7 +22,7 @@ class UserProfileEdit extends Component {
     }
 
     componentDidMount() {
-        axios.get(`user/id/:${this.props.user.id}`)
+        axios.get(`user/id/:${this.props.id}`)
           .then((res) => {
             this.setState({
               username: res.data.data.username,
