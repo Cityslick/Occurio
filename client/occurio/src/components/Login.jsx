@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import axios from 'axios';
-
 class Login extends Component {
     constructor() {
         super();
@@ -12,7 +11,6 @@ class Login extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-
     handleInputChange(e) {
         const name = e.target.name;
         const value = e.target.value;
@@ -20,10 +18,8 @@ class Login extends Component {
             [name]: value,
         })
     }
-
     render(){
       const { fireRedirect } = this.state;
-
         return(
             <div className="login-page">
             <div>
@@ -35,7 +31,6 @@ class Login extends Component {
                     this.state.username,
                     this.state.password
                     )}>
-
                     <div>
                     <input className="form" type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleInputChange} />
                     </div>
@@ -45,12 +40,10 @@ class Login extends Component {
                     <div>
                     <input className="form" type="submit" value="Enter" />
                     </div>
-
                 </form>
             </div>
             </div>
         )
     }
 }
-
 export default Login;

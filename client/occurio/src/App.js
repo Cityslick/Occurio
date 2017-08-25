@@ -193,8 +193,9 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
         <div className="App">
           <Header />
           <main>
-            <Route exact path='/' render={() => <Home />} />
+            <Route exact path='/home' render={() => <Home />} />
             <Route exact path='/collaborator' render={() => <Collaborator />} />
+
             <Route exact path='/login' render={() => {
               if(this.state.loggedIn)
                 return <Redirect to={`user/id/:${this.state.user.id}`} Component={() =>
@@ -218,6 +219,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
                   return <UserProfile  loggedIn={this.state.auth} user={this.state.user}/>
                }}/>
             <Route exact path="/CollaboratorList" render={() => <CollaboratorList proj_id={2}/>} />
+
             <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
             <Route exact path="/projectList" render={() => <ProjectViewAll />} />

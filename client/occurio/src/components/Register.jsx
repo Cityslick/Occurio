@@ -30,10 +30,6 @@ class Register extends Component {
         return(
             <div className="register">
               <div className="form">
-                <div>
-                  <h2 className="hero-text2">Create an Okurio Account!</h2>
-                </div>
-
                   <form onSubmit={(e) => this.props.handleRegisterSubmit(
                     e,
                     this.state.username,
@@ -45,7 +41,7 @@ class Register extends Component {
                     this.state.proj_link,
                     this.state.user_type
                     )}>
-                    <div className="register-hero">
+                    <div>
                         <h2 className="hero-text2">Create an Okurio Account!</h2>
                     </div>
 
