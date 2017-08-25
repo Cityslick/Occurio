@@ -40,6 +40,9 @@ class Login extends Component {
                     <div>
                     <input className="form" type="submit" value="Enter" />
                     </div>
+                    <div>
+                    <p>or sign in</p>
+                </div>
                 </form>
             </div>
             </div>
