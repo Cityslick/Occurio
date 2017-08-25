@@ -16,29 +16,6 @@ class Register extends Component {
             user_type: '',
         }
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleRegisterSubmit= this.handleRegisterSubmit.bind(this);
-    }
-
-    handleRegisterSubmit(e, username, firstname, lastname, password, email, img_url, proj_link,user_type) {
-        console.log(username);
-        e.preventDefault();
-        axios.post('/auth', {
-            username,
-            firstname,
-            lastname,
-            password,
-            email,
-            user_type,
-        }).then(res => {
-            this.setState({
-                auth: res.data.auth,
-                user: res.data.user,
-                fireRedirect: true,
-                currentPage: 'home',
-                userDataLoaded:true,
-            });
-
-        }).catch(err => console.log(err));
     }
 
     handleInputChange(e) {
@@ -47,7 +24,6 @@ class Register extends Component {
         this.setState({
             [name]: value,
         })
-        console.log(value);
     }
 
     render(){
@@ -58,7 +34,7 @@ class Register extends Component {
                   <h2 className="hero-text2">Create an Okurio Account!</h2>
                 </div>
 
-                  <form onSubmit={(e) => this.handleRegisterSubmit(
+                  <form onSubmit={(e) => this.props.handleRegisterSubmit(
                     e,
                     this.state.username,
                     this.state.firstname,

@@ -31,7 +31,7 @@ const User = {
   },
 
   update: function(user, id){
-    return db.one(`
+    return db.none(`
       UPDATE users SET
       username = $1,
       firstname = $2,
