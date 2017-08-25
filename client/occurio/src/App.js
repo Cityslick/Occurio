@@ -32,7 +32,8 @@ import TaskList from './components/TaskList.jsx';
 import CollaboratorList from './components/CollaboratorList.jsx';
 
 // USERS
-import UserProfile from './components/UserProfile.jsx';
+import UserProfile from './components/UserProfileEdit.jsx';
+import UserProfileEdit from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
 
 // TEST
@@ -52,7 +53,7 @@ class App extends Component {
     }
     // AUTH
     this.logOut =  this.logOut.bind(this);
-
+    this.handleLoginSubmit =  this.handleLoginSubmit.bind(this);
     // Create Project
     this.handleCreateProject = this.handleCreateProject.bind(this);
     // Create Tasks
@@ -63,18 +64,21 @@ class App extends Component {
     this.closeNav = this.closeNav.bind(this);
   }
 
-
-
-  logOut() {
-      axios.get('/auth/logout')
-      .then(res => {
-          console.log(res);
+  handleLoginSubmit(e, username, password) {
+        console.log("logging in...");
+        e.preventDefault();
+        axios.post('/auth/login', {
+            username,
+            password,
+        }).then(res => {
+          console.log(res.data.user);
+          console.log(res.data.auth);
           this.setState({
-              auth: false,
-              user:null,
+              auth: res.data.auth,
+              user: res.data.user,
               fireRedirect: true,
+              loggedIn: true,
           });
-
         }).catch(err => console.log(err));
      }
 
@@ -132,8 +136,6 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
   }).catch(err => console.log(err));
 }
 
-
-
 // Adding Tasks
   handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
     alert("ssduuidjasdjosp");
@@ -152,8 +154,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       this.setState({
         task: res.data.task,
       })
-    }).catch(err => console.log(err));
-          window.location = "/home";
+      window.location = "/home";
       }).catch(err => console.log(err));
 
   }
@@ -196,8 +197,8 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               lastname={this.lastname}
               password={this.password}
               email={this.email}
-              user_type={this.user_type} />} 
-            /> 
+              user_type={this.user_type} />}
+            />
 
              <Route exact path="/user/id/:id" render={() => {
                if(!this.state.loggedIn)
@@ -209,8 +210,8 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
             <Route exact path="/collaborators" render={() => <CollaboratorList proj_id={2}/>} />
             <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
+            <Route exact path="/userEdit/:id" render={(props) => <UserProfileEdit id={props.match.params.id} user={this.user} />} />
             <Route exact path="/projectList" render={() => <ProjectViewAll />} />
-            <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
             <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
             <Route exact path="/projectEdit/:id" render={(props) => <ProjectEdit id={props.match.params.id} project={this.project} />} />
             <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project} />} />
