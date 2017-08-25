@@ -27,8 +27,9 @@ import ProjectViewAll from './components/ProjectViewAll.jsx';
 import Task from './components/Task.jsx';
 import TaskList from './components/TaskList.jsx';
 //COLLABORATORS
-// import CollaboratorList from './components/CollaboratorList.jsx';
-// import Collaborator from './components/Collaborator.jsx';
+import CollaboratorList from './components/CollaboratorList.jsx';
+import Collaborator from './components/Collaborator.jsx';
+
 // USERS
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
@@ -50,6 +51,7 @@ class App extends Component {
     this.logOut =  this.logOut.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit =this.handleRegisterSubmit.bind(this);
+
     // Create Project
     this.handleCreateProject = this.handleCreateProject.bind(this);
     // Create Tasks
@@ -59,6 +61,7 @@ class App extends Component {
     this.closeNav = this.closeNav.bind(this);
   }
   handleLoginSubmit(e, username, password) {
+
       console.log("logging in...");
       e.preventDefault();
       axios.post('/auth/login', {
@@ -74,6 +77,7 @@ class App extends Component {
          //window.location = "/home";
       }).catch(err => console.log(err));
   }
+
   handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
     console.log(username);
     e.preventDefault();
@@ -94,6 +98,7 @@ class App extends Component {
        });
     }).catch(err => console.log(err));
   }
+  
   logOut() {
       axios.get('/auth/logout')
       .then(res => {
@@ -174,14 +179,17 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       this.setState({
         task: res.data.task,
       })
+
     }).catch(err => console.log(err));
           window.location = "/home";
       // }).catch(err => console.log(err));
+
   }
   handleToggleNav(toggleNav){
     // run code here depending if toggle nav is true or false
     // make the state of the nav bar depend on toggle nav
   }
+
   openNav() {
     document.getElementById("mySidenav").style.width = `100%`;
   }
@@ -195,7 +203,8 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
           <Header />
           <main>
             <Route exact path='/' render={() => <Home />} />
-            {/* <Route exact path='/collaborator' render={() => <Collaborator />} /> */}
+            <Route exact path='/collaborator' render={() => <Collaborator />} />
+
             <Route exact path='/login' render={() => {
               if(this.state.loggedIn)
                 return <Redirect to={`user/id/:${this.state.user.id}`} Component={() =>
@@ -218,7 +227,9 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
                 else
                   return <UserProfile  loggedIn={this.state.auth} user={this.state.user}/>
                }}/>
-            {/* <Route exact path="/CollaboratorList" render={() => <CollaboratorList proj_id={2}/>} /> */}
+
+            <Route exact path="/CollaboratorList" render={() => <CollaboratorList proj_id={2}/>} />
+
             <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
             <Route exact path="/projectList" render={() => <ProjectViewAll />} />

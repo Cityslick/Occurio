@@ -22,7 +22,7 @@ class ProjectEdit extends Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEditProject = this.handleEditProject.bind(this);
-    this.renderEditProject= this.renderEditProject.bind(this)
+    this.renderEditProject = this.renderEditProject.bind(this);
   }
   componentDidMount() {
       axios.get(`/project/${this.props.id}`)
