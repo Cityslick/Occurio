@@ -14,7 +14,7 @@ const Footer = () => {
             </div>
             <div className="footer-col">
             {/* <a href="#"> */}
-            Legal
+            Contact
             {/* </a> */}
             </div>
             <div className="footer-col">

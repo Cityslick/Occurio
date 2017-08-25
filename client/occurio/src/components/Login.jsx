@@ -27,7 +27,7 @@ class Login extends Component {
         return(
             <div className="login-page">
             <div>
-                <h2 className="welcome-txt">Welcome to Okurio</h2>
+                <h2 className="welcome-text">Welcome to Okurio!</h2>
             </div>
             <div className="form">
                 <form onSubmit={(e) => this.props.handleLoginSubmit(
