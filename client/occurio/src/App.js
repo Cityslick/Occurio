@@ -225,7 +225,6 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
             <Route exact path="/userEdit/:id" render={(props) => <UserProfileEdit id={props.match.params.id} user={this.state.user} />} />
             <Route exact path="/projectList" render={() => <ProjectViewAll />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} user={this.state.user} />} />
-            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
             <Route exact path="/projectEdit/:id" render={(props) => <ProjectEdit id={props.match.params.id} project={this.project} />} />
             <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project} />} />
             <Route exact path="/projectTask/:id" render={(props) => <Task proj_id={props.match.params.id}  />} />
