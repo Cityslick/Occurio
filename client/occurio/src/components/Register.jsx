@@ -45,6 +45,10 @@ class Register extends Component {
                     this.state.proj_link,
                     this.state.user_type
                     )}>
+                    <div className="register-hero">
+                        <h2 className="hero-text2">Create an Okurio Account!</h2>
+                    </div>
+                    
                     <div>
                         <input className="form" type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleInputChange} />
                     </div>
@@ -73,7 +77,7 @@ class Register extends Component {
                         <input className="form" type="text" name="proj_link" value={this.state.proj_link} placeholder="Link to Project" onChange={this.handleInputChange} />
                     </div>
 
-                    <div>
+                    <div className="x">
                         <div className="select">
                             <select type="user" name="user_type" onChange={this.handleInputChange}>
                                 <option value="Manager"      name="user_type">     Manager</option>
@@ -83,7 +87,7 @@ class Register extends Component {
                         </div>
                     </div>
 
-                    <div>
+                    <div className="x">
                         <input className="form" type="submit" value="Enter" />
                     </div>
 
