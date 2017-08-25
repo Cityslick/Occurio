@@ -22,7 +22,7 @@ class ProjectEdit extends Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEditProject = this.handleEditProject.bind(this);
-    this.renderEditProject = this.renderEditProject.bind(this);
+    this.renderEditProject= this.renderEditProject.bind(this)
   }
   componentDidMount() {
       axios.get(`/project/${this.props.id}`)
@@ -118,7 +118,7 @@ class ProjectEdit extends Component {
       <div className="project-create">
         {this.renderEditProject()}
         {this.state.fireRedirect
-          ? <Redirect push to={`/project/${this.props.id}`} />
+          ? <Redirect push to={`/projectList/${this.props.id}`} />
           : ''}
       </div>
     )
