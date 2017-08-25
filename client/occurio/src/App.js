@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './Reset.css';
-
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom';
 import { Redirect } from 'react-router';
-
 // AXIOS
 import axios from 'axios';
 // HEADER/FOOTER/HOME
@@ -31,15 +29,11 @@ import TaskList from './components/TaskList.jsx';
 //COLLABORATORS
 import CollaboratorList from './components/CollaboratorList.jsx';
 import Collaborator from './components/Collaborator.jsx';
-
 // USERS
-import UserProfile from './components/UserProfileEdit.jsx';
-import UserProfileEdit from './components/UserProfile.jsx';
+import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
-
 // TEST
 import Todolist from './components/sidenavtest.js'
-
 class App extends Component {
   constructor() {
     super();
@@ -56,7 +50,6 @@ class App extends Component {
     this.logOut =  this.logOut.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit =this.handleRegisterSubmit.bind(this);
-
     // Create Project
     this.handleCreateProject = this.handleCreateProject.bind(this);
     // Create Tasks
@@ -65,10 +58,7 @@ class App extends Component {
     this.openNav = this.openNav.bind(this);
     this.closeNav = this.closeNav.bind(this);
   }
-
   handleLoginSubmit(e, username, password) {
-
-      console.log("logging in...");
       e.preventDefault();
       axios.post('/auth/login', {
           username,
@@ -78,12 +68,11 @@ class App extends Component {
             auth: res.data.auth,
             user: res.data.user,
             fireRedirect: true,
-            loggedIn: true,
+            loggedIn: (res.data.user),
         });
          //window.location = "/home";
       }).catch(err => console.log(err));
   }
-
   handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
     console.log(username);
     e.preventDefault();
@@ -102,23 +91,19 @@ class App extends Component {
            currentPage: 'home',
            userDataLoaded:true,
        });
-
     }).catch(err => console.log(err));
   }
-
   logOut() {
       axios.get('/auth/logout')
       .then(res => {
           console.log(res);
           this.setState({
-              auth: res.data.auth,
-              user: res.data.user,
+              auth: false,
+              user:null,
               fireRedirect: true,
-              loggedIn: true,
           });
         }).catch(err => console.log(err));
      }
-
      handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
         console.log(username);
         e.preventDefault();
@@ -137,7 +122,6 @@ class App extends Component {
                 currentPage: 'home',
                 userDataLoaded:true,
             });
-
         }).catch(err => console.log(err));
     }
     logOut() {
@@ -152,7 +136,6 @@ class App extends Component {
             window.location = "/home";
         }).catch(err => console.log(err));
     }
-
 // Handle Create Project
 handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
   e.preventDefault();
@@ -172,7 +155,6 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
     })
   }).catch(err => console.log(err));
 }
-
 // Adding Tasks
   handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
     alert("ssduuidjasdjosp");
@@ -191,25 +173,21 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       this.setState({
         task: res.data.task,
       })
-      window.location = "/home";
-      }).catch(err => console.log(err));
+    }).catch(err => console.log(err));
+          window.location = "/home";
+      // }).catch(err => console.log(err));
   }
-
   handleToggleNav(toggleNav){
     // run code here depending if toggle nav is true or false
     // make the state of the nav bar depend on toggle nav
   }
-
   openNav() {
     document.getElementById("mySidenav").style.width = `100%`;
   }
-
   closeNav() {
     document.getElementById("mySidenav").style.width = "0px";
   }
-
   render() {
-
     return (
       <Router>
         <div className="App">
@@ -233,18 +211,15 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
               email={this.email}
               user_type={this.user_type} />}
             />
-
              <Route exact path="/user/id/:id" render={() => {
                if(!this.state.loggedIn)
                   return <Login/>
                 else
                   return <UserProfile  loggedIn={this.state.auth} user={this.state.user}/>
                }}/>
-
             <Route exact path="/CollaboratorList" render={() => <CollaboratorList proj_id={2}/>} />
             <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
-            <Route exact path="/userEdit/:id" render={(props) => <UserProfileEdit id={props.match.params.id} user={this.user} />} />
             <Route exact path="/projectList" render={() => <ProjectViewAll />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} user={this.state.user} />} />
             <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
@@ -258,6 +233,4 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
     );
   }
 }
-
-
 export default App;
