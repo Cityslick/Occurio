@@ -15,6 +15,9 @@ class ProjectView extends Component {
   }
 
   componentDidMount() {
+
+    console.log("Im here ProjectView");
+
     axios.get(`/project/${this.props.id}`)
     .then(res => {
       this.setState({
@@ -34,6 +37,8 @@ class ProjectView extends Component {
   renderProject(){
     if (this.state.projectDataLoaded){
 
+        console.log(this.state.project);
+
         return <div key={this.state.project.id} className="project">
           <h2>*************</h2>
           <h2>*************</h2>
@@ -50,6 +55,8 @@ class ProjectView extends Component {
           <p>{this.state.project.planned_end_datestr}</p>
           <p>{this.state.project.act_start_date}</p>
           <p>{this.state.project.act_end_date}</p>
+          <TaskList proj_id={this.state.project.id} user_id={0}  proj={true} />
+          <Link className='editProject' to={`/projectEdit/${this.state.project.id}`}>Edit</Link>
           {this.showTask()}
         </div>
       }

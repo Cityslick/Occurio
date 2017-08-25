@@ -56,4 +56,3 @@ app.get("*",(req, res)=>{
     message: "Page Not found(404)",
   })
 })
-

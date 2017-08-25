@@ -22,6 +22,8 @@ import Register from './components/Register.jsx';
 // PROJECTS
 import ProjectCreate from './components/ProjectCreate.jsx';
 import ProjectView from './components/ProjectView.jsx';
+import ViewUserProjects from './components/ViewUserProjects.jsx';
+import ProjectEdit from './components/ProjectEdit.jsx';
 import ProjectViewAll from './components/ProjectViewAll.jsx';
 // TASKS
 import Task from './components/Task.jsx';
@@ -53,6 +55,10 @@ class App extends Component {
     this.logOut =  this.logOut.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleRegisterSubmit =this.handleRegisterSubmit.bind(this);
+    // Create Project
+    this.handleCreateProject = this.handleCreateProject.bind(this);
+    // Create Tasks
+    this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
     // custom
     this.openNav = this.openNav.bind(this);
     this.closeNav = this.closeNav.bind(this);
@@ -106,8 +112,88 @@ class App extends Component {
               user:null,
               fireRedirect: true,
           });
+
+        }).catch(err => console.log(err));
+     }
+
+     handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
+        console.log(username);
+        e.preventDefault();
+        axios.post('/auth', {
+            username,
+            firstname,
+            lastname,
+            password,
+            email,
+            user_type,
+        }).then(res => {
+            this.setState({
+                auth: res.data.auth,
+                user: res.data.user,
+                fireRedirect: true,
+                currentPage: 'home',
+                userDataLoaded:true,
+            });
+
+        }).catch(err => console.log(err));
+    }
+    logOut() {
+        axios.get('/auth/logout')
+        .then(res => {
+            console.log(res);
+            this.setState({
+                auth: false,
+                user:null,
+                fireRedirect: true,
+            });
+            window.location = "/home";
+        }).catch(err => console.log(err));
+    }
+
+// Handle Create Project
+handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
+  e.preventDefault();
+  console.log("Im here");
+  axios.post('/project', {
+    name,
+    description,
+    category,
+    status,
+    planned_start_date,
+    planned_end_date,
+  }).then(res => {
+    this.setState({
+      user: res.data.user,
+      project: res.data,
+      fireRedirect: true,
+    })
+  }).catch(err => console.log(err));
+}
+
+
+
+// Adding Tasks
+  handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
+    alert("ssduuidjasdjosp");
+    e.preventDefault();
+    axios.post('/task', {
+      user_id,
+      proj_id,
+      name,
+      description,
+      start_date,
+      end_date,
+      status,
+      ticket,
+    }).then(res => {
+      console.log(res);
+      this.setState({
+        task: res.data.task,
+      })
+    }).catch(err => console.log(err));
           window.location = "/home";
-      }).catch(err => console.log(err));
+      // }).catch(err => console.log(err));
+
   }
 
   handleToggleNav(toggleNav){
@@ -162,6 +248,8 @@ class App extends Component {
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
             <Route exact path="/projectList" render={() => <ProjectViewAll />} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} />} />
+            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
+            <Route exact path="/projectEdit/:id" render={(props) => <ProjectEdit id={props.match.params.id} project={this.project} />} />
             <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project} />} />
             <Route exact path="/projectTask/:id" render={(props) => <Task proj_id={props.match.params.id}  />} />
           </main>

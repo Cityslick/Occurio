@@ -9,16 +9,18 @@ const Project = {
                   project.planned_start_date, project.planned_end_date])
   },
 
-  update : function(project){
-    return db.one('UPDATE projects set name=$1, description=$2, category=$3, status=$4, planned_start_date=$5, planned_end_date=$6',[project.name, project.description, project.category, project.status,project.planned_start_date. project.planned_end_date])
+  update : function(project,proj_id){
+    console.log(proj_id);
+    return db.one('UPDATE projects set name=$1, description=$2, category=$3, status=$4,planned_start_date=$5,planned_end_date=$6 WHERE id=$7',
+                [project.name, project.description, project.category, project.status,project.planned_start_date, project.planned_end_date,proj_id])
   },
 
   findAll : function(){
-    return db.query("SELECT *, to_char(planned_start_date,'yyyy-MM-dd') as planned_start_datesrt, to_char(planned_end_date,'yyyy-MM-dd') as planned_end_dateStr FROM projects ");
+    return db.query("SELECT *,to_char(planned_end_date,'yyyy-MM-dd') as planned_end_datestr, to_char(planned_start_date,'yyyy-MM-dd') as planned_start_datestr,'here' FROM projects ");
   },
 
   findById : function(projectId){
-    return db.one("SELECT *, to_char(planned_start_date,'yyyy-MM-dd') as planned_start_datesrt, to_char(planned_end_date,'yyyy-MM-dd') as planned_end_dateStr FROM projects WHERE id=$1", [projectId]);
+    return db.one("SELECT *,to_char(planned_end_date,'yyyy-MM-dd') as planned_end_datestr, to_char(planned_start_date,'yyyy-MM-dd') as planned_start_datestr,'here' FROM projects WHERE id=$1", [projectId]);
   },
 
   delete : function(projectId){
