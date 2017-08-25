@@ -1,34 +1,66 @@
-main {
-    height: 75vh;
-}
-.header {
-    margin-top: -40px;
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
+html {
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
 }
 
 .projects {
-    margin-top: 30px;
+    position: relative;
+    top: 8%;
 }
 
-.project-container {
-    margin-top: 40px;
-    margin-left: 10px;
+.project-list {
+    height: 110vh;
     border: 2px solid green;
     display: flex;
-    height: 40px;
-    width: 50%;
+    flex-direction: column;
+    width: 100%;
+    font-family: 'Quicksand';
+}
+
+.project-info {
+    margin: 20px 5px 0px 5px;
+    position: relative;
+    left: 20%;
+    border: 1px solid blue;
+    width: 60%;
+    display: flex;
     align-items: center;
-    justify-content: space-between;
+    border-radius: 2%;
+    background: linear-gradient(#6D1CDF 0%, grey 90%);
+    color: white;
 }
 
-.project-container > div {
-    margin: 0px 10px 0px 10px;
+.project-name {
+    font-size: 20pt;
+    margin: 10px;
+    justify-content: flex-start;
+    width: 40%;
 }
 
-.project-details {
-    flex: 3;
-} 
-.project-info,
-.view-project {
-    border: 2px solid red;
+.project-links {
+    display: flex;
+    margin: 10px;
+    width: 100%;
+    justify-content: space-around;
+    justify-content: flex-end;
 }
 
+.single-project {
+    margin: 10px;
+    padding: 10px;
+    background: #7986CB;
+}
+
+.add-task {
+    margin: 10px;
+    padding: 10px;
+    background: seagreen;
+}
+
+.add-task > a,
+.single-project > a {
+    color: white;
+}

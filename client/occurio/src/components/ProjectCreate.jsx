@@ -96,7 +96,7 @@ class ProjectCreate extends Component {
             <input type="date" name="planned_end_date" placeholder="End Date" value={this.state.planned_end_date} onChange={this.handleInputChange} required />
           </label>
           <div>
-          <input className="select" type="submit" value="Create Project" />
+          <input type="submit" value="Create Project" />
           </div>
         </form>
         </div>
