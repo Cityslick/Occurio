@@ -11,6 +11,7 @@ const taskController={
       status:req.body.status,
       ticket:req.body.ticket,
     }).then(task=>{
+      console.log(task);
       res.json({
         message:"Done",
         data: task,

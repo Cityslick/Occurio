@@ -10,24 +10,8 @@ class Login extends Component {
             password: '',
         }
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     }
 
-    handleLoginSubmit(e, username, password) {
-        console.log("logging in...");
-        e.preventDefault();
-        axios.post('/auth/login', {
-            username,
-            password,
-        }).then(res => {
-          this.setState({
-              auth: res.data.auth,
-              user: res.data.user,
-              fireRedirect: true,
-              loggedIn: true,
-          });
-        }).catch(err => console.log(err));
-    }
 
     handleInputChange(e) {
         const name = e.target.name;
@@ -46,7 +30,7 @@ class Login extends Component {
                 <h2 className="welcome-txt">Welcome to Okurio</h2>
             </div>
             <div className="form">
-                <form onSubmit={(e) => this.handleLoginSubmit(
+                <form onSubmit={(e) => this.props.handleLoginSubmit(
                     e,
                     this.state.username,
                     this.state.password

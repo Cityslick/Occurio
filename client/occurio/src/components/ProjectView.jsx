@@ -35,6 +35,13 @@ class ProjectView extends Component {
     if (this.state.projectDataLoaded){
 
         return <div key={this.state.project.id} className="project">
+          <h2>*************</h2>
+          <h2>*************</h2>
+          <h2>*************</h2>
+          <h2>*************</h2>
+          <h2>*************</h2>
+          <h2>*************</h2>
+
           <h3>{this.state.project.name}</h3>
           <p>{this.state.project.description}</p>
           <p>{this.state.project.category}</p>
