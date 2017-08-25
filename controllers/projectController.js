@@ -55,6 +55,18 @@ projectController={
     })
   },
 
+  findUsersProject: function (req, res){
+    Project.findUsersProject(req.params.user_id)
+    .then(project => {
+      res.json({
+        message: 'Done',
+        data: project,
+      });
+    }).catch(err =>{
+      res.status(500).json(err);
+    })
+  },
+
   findById: function (req, res){
     Project.findById(req.params.id)
     .then(project => {
