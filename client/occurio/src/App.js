@@ -154,7 +154,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
       })
     }).catch(err => console.log(err));
           window.location = "/home";
-      }).catch(err => console.log(err));
+      // }).catch(err => console.log(err));
 
   }
 
