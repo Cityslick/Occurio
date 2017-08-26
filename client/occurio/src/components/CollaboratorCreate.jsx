@@ -27,7 +27,13 @@ class Collaborator extends Component {
 
   componentDidMount(){
     this.handlerLoadCollaborator();
-    this.handlerLoadProject();
+    if (this.props.proj_id){
+      this.setState({
+        proj_id:this.props.proj_id,
+      })
+    }else{
+      this.handlerLoadProject();
+    }
   }
 
   componentWillUpdate(nextProps,nextState) {
@@ -85,7 +91,7 @@ class Collaborator extends Component {
   }
 
   hadlerDelete(proj_id,user_id){
-    axios.post(`collaborator/${user_id}`,{
+    axios.post(`/collaborator/${user_id}`,{
         proj_id,
         user_id,
     })
@@ -149,7 +155,22 @@ class Collaborator extends Component {
       </div>
     );
   };
-
+  renderProjectList(){
+    if (!this.props.proj_id){
+      return (
+        <div>
+          <label className="labelInput">Projects</label>
+          <select id="proj_id"  name="proj_id" onChange={this.handleInputChange}  >
+            { (this.state.projectDataLoaded) ?
+            this.state.projectData.map((project,index) => {
+              return <option key={project.id} name="proj_id"  value={project.id} >{project.id} {project.name}</option>
+            })
+           : ""}
+          </select>
+        </div>
+      )
+    }
+  }
 
   render(){
 
@@ -171,16 +192,7 @@ class Collaborator extends Component {
               this.state.user_id,
               this.state.proj_id
             )}>
-            <div>
-              <label className="labelInput">Projects</label>
-              <select id="proj_id"  name="proj_id" onChange={this.handleInputChange}  >
-                { (this.state.projectDataLoaded) ?
-                this.state.projectData.map((project,index) => {
-                  return <option key={project.id} name="proj_id"  value={project.id} >{project.id} {project.name}</option>
-                })
-               : ""}
-              </select>
-            </div>
+            {this.renderProjectList()}
             <div>
               <label className="labelInput">Collaborator</label>
               <select id="user_id"  name="user_id" onChange={this.handleInputChange} >
