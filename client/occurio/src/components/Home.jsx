@@ -38,6 +38,21 @@ const Home = () => {
     </div>
     <div className="home-page3">
       <div className="home-page3-container">
+        <div className="item">
+          <h2>Media</h2>
+          <p>Lorem ipsum, asdf klu rhiukjksd f .</p>
+          <p>ASDfasdhf asklfa dfjha f.</p>
+        </div>
+        <div className="item">
+          <h2>Media</h2>
+          <p>Lorem ipsum, asdf klu rhiukjksd f .</p>
+          <p>ASDfasdhf asklfa dfjha f.</p>
+        </div>
+        <div className="item">
+          <h2>Media</h2>
+          <p>Lorem ipsum, asdf klu rhiukjksd f .</p>
+          <p>ASDfasdhf asklfa dfjha f.</p>
+        </div>
       </div>
     </div>
     {/* <div className="home-page4">
