@@ -22,10 +22,6 @@ class UserProfileEdit extends Component {
     }
 
     componentDidMount() {
-        console.log('asdasdasdas');
-        console.log(this.props.userDataLoaded);
-        console.log(this.props.userData.username);
-        console.log(this.props.userData);
             this.setState({
               username: this.props.userData.username,
               firstname: this.props.userData.firstname,
@@ -42,7 +38,7 @@ class UserProfileEdit extends Component {
     handleSubmit(e, username, firstname, lastname, password, email, img_url, proj_link,user_type) {
         console.log(username);
         e.preventDefault();
-        axios.put(`/user/${this.props.id}`, {
+        axios.put(`/user/${this.props.userData.id}`, {
           username,
           firstname,
           lastname,
@@ -55,6 +51,7 @@ class UserProfileEdit extends Component {
               auth: res.data.auth,
               user: res.data.user,
               fireRedirect: true,
+              userDataLoaded:true,
             });
 
         }).catch(err => {
@@ -140,7 +137,6 @@ class UserProfileEdit extends Component {
     render(){
         return(
             <div className="register">
-              <div>HI</div>
               {this.renderUserProfileEdit()}
               {this.state.fireRedirect
                 ? <Redirect push to={`/user/${this.props.id}`} />

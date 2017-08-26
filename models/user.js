@@ -36,14 +36,12 @@ const User = {
       username = $1,
       firstname = $2,
       lastname = $3,
-      password = $4,
       email = $5,
       img_url = $6,
       proj_link = $7,
       user_type = $8
       WHERE id = $9
-      RETURNING *
-    `, [user.username, user.firstname, user.lastname, user.password, user.email, user.img_url, user.proj_link, user.user_type, id]);
+    `, [user.username, user.firstname, user.lastname, user.email, user.img_url, user.proj_link, user.user_type, id]);
   }
 }
 
