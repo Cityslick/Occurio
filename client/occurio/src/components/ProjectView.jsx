@@ -17,6 +17,7 @@ class ProjectView extends Component {
   }
   componentDidMount() {
     console.log("Im here ProjectView");
+    console.log(this.props.id)
     axios.get(`/project/${this.props.id}`)
     .then(res => {
       this.setState({
@@ -52,7 +53,7 @@ class ProjectView extends Component {
           <TaskList proj_id={this.state.project.id} user_id={0}  proj={true} />
           <Link className='editProject' to={`/projectEdit/${this.state.project.id}`}>Edit</Link>
           <br/>
-          <Link className='viewProject'  to={`/projectList/task/${this.state.sproject.id}`} >Add Task</Link>
+          <Link className='viewProject'  to={`/projectList/task/${this.state.project.id}`} >Add Task</Link>
           <br/>
           <Link className='editProject' to={`/projectList`}>All Projects</Link>
           {this.showTask()}

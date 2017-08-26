@@ -14,27 +14,29 @@ class UserProfileEdit extends Component {
             img_url: '',
             proj_link: '',
             user_type: '',
-            userdataLodaed: false,
+            userDataLoaded: false,
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit= this.handleSubmit.bind(this);
+        this.renderUserProfileEdit = this.renderUserProfileEdit.bind(this);
     }
 
     componentDidMount() {
-        axios.get(`user/id/:${this.props.user.id}`)
-          .then((res) => {
+        console.log('asdasdasdas');
+        console.log(this.props.userDataLoaded);
+        console.log(this.props.userData.username);
+        console.log(this.props.userData);
             this.setState({
-              username: res.data.data.username,
-              firstname: res.data.data.firstname,
-              lastname: res.data.data.lastname,
-              password: res.data.data.password,
-              email: res.data.data.email,
-              img_url: res.data.data.img_url,
-              proj_link: res.data.data.proj_link,
-              user_type: res.data.data.user_type,
-              userdataLodaed: true,
+              username: this.props.userData.username,
+              firstname: this.props.userData.firstname,
+              lastname: this.props.userData.lastname,
+              email: this.props.userData.email,
+              img_url: this.props.userData.img_url,
+              proj_link: this.props.userData.proj_link,
+              user_type: this.props.userData.user_type,
+              userDataLoaded: true,
             })
-          }).catch(err => console.log(err));
+        //   }).catch(err => console.log(err));
       }
 
     handleSubmit(e, username, firstname, lastname, password, email, img_url, proj_link,user_type) {
@@ -72,7 +74,7 @@ class UserProfileEdit extends Component {
     }
 
     renderUserProfileEdit() {
-      if (this.state.userDataloaded) {
+      if (this.state.userDataLoaded) {
         return (
           <div>
           <h1>Edit Profile</h1>
@@ -98,10 +100,6 @@ class UserProfileEdit extends Component {
 
                   <div>
                       <input className="form" type="text" name="lastname" value={this.state.lastname} placeholder="Last Name" onChange={this.handleInputChange} />
-                  </div>
-
-                  <div>
-                      <input className="form" type="Password" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} />
                   </div>
 
                   <div>
