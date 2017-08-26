@@ -23,7 +23,7 @@ import ProjectView from './components/ProjectView.jsx';
 import ProjectEdit from './components/ProjectEdit.jsx';
 import ProjectViewAll from './components/ProjectViewAll.jsx';
 // TASKS
-import Task from './components/Task.jsx';
+import Task from './components/test.jsx';
 import TaskList from './components/TaskList.jsx';
 //COLLABORATORS
 import CollaboratorList from './components/CollaboratorList.jsx';
@@ -222,7 +222,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
                }}/>
             <Route exact path="/CollaboratorList" render={() => <CollaboratorList proj_id={2}/>} />
 
-            <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
+            <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
 
             <Route exact path="/userEdit/:id" render={(props) => <UserProfileEdit  userData={this.state.user} />} />
@@ -230,7 +230,7 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} user={this.state.user} />} />
             <Route exact path="/projectEdit/:id" render={(props) => <ProjectEdit id={props.match.params.id} project={this.project} />} />
             <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project} />} />
-            <Route exact path="/projectTask/:id" render={(props) => <Task proj_id={props.match.params.id}  />} />
+            <Route exact path="/projectTask/:id" render={(props) => <Task proj_id={props.match.params.id} user_id={12}  />} />
           </main>
           <Footer />
         </div>

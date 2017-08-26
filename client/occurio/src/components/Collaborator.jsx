@@ -27,7 +27,6 @@ class Collaborator extends Component {
   componentDidMount(){
     this.handlerLoadCollaborator();
     this.handlerLoadProject();
-
   }
 
   handleCollaboratorSubmit(e, user_id, proj_id) {
@@ -131,12 +130,13 @@ class Collaborator extends Component {
       [name]: value,
     });
   }
+
   componentWillUpdate(nextProps, nextState) {
     if (nextState.proj_id != this.state.proj_id ) {
       console.log(nextState.proj_id );
       this.handlerCollaboratorList(nextState.proj_id );
     }
-}
+  }
 
   render(){
 
