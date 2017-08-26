@@ -30,16 +30,22 @@ class Collaborator extends Component {
     this.handlerLoadProject();
   }
 
-  componentWillUpdate(nextState) {
-    console.log(nextState);
-    if (nextState.new_id != this.state.new_id ) {
-      this.handlerCollaboratorList();
+  componentWillUpdate(nextProps,nextState) {
+    console.log(nextState.nextState);
+    if (nextState.collaboratorListDataLoaded != this.state.collaboratorListDataLoaded || nextState.proj_id != this.state.proj_id || nextState.user_id !=this.state.user_id ) {
+      axios.get(`/collaborator/${nextState.proj_id}`)
+      .then(res=>{
+        if(res.data.data.length>0){
+          this.setState({
+            collaboratorListData: res.data.data,
+            collaboratorListDataLoaded: true,
+          })
+        }
+      }).catch(err=>{
+        console.log(err.json);
+      })
+      console.log("update")
     }
-    //if (nextState.proj_id != this.state.proj_id || nextState.user_id !=this.state.user_id ) {
-      // this.handlerCollaboratorList();
-      // this.setState();
-      // console.log("update")
-    //}
   }
 
   handleCollaboratorSubmit(e, user_id, proj_id) {
@@ -49,7 +55,6 @@ class Collaborator extends Component {
       proj_id,
     }).then(res => {
       this.setState({
-        collaborator: res.data.data,
         collaboratorListDataLoaded:false,
       })
       this.handlerCollaboratorList();
@@ -61,10 +66,7 @@ class Collaborator extends Component {
     const value = e.target.value;
     this.setState({
       [name]: value,
-      collaboratorListDataLoaded:false,
-
     });
-    console.log(this.state)
   }
 
 
@@ -91,6 +93,7 @@ class Collaborator extends Component {
       this.setState({
         collaboratorListDataLoaded:false,
       })
+      this.handlerCollaboratorList();
     })
     .catch(err=>{
       console.log(err);
@@ -98,7 +101,6 @@ class Collaborator extends Component {
   }
 
   handlerLoadCollaborator(){
-    // console.log("handlerLoadCollaborator");
     let proj_id=this.state.proj_id;
     let user_id=this.state.user_id;
      axios.put(`/collaborator`,{
@@ -171,7 +173,7 @@ class Collaborator extends Component {
             )}>
             <div>
               <label className="labelInput">Projects</label>
-              <select id="proj_id"  name="proj_id" onChange={this.handleInputChange} >
+              <select id="proj_id"  name="proj_id" onChange={this.handleInputChange}  >
                 { (this.state.projectDataLoaded) ?
                 this.state.projectData.map((project,index) => {
                   return <option key={project.id} name="proj_id"  value={project.id} >{project.id} {project.name}</option>
