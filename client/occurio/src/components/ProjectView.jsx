@@ -36,15 +36,12 @@ class ProjectView extends Component {
   renderProject(){
     if (this.state.projectDataLoaded){
         return <div key={this.state.project.id} className="project">
-          <h2>*************</h2>
-          <h2>*************</h2>
-          <h2>*************</h2>
-          <h2>*************</h2>
-          <h2>*************</h2>
-          <h2>*************</h2>
           <h3>{this.state.project.name}</h3>
+          <h2>Description:</h2>
           <p>{this.state.project.description}</p>
+          <h2>Category:</h2>
           <p>{this.state.project.category}</p>
+          <h2>Status:</h2>
           <p>{this.state.project.status}</p>
           <p>{this.state.project.planned_start_datesrt}</p>
           <p>{this.state.project.planned_end_datestr}</p>
@@ -52,7 +49,7 @@ class ProjectView extends Component {
           <p>{this.state.project.act_end_date}</p>
           <Link className='editProject' to={`/projectEdit/${this.state.project.id}`}>Edit</Link>
           <br/>
-          <Link className='viewProject'  to={`/projectTask${this.state.project.id}`} >Add Task</Link>
+          <Link className='viewTask'  to={`/projectTask${this.state.project.id}`} >Add Task</Link>
           <br/>
           <Link className='editProject' to={`/projectList`}>All Projects</Link>
           {this.showTask()}
