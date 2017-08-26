@@ -175,7 +175,7 @@ class App extends Component {
           <Header />
           <main>
             <Route exact path='/' render={() => <Home />} />
-            <Route exact path='/collaborators' render={() => <CollaboratorCreate />} />
+            <Route exact path="/projectCol/:id" render={(props) => <CollaboratorCreate proj_id={props.match.params.id}  />} />
 
             <Route exact path='/login' render={() => {
               if(this.state.loggedIn){

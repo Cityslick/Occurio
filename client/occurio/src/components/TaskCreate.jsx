@@ -25,6 +25,7 @@ class TaskList extends Component {
     this.handlerDeleteTask = this.handlerDeleteTask.bind(this);
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.clearComponents= this.clearComponents.bind(this);
   }
 
   componentDidMount() {
@@ -42,6 +43,14 @@ class TaskList extends Component {
     }
   }
 
+  clearComponents(){
+    this.name.value="";
+    document.getElementById("description").value="";
+    document.getElementById("ticket").value="";
+    document.getElementById("start_date").value="";
+    document.getElementById("end_date").value="";
+  }
+
   handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
     e.preventDefault();
     axios.post('/task', {
@@ -54,12 +63,14 @@ class TaskList extends Component {
       status,
       ticket,
     }).then(res => {
+      this.clearComponents();
       this.setState({
         taskData: res.data.data,
         task_id:  res.data.data.id,
         taskDataLoaded:false,
       })
     }).catch(err => console.log(err));
+
   }
 
   handleInputChange(e) {
@@ -166,25 +177,25 @@ class TaskList extends Component {
 
             <div>
               <label className="labelInput" >Name </label>
-              <input className="form" type="text" name="name" value={this.state.name} placeholder="" onChange={this.handleInputChange} />
+              <input className="form" type="text" name="name" id="name" value={this.state.name} placeholder="" onChange={this.handleInputChange} />
             </div>
 
             <div>
               <label className="labelInput" >Descripcion </label>
-              <textarea className="form" name="description" value={this.state.description} placeholder="" onChange={this.handleInputChange} />
+              <textarea className="form" name="description" id="description" value={this.state.description} placeholder="" onChange={this.handleInputChange} />
             </div>
 
             <div>
               <label className="labelInput" >Planned start date </label>
-              <input className="form" type="date" name="start_date" value={this.state.start_date} placeholder="" onChange={this.handleInputChange} />
+              <input className="form" type="date" name="start_date" id="start_date" value={this.state.start_date} placeholder="" onChange={this.handleInputChange} />
 
               <label className="labelInput" >Planned end date </label>
-              <input className="form" type="date" name="end_date" value={this.state.end_date} placeholder="" onChange={this.handleInputChange} />
+              <input className="form" type="date" name="end_date" id="end_date" value={this.state.end_date} placeholder="" onChange={this.handleInputChange} />
             </div>
 
             <div>
               <label className="labelInput">Status</label>
-              <select name="status"  onChange={this.handleInputChange}>
+              <select name="status"   id="status"  onChange={this.handleInputChange}>
                 <option name="status" key="1" value={"Done"}>Pending</option>
                 <option name="status" key="2" value={"In progress"}>In progress</option>
                 <option name="status" key="3"  value={"Canceled"}>Canceled</option>
@@ -193,7 +204,7 @@ class TaskList extends Component {
 
             <div>
               <label className="labelInput" >Ticket</label>
-              <input className="form" type="text" name="ticket" value={this.state.ticket} placeholder="" onChange={this.handleInputChange} />
+              <input className="form" type="text" name="ticket" id="ticket" value={this.state.ticket} placeholder="" onChange={this.handleInputChange} />
             </div>
             <div>
                 <input className="form" type="submit" value="Enter" />

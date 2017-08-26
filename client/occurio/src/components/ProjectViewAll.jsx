@@ -44,6 +44,9 @@ class ViewUserProjects  extends Component {
                         <div className="add-task">
                           <Link className='viewProject'  to={`/projectTask/${project.id}`} >Add Task</Link>
                         </div>
+                        <div className="add-task">
+                          <Link className='viewProject'  to={`/projectCol/${project.id}`} >Add Collaborator </Link>
+                        </div>
                       </div>
                     </div>
                 </div>

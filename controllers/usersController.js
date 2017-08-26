@@ -37,6 +37,7 @@ const usersController = {
         username: req.body.username,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
+        updatePass: req.body.updatePass,
         password: hash,
         email: req.body.email,
         img_url: req.body.img_url,

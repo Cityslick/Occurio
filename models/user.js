@@ -31,17 +31,24 @@ const User = {
   },
 
   update: function(user, id){
-    return db.none(`
-      UPDATE users SET
-      username = $1,
-      firstname = $2,
-      lastname = $3,
-      email = $5,
-      img_url = $6,
-      proj_link = $7,
-      user_type = $8
-      WHERE id = $9
-    `, [user.username, user.firstname, user.lastname, user.email, user.img_url, user.proj_link, user.user_type, id]);
+    if (user.updatePass){
+      return db.none(`
+        UPDATE users SET
+        password = $1
+      `, [user.password]);
+    }else{
+      return db.none(`
+        UPDATE users SET
+        username = $1,
+        firstname = $2,
+        lastname = $3,
+        email = $5,
+        img_url = $6,
+        proj_link = $7,
+        user_type = $8
+        WHERE id = $9
+      `, [user.username, user.firstname, user.lastname, user.email, user.img_url, user.proj_link, user.user_type, id]);
+    }
   }
 }
 
