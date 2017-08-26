@@ -14,28 +14,21 @@ class UserProfileEdit extends Component {
             img_url: '',
             proj_link: '',
             user_type: '',
-            userdataLodaed: false,
+            userDataLoaded: true,
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit= this.handleSubmit.bind(this);
+        this.renderUserProfileEdit= this.renderUserProfileEdit.bind(this);
     }
 
     componentDidMount() {
-      console.log(this.props.id)
-        axios.get(`user/${this.props.id}`)
-          .then((res) => {
-            this.setState({
-              username: res.data.data.username,
-              firstname: res.data.data.firstname,
-              lastname: res.data.data.lastname,
-              password: res.data.data.password,
-              email: res.data.data.email,
-              img_url: res.data.data.img_url,
-              proj_link: res.data.data.proj_link,
-              user_type: res.data.data.user_type,
-              userdataLodaed: true,
-            })
-          }).catch(err => console.log(err));
+      this.setState({
+        userDataLoaded:(this.props.user)
+        
+      });
+
+        })
+      }).catch(err => console.log(err));
       }
 
     handleSubmit(e, username, firstname, lastname, password, email, img_url, proj_link,user_type) {
@@ -54,7 +47,6 @@ class UserProfileEdit extends Component {
               auth: res.data.auth,
               user: res.data.user,
               fireRedirect: true,
-              userDataLoaded:true,
             });
 
         }).catch(err => {
@@ -73,7 +65,9 @@ class UserProfileEdit extends Component {
     }
 
     renderUserProfileEdit() {
-      if (this.state.userDataloaded) {
+      {console.log("before",this.state.userDataLoaded)}
+      if (this.state.userDataLoaded) {
+        {console.log("sdfjsjop",this.state.userDataLoaded)}
         return (
           <div>
           <h1>Edit Profile</h1>
@@ -99,10 +93,6 @@ class UserProfileEdit extends Component {
 
                   <div>
                       <input className="form" type="text" name="lastname" value={this.state.lastname} placeholder="Last Name" onChange={this.handleInputChange} />
-                  </div>
-
-                  <div>
-                      <input className="form" type="Password" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} />
                   </div>
 
                   <div>
@@ -144,6 +134,7 @@ class UserProfileEdit extends Component {
     render(){
         return(
             <div className="register">
+              <div>HI</div>
               {this.renderUserProfileEdit()}
               {this.state.fireRedirect
                 ? <Redirect push to={`/user/${this.props.id}`} />
