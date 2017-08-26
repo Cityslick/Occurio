@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
-import ProjectView from "./ProjectView";
 
 class Collaborator extends Component {
   constructor() {
@@ -28,6 +27,7 @@ class Collaborator extends Component {
   componentDidMount(){
     this.handlerLoadCollaborator();
     this.handlerLoadProject();
+
   }
 
   handleCollaboratorSubmit(e, user_id, proj_id) {
@@ -36,24 +36,14 @@ class Collaborator extends Component {
       user_id,
       proj_id,
     }).then(res => {
-      this.handlerCollaboratorList();
       this.setState({
         collaborator: res.data.data,
       })
     }).catch(err => console.log(err));
   }
 
-  hadlerDelete(collaborator_Id){
-    axios.delete(`collaborator/${collaborator_Id}`)
-    .then(()=>{
-      this.renderCollaboratorList();
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-  }
-
   handlerLoadCollaborator(){
+    // console.log("handlerLoadCollaborator");
     let proj_id=this.state.proj_id;
     let user_id=this.state.user_id;
      axios.put(`/collaborator`,{
@@ -72,12 +62,12 @@ class Collaborator extends Component {
     })
   }
 
-  handlerCollaboratorList(){
-    let proj_id=this.state.proj_id;
-    axios.get(`/collaborator/${proj_id}`)
+  handlerCollaboratorList(proj_id){
+      // console.log(" handlerCollaboratorList proj_id=",proj_id)
+    axios.get(`/collaborator/${this.state.proj_id}`)
     .then(res=>{
-      console.log(res.data.data);
       if(res.data.data.length>0){
+        console.log(res.data.data, "----",proj_id);
         this.setState({
           collaboratorListData: res.data.data,
           collaboratorListDataLoaded: true,
@@ -87,6 +77,20 @@ class Collaborator extends Component {
       console.log(err.json);
     })
   }
+
+  hadlerDelete(proj_id,user_id){
+    axios.post(`collaborator/${user_id}`,{
+        proj_id,
+        user_id,
+    })
+    .then(()=>{
+      this.renderCollaboratorList();
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  }
+
 
   handlerLoadProject(){
     axios.get(`/project`)
@@ -107,11 +111,13 @@ class Collaborator extends Component {
     return (
       <div className="List">
         {(this.state.collaboratorListDataLoaded) ?
+
           this.state.collaboratorListData.map((collaborator,index) => {
+            //console.log(collaborator);
             return <div key={collaborator.userid} name="collaborator"  value={collaborator.id} >
                       <h1>{collaborator.fullname}</h1>
-                     <input key={index} type="submit" value="Delete"  onClick={this.hadlerDelete(collaborator.userId)}/>
-                   </div>
+                      <span  onClick={() => this.hadlerDelete(collaborator.id,collaborator.userid)}>Delete</span>
+                     </div>
         })
         : ""}
       </div>
@@ -124,12 +130,13 @@ class Collaborator extends Component {
     this.setState({
       [name]: value,
     });
-    if (name=="proj_id"){
-      this.handlerLoadCollaborator();
-      this.handlerCollaboratorList();
-    }
-    console.log("value " +value ,"state"+ this.state.proj_id)
   }
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.proj_id != this.state.proj_id ) {
+      console.log(nextState.proj_id );
+      this.handlerCollaboratorList(nextState.proj_id );
+    }
+}
 
   render(){
 
@@ -153,7 +160,7 @@ class Collaborator extends Component {
             )}>
             <div>
               <label className="labelInput">Projects</label>
-              <select id="proj_id"  name="proj_id" onChange={this.handleInputChange}>
+              <select id="proj_id"  name="proj_id" onChange={this.handleInputChange} >
                 { (this.state.projectDataLoaded) ?
                 this.state.projectData.map((project,index) => {
                   return <option key={project.id} name="proj_id"  value={project.id} >{project.id} {project.name}</option>
@@ -163,7 +170,7 @@ class Collaborator extends Component {
             </div>
             <div>
               <label className="labelInput">Collaborator</label>
-              <select id="user_id"  name="user_id" onChange={this.handleInputChange}>
+              <select id="user_id"  name="user_id" onChange={this.handleInputChange} >
                 { (this.state.collaboratorDataLoaded) ?
                 this.state.collaboratorData.map((collaborator,index) => {
                   return <option key={collaborator.id}
@@ -173,16 +180,14 @@ class Collaborator extends Component {
               </select>
             </div>
             <div>
-                <input className="form" type="submit" value="Submit" onClick={()=>{alert("jjji")}}/>
+                <input className="form" type="submit" value="Submit" />
             </div>
-            {this.renderCollaboratorList()}
           </form>
+          {this.renderCollaboratorList()}
         </div>
       </div>
     )
-
   }
-
 }
 
 export default Collaborator;

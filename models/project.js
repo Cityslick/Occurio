@@ -18,6 +18,10 @@ const Project = {
     return db.query("SELECT u.username, concat(u.firstname , ' ' , u.lastname) as fullname ,p.*,to_char(p.planned_end_date,'yyyy-MM-dd') as planned_end_datestr, to_char(p.planned_start_date,'yyyy-MM-dd') as planned_start_datestr,'here' FROM projects p INNER JOIN  users u on p.user_id= u.id ");
   },
 
+  findUsersProject : function(user_id){
+    return db.query("SELECT u.username, concat(u.firstname , ' ' , u.lastname) as fullname ,p.*,to_char(p.planned_end_date,'yyyy-MM-dd') as planned_end_datestr, to_char(p.planned_start_date,'yyyy-MM-dd') as planned_start_datestr,'here' FROM projects p INNER JOIN  users u on p.user_id= u.id WHERE p.user_id=$1",[user_id]);
+  },
+
   findById : function(projectId){
     return db.one("SELECT *,to_char(planned_end_date,'yyyy-MM-dd') as planned_end_datestr, to_char(planned_start_date,'yyyy-MM-dd') as planned_start_datestr,'here' FROM projects WHERE id=$1", [projectId]);
   },

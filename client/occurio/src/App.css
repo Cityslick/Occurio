@@ -4,6 +4,9 @@
   color: black;
 }
 
+main {
+  background-color: #F5F5F5;
+}
 
 .project-create {
   height: 100vh;
@@ -58,17 +61,20 @@ a:active {
   font-weight: 400;
   /* padding: 0px 20px 0px 20px; */
 }
+
 .hero-container {
   display: flex-end;
   padding: 40px;
 }
 .hero-text {
+  color: #34495e;
   padding-top: .5em;
   font-size: 90px;
   font-weight: 800;
 }
 
 .hero-text2 {
+  color: #34495e;
   padding-bottom: 1em;
   font-size: 30px;
   font-weight: 800;
@@ -76,7 +82,7 @@ a:active {
 }
 
 .hero-quote {
-  /* float: left; */
+  color: #34495e;
   width: 100%;
   font-size: 30px;
   font-weight: 400;
@@ -153,11 +159,12 @@ a:active {
   background-size: cover;
   height: 100vh;
 }
-.home-page3 {
-  height: 100vh;
-}
 
-.home-page4 {
+/* .home-page3 {
+  height: 100vh;
+} */
+
+.home-page3 {
   background-color: #6D1CDF;
   height: 100vh;
 }
@@ -259,7 +266,6 @@ a:active {
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
-    /* border-radius: 4px; */
     box-sizing: border-box;
     font-size: 20px;
   }
@@ -270,7 +276,6 @@ a:active {
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
-    /* border-radius: 4px; */
     box-sizing: border-box;
     font-size: 20px;
   }
@@ -281,7 +286,6 @@ a:active {
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
-    /* border-radius: 4px; */
     box-sizing: border-box;
     font-size: 20px;
   }
@@ -459,12 +463,16 @@ a:active {
     color: #FFFFFF;
     background-color: #6D1CDF;
   }
-}
-
-@media only screen and (max-width: 500px) {
   .header {
-  box-shadow: none;
+    box-shadow: none;
   }
+
+  .hero-text {
+    color: #FFFFFF;
+  }
+
+
+
 }
 
 @media screen and (max-height: 450px) {

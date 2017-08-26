@@ -40,10 +40,10 @@ const Home = () => {
       <div className="home-page3-container">
       </div>
     </div>
-    <div className="home-page4">
+    {/* <div className="home-page4">
       <div className="home-page4-container">
       </div>
-    </div>
+    </div> */}
     </div>
   )
 }

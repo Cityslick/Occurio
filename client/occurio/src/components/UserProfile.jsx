@@ -57,7 +57,7 @@ class UserProfile extends Component {
                         <img alt="" src="http://www.doyouknowja.com/upload/profile-pic/default-user.jpg"/>
                     </div>
                     <div className="user-details">
-                        <h1>{this.state.fullname}</h1>
+                        <h1>Hey, {this.state.fullname}.</h1>
                         <h2>{this.state.username}</h2>
                         <h3>{this.state.email}</h3>
                         <Link className='viewProject'  to={`/userEdit/${this.props.user.id}`} >Edit Profile</Link>
@@ -75,7 +75,9 @@ class UserProfile extends Component {
                     </div>
                     <div className="links">
                     <i className="fa fa-thumb-tack fa-2x" aria-hidden="true"></i>
+                      
                     <Link to={'/projectList'}>View Your Projects</Link>
+
                     </div>
                     <div className="links">
                     <i className="fa fa-tasks fa-2x" aria-hidden="true"></i>
