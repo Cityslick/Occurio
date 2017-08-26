@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -28,7 +29,7 @@ const Home = () => {
             <p>Okurio is a simple project management tool optimized for small teams.</p>
           </div>
           <div>
-            <input className="hero-button" type="submit" value="Register" />
+            <Link className="hero-button" to={'/register'}>Register</Link>
           </div>
       </div>
     </div>

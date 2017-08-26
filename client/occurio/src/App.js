@@ -20,8 +20,6 @@ import Register from './components/Register.jsx';
 // PROJECTS
 import ProjectCreate from './components/ProjectCreate.jsx';
 import ProjectView from './components/ProjectView.jsx';
-
-
 import ProjectEdit from './components/ProjectEdit.jsx';
 import ProjectViewAll from './components/ProjectViewAll.jsx';
 // TASKS
@@ -230,7 +228,6 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
             <Route exact path="/userEdit/:id" render={(props) => <UserProfileEdit  userData={this.state.user} />} />
             <Route exact path="/projectList" render={() => <ProjectViewAll  for_User={true} user={this.state.user}/>} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} user={this.state.user} />} />
-            <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
             <Route exact path="/projectEdit/:id" render={(props) => <ProjectEdit id={props.match.params.id} project={this.project} />} />
             <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project} />} />
             <Route exact path="/projectTask/:id" render={(props) => <Task proj_id={props.match.params.id}  />} />

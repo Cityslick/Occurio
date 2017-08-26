@@ -75,7 +75,7 @@ class UserProfile extends Component {
                     </div>
                     <div className="links">
                     <i className="fa fa-thumb-tack fa-2x" aria-hidden="true"></i>
-                      
+
                     <Link to={'/projectList'}>View Your Projects</Link>
 
                     </div>
