@@ -32,7 +32,11 @@ const Project = {
 
   findCollaborators : function(projectId){
     return db.query("SELECT u.username, concat(u.firstname , ' ' , u.lastname) as fullname ,p.* FROM projects p   INNER JOIN collaborators c ON  p.id = c.proj_id  INNER JOIN users u  ON u.id= c.user_id WHERE  proj_id=$1 ",[projectId])
-  }
+  },
+
+  findProjectsById : function(user_id) {
+    return db.query("SELECT * FROM projects WHERE user_id = $1 RETURNING *", [user_id])
+  },
 
 }
 
