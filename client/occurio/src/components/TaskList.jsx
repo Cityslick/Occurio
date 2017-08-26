@@ -67,7 +67,6 @@ class TaskList extends Component {
   render() {
     return (
       <div className="List">
-        <h1>{this.props.task_id}</h1>
         <table>
           <thead>
             <tr>

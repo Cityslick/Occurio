@@ -52,7 +52,7 @@ class ProjectView extends Component {
           <p>{this.state.project.act_end_date}</p>
           <Link className='editProject' to={`/projectEdit/${this.state.project.id}`}>Edit</Link>
           <br/>
-          <Link className='viewProject'  to={`/projectList/task/${this.state.project.id}`} >Add Task</Link>
+          <Link className='viewProject'  to={`/projectTask${this.state.project.id}`} >Add Task</Link>
           <br/>
           <Link className='editProject' to={`/projectList`}>All Projects</Link>
           {this.showTask()}

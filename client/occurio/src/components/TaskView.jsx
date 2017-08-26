@@ -11,8 +11,6 @@ const TaskView = (props) => {
       <td>{props.task.ticket}</td>
       <td>{props.task.status}</td>
       <td>{props.task.fullname}</td>
-      <td><input type="submit" value="Edit"/></td>
-      <td><input type="submit" value="Delete" onClick={()=>{props.handlerDeleteTask(props.task.id)}} /></td>
     </tr>
   )
 }

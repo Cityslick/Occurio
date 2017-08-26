@@ -5,6 +5,7 @@ const taskController={
     Task.assignTasks({
       user_id:req.body.user_id,
       proj_id:req.body.proj_id,
+      name :req.body.name,
       description: req.body.description,
       start_date:req.body.start_date,
       end_date:req.body.end_date,
