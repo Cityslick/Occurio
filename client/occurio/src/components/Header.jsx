@@ -2,6 +2,7 @@ import React from 'react';
 // LOGIN/REGISTER
 import Login from './Login';
 import Register from './Register';
+import SideNavDrop from './SideNavDrop';
 
 import { Link } from 'react-router-dom';
 
@@ -19,6 +20,7 @@ const Header = () => {
                 <li className="nav-item"><Link to={'/collaborators'}>Collaborators</Link></li>
               </ul>
             </div>
+            <SideNavDrop />
       </header>
     )
 }

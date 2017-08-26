@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand');
 
-
-
 .user-container {
     margin-top: 0 auto;
     padding-top: 10vh;
@@ -97,4 +95,3 @@
    background: linear-gradient(#f39c12 0%, #f1c40f 70%);
    transition: .5s;
 }
-
