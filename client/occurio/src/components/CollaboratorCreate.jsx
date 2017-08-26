@@ -6,8 +6,9 @@ class Collaborator extends Component {
   constructor() {
     super();
     this.state = {
-      user_id: null,
-      proj_id: null,
+      user_id: 0,
+      proj_id: 0,
+      new_id: null,
       collaboratorListData:null,
       collaboratorListDataLoaded:false,
       collaboratorData:null,
@@ -29,6 +30,18 @@ class Collaborator extends Component {
     this.handlerLoadProject();
   }
 
+  componentWillUpdate(nextState) {
+    console.log(nextState);
+    if (nextState.new_id != this.state.new_id ) {
+      this.handlerCollaboratorList();
+    }
+    //if (nextState.proj_id != this.state.proj_id || nextState.user_id !=this.state.user_id ) {
+      // this.handlerCollaboratorList();
+      // this.setState();
+      // console.log("update")
+    //}
+  }
+
   handleCollaboratorSubmit(e, user_id, proj_id) {
     e.preventDefault();
     axios.post('/collaborator', {
@@ -37,8 +50,51 @@ class Collaborator extends Component {
     }).then(res => {
       this.setState({
         collaborator: res.data.data,
+        collaboratorListDataLoaded:false,
       })
+      this.handlerCollaboratorList();
     }).catch(err => console.log(err));
+  }
+
+  handleInputChange(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({
+      [name]: value,
+      collaboratorListDataLoaded:false,
+
+    });
+    console.log(this.state)
+  }
+
+
+  handlerCollaboratorList(){
+    axios.get(`/collaborator/${this.state.proj_id}`)
+    .then(res=>{
+      if(res.data.data.length>0){
+        this.setState({
+          collaboratorListData: res.data.data,
+          collaboratorListDataLoaded: true,
+        })
+      }
+    }).catch(err=>{
+      console.log(err.json);
+    })
+  }
+
+  hadlerDelete(proj_id,user_id){
+    axios.post(`collaborator/${user_id}`,{
+        proj_id,
+        user_id,
+    })
+    .then(()=>{
+      this.setState({
+        collaboratorListDataLoaded:false,
+      })
+    })
+    .catch(err=>{
+      console.log(err);
+    })
   }
 
   handlerLoadCollaborator(){
@@ -61,36 +117,6 @@ class Collaborator extends Component {
     })
   }
 
-  handlerCollaboratorList(proj_id){
-      // console.log(" handlerCollaboratorList proj_id=",proj_id)
-    axios.get(`/collaborator/${this.state.proj_id}`)
-    .then(res=>{
-      if(res.data.data.length>0){
-        console.log(res.data.data, "----",proj_id);
-        this.setState({
-          collaboratorListData: res.data.data,
-          collaboratorListDataLoaded: true,
-        })
-      }
-    }).catch(err=>{
-      console.log(err.json);
-    })
-  }
-
-  hadlerDelete(proj_id,user_id){
-    axios.post(`collaborator/${user_id}`,{
-        proj_id,
-        user_id,
-    })
-    .then(()=>{
-      this.renderCollaboratorList();
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-  }
-
-
   handlerLoadProject(){
     axios.get(`/project`)
     .then(res=>{
@@ -110,7 +136,6 @@ class Collaborator extends Component {
     return (
       <div className="List">
         {(this.state.collaboratorListDataLoaded) ?
-
           this.state.collaboratorListData.map((collaborator,index) => {
             //console.log(collaborator);
             return <div key={collaborator.userid} name="collaborator"  value={collaborator.id} >
@@ -123,20 +148,6 @@ class Collaborator extends Component {
     );
   };
 
-  handleInputChange(e) {
-    const name = e.target.name;
-    const value = e.target.value;
-    this.setState({
-      [name]: value,
-    });
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.proj_id != this.state.proj_id ) {
-      console.log(nextState.proj_id );
-      this.handlerCollaboratorList(nextState.proj_id );
-    }
-  }
 
   render(){
 
