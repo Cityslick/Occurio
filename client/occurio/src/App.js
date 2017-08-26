@@ -72,6 +72,7 @@ class App extends Component {
             loggedIn: (res.data.user),
         });
          //window.location = "/home";
+        console.log("logging in...");
       }).catch(err => console.log(err));
   }
   handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
@@ -194,13 +195,14 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
         <div className="App">
           <Header />
           <main>
-            <Route exact path='/home' render={() => <Home />} />
+            <Route exact path='/' render={() => <Home />} />
             <Route exact path='/collaborators' render={() => <Collaborator />} />
             <Route exact path='/login' render={() => {
-              if(this.state.loggedIn)
+              if(this.state.loggedIn){
                 return <Redirect to={`user/id/:${this.state.user.id}`} Component={() =>
                 ( <UserProfile user={this.state.user} /> )
                   } />
+                }
               else
                 return <Login handleLoginSubmit={this.handleLoginSubmit} />
               }} />
@@ -222,8 +224,9 @@ handleCreateProject(e, name, description, category, status, planned_start_date, 
 
             <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12}  proj={false} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
-            <Route exact path="/userEdit/:id" render={(props) => <UserProfileEdit  user={this.state.user} />} />
-            <Route exact path="/projectList" render={() => <ProjectViewAll />} />
+
+            <Route exact path="/userEdit/:id" render={(props) => <UserProfileEdit  userData={this.state.user} />} />
+            <Route exact path="/projectList" render={() => <ProjectViewAll  for_User={true} user={this.state.user}/>} />
             <Route exact path="/project" render={() => <ProjectCreate handleCreateProject={this.handleCreateProject} user={this.state.user} />} />
             <Route exact path="/projectEdit/:id" render={(props) => <ProjectEdit id={props.match.params.id} project={this.project} />} />
             <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project} />} />

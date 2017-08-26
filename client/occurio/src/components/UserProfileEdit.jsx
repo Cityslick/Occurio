@@ -14,21 +14,29 @@ class UserProfileEdit extends Component {
             img_url: '',
             proj_link: '',
             user_type: '',
-            userDataLoaded: true,
+            userDataLoaded: false,
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit= this.handleSubmit.bind(this);
-        this.renderUserProfileEdit= this.renderUserProfileEdit.bind(this);
+        this.renderUserProfileEdit = this.renderUserProfileEdit.bind(this);
     }
 
     componentDidMount() {
-      this.setState({
-        userDataLoaded:(this.props.user)
-        
-      });
-
-        })
-      }).catch(err => console.log(err));
+        console.log('asdasdasdas');
+        console.log(this.props.userDataLoaded);
+        console.log(this.props.userData.username);
+        console.log(this.props.userData);
+            this.setState({
+              username: this.props.userData.username,
+              firstname: this.props.userData.firstname,
+              lastname: this.props.userData.lastname,
+              email: this.props.userData.email,
+              img_url: this.props.userData.img_url,
+              proj_link: this.props.userData.proj_link,
+              user_type: this.props.userData.user_type,
+              userDataLoaded: true,
+            })
+        //   }).catch(err => console.log(err));
       }
 
     handleSubmit(e, username, firstname, lastname, password, email, img_url, proj_link,user_type) {
@@ -65,9 +73,7 @@ class UserProfileEdit extends Component {
     }
 
     renderUserProfileEdit() {
-      {console.log("before",this.state.userDataLoaded)}
       if (this.state.userDataLoaded) {
-        {console.log("sdfjsjop",this.state.userDataLoaded)}
         return (
           <div>
           <h1>Edit Profile</h1>

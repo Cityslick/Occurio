@@ -66,37 +66,39 @@ class ProjectCreate extends Component {
           this.state.planned_start_date,
           this.state.planned_end_date
         )}>
-          <label>
-            <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleInputChange} required />
-          </label>
-          <label>
-            <input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleInputChange} required />
-          </label>
           <div>
-          <label>
+            <label>name</label>
+            <input type="text" name="name" placeholder="" value={this.state.name} onChange={this.handleInputChange} required />
+          </div>
+          <div>
+          <label> Description</label>
+            <textarea name="description" value={this.state.description} onChange={this.handleInputChange} required />
+          </div>
+          <div>
+            <label>Category</label>
             <select className="select" name="category" value={this.state.category} onChange={this.handleInputChange} required>
               <option>Administrative</option>
               <option>Design</option>
               <option>Back End</option>
               <option>Front End</option>
             </select>
-          </label>
-          <label>
-            <select className="select" name="status" value={this.state.status} onChange={this.handleInputChange} required>
+          </div>
+          <div>
+            <label> Status </label>
+            <select  className="select" name="status" value={this.state.status} onChange={this.handleInputChange} required>
               <option>Started</option>
               <option>Pending</option>
               <option>Complete</option>
             </select>
-          </label>
           </div>
-          <label>
-            <input type="date" name="planned_start_date" placeholder="Start Date" value={this.state.planned_start_date} onChange={this.handleInputChange} required />
-          </label>
-          <label>
-            <input type="date" name="planned_end_date" placeholder="End Date" value={this.state.planned_end_date} onChange={this.handleInputChange} required />
-          </label>
           <div>
-          <input type="submit" value="Create Project" />
+            <label>Start Date </label>
+            <input type="date" name="planned_start_date" placeholder="Start Date" value={this.state.planned_start_date} onChange={this.handleInputChange} required />
+            <label>End Date </label>
+            <input type="date" name="planned_end_date" placeholder="End Date" value={this.state.planned_end_date} onChange={this.handleInputChange} required />
+          </div>
+          <div>
+            <input type="submit" value="Create Project" />
           </div>
         </form>
         </div>
