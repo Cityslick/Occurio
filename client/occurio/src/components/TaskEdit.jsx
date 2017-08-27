@@ -218,7 +218,7 @@ class TaskList extends Component {
               </div>
 
               <div>
-                <label className="labelInput" >Descripcion </label>
+                <label className="labelInput" >Description </label>
                 <textarea className="form" name="description" id="description" value={this.state.description} placeholder="" onChange={this.handleInputChange} required/>
               </div>
 

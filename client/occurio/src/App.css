@@ -75,6 +75,52 @@ main {
   color: black;
 }
 
+.edit-task-form {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.edit-task-form .edit-form {
+  position: relative;
+  top: 15%;
+  width: 60%;
+  height: 65%;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+  0 10px 10px rgba(0,0,0,0.22);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.edit-task-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-title {
+  background: #00B686;
+}
+
+.task-input .labelInput {
+  margin: 10px;
+}
+
+.task-input > input {
+  width: 40vw;
+}
+
+.task-input > textarea {
+  width: 40%;
+  height: 10vh;
+}
+
 .List {
   width: 80%;
   position: relative;
