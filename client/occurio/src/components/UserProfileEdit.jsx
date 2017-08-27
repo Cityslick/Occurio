@@ -73,7 +73,7 @@ class UserProfileEdit extends Component {
       if (this.state.userDataLoaded) {
         return (
           <div>
-          <h1>Edit Profile</h1>
+          <h1 className='hero-text2'>Edit Profile</h1>
             <div className="form">
                 <form onSubmit={(e) => this.handleSubmit(
                   e,
@@ -122,10 +122,6 @@ class UserProfileEdit extends Component {
 
                   <div>
                       <input className="form" type="submit" value="Enter" />
-                  </div>
-
-                  <div>
-                      <h3 className="register-done">Already have an account?</h3>
                   </div>
                 </form>
             </div>
