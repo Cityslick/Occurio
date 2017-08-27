@@ -18,6 +18,7 @@ class TaskList extends Component {
       act_end_date: '',
       status: '',
       ticket: '',
+      user_type:0,
       task_id:0,
       collaboratorData:null,
       collaboratorDataLoaded:false,
@@ -41,6 +42,7 @@ class TaskList extends Component {
       this.setState({
         user_id: res.data.data.user_id,
         task_id: res.data.data.id,
+        user_type:res.data.data.user_type,
         proj_id: res.data.data.proj_id,
         name: res.data.data.name,
         description: res.data.data.description,
@@ -99,7 +101,65 @@ class TaskList extends Component {
     });
   }
 
-  renderSubmitform(){
+  renderformNormalUser(){
+    if (this.state.taskDataLoaded){
+      return(
+        <div>
+          <div>
+            <h2>qqqq</h2>
+            <h2>qqqq</h2>
+            <h2>qqqq</h2>
+            <h2>qqqq</h2>
+            <h2>qqqq</h2>
+          </div>
+          <div className="form">
+            <form onSubmit={(e) => this.handleTaskSubmit(
+              e,
+              this.state.user_id,
+              this.state.task_id,
+              this.state.name,
+              this.state.description,
+              this.state.start_date,
+              this.state.end_date,
+              this.state.act_start_date,
+              this.state.act_end_date,
+              this.state.status,
+              this.state.ticket
+            )}>
+              <div>
+                <h1> {this.state.fullname}  </h1>
+                <h1> {this.state.name}  </h1>
+                <h1> {this.state.description}</h1>
+                <h1> {this.state.start_date} </h1>
+                <h1> {this.state.end_date}  </h1>
+                <h1> {this.state.act_start_date} </h1>
+                <h1> {this.state.act_end_date} </h1>
+              </div>
+
+              <div>
+                <label className="labelInput" >Status</label>
+                <select name="status"   id="status"  value={this.state.status} onChange={this.handleInputChange}>
+                  <option name="status" key="1" value={"Done"}>Pending</option>
+                  <option name="status" key="2" value={"In progress"}>In progress</option>
+                  <option name="status" key="3"  value={"Canceled"}>Canceled</option>
+                </select>
+              </div>
+
+              <div>
+                <input className="form" type="text" name="ticket" id="ticket" value={this.state.ticket} placeholder="" onChange={this.handleInputChange} required/>
+              </div>
+              <div>
+                  <input className="form" type="submit" value="Enter" required/>
+              </div>
+            </form>
+          </div>
+        </div>
+      )
+    }else{
+      <h1>Loading....</h1>
+    }
+  }
+  renderFormSuperUser(){
     if (this.state.taskDataLoaded){
       return(
         <div>
@@ -188,10 +248,19 @@ class TaskList extends Component {
     }
   }
 
+  renderInfo(){
+    console.log(1)
+    if (this.state.taskDataLoaded){
+      console.log(2)
+      (this.state.taskData.user_type==="Manager")? this.renderFormSuperUser() : this.renderformNormalUser();
+    }
+  }
+
   render() {
+    console.log(this.state.user_type);
     return(
       <div>
-        {this.renderSubmitform()}
+        {(this.state.user_type=="Manager") ? this.renderFormSuperUser() : this.renderFormSuperUser()}
               {this.state.fireRedirect
                 ? <Redirect push to={`/projectTask/${this.state.proj_id}`} />
                 : ''}

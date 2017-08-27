@@ -97,14 +97,15 @@ class App extends Component {
   }
 
   logOut() {
-    axios.get('/auth/logout')
-    .then(res => {
-        this.setState({
-            auth: false,
-            user:null,
-            fireRedirect: true,
-        });
-      }).catch(err => console.log(err));
+    // axios.get('/auth/logout')
+    // .then(res => {
+    //     console.log(res.body);
+    //     this.setState({
+    //         auth: false,
+    //         user:null,
+    //         fireRedirect: true,
+    //     });
+    //   }).catch(err => console.log(err));
    }
 
    handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
@@ -127,17 +128,6 @@ class App extends Component {
       }).catch(err => console.log(err));
   }
 
-  logOut() {
-      axios.get('/auth/logout')
-      .then(res => {
-          this.setState({
-              auth: false,
-              user:null,
-              fireRedirect: true,
-          });
-          window.location = "/home";
-      }).catch(err => console.log(err));
-  }
 // Handle Create Project
   handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
     e.preventDefault();
@@ -174,7 +164,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header userData={this.state.user}/>
+          <Header userData={this.state.user} logOut={this.logOut}/>
           <main>
             <Route exact path='/' render={() => <Home />} />
             <Route exact path="/projectCol/:id" render={(props) => <CollaboratorCreate proj_id={props.match.params.id}  />} />
@@ -224,7 +214,7 @@ class App extends Component {
 
             <Route exact path="/taskEdit/:task_id" render={(props) => <TaskEdit task_id={props.match.params.task_id}   />} />
 
-            <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12} />} />
+            <Route exact path="/taskList" render={() => <TaskList  user_id={this.state.userData.id} />} />
 
           </main>
           <Footer />

@@ -37,7 +37,7 @@ class Header extends Component {
             <div className="nav2">
               <ul className="nav-list">
                 <li className="nav-item"><Link to={'/login'}>{this.state.menuDescription}</Link></li>
-                <li className="nav-item"><Link to={'/collaborators'}>Collaborators</Link></li>
+                <li className="nav-item" onClick={props.logOut()}>Log out</li>
               </ul>
             </div>
             <SideNavDrop />
