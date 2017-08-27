@@ -31,8 +31,8 @@ class ViewUserProjects  extends Component {
   renderProjectsList(){
 
     if (this.state.projectDataLoaded){
-        return this.state.projects.map((project) => {
-          return <div className="projects">
+        return this.state.projects.map((project,index) => {
+          return <div key={index} className="projects">
                     <div className="project-info">
                       <div className="project-name">
                         <h2>{project.name}</h2>

@@ -15,9 +15,10 @@ const Header = (props) => {
             </div>
             <div className="nav2">
               <ul className="nav-list">
-                <li className="nav-item"><Link to={'/login'}>Login</Link></li>
-                <li className="nav-item"><Link to={'/register'}>Register</Link></li>
-                <li className="nav-item" onClick={props.logOut()}>Log out</li>
+                <li name="n1"className="nav-item"><Link to={'/login'}>Login</Link></li>
+                <li name="n2"className="nav-item"><Link to={'/register'}>Register</Link></li>
+                <br/>
+                <li name="n3"className="nav-item" onClick={props.logOut()}><Link to={'/'}>Logout</Link></li>
               </ul>
             </div>
             <SideNavDrop />

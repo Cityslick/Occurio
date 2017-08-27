@@ -36,6 +36,8 @@ app.get('/home', (req, res) => {
   res.send('Page loaded');
 });
 
+app.set('images', path.join(__dirname, 'public/images'));
+
 const authRoutes = require("./routes/authRoutes");
 app.use("/auth", authRoutes)
 

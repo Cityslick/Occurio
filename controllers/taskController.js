@@ -9,6 +9,8 @@ const taskController={
       description: req.body.description,
       start_date:req.body.start_date,
       end_date:req.body.end_date,
+      start_date:req.body.start_date,
+      end_date:req.body.end_date,
       status:req.body.status,
       ticket:req.body.ticket,
     }).then(task=>{
@@ -22,7 +24,6 @@ const taskController={
   },
 
   updateTasks: function(req, res){
-    console.log(req.body);
     Task.updateTasks({
       user_id:req.body.user_id,
       name:req.body.name,
@@ -33,6 +34,7 @@ const taskController={
       act_end_date:req.body.act_end_date,
       status:req.body.status,
       ticket:req.body.ticket,
+      user_type:req.body.user_type,
     },req.params.task_id).then(()=>{
       res.json({
         message:"Done",
