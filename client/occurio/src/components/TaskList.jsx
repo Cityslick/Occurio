@@ -67,22 +67,34 @@ class TaskList extends Component {
   render() {
     return (
       <div className="List">
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Description</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Ticket</th>
-              <th>Status</th>
-              <th>Collaborator</th>
-            </tr>
-          </thead>
-          <tbody>
+            <div className="tasklist-view">
+              <div className="tasktitle">
+                <h4>#</h4>
+              </div>
+              <div className="tasktitle">
+                <h4>Description</h4>
+              </div>
+              <div className="tasktitle">
+                <h4>Start Date</h4>
+              </div>
+              <div className="tasktitle">
+                <h4>End Date</h4>
+              </div>
+              <div className="tasktitle">
+                <h4>Ticket</h4>
+              </div>
+              <div className="tasktitle">
+                <h4>Status</h4>
+              </div>
+              <div className="tasktitle">
+                <h4>Collaborator</h4>
+              </div>
+            </div>
+
+          <div className="task-body">
             {this.renderTaskList()}
-          </tbody>
-        </table>
+          </div>
+
 
       </div>
     );
