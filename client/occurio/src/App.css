@@ -21,7 +21,7 @@ main {
 }
 
 .project h3 {
-  color: #34495e;
+  color: white;
   padding-top: .5em;
   font-size:40px;
   font-weight: 800;
@@ -30,14 +30,29 @@ main {
 }
 
 .project h2 {
-  color: black;
+  color: white;
   font-weight: 900;
+  border-top: 1px solid white;
 }
 
 .project p {
-  color: black;
+  color: white;
   padding: 5px;
   font-size: 20px;
+}
+
+.projectView {
+  height: 40%;
+  width: 46%;
+  box-shadow: 2px 2px 5px 1px grey;
+  color: white;
+  background: linear-gradient(#6D1CDF 0%, #8a49e5 70%);
+  border-radius: 0.5%;
+  margin: auto;
+}
+
+.editProject {
+  color: white;
 }
 
 .viewTask {
@@ -116,6 +131,12 @@ a:active {
   font-weight: 400;
   padding-top: 2em;
   padding-bottom: 2em;
+}
+
+.login-button {
+  border-radius: 100px;
+  color: white;
+  background-color: #6D1CDF;
 }
 
 .hero-button {
