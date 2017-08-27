@@ -56,8 +56,6 @@ class UserProfile extends Component {
                         <h1>Hey, {this.state.fullname}.</h1>
                         <h2>{this.state.username}</h2>
                         <h3>{this.state.email}</h3>
-                        <br/>
-                        <br/>
                         <Link className='viewProject'  to={`/userEdit/${this.props.user.id}`} >Edit Profile</Link>
                         <br/>
                         <br/>
@@ -82,7 +80,7 @@ class UserProfile extends Component {
 
                     <div className="links">
                         <i className="fa fa-tasks fa-2x" aria-hidden="true"></i>
-                        <Link to={'/tasksList'}>View Your Tasks</Link>
+                        <Link to={'/tasks'}>View Your Tasks</Link>
                     </div>
                 </div>
             </div>
