@@ -6,7 +6,7 @@
 
 
 ### Our Story
-##### As a team, we decided to build Okurio after having some initial trouble in the project selection process. One could describe this as "Meta" in a way. "Project Management," we all complained, was a constant pain point for whilst discussing/bonding as a team, the project prompt positioned us to think creatively on a solution for how we would approach problem solving -- what kinds of people manage projects? What is the focal point for team delegation? How do you set goals and manage expectations? In asking these questions, we concieved the idea of Okurio. 
+##### As a team, we decided to build Okurio after having some initial trouble in the project selection process. One could describe this as slightly "Meta" in a way. The "Project Management Process" we all complained, was a constant pain point we've all experienced whilst discussing/bonding as a team. The project prompt positioned us to think creatively on a solution for how we would approach problem solving -- what kinds of people manage projects? What is the focal point for team delegation? How do you set goals and manage expectations? In asking these questions, we concieved the idea of Okurio. 
 
 ### Okurio: The Idea 
 ##### Tasked with deciding on a name for our light project management application, the team brainstormed on the name Okurio by combining our interest in using a memorable, symmetrical latin-based word with simple vowels. We decided on a variation of the Spanish word Occurrir, cut out the double letters, and replaced the remaining "C" with a "K", going for a more adamant look.
