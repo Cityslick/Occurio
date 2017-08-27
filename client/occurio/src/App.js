@@ -97,6 +97,7 @@ class App extends Component {
   }
 
   logOut() {
+    //console.log("log out");
     // axios.get('/auth/logout')
     // .then(res => {
     //     console.log(res.body);
@@ -212,7 +213,7 @@ class App extends Component {
 
             <Route exact path="/projectTask/:id" render={(props) => <TaskCreate proj_id={props.match.params.id} user_id={this.state.user.id}  />} />
 
-            <Route exact path="/taskEdit/:task_id" render={(props) => <TaskEdit task_id={props.match.params.task_id}   />} />
+            <Route exact path="/taskEdit/:task_id" render={(props) => <TaskEdit task_id={props.match.params.task_id} userData={this.state.user} />} />
 
             <Route exact path="/taskList" render={() => <TaskList  user_id={this.state.userData.id} />} />
 
