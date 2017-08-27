@@ -13,7 +13,12 @@ main {
 }
 
 .project-page {
-  padding-top: 15vh;
+  padding: 10px;
+  width: 60%;
+  position: relative;
+  left: 20%;
+  top: 15%;
+  box-shadow: 0 0 10px #000;
 }
 
 .project {
@@ -146,11 +151,11 @@ a:active {
 }
 
 .hero-text2 {
-  color: #34495e;
-  padding-bottom: 1em;
+  background: #00B686;
+  color: white;
+  padding: 1em;
   font-size: 30px;
   font-weight: 800;
-  color: #6D1CDF;
 }
 
 .hero-quote {
@@ -333,10 +338,42 @@ a:active {
     color: #8B1BD2;
   }
 
+
+  /* Create Project */
+
   .select {
     justify-content: center;
     width: 300px;
   }
+
+  .name-input,
+  .desc-input,
+  .cat-input,
+  .status-input,
+  .date-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+  }
+  .name-input > label,
+  .desc-input > label,
+  .cat-input > label,
+  .status-input > label,
+  .date-input > label {
+    margin: 10px;
+  }
+
+  .desc-input > textarea {
+    width: 40%;
+    height: 80px;
+  }
+
+  .date-input > input[type="date"]:nth-child(2),
+  .date-input > input[type="date"]:nth-child(4) {
+    width: 28%;
+  }
+  
 
   .x {
     padding-left: 30px;
