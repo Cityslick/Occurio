@@ -12,7 +12,6 @@ const taskController={
       status:req.body.status,
       ticket:req.body.ticket,
     }).then(task=>{
-      console.log(task);
       res.json({
         message:"Done",
         data: task,
@@ -23,12 +22,15 @@ const taskController={
   },
 
   updateTasks: function(req, res){
+    console.log(req.body);
     Task.updateTasks({
       user_id:req.body.user_id,
-      proj_id:req.body.proj_id,
+      name:req.body.name,
       description: req.body.description,
       start_date:req.body.start_date,
       end_date:req.body.end_date,
+      act_start_date:req.body.act_start_date,
+      act_end_date:req.body.act_end_date,
       status:req.body.status,
       ticket:req.body.ticket,
     },req.params.task_id).then(()=>{
@@ -78,8 +80,19 @@ const taskController={
     }).catch(err=>{
         res.status(500).json(err);
     })
-  }
+  },
 
+  findById :function(req, res){
+    Task.findById(req.params.task_id)
+    .then((task)=>{
+      res.json({
+        message:"Done",
+        data:task
+      })
+    }).catch(err=>{
+        res.status(500).json(err);
+    })
+  }
 }
 
 

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {
+  Link
+} from 'react-router-dom';
 
 class TaskList extends Component {
   constructor() {
@@ -96,8 +99,6 @@ class TaskList extends Component {
     this.setState({
       [name]: value,
     });
-
-    console.log(this.state.user_id);
   }
 
   handlerReloadList() {
@@ -157,7 +158,7 @@ class TaskList extends Component {
                 <td>{task.ticket}</td>
                 <td>{task.status}</td>
                 <td>{task.fullname}</td>
-                <td><input type="submit" value="Edit"/></td>
+                <td><Link to={`/TaskEdit/${task.id}`}><input type="submit" value="Edit"/></Link></td>
                 <td><input type="submit" value="Delete" onClick={()=>{this.handlerDeleteTask(task.id)}} /></td>
                </tr>
           })
@@ -198,7 +199,7 @@ class TaskList extends Component {
               <select id="user_id"  name="user_id" onChange={this.handleInputChange} >
                 { (this.state.collaboratorDataLoaded) ?
                 this.state.collaboratorData.map((collaborator,index) => {
-                  return <option key={collaborator.userId} id={collaborator.username}
+                  return <option key={collaborator.user_id_new} id={collaborator.username}
                   name="user_id"  value={collaborator.user_id_new} >{collaborator.user_id_new} {collaborator.username}</option>
                 })
                : ""}
