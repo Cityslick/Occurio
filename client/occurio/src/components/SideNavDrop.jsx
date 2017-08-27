@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
+// THIS COMPONENT USES THE CUSTOM NPM PACKAGE 
+
 class SideNavDrop extends React.Component {
     constructor(props) {
       super(props);
@@ -25,8 +27,12 @@ class SideNavDrop extends React.Component {
                 <button onClick={this.handleClick}></button>
                 <nav>
                 <button onClick={this.handleClick}></button>
-                    <Link to="/">Home</Link>  
+                  <div className="sidenav">
+                    <Link to="/home">Home</Link>  
+                    <Link to="/contact">About</Link>
                     <Link to="/contact">Contact</Link>  
+                    <Link to="/contact">Register</Link>    
+                  </div>
                 </nav>
             </div>
         );
