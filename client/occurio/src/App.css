@@ -121,6 +121,52 @@ main {
   height: 10vh;
 }
 
+.tasks-table {
+  display: flex;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+  0 10px 10px rgba(0,0,0,0.22);
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.table-data {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 12pt;
+  margin: 10px;
+  width: 8%;
+  margin-right: 20px;
+  text-align: center;
+}
+.table-data-num {
+  width: 2%;
+  color: rgba(0, 0, 0, 0.7);
+}
+.table-data-desc {
+  width: 15%;
+  font-size: 12pt;
+  color: rgba(0, 0, 0, 0.7);
+}
+.table-data-date {
+  width: 12%;
+  font-size: 12pt;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+}
+.table-data-status {
+  font-size: 12pt;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  margin-right: 30px;
+}
+
+.table-data-name {
+  font-size: 12pt;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  margin-right: 40px;
+}
+
 .List {
   width: 80%;
   position: relative;
