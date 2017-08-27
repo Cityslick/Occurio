@@ -24,6 +24,7 @@ import ProjectEdit from './components/ProjectEdit.jsx';
 import ProjectViewAll from './components/ProjectViewAll.jsx';
 // TASKS
 import TaskCreate from './components/TaskCreate.jsx';
+import TaskEdit from './components/TaskEdit.jsx';
 import TaskList from './components/TaskList.jsx';
 //COLLABORATORS
 import CollaboratorList from './components/CollaboratorList.jsx';
@@ -205,7 +206,6 @@ class App extends Component {
                }}/>
             <Route exact path="/CollaboratorList" render={() => <CollaboratorList proj_id={2}/>} />
 
-            <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
             <Route exact path="/userEdit/:id" render={(props) => <UserProfileEdit  userData={this.state.user} />} />
 
@@ -221,6 +221,10 @@ class App extends Component {
             <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project} />} />
 
             <Route exact path="/projectTask/:id" render={(props) => <TaskCreate proj_id={props.match.params.id} user_id={this.state.user.id}  />} />
+
+            <Route exact path="/taskEdit/:task_id" render={(props) => <TaskEdit task_id={props.match.params.task_id}   />} />
+
+            <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12} />} />
 
           </main>
           <Footer />
