@@ -31,7 +31,6 @@ const User = {
   },
 
   update: function(user, id){
-    console.log(user);
     if (user.updatePass){
       return db.none(`
         UPDATE users SET
@@ -39,7 +38,6 @@ const User = {
         WHERE id = $2
       `, [user.password,user.id]);
     }else{
-      console.log("here");
       return db.one(`
         UPDATE users SET
         username = $1,

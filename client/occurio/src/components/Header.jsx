@@ -7,7 +7,7 @@ import SideNavDrop from './SideNavDrop';
 import { Link } from 'react-router-dom';
 
 
-const Header = () => {
+const Header = (props) => {
     return (
       <header className="header">
             <div className="nav">
@@ -17,7 +17,7 @@ const Header = () => {
               <ul className="nav-list">
                 <li className="nav-item"><Link to={'/login'}>Login</Link></li>
                 <li className="nav-item"><Link to={'/register'}>Register</Link></li>
-                <li className="nav-item"><Link to={'/collaborators'}>Collaborators</Link></li>
+                <li className="nav-item" onClick={props.logOut()}>Log out</li>
               </ul>
             </div>
             <SideNavDrop />
