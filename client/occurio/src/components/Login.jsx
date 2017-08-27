@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import axios from 'axios';
+import '../App.css';
+
 class Login extends Component {
     constructor() {
         super();
@@ -26,7 +28,7 @@ class Login extends Component {
                 <h2 className="welcome-text">Welcome to Okurio!</h2>
             </div>
             <div className="form">
-                <form onSubmit={(e) => this.props.handleLoginSubmit(
+                <form className="login-form" onSubmit={(e) => this.props.handleLoginSubmit(
                     e,
                     this.state.username,
                     this.state.password

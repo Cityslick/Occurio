@@ -168,10 +168,10 @@ a:active {
   padding-bottom: 2em;
 }
 
-.login-button {
+.form > form > div:nth-child(3) > input {
   border-radius: 100px;
   color: white;
-  background-color: #6D1CDF;
+  background-color: #00B686;
 }
 
 .hero-button {
@@ -430,6 +430,12 @@ a:active {
   .login-page {
     padding-top: 20vh;
     height: 100vh;
+  }
+
+  .login-form {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+    0 10px 10px rgba(0,0,0,0.22);
+    padding: 40px;
   }
 
   /* USER */
