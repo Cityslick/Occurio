@@ -157,7 +157,27 @@ a:active {
   padding: 1em;
   font-size: 30px;
   font-weight: 800;
+  
 }
+
+.edit-container {
+  width: 60%;
+  position: relative;
+  left: 20%;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+  0 10px 10px rgba(0,0,0,0.22);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.edit-input > label {
+  margin: 10px;
+}
+
+.edit-input > input {
+    width: 40%;
+  }
 
 .hero-quote {
   color: #34495e;
