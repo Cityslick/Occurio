@@ -238,7 +238,7 @@ class TaskList extends Component {
               <input className="form" type="text" name="ticket" id="ticket" value={this.state.ticket} placeholder="" onChange={this.handleInputChange}  required/>
             </div>
             <div>
-                <input className="form" type="submit" value="Sumit" />
+                <input className="form" type="submit" value="Submit" />
             </div>
           </form>
         </div>

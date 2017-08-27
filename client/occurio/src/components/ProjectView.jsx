@@ -48,13 +48,16 @@ class ProjectView extends Component {
             <p>{this.state.project.planned_end_datestr}</p>
             <p>{this.state.project.act_start_date}</p>
             <p>{this.state.project.act_end_date}</p>
-            <Link className='editProject' to={`/projectEdit/${this.state.project.id}`}>Edit</Link>
+            <div className="project-view-links">
+              <Link className='editProject' to={`/projectEdit/${this.state.project.id}`}>Edit</Link>
+              <br/>
+              <Link className='editProject'  to={`/projectTask${this.state.project.id}`} >Add Task</Link>
+              <br/>
+              <Link className='editProject' to={`/projectList`}>All Projects</Link>
+            </div>
             <br/>
-            <Link className='editProject'  to={`/projectTask${this.state.project.id}`} >Add Task</Link>
-            <br/>
-            <Link className='editProject' to={`/projectList`}>All Projects</Link>
-            {this.showTask()}
           </div>
+            {this.showTask()}
         </div>
       }
     }

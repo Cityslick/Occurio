@@ -18,6 +18,7 @@ main {
 
 .project {
   margin-top: 100px;
+  height: 90vh;
 }
 
 .project h3 {
@@ -25,26 +26,36 @@ main {
   padding-top: .5em;
   font-size:40px;
   font-weight: 800;
-  /*color: #6D1CDF;*/
+  background: #00B686;
   padding: 5px;
 }
 
 .project h2 {
   color: white;
   font-weight: 900;
-  border-top: 1px solid white;
+  border-top: 1px solid grey;
+  background: white;
 }
 
 .project p {
-  color: white;
+  color: black;
   padding: 5px;
   font-size: 20px;
+  background: white;
+}
+
+.project-view-links {
+  background: #6D1CDF;
+  margin-top: 40px;
+  border-top: 5px solid #00B686;
+  box-shadow: 0 0 15px black;
+  width: 100%;
 }
 
 .projectView {
   height: 40%;
   width: 46%;
-  box-shadow: 2px 2px 5px 1px grey;
+  box-shadow: 0 0 25px #000;
   color: white;
   background: linear-gradient(#6D1CDF 0%, #8a49e5 70%);
   border-radius: 0.5%;
@@ -57,6 +68,24 @@ main {
 
 .viewTask {
   color: black;
+}
+
+.List {
+  width: 80%;
+  position: relative;
+  top: 15%;
+  left: 10%;
+  border-top: 1px solid gray;
+}
+
+.tasklist-view {
+  color: white;
+  background: #6D1CDF;
+  display: flex;
+  border-top: 8px solid #00B686;
+  justify-content: space-around;
+  align-items: center;
+  height: 40px;
 }
 
 * {
@@ -144,7 +173,7 @@ a:active {
   /* width: 200px; */
   border-radius: 100px;
   color: white;
-  background-color: #6D1CDF;
+  background-color: #00B686;
   padding: 15px;
 }
 
