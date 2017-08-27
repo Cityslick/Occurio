@@ -1,0 +1,9 @@
+\c simplemgmt_dev;
+
+ALTER TABLE IF EXISTS users
+ALTER COLUMN user_type TYPE VARCHAR(100);
+
+ALTER TABLE  IF EXISTS tasks
+ADD COLUMN IF NOT EXISTS name VARCHAR(100);
+
+ALTER TABLE users DROP CONSTRAINT users_password_key;

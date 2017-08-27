@@ -32,6 +32,7 @@ import CollaboratorCreate from './components/CollaboratorCreate.jsx';
 import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
 import UserProfileEdit from './components/UserProfileEdit.jsx';
+import UserPasswordEdit from './components/UserPasswordEdit.jsx';
 
 // TEST
 import Todolist from './components/sidenavtest.js'
@@ -207,6 +208,8 @@ class App extends Component {
             <Route exact path="/taskList" render={() => <TaskList proj_id={1} user_id={12} />} />
             <Route exact path="/user" render={() => <UserProfile user={this.user} />} />
             <Route exact path="/userEdit/:id" render={(props) => <UserProfileEdit  userData={this.state.user} />} />
+
+            <Route exact path="/userPassword/:id" render={(props) => <UserPasswordEdit  userData={this.state.user} />} />
 
             <Route exact path="/projectList" render={() => <ProjectViewAll  for_User={true} user={this.state.user}/>} />
 

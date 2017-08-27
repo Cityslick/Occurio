@@ -16,13 +16,9 @@ class UserProfile extends Component {
     }
 
     componentDidMount() {
-        console.log('Loading Component');
-        console.log(this.props.loggedIn);
-        console.log(this.props.user);
         if (this.props.loggedIn) {
             axios.get(`/user/id/${this.props.user.id}`)
                 .then(res => {
-                    console.log(res.data);
                     this.setState({
                         username: res.data.user.username,
                         fullname: res.data.user.fullname,
@@ -61,6 +57,8 @@ class UserProfile extends Component {
                         <h2>{this.state.username}</h2>
                         <h3>{this.state.email}</h3>
                         <Link className='viewProject'  to={`/userEdit/${this.props.user.id}`} >Edit Profile</Link>
+                        <br/>
+                        <Link className='viewProject'  to={`/userPassword/${this.props.user.id}`} >Change Password</Link>
                     </div>
                 </div>
                 <div className="user-links">
@@ -70,18 +68,18 @@ class UserProfile extends Component {
                         <h2>{(this.getDateTime()).month} {(this.getDateTime()).date} {(this.getDateTime()).year}</h2>
                     </div>
                     <div className="links">
-                    <i className="fa fa-plus-square fa-2x" aria-hidden="true"></i>
-                    <Link to={'/project'}>Create A Project</Link>
+                        <i className="fa fa-plus-square fa-2x" aria-hidden="true"></i>
+                        <Link to={'/project'}>Create A Project</Link>
                     </div>
                     <div className="links">
-                    <i className="fa fa-thumb-tack fa-2x" aria-hidden="true"></i>
+                        <i className="fa fa-thumb-tack fa-2x" aria-hidden="true"></i>
 
-                    <Link to={'/projectList'}>View Your Projects</Link>
-
+                        <Link to={'/projectList'}>View Your Projects</Link>
                     </div>
+
                     <div className="links">
-                    <i className="fa fa-tasks fa-2x" aria-hidden="true"></i>
-                    <Link to={'/tasks'}>View Your Tasks</Link>
+                        <i className="fa fa-tasks fa-2x" aria-hidden="true"></i>
+                        <Link to={'/tasks'}>View Your Tasks</Link>
                     </div>
                 </div>
             </div>
