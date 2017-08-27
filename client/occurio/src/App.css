@@ -142,6 +142,7 @@ a:active {
 .hero-container {
   display: flex-end;
   padding: 40px;
+  margin-top: 100px;
 }
 .hero-text {
   color: #34495e;
@@ -251,9 +252,6 @@ a:active {
   height: 100vh;
 }
 
-/* .home-page3 {
-  height: 100vh;
-} */
 
 .home-page3 {
   background-color: #FFFFFF;
@@ -265,17 +263,110 @@ a:active {
 }
 
 .home-page3-container .item {
+  flex-direction: column;
   flex: 0 0 auto;
   width: 33.33%;
+  margin-top: 10%;
+  justify-content: center;
+}
+
+.lineup {
+  border-top: 1px solid lightgrey;
+  width: 50%;
+  margin-left: 25%;
+}
+
+ .home-page3-container .item .quote-img,
+ .home-page3-container .item .quote-img2,
+ .home-page3-container .item .quote-img3 {
+  height: 60%;
+  width: 35%;
+  position: relative;
+  left: 33%;
+  border-radius: 50%;
+}
+
+.item .quote-img {
+  background-image: url('http://studiojphotography.ca/wp-content/uploads/2010/03/professional-headshot.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.item .quote-img2 {
+  background-image: url('https://static1.squarespace.com/static/511526cde4b067782b69109c/517aa359e4b0ab81ac8d931c/517aa38ee4b0aef614c6765d/1366991895612/01-corporate-headshot-photo-130405-9660.JPG-1500px.JPG');
+  background-size: cover;
+  background-position: center;
+}
+
+.item .quote-img3 {
+  background-image: url('https://i.pinimg.com/736x/03/f7/a7/03f7a70497f0324e66f7ee9e0af2c205--corporate-photography-headshot-photography.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.logo-container {
+  width: 100%;
+  height: 15%;
+  position: relative;
+  top: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.logo-t-wrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.logo-t {
+  width: 20%;
+  height: 10vh;
 }
 
 .home-page3-container .item h2 {
   font-size: 1.2em;
+  padding: 1em;
+  opacity: 0.6;
+}
+
+.home-page3-container .item h4 {
+  margin-top: 20px;
+  opacity: 0.6;
+}
+
+#t1 {
+  background-image: url('https://static1.squarespace.com/static/55f7c032e4b059c856ed16ae/55fa497de4b0cacc2fc1dd5a/55fa4a6be4b0598b51ba9166/1442518637890/Gizmodo-Grey.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7;
+}
+#t2 {
+  background-image: url('http://20642-presscdn.pagely.netdna-cdn.com/wp-content/uploads/2016/04/BuzzFeed-Logo-Grey-1.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
+}
+#t3 {
+  background-image: url('https://static1.squarespace.com/static/57893f18b3db2b558b7effa2/578943a1197aea6cbb371e87/578943a1197aea6cbb371e8b/1468624606748/verge.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7;
+}
+#t4 {
+  background-image: url('https://static1.squarespace.com/static/58508139d482e9ca234ad019/5850c1d8e6f2e122af6df610/5850c1d8e6f2e122af6df611/1481688484862/mashable.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7;
 }
 
 .home-page3-container .item p {
   margin-top: 1em;
-  line-height: 1.5;
+  line-height: 1;
+  width: 60%;
+  position: relative;
+  left: 20%;
 }
 
 .hero {
