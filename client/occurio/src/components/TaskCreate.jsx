@@ -26,15 +26,16 @@ class TaskList extends Component {
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.clearComponents= this.clearComponents.bind(this);
+    this.handlerLoadCollaborator = this.handlerLoadCollaborator.bind(this);
   }
 
   componentDidMount() {
     this.setState({
-      user_id:this.props.user_id,
       proj_id:this.props.proj_id,
       mainDataLoad:true,
     })
     this.handlerReloadList();
+    this.handlerLoadCollaborator();
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -44,11 +45,26 @@ class TaskList extends Component {
   }
 
   clearComponents(){
-    this.name.value="";
+    document.getElementById("name").value="";
     document.getElementById("description").value="";
     document.getElementById("ticket").value="";
     document.getElementById("start_date").value="";
     document.getElementById("end_date").value="";
+  }
+
+  handlerLoadCollaborator(){
+    let proj_id=this.props.proj_id;
+     axios.get(`/project/id/${proj_id}`).then(res=>{
+      if(res.data.data.length>0){
+        this.setState({
+          collaboratorData: res.data.data,
+          user_id:res.data.data[0].id,
+          collaboratorDataLoaded: true,
+        })
+      }
+    }).catch(err=>{
+      console.log(err.json);
+    })
   }
 
   handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
@@ -75,15 +91,18 @@ class TaskList extends Component {
 
   handleInputChange(e) {
     const name = e.target.name;
-    const value = e.target.value;
+    let value = e.target.value;
+
     this.setState({
       [name]: value,
     });
+
+    console.log(this.state.user_id);
   }
 
   handlerReloadList() {
     let proj_id=this.props.proj_id;
-    let user_id=this.props.user_id;
+    let user_id=this.state.user_id;
     let filter="";
     axios.post(`/task/${proj_id}`,{
        proj_id,
@@ -174,6 +193,17 @@ class TaskList extends Component {
             this.state.status,
             this.state.ticket
           )}>
+            <div>
+              <label className="labelInput">Collaborator</label>
+              <select id="user_id"  name="user_id" onChange={this.handleInputChange} >
+                { (this.state.collaboratorDataLoaded) ?
+                this.state.collaboratorData.map((collaborator,index) => {
+                  return <option key={collaborator.userId} id={collaborator.username}
+                  name="user_id"  value={collaborator.user_id_new} >{collaborator.username}</option>
+                })
+               : ""}
+              </select>
+            </div>
 
             <div>
               <label className="labelInput" >Name </label>

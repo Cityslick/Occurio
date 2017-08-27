@@ -4,6 +4,7 @@ const projectsController = require("../controllers/projectController");
 
 projectRoutes.post("/", projectsController.create);
 projectRoutes.get("/", projectsController.findAll);
+projectRoutes.get("/id/:id", projectsController.findCollaborators);
 projectRoutes.get("/user/:user_id", projectsController.findUsersProject);
 projectRoutes.put("/:id", projectsController.update);
 projectRoutes.get("/:id", projectsController.findById);

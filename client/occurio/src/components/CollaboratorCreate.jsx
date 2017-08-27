@@ -73,6 +73,7 @@ class Collaborator extends Component {
     this.setState({
       [name]: value,
     });
+    console.log(value)
   }
 
 
@@ -199,7 +200,7 @@ class Collaborator extends Component {
                 { (this.state.collaboratorDataLoaded) ?
                 this.state.collaboratorData.map((collaborator,index) => {
                   return <option key={collaborator.id}
-                  name="user_id"  value={collaborator.id} >{collaborator.id} {collaborator.username}</option>
+                  name="user_id"  value={collaborator.id} >{collaborator.username}</option>
                 })
                : ""}
               </select>

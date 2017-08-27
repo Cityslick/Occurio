@@ -14,6 +14,7 @@ class UserProfileEdit extends Component {
             img_url: '',
             proj_link: '',
             user_type: '',
+            userData: null,
             userDataLoaded: false,
         }
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -22,31 +23,38 @@ class UserProfileEdit extends Component {
     }
 
     componentDidMount() {
-            this.setState({
-              username: this.props.userData.username,
-              firstname: this.props.userData.firstname,
-              lastname: this.props.userData.lastname,
-              email: this.props.userData.email,
-              img_url: this.props.userData.img_url,
-              proj_link: this.props.userData.proj_link,
-              user_type: this.props.userData.user_type,
-              userDataLoaded: true,
-            })
+        if (this.props.userData) {
+            axios.get(`/user/id/${this.props.userData.id}`)
+                .then(res => {
+                    this.setState({
+                        userData: res.data.user,
+                        username: res.data.user.username,
+                        firstname: res.data.user.firstname,
+                        lastname: res.data.user.lastname,
+                        email: res.data.user.email,
+                        img_url:res.data.user.img_url,
+                        proj_link: res.data.user.proj_link,
+                        user_type: res.data.user.user_type,
+                        userDataLoaded: true,
+                    })
+                }
+            )
+        }
+
         //   }).catch(err => console.log(err));
       }
 
     handleSubmit(e, username, firstname, lastname, password, email, img_url, proj_link,user_type) {
-        console.log(username);
         e.preventDefault();
         axios.put(`/user/${this.props.userData.id}`, {
           username,
           firstname,
           lastname,
-          password,
           email,
           user_type,
+          img_url,
+          proj_link,
         }).then(res => {
-            console.log(res);
             this.setState({
               auth: res.data.auth,
               user: res.data.user,
@@ -66,7 +74,6 @@ class UserProfileEdit extends Component {
         this.setState({
             [name]: value,
         })
-        console.log(value);
     }
 
     renderUserProfileEdit() {
@@ -87,32 +94,39 @@ class UserProfileEdit extends Component {
                   this.state.user_type
                   )}>
                   <div>
-                      <input className="form" type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleInputChange} />
+                      <label>Username</label>
+                      <input className="form" type="text" name="username" value={this.state.username} placeholder="" onChange={this.handleInputChange} required/>
                   </div>
 
                   <div>
-                      <input className="form" type="text" name="firstname" value={this.state.firstname} placeholder="First Name" onChange={this.handleInputChange} />
+                      <label>First Name</label>
+                      <input className="form" type="text" name="firstname" value={this.state.firstname} placeholder="" onChange={this.handleInputChange} required />
                   </div>
 
                   <div>
-                      <input className="form" type="text" name="lastname" value={this.state.lastname} placeholder="Last Name" onChange={this.handleInputChange} />
+                      <label>Last Name</label>
+                      <input className="form" type="text" name="lastname" value={this.state.lastname} placeholder="" onChange={this.handleInputChange} required />
                   </div>
 
                   <div>
-                      <input className="form" type="text" name="email" value={this.state.email} placeholder="Email Address" onChange={this.handleInputChange} />
+                        <label>Email Address</label>
+                      <input className="form" type="email" name="email" value={this.state.email} placeholder="" onChange={this.handleInputChange} required />
                   </div>
 
                   <div>
-                      <input className="form" type="text" name="img_url" value={this.state.img_url} placeholder="Image URL" onChange={this.handleInputChange} />
+                        <label>Image URL</label>
+                      <input className="form" type="text" name="img_url" value={this.state.img_url} placeholder="" onChange={this.handleInputChange} />
                   </div>
 
                   <div>
-                      <input className="form" type="text" name="proj_link" value={this.state.proj_link} placeholder="Link to Project" onChange={this.handleInputChange} />
+                      <label>Link to Project</label>
+                      <input className="form" type="text" name="proj_link" value={this.state.proj_link} placeholder="" onChange={this.handleInputChange} />
                   </div>
+                        <label>Username</label>
 
                   <div className="drop-down">
                       <div>
-                          <select  name="user_type" onChange={this.handleInputChange}>
+                          <select  name="user_type" value ={this.state.user_type} onChange={this.handleInputChange}>
                               <option value="Manager"      name="user_type">     Manager</option>
                               <option value="Collaborator" name="user_type">Collaborator</option>
                               <option value="Other"        name="user_type">       Other</option>
@@ -135,7 +149,7 @@ class UserProfileEdit extends Component {
             <div className="register">
               {this.renderUserProfileEdit()}
               {this.state.fireRedirect
-                ? <Redirect push to={`/user/${this.props.id}`} />
+                ? <Redirect push to={`/user/id/${this.props.userData.id}`} />
                 : ''}
             </div>
         )

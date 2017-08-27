@@ -30,14 +30,16 @@ const usersController = {
   },
 
   update: function(req, res){
+    console.log(req.body.password);
     const salt = bcrypt.genSaltSync();
-    const hash = bcrypt.hashSync(req.body.password, salt);
+    const hash = (req.body.password) ? bcrypt.hashSync(req.body.password, salt):"";
     User.update(
       {
+        id: req.body.id,
         username: req.body.username,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
-        updatePass: req.body.updatePass,
+        updatePass: req.body.updatePass || false,
         password: hash,
         email: req.body.email,
         img_url: req.body.img_url,
