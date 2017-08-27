@@ -32,7 +32,7 @@ class Header extends Component {
     return (
       <header className="header">
             <div className="nav">
-              <h1 className="logo"><Link to={'/'}>okurio</Link></h1>
+              <h1 className="logo"><Link to={'/'}>Okurio</Link></h1>
             </div>
             <div className="nav2">
               <ul className="nav-list">
