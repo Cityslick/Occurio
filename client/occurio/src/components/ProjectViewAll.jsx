@@ -16,9 +16,11 @@ class ViewUserProjects  extends Component {
   }
 
   componentDidMount() {
-    //console.log("asdokdoasko", this.props.user_id,this.props.for_user,"id");
-    let route="";
-    axios.get(`/project/user/${this.props.user.id}`)
+    let route=`/project/user/${this.props.user.id}`
+    if (this.props.user.user_type!=="Manager"){
+      route=`/project/col/${this.props.user.id}`
+    }
+    axios.get(route)
     .then(res => {
       this.setState({
         projects: res.data.data,

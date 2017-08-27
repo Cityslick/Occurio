@@ -11,6 +11,7 @@ class UserProfile extends Component {
         this.state = {
             username: '',
             fullname: '',
+            user_type:'',
         }
         this.getDateTime = this.getDateTime.bind(this);
     }
@@ -22,6 +23,7 @@ class UserProfile extends Component {
                     this.setState({
                         username: res.data.user.username,
                         fullname: res.data.user.fullname,
+                        user_type: res.data.user.user_type,
                         email: res.data.user.email,
                     })
                 }
@@ -68,9 +70,11 @@ class UserProfile extends Component {
                         <i className="fa fa-calendar fa-2x" aria-hidden="true"></i>
                         <h2>{(this.getDateTime()).month} {(this.getDateTime()).date} {(this.getDateTime()).year}</h2>
                     </div>
-                    <div className="links">
-                        <i className="fa fa-plus-square fa-2x" aria-hidden="true"></i>
-                        <Link to={'/project'}>Create A Project</Link>
+                        <div className="links">
+                            <i className="fa fa-plus-square fa-2x" aria-hidden="true"></i>
+                    {(this.state.user_type==="Manager") ?
+                            <Link to={'/project'}>Create A Project</Link>
+                    : <Link to="#">No access to create A Project</Link>}
                     </div>
                     <div className="links">
                         <i className="fa fa-thumb-tack fa-2x" aria-hidden="true"></i>

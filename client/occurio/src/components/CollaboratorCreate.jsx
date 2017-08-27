@@ -37,7 +37,7 @@ class Collaborator extends Component {
   }
 
   componentWillUpdate(nextProps,nextState) {
-    console.log(nextState.nextState);
+    console.log(nextState.proj_id, this.state.proj_id);
     if (nextState.collaboratorListDataLoaded != this.state.collaboratorListDataLoaded || nextState.proj_id != this.state.proj_id || nextState.user_id !=this.state.user_id ) {
       axios.get(`/collaborator/${nextState.proj_id}`)
       .then(res=>{
