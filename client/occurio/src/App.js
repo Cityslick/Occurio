@@ -174,7 +174,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header />
+          <Header userData={this.state.user}/>
           <main>
             <Route exact path='/' render={() => <Home />} />
             <Route exact path="/projectCol/:id" render={(props) => <CollaboratorCreate proj_id={props.match.params.id}  />} />
