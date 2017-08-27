@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import '../App.css';
 
 class UserProfileEdit extends Component {
     constructor() {
@@ -79,66 +80,68 @@ class UserProfileEdit extends Component {
     renderUserProfileEdit() {
       if (this.state.userDataLoaded) {
         return (
-          <div>
-          <h1 className='hero-text2'>Edit Profile</h1>
-            <div className="form">
-                <form onSubmit={(e) => this.handleSubmit(
-                  e,
-                  this.state.username,
-                  this.state.firstname,
-                  this.state.lastname,
-                  this.state.password,
-                  this.state.email,
-                  this.state.img_url,
-                  this.state.proj_link,
-                  this.state.user_type
-                  )}>
-                  <div>
-                      <label>Username</label>
-                      <input className="form" type="text" name="username" value={this.state.username} placeholder="" onChange={this.handleInputChange} required/>
-                  </div>
-
-                  <div>
-                      <label>First Name</label>
-                      <input className="form" type="text" name="firstname" value={this.state.firstname} placeholder="" onChange={this.handleInputChange} required />
-                  </div>
-
-                  <div>
-                      <label>Last Name</label>
-                      <input className="form" type="text" name="lastname" value={this.state.lastname} placeholder="" onChange={this.handleInputChange} required />
-                  </div>
-
-                  <div>
-                        <label>Email Address</label>
-                      <input className="form" type="email" name="email" value={this.state.email} placeholder="" onChange={this.handleInputChange} required />
-                  </div>
-
-                  <div>
-                        <label>Image URL</label>
-                      <input className="form" type="text" name="img_url" value={this.state.img_url} placeholder="" onChange={this.handleInputChange} />
-                  </div>
-
-                  <div>
-                      <label>Link to Project</label>
-                      <input className="form" type="text" name="proj_link" value={this.state.proj_link} placeholder="" onChange={this.handleInputChange} />
-                  </div>
-                        <label>Username</label>
-
-                  <div className="drop-down">
-                      <div>
-                          <select  name="user_type" value ={this.state.user_type} onChange={this.handleInputChange}>
-                              <option value="Manager"      name="user_type">     Manager</option>
-                              <option value="Collaborator" name="user_type">Collaborator</option>
-                              <option value="Other"        name="user_type">       Other</option>
-                          </select>
-                      </div>
-                  </div>
-
-                  <div>
-                      <input className="form" type="submit" value="Enter" />
-                  </div>
-                </form>
+          <div className="edit-container">
+            <div className="edit-title">
+                <h1 className='hero-text2'>Edit Profile</h1>
             </div>
+                <div className="edit-form">
+                    <form onSubmit={(e) => this.handleSubmit(
+                    e,
+                    this.state.username,
+                    this.state.firstname,
+                    this.state.lastname,
+                    this.state.password,
+                    this.state.email,
+                    this.state.img_url,
+                    this.state.proj_link,
+                    this.state.user_type
+                    )}>
+                    <div className="edit-input">
+                        <label>Username</label>
+                        <input type="text" name="username" value={this.state.username} placeholder="" onChange={this.handleInputChange} required/>
+                    </div>
+
+                    <div className="edit-input">
+                        <label>First Name</label>
+                        <input type="text" name="firstname" value={this.state.firstname} placeholder="" onChange={this.handleInputChange} required />
+                    </div>
+
+                    <div className="edit-input">
+                        <label>Last Name</label>
+                        <input type="text" name="lastname" value={this.state.lastname} placeholder="" onChange={this.handleInputChange} required />
+                    </div>
+
+                    <div className="edit-input" id="email">
+                            <label>Email</label>
+                        <input type="email" name="email" value={this.state.email} placeholder="" onChange={this.handleInputChange} required />
+                    </div>
+
+                    <div className="edit-input">
+                            <label>Image URL</label>
+                        <input type="text" name="img_url" value={this.state.img_url} placeholder="" onChange={this.handleInputChange} />
+                    </div>
+
+                    <div className="edit-input">
+                        <label>Link to Project</label>
+                        <input type="text" name="proj_link" value={this.state.proj_link} placeholder="" onChange={this.handleInputChange} />
+                    </div>
+                            <label>User-Type</label>
+
+                    <div className="drop-down">
+                        <div>
+                            <select  name="user_type" value ={this.state.user_type} onChange={this.handleInputChange}>
+                                <option value="Manager"      name="user_type">     Manager</option>
+                                <option value="Collaborator" name="user_type">Collaborator</option>
+                                <option value="Other"        name="user_type">       Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input className="form" type="submit" value="Enter" />
+                    </div>
+                    </form>
+                </div>
           </div>
         )
       }
