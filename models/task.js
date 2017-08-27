@@ -27,7 +27,7 @@ const task={
   },
 
   findById :function(task_id){
-    return db.one("SELECT  *, to_char(t.start_date,'yyyy-MM-dd') as start_dateStr, to_char(t.end_date,'yyyy-MM-dd') as end_dateStr, to_char(t.act_start_date,'yyyy-MM-dd') as act_start_dateStr, to_char(t.act_end_date,'yyyy-MM-dd') as act_end_dateStr FROM tasks t WHERE id=$1 " , [task_id])
+    return db.one("SELECT  *, to_char(t.start_date,'yyyy-MM-dd') as start_dateStr, to_char(t.end_date,'yyyy-MM-dd') as end_dateStr, to_char(t.act_start_date,'yyyy-MM-dd') as act_start_dateStr, to_char(t.act_end_date,'yyyy-MM-dd') as act_end_dateStr,u.id as userid, concat(u.firstname , ' ', u.lastname) as fullname,u.user_type FROM tasks t INNER JOIN users u ON  t.user_id=u.id WHERE t.id=$1 " , [task_id])
   }
 }
 

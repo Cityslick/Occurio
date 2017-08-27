@@ -79,7 +79,7 @@ class UserProfile extends Component {
 
                     <div className="links">
                         <i className="fa fa-tasks fa-2x" aria-hidden="true"></i>
-                        <Link to={'/tasks'}>View Your Tasks</Link>
+                        <Link to={'/tasksList'}>View Your Tasks</Link>
                     </div>
                 </div>
             </div>
