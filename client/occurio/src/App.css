@@ -237,6 +237,11 @@ a:active {
   padding-top: 10vh;
   display: inline-block;
   height: 100vh;
+  background-image: url('https://static.pexels.com/photos/7096/people-woman-coffee-meeting.jpg');
+  background-size: cover;
+  background-color: rgba(250, 250, 250, 0.6);
+  background-blend-mode: overlay;
+  width: 100%;
 }
 .home-page2 {
   width: 100vw;
