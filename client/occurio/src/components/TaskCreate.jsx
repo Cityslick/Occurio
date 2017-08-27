@@ -58,7 +58,7 @@ class TaskList extends Component {
       if(res.data.data.length>0){
         this.setState({
           collaboratorData: res.data.data,
-          user_id:res.data.data[0].id,
+          user_id:res.data.data[0].user_id_new,
           collaboratorDataLoaded: true,
         })
       }
@@ -199,7 +199,7 @@ class TaskList extends Component {
                 { (this.state.collaboratorDataLoaded) ?
                 this.state.collaboratorData.map((collaborator,index) => {
                   return <option key={collaborator.userId} id={collaborator.username}
-                  name="user_id"  value={collaborator.user_id_new} >{collaborator.username}</option>
+                  name="user_id"  value={collaborator.user_id_new} >{collaborator.user_id_new} {collaborator.username}</option>
                 })
                : ""}
               </select>
@@ -207,20 +207,20 @@ class TaskList extends Component {
 
             <div>
               <label className="labelInput" >Name </label>
-              <input className="form" type="text" name="name" id="name" value={this.state.name} placeholder="" onChange={this.handleInputChange} />
+              <input className="form" type="text" name="name" id="name" value={this.state.name} placeholder="" onChange={this.handleInputChange}  required/>
             </div>
 
             <div>
               <label className="labelInput" >Descripcion </label>
-              <textarea className="form" name="description" id="description" value={this.state.description} placeholder="" onChange={this.handleInputChange} />
+              <textarea className="form" name="description" id="description" value={this.state.description} placeholder="" onChange={this.handleInputChange} required />
             </div>
 
             <div>
               <label className="labelInput" >Planned start date </label>
-              <input className="form" type="date" name="start_date" id="start_date" value={this.state.start_date} placeholder="" onChange={this.handleInputChange} />
+              <input className="form" type="date" name="start_date" id="start_date" value={this.state.start_date} placeholder="" onChange={this.handleInputChange} required />
 
               <label className="labelInput" >Planned end date </label>
-              <input className="form" type="date" name="end_date" id="end_date" value={this.state.end_date} placeholder="" onChange={this.handleInputChange} />
+              <input className="form" type="date" name="end_date" id="end_date" value={this.state.end_date} placeholder="" onChange={this.handleInputChange} required />
             </div>
 
             <div>
@@ -234,10 +234,10 @@ class TaskList extends Component {
 
             <div>
               <label className="labelInput" >Ticket</label>
-              <input className="form" type="text" name="ticket" id="ticket" value={this.state.ticket} placeholder="" onChange={this.handleInputChange} />
+              <input className="form" type="text" name="ticket" id="ticket" value={this.state.ticket} placeholder="" onChange={this.handleInputChange}  required/>
             </div>
             <div>
-                <input className="form" type="submit" value="Enter" />
+                <input className="form" type="submit" value="Sumit" />
             </div>
           </form>
         </div>
