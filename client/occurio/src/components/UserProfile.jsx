@@ -50,7 +50,7 @@ class UserProfile extends Component {
     render() {
 
     return (
-        <div className="user-container">
+        <div className="mainContainer">
             <div className="user-flex">
                 <div className="user-info">
                     <div className="user-pic">

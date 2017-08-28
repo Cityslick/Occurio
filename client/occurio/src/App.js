@@ -211,7 +211,6 @@ class App extends Component {
             <Route exact path="/usertasklist/:user_id" render={(props) => <UserTaskList userData={this.state.user}  user_id={props.match.params.user_id} />} />
 
           </main>
-          <Footer />
         </div>
       </Router>
     );

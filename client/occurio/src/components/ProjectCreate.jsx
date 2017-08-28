@@ -69,7 +69,7 @@ class ProjectCreate extends Component {
 
   render() {
     return (
-      <div className="project-create">
+      <div >
         <div className="project-page">
           <div className>
             <h1 className="hero-text2">Create a Project</h1>

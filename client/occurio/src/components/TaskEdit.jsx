@@ -128,15 +128,8 @@ class TaskList extends Component {
   renderformNormalUser(){
     if (this.state.taskDataLoaded){
       return(
-        <div>
-          <div>
-            <h2>qqqq</h2>
-            <h2>qqqq</h2>
-            <h2>qqqq</h2>
-            <h2>qqqq</h2>
-            <h2>qqqq</h2>
-          </div>
-          <div className="form">
+      <div className="edit-task-form">
+        <div className="edit-form">
             <form onSubmit={(e) => this.handleTaskSubmit(
               e,
               this.state.user_id,
@@ -152,12 +145,11 @@ class TaskList extends Component {
               this.state.user_type
             )}>
               <div>
-                <h1> {this.state.fullname}  </h1>
-                <h1>Task Name: {this.state.name}  </h1>
-                <h1>Descripcion: {this.state.description}</h1>
-                <h1>Planned start date  {this.state.start_date} </h1>
-                <h1>Planned end date {this.state.end_date}  </h1>
-
+                <h1 className="detailsH"> {this.state.fullname}  </h1>
+                <h1 className="detailsH">Task Name         :  {this.state.name}  </h1>
+                <h1 className="detailsH">Descripcion       :  {this.state.description}</h1>
+                <h1 className="detailsH">Planned start date:  {this.state.start_date} </h1>
+                <h1 className="detailsH">Planned end date  : {this.state.end_date}  </h1>
               </div>
               <div>
                 <label className="labelInput" >Started date </label>
@@ -193,15 +185,8 @@ class TaskList extends Component {
   renderFormSuperUser(){
     if (this.state.taskDataLoaded){
       return(
-        <div>
-          <div>
-            <h2>qqqq</h2>
-            <h2>qqqq</h2>
-            <h2>qqqq</h2>
-            <h2>qqqq</h2>
-            <h2>qqqq</h2>
-          </div>
-          <div className="form">
+      <div className="edit-task-form">
+        <div className="edit-form">
             <form onSubmit={(e) => this.handleTaskSubmit(
               e,
               this.state.user_id,

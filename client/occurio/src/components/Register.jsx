@@ -42,7 +42,7 @@ class Register extends Component {
 
     render(){
         return(
-            <div className="register">
+            <div>
               <div className="register-form">
                   <form onSubmit={(e)=>this.props.handleRegisterSubmit(
                     e,

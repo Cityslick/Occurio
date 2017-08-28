@@ -65,8 +65,8 @@ class UserProfileEdit extends Component {
       if (this.state.userDataLoaded) {
         return (
           <div>
-          <h1>Edit Profile</h1>
-            <div className="form">
+            <div className="project-page">
+              <h1 className="detailsH">Change Password</h1>
                 <form onSubmit={(e) => this.handleSubmit(
                   e,
                   this.state.newPassword,

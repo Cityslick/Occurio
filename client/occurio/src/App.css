@@ -4,12 +4,48 @@
   color: black;
 }
 
+textarea
+{
+   font-family:"Times New Roman", Times, serif;
+   font-size: 12px;
+}
+
+.App{
+  width: 100%;
+  height: 660px;
+  margin:0;
+}
+
+.date{
+  width: 100px;
+ }
+.mainContainer{
+  margin:auto;
+  overflow: auto;
+  height: 660px;
+}
+
+
+input[type=submit] {
+  border-radius: 5%;
+}
+
+.detailsH{
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  background-color:  #544CAF;
+  color:white;
+}
 main {
   background-color: #F5F5F5;
+  height: 730px;
+  overflow: auto;
 }
 /* Projects */
 .project-create {
-  height: 100vh;
+  height: 200px;
+  overflow: auto;
 }
 
 .project-page {
@@ -126,48 +162,52 @@ main {
   box-shadow: 0 14px 28px rgba(0,0,0,0.25),
   0 10px 10px rgba(0,0,0,0.22);
   justify-content: space-around;
-  align-items: center;
+  align-items: left;
   margin-top: 5px;
 }
 
+.subTable{
+  font-family: "Courier New";
+  text-align:left;
+  font-size: 10px;
+}
+.
 .table-data {
   color: rgba(0, 0, 0, 0.7);
-  font-size: 12pt;
-  margin: 10px;
-  width: 8%;
-  margin-right: 20px;
-  text-align: center;
+  width: 20px;
+  text-align: left;
+  vertical-align:left;
 }
+
 .table-data-num {
-  width: 2%;
-  color: rgba(0, 0, 0, 0.7);
+  width: 10px;
+  text-align: left;
+  vertical-align:left;
 }
 .table-data-desc {
   width: 15%;
-  font-size: 12pt;
-  color: rgba(0, 0, 0, 0.7);
+  text-align: left;
+  vertical-align:left;
 }
+
 .table-data-date {
   width: 12%;
-  font-size: 12pt;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.7);
+  text-align: left;
+  vertical-align:left;
 }
 .table-data-status {
   font-size: 12pt;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.7);
-  margin-right: 30px;
+  text-align: left;
+  vertical-align:left;
 }
 
 .table-data-name {
   font-size: 12pt;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.7);
-  margin-right: 40px;
 }
 
 .List {
+  height: 700px;
+  overflow: auto;
   width: 80%;
   position: relative;
   top: 15%;
@@ -337,8 +377,8 @@ a:active {
 .header {
   box-sizing: border-box;
   box-shadow: 0px 0px 6px 1.5px #0E0219;
-  position: fixed;
   margin: 0 auto;
+  position: relative;
   padding: 20px 0px 20px 0px;
   display: flex;
   background-color: #6D1CDF;
@@ -686,7 +726,9 @@ a:active {
   .footer {
     /* height: 300px; */
     justify-content: space-between;
-    height: 100%;
+    height: 15%;
+    width: 100%;
+    position: fixed;
     font-weight: 400px;
     font-size: 20px;
     background-color: #6D1CDF;
@@ -837,6 +879,9 @@ a:active {
   }
   .header {
     box-shadow: none;
+    position: fixed;
+    width: 100%;
+    height: 100px;
   }
 
   .hero-text {

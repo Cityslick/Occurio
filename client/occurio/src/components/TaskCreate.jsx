@@ -138,42 +138,28 @@ class TaskList extends Component {
   renderTaskList() {
     return (
       <div>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Ticket</th>
-              <th>Status</th>
-              <th>Collaborator</th>
-            </tr>
-          </thead>
-          <tbody>
           {(this.state.taskDataLoaded) ?
             this.state.taskData.map((task,index) => {
-              return <tr key={task.id}>
-                <td>{task.id}</td>
-                <td>{task.name}</td>
-                <td>{task.description}</td>
-                <td>{task.start_datestr}</td>
-                <td>{task.end_datestr}</td>
-                <td>{task.ticket}</td>
-                <td>{task.status}</td>
-                <td>{task.fullname}</td>
-                <td><Link to={`/TaskEdit/${task.id}`}><input type="submit" value="Edit"/></Link></td>
-                <td><input type="submit" value="Delete" onClick={()=>{this.handlerDeleteTask(task.id)}} /></td>
-               </tr>
+              return <div className="tasks-table " key={task.id}>
+                <div className="table-data-num ">{index}</div>
+                <div className="table-data-desc ">{task.name}</div>
+                <div className="table-data-date ">{task.description}</div>
+                <div className="table-data-date ">{task.start_datestr}</div>
+                <div className="table-data-date ">{task.end_datestr}</div>
+                <div className="table-data">:{task.ticket}</div>
+                <div className="table-data-status">{task.status}</div>
+                <div classname="table-data-name">{task.fullname}</div>
+                <div><Link to={`/TaskEdit/${task.id}`}><input type="submit" value="Edit"/></Link></div>
+                <div><input type="submit" value="Delete" onClick={()=>{this.handlerDeleteTask(task.id)}} /></div>
+               </div>
           })
           : ""}
 
-          </tbody>
-        </table>
       </div>
     );
   }
+
+
 
   renderSubmitform(){
     return(

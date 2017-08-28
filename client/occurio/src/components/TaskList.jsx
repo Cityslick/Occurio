@@ -67,7 +67,7 @@ class TaskList extends Component {
   render() {
     return (
       <div className="List">
-            <div className="tasklist-view">
+            <div className="mainContainer">
               <div className="tasktitle">
                 <h4>#</h4>
               </div>

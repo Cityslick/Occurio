@@ -98,7 +98,7 @@ class UserProfileEdit extends Component {
     renderUserProfileEdit() {
       if (this.state.userDataLoaded) {
         return (
-          <div className="edit-container">
+          <div className="register-form">
             <div className="edit-title">
                 <h1 className='hero-text2'>Edit Profile</h1>
             </div>
@@ -156,7 +156,7 @@ class UserProfileEdit extends Component {
 
     render(){
         return(
-            <div className="register">
+            <div className="mainContainer">
               {this.renderUserProfileEdit()}
               {this.state.fireRedirect
                 ? <Redirect push to={`/user/id/${this.props.userData.id}`} />
