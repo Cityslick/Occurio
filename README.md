@@ -28,7 +28,7 @@ The team discussed and sketched relational diagrams based on a database pattern 
 
 #### Entity Relationship Diagram
 ###### Please see below for an overview of Okurio's ERD.
-### ![](Occurio/client/occurio/images/project3_erd-24.png)
+### ![](https://github.com/Cityslick/Occurio/blob/master/client/occurio/images/project3_erd-24.png?raw=true)
 
 #### Front-End/Back-End
 Okurio is built on Javascript, specifically composed of a React front end and an MVC structured back end with Express.
