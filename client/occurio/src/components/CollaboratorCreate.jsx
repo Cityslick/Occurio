@@ -178,14 +178,7 @@ class Collaborator extends Component {
     return(
       <div className="collaborator-page">
         <div className="xx">
-          <h2>Assing Collaborators</h2>
-          <h2>Assing Collaborators</h2>
-          <h2>Assing Collaborators</h2>
-          <h2>Assing Collaborators</h2>
-          <h2>Assing Collaborators</h2>
-          <h2>Assing Collaborators</h2>
-          <h2>Assing Collaborators</h2>
-          <h2>Assing Collaborators</h2>
+          <h2>Assign Collaborators</h2>
         </div>
         <div className="form">
           <form onSubmit={(e) => this.handleCollaboratorSubmit(

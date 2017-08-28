@@ -66,7 +66,8 @@ class TaskList extends Component {
 
   render() {
     return (
-      <div className="List">
+      <div className="user-task-list">
+        <div className="List">
             <div className="tasklist-view">
               <div className="tasktitle">
                 <h4>#</h4>
@@ -96,6 +97,7 @@ class TaskList extends Component {
           </div>
 
 
+        </div>
       </div>
     );
   };

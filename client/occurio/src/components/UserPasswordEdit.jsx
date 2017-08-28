@@ -65,6 +65,7 @@ class UserProfileEdit extends Component {
       if (this.state.userDataLoaded) {
         return (
           <div>
+              <div className="project-page">
           <h1>Edit Profile</h1>
             <div className="form">
                 <form onSubmit={(e) => this.handleSubmit(
@@ -86,6 +87,7 @@ class UserProfileEdit extends Component {
                   </div>
 
                 </form>
+            </div>
             </div>
           </div>
         )

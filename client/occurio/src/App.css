@@ -551,6 +551,11 @@ a:active {
   }
 
   /* USER */
+
+  .user-task-list {
+    height: 95vh;
+  }
+
   .user-container {
     height: 1500px;
   }
