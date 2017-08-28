@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   Link
 } from 'react-router-dom';
+import '../App.css';
 
 class TaskList extends Component {
   constructor() {
@@ -59,6 +60,7 @@ class TaskList extends Component {
     let proj_id=this.props.proj_id;
      axios.get(`/project/id/${proj_id}`).then(res=>{
       if(res.data.data.length>0){
+        console.log(res.data.data);
         this.setState({
           collaboratorData: res.data.data,
           user_id:res.data.data[0].user_id_new,
@@ -172,17 +174,8 @@ class TaskList extends Component {
 
   renderSubmitform(){
     return(
-      <div>
-        <div>
-          <h2>*******</h2>
-          <h2>*******</h2>
-          <h2>*******</h2>
-          <h2>*******</h2>
-          <h2>*******</h2>
-          <h2>*******</h2>
-          <h2>*******</h2>
-        </div>
-        <div className="form">
+      <div className="edit-task-form">
+        <div className="edit-form">
           <form onSubmit={(e) => this.handleTaskSubmit(
             e,
             this.state.user_id,
@@ -194,51 +187,53 @@ class TaskList extends Component {
             this.state.status,
             this.state.ticket
           )}>
-            <div>
-              <label className="labelInput">Collaborator</label>
-              <select id="user_id"  name="user_id" onChange={this.handleInputChange} >
-                { (this.state.collaboratorDataLoaded) ?
-                this.state.collaboratorData.map((collaborator,index) => {
-                  return <option key={collaborator.user_id_new} id={collaborator.username}
-                  name="user_id"  value={collaborator.user_id_new} >{collaborator.user_id_new} {collaborator.username}</option>
-                })
-               : ""}
-              </select>
-            </div>
+            <div className="edit-task-input">
+              <div>
+                <label className="labelInput">Collaborator</label>
+                <select id="user_id"  name="user_id" onChange={this.handleInputChange} >
+                  { (this.state.collaboratorDataLoaded) ?
+                  this.state.collaboratorData.map((collaborator,index) => {
+                    return <option key={collaborator.user_id_new} id={collaborator.username}
+                    name="user_id"  value={collaborator.user_id_new} >{collaborator.user_id_new} {collaborator.username}</option>
+                  })
+                : ""}
+                </select>
+              </div>
 
-            <div>
-              <label className="labelInput" >Name </label>
-              <input className="form" type="text" name="name" id="name" value={this.state.name} placeholder="" onChange={this.handleInputChange}  required/>
-            </div>
+              <div className="task-input">
+                <label className="labelInput" >Name </label>
+                <input type="text" name="name" id="name" value={this.state.name} placeholder="" onChange={this.handleInputChange}  required/>
+              </div>
 
-            <div>
-              <label className="labelInput" >Descripcion </label>
-              <textarea className="form" name="description" id="description" value={this.state.description} placeholder="" onChange={this.handleInputChange} required />
-            </div>
+              <div className="task-input">
+                <label className="labelInput" >Description </label>
+                <textarea name="description" id="description" value={this.state.description} placeholder="" onChange={this.handleInputChange} required />
+              </div>
 
-            <div>
-              <label className="labelInput" >Planned start date </label>
-              <input className="form" type="date" name="start_date" id="start_date" value={this.state.start_date} placeholder="" onChange={this.handleInputChange} required />
+              <div className="task-input">
+                <label className="labelInput" >Planned start date </label>
+                <input type="date" name="start_date" id="start_date" value={this.state.start_date} placeholder="" onChange={this.handleInputChange} required />
 
-              <label className="labelInput" >Planned end date </label>
-              <input className="form" type="date" name="end_date" id="end_date" value={this.state.end_date} placeholder="" onChange={this.handleInputChange} required />
-            </div>
+                <label className="labelInput" >Planned end date </label>
+                <input type="date" name="end_date" id="end_date" value={this.state.end_date} placeholder="" onChange={this.handleInputChange} required />
+              </div>
 
-            <div>
-              <label className="labelInput">Status</label>
-              <select name="status"   id="status"  onChange={this.handleInputChange}>
-                <option name="status" key="1" value={"Done"}>Pending</option>
-                <option name="status" key="2" value={"In progress"}>In progress</option>
-                <option name="status" key="3"  value={"Canceled"}>Canceled</option>
-              </select>
-            </div>
+              <div>
+                <label className="labelInput">Status</label>
+                <select name="status"   id="status"  onChange={this.handleInputChange}>
+                  <option name="status" key="1" value={"Done"}>Pending</option>
+                  <option name="status" key="2" value={"In progress"}>In progress</option>
+                  <option name="status" key="3"  value={"Canceled"}>Canceled</option>
+                </select>
+              </div>
 
-            <div>
-              <label className="labelInput" >Ticket</label>
-              <input className="form" type="text" name="ticket" id="ticket" value={this.state.ticket} placeholder="" onChange={this.handleInputChange}  required/>
-            </div>
-            <div>
-                <input className="form" type="submit" value="Submit" />
+              <div>
+                <label className="labelInput" >Ticket</label>
+                <input type="text" name="ticket" id="ticket" value={this.state.ticket} placeholder="" onChange={this.handleInputChange}  required/>
+              </div>
+              <div>
+                  <input type="submit" value="Submit" />
+              </div>
             </div>
           </form>
         </div>

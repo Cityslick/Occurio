@@ -75,6 +75,98 @@ main {
   color: black;
 }
 
+.edit-task-form {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.edit-task-form .edit-form {
+  position: relative;
+  top: 15%;
+  width: 60%;
+  height: 65%;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+  0 10px 10px rgba(0,0,0,0.22);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.edit-task-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-title {
+  background: #00B686;
+}
+
+.task-input .labelInput {
+  margin: 10px;
+}
+
+.task-input > input {
+  width: 40vw;
+}
+
+.task-input > textarea {
+  width: 40%;
+  height: 10vh;
+}
+
+.tasks-table {
+  display: flex;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+  0 10px 10px rgba(0,0,0,0.22);
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.table-data {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 12pt;
+  margin: 10px;
+  width: 8%;
+  margin-right: 20px;
+  text-align: center;
+}
+.table-data-num {
+  width: 2%;
+  color: rgba(0, 0, 0, 0.7);
+}
+.table-data-desc {
+  width: 15%;
+  font-size: 12pt;
+  color: rgba(0, 0, 0, 0.7);
+}
+.table-data-date {
+  width: 12%;
+  font-size: 12pt;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+}
+.table-data-status {
+  font-size: 12pt;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  margin-right: 30px;
+}
+
+.table-data-name {
+  font-size: 12pt;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  margin-right: 40px;
+}
+
 .List {
   width: 80%;
   position: relative;
@@ -157,7 +249,27 @@ a:active {
   padding: 1em;
   font-size: 30px;
   font-weight: 800;
+  
 }
+
+.edit-container {
+  width: 60%;
+  position: relative;
+  left: 20%;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+  0 10px 10px rgba(0,0,0,0.22);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.edit-input > label {
+  margin: 10px;
+}
+
+.edit-input > input {
+    width: 40%;
+  }
 
 .hero-quote {
   color: #34495e;
