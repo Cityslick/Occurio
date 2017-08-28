@@ -18,7 +18,7 @@ class TaskList extends Component {
       act_end_date: '',
       status: '',
       ticket: '',
-      user_type:0,
+      user_type:'',
       task_id:0,
       collaboratorData:null,
       collaboratorDataLoaded:false,
@@ -29,20 +29,29 @@ class TaskList extends Component {
     this.handleTaskSubmit = this.handleTaskSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handlerLoadCollaborator = this.handlerLoadCollaborator.bind(this);
+    this.getUserInfo=this.getUserInfo.bind(this);
+    this.clearComponents= this.clearComponents.bind(this);
+  }
+
+  getUserInfo(){
+    console.log(this.props);
+    axios.get(`/user/id/${this.props.userData.id}`)
+      .then(res => {
+        this.setState({
+          user_type: res.data.user.user_type,
+        })
+      }
+    )
   }
 
   componentDidMount() {
-    this.setState({
-      task_id:this.props.task_id,
-    });
+
     axios.get(`/task/${this.props.task_id}`)
     .then(res=>{
-      console.log(res.data.data);
       this.handlerLoadCollaborator(res.data.data.proj_id);
       this.setState({
         user_id: res.data.data.user_id,
         task_id: res.data.data.id,
-        user_type:res.data.data.user_type,
         proj_id: res.data.data.proj_id,
         name: res.data.data.name,
         description: res.data.data.description,
@@ -54,7 +63,8 @@ class TaskList extends Component {
         ticket: res.data.data.ticket,
         taskData:res.data.data,
         taskDataLoaded: true,
-      })
+      });
+      this.getUserInfo();
     }).catch(err=>{
       console.log(err.json);
     })
@@ -71,7 +81,9 @@ class TaskList extends Component {
     })
   }
 
-  handleTaskSubmit(e, user_id, task_id, name, description, start_date, end_date, act_start_date, act_end_date, status, ticket) {
+  handleTaskSubmit(e, user_id, task_id, name, description, start_date, end_date, act_start_date, act_end_date, status, ticket, user_type) {
+
+    user_type=this.state.user_type;
     e.preventDefault();
     axios.put(`/task/${task_id}`, {
       task_id,
@@ -84,12 +96,13 @@ class TaskList extends Component {
       act_end_date,
       status,
       ticket,
-    }).then(
+      user_type,
+    }).then(()=>{
       this.setState({
         fireRedirect:true,
-
       })
-    ).catch(err => console.log(err));
+      this.clearComponents();
+    }).catch(err => console.log(err));
 
   }
 
@@ -99,6 +112,17 @@ class TaskList extends Component {
     this.setState({
       [name]: value,
     });
+  }
+
+ clearComponents(){
+    this.setState({
+      name:"",
+      description:"",
+      ticket:"",
+      start_date:"",
+      start_date:"",
+      status:"Pending",
+    })
   }
 
   renderformNormalUser(){
@@ -124,16 +148,23 @@ class TaskList extends Component {
               this.state.act_start_date,
               this.state.act_end_date,
               this.state.status,
-              this.state.ticket
+              this.state.ticket,
+              this.state.user_type
             )}>
               <div>
                 <h1> {this.state.fullname}  </h1>
-                <h1> {this.state.name}  </h1>
-                <h1> {this.state.description}</h1>
-                <h1> {this.state.start_date} </h1>
-                <h1> {this.state.end_date}  </h1>
-                <h1> {this.state.act_start_date} </h1>
-                <h1> {this.state.act_end_date} </h1>
+                <h1>Task Name: {this.state.name}  </h1>
+                <h1>Descripcion: {this.state.description}</h1>
+                <h1>Planned start date  {this.state.start_date} </h1>
+                <h1>Planned end date {this.state.end_date}  </h1>
+
+              </div>
+              <div>
+                <label className="labelInput" >Started date </label>
+                <input className="form" type="date" name="act_start_date" id="act_start_date" value={this.state.act_start_date} placeholder="" onChange={this.handleInputChange} />
+
+                <label className="labelInput" >Ended date </label>
+                <input className="form" type="date" name="act_end_date" id="act_end_date" value={this.state.act_end_date} placeholder="" onChange={this.handleInputChange} />
               </div>
 
               <div>
@@ -202,7 +233,7 @@ class TaskList extends Component {
               </div>
 
               <div>
-                <label className="labelInput" >Descripcion </label>
+                <label className="labelInput" >Description </label>
                 <textarea className="form" name="description" id="description" value={this.state.description} placeholder="" onChange={this.handleInputChange} required/>
               </div>
 
@@ -249,18 +280,16 @@ class TaskList extends Component {
   }
 
   renderInfo(){
-    console.log(1)
     if (this.state.taskDataLoaded){
-      console.log(2)
+      console.log(this.state.user_type,"---",this.state.taskData.username);
       (this.state.taskData.user_type==="Manager")? this.renderFormSuperUser() : this.renderformNormalUser();
     }
   }
 
   render() {
-    console.log(this.state.user_type);
     return(
       <div>
-        {(this.state.user_type=="Manager") ? this.renderFormSuperUser() : this.renderFormSuperUser()}
+        {(this.state.user_type=="Manager") ? this.renderFormSuperUser() : this.renderformNormalUser()}
               {this.state.fireRedirect
                 ? <Redirect push to={`/projectTask/${this.state.proj_id}`} />
                 : ''}

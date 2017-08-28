@@ -15,9 +15,11 @@ class ViewUserProjects  extends Component {
   }
 
   componentDidMount() {
-    //console.log("asdokdoasko", this.props.user_id,this.props.for_user,"id");
-    let route="";
-    axios.get(`/project/user/${this.props.user.id}`)
+    let route=`/project/user/${this.props.user.id}`
+    if (this.props.user.user_type!=="Manager"){
+      route=`/project/col/${this.props.user.id}`
+    }
+    axios.get(route)
     .then(res => {
       this.setState({
         projects: res.data.data,
@@ -27,10 +29,9 @@ class ViewUserProjects  extends Component {
   }
 
   renderProjectsList(){
-
     if (this.state.projectDataLoaded){
-        return this.state.projects.map((project) => {
-          return <div className="projects">
+        return this.state.projects.map((project,index) => {
+          return <div key={index} className="projects">
                     <div className="project-info">
                       <div className="project-name">
                         <h2>{project.name}</h2>
@@ -39,12 +40,12 @@ class ViewUserProjects  extends Component {
                         <div className="single-project">
                           <Link className='viewProject'  to={`/projectList/${project.id}`} >More Info</Link>
                         </div>
-                        <div className="add-task">
-                          <Link className='viewProject'  to={`/projectTask/${project.id}`} >Add Task</Link>
-                        </div>
-                        <div className="add-task">
+
+                      {(this.props.user.user_type=="Manager") ? <div className="add-task"><Link className='viewProject'  to={`/projectTask/${project.id}`} >Add Task</Link> </div>: ""}
+
+                        {(this.props.user.user_type=="Manager") ? <div className="add-task">
                           <Link className='viewProject'  to={`/projectCol/${project.id}`} >Add Collaborator</Link>
-                        </div>
+                        </div>: ""}
                       </div>
                     </div>
                 </div>

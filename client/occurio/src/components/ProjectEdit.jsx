@@ -96,8 +96,8 @@ class ProjectEdit extends Component {
           </label>
           <label> <br/>Status
             <select name="status" value={this.state.status} onChange={this.handleInputChange} required>
-              <option>Started</option>
               <option>Pending</option>
+              <option>Started</option>
               <option>Complete</option>
             </select>
           </label>

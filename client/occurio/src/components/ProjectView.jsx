@@ -10,6 +10,7 @@ class ProjectView extends Component {
     super(props);
     this.state = {
       project: null,
+      user:null,
       projectDataLoaded: false,
       fireRedirect: null,
     }
@@ -17,11 +18,11 @@ class ProjectView extends Component {
   }
   componentDidMount() {
     console.log("Im here ProjectView");
-    console.log(this.props.id)
-
+    console.log(this.props)
     axios.get(`/project/${this.props.id}`)
     .then(res => {
       this.setState({
+        user : this.props.userData,
         project: res.data.data,
         projectDataLoaded: true,
         fireRedirect: true,
@@ -29,12 +30,14 @@ class ProjectView extends Component {
     }).catch(err => console.log(err));
   }
   showTask(){
+    console.log(this.props.userData);
     if(this.props.presentDetail){
-      return <TaskList proj_id={this.state.project.id} user_id={0}  proj={true} />
+      return <TaskList proj_id={this.state.project.id}  user_id={this.props.userData.id}  proj={true} />
     }
   }
   renderProject(){
     if (this.state.projectDataLoaded){
+        console.log(this.props, "-")
         return <div key={this.state.project.id} className="project">
           <div className="projectView">
             <h3>{this.state.project.name}</h3>
@@ -49,9 +52,13 @@ class ProjectView extends Component {
             <p>{this.state.project.act_start_date}</p>
             <p>{this.state.project.act_end_date}</p>
             <div className="project-view-links">
+              {(this.props.userData.user_type==="Manager") ?
               <Link className='editProject' to={`/projectEdit/${this.state.project.id}`}>Edit</Link>
+              : <Link to="#"></Link>}
               <br/>
-              <Link className='editProject'  to={`/projectTask${this.state.project.id}`} >Add Task</Link>
+              {(this.props.userData.user_type==="Manager") ?
+              <Link className='editProject'  to={`/projectTask/${this.state.project.id}`} >Add Task</Link>
+              : <Link to="#"></Link>}
               <br/>
               <Link className='editProject' to={`/projectList`}>All Projects</Link>
             </div>

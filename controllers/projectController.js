@@ -110,7 +110,17 @@ projectController={
     })
   },
 
-
+  findCollaboratorProjects: function(req, res){
+    Project.findCollaboratorProjects(req.params.user_id)
+    .then(project=>{
+      res.json({
+        message:"Done",
+        data:project,
+      })
+    }).catch(err=>{
+      res.status(500).json(err);
+    })
+  }
 
 }
 

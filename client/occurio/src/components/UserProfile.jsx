@@ -9,8 +9,10 @@ class UserProfile extends Component {
     constructor() {
         super();
         this.state = {
+            user_id:null,
             username: '',
             fullname: '',
+            user_type:'',
         }
         this.getDateTime = this.getDateTime.bind(this);
     }
@@ -20,8 +22,10 @@ class UserProfile extends Component {
             axios.get(`/user/id/${this.props.user.id}`)
                 .then(res => {
                     this.setState({
+                        user_id: res.data.user.id,
                         username: res.data.user.username,
                         fullname: res.data.user.fullname,
+                        user_type: res.data.user.user_type,
                         email: res.data.user.email,
                     })
                 }
@@ -56,8 +60,6 @@ class UserProfile extends Component {
                         <h1>Hey, {this.state.fullname}.</h1>
                         <h2>{this.state.username}</h2>
                         <h3>{this.state.email}</h3>
-                        <br/>
-                        <br/>
                         <Link className='viewProject'  to={`/userEdit/${this.props.user.id}`} >Edit Profile</Link>
                         <br/>
                         <br/>
@@ -71,8 +73,10 @@ class UserProfile extends Component {
                         <h2>{(this.getDateTime()).month} {(this.getDateTime()).date} {(this.getDateTime()).year}</h2>
                     </div>
                     <div className="links">
-                        <i className="fa fa-plus-square fa-2x" aria-hidden="true"></i>
-                        <Link to={'/project'}>Create A Project</Link>
+                            <i className="fa fa-plus-square fa-2x" aria-hidden="true"></i>
+                    {(this.state.user_type==="Manager") ?
+                            <Link to={'/project'}>Create A Project</Link>
+                    : <Link to="#">No access to create A Project</Link>}
                     </div>
                     <div className="links">
                         <i className="fa fa-thumb-tack fa-2x" aria-hidden="true"></i>
@@ -82,7 +86,7 @@ class UserProfile extends Component {
 
                     <div className="links">
                         <i className="fa fa-tasks fa-2x" aria-hidden="true"></i>
-                        <Link to={'/tasksList'}>View Your Tasks</Link>
+                        <Link to={`/usertasklist/${this.state.user_id}`}>View Your Tasks</Link>
                     </div>
                 </div>
             </div>

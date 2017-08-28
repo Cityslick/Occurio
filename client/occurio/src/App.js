@@ -26,6 +26,7 @@ import ProjectViewAll from './components/ProjectViewAll.jsx';
 import TaskCreate from './components/TaskCreate.jsx';
 import TaskEdit from './components/TaskEdit.jsx';
 import TaskList from './components/TaskList.jsx';
+import UserTaskList from './components/UserTaskList.jsx';
 //COLLABORATORS
 import CollaboratorList from './components/CollaboratorList.jsx';
 import CollaboratorCreate from './components/CollaboratorCreate.jsx';
@@ -96,11 +97,14 @@ class App extends Component {
            fireRedirect: true,
            currentPage: 'home',
            userDataLoaded:true,
+           loggedIn: (res.data.user),
+
        });
     }).catch(err => console.log(err));
   }
 
   logOut() {
+    //console.log("log out");
     // axios.get('/auth/logout')
     // .then(res => {
     //     console.log(res.body);
@@ -112,25 +116,6 @@ class App extends Component {
     //   }).catch(err => console.log(err));
    }
 
-   handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
-      e.preventDefault();
-      axios.post('/auth', {
-          username,
-          firstname,
-          lastname,
-          password,
-          email,
-          user_type,
-      }).then(res => {
-          this.setState({
-              auth: res.data.auth,
-              user: res.data.user,
-              fireRedirect: true,
-              currentPage: 'home',
-              userDataLoaded:true,
-          });
-      }).catch(err => console.log(err));
-  }
 
 // Handle Create Project
   handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
@@ -168,6 +153,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <header className="subheader"></header>
           <Header userData={this.state.user} logOut={this.logOut}/>
           <main>
             <Route exact path='/' render={() => <Home />} />
@@ -183,14 +169,22 @@ class App extends Component {
                 return <Login handleLoginSubmit={this.handleLoginSubmit} />
               }} />
 
-            <Route exact path='/register' render={() => <Register handleRegisterSubmit={this.handleRegisterSubmit}
-              username={this.props.username}
-              firstname={this.firstname}
-              lastname={this.lastname}
-              password={this.password}
-              email={this.email}
-              user_type={this.user_type} />}
-            />
+            <Route exact path='/register' render={() => {
+              if(this.state.loggedIn){
+                return <Redirect to={`user/id/:${this.state.user.id}`} Component={() =>
+                ( <UserProfile user={this.state.user} /> )
+                  } />
+                }
+              else
+                return <Register handleRegisterSubmit={this.handleRegisterSubmit}
+                    username={this.props.username}
+                    firstname={this.firstname}
+                    lastname={this.lastname}
+                    password={this.password}
+                    email={this.email}
+                    user_type={this.user_type} />
+              }} />
+
 
             <Route exact path="/user/id/:id" render={() => {
                if(!this.state.loggedIn)
@@ -212,13 +206,13 @@ class App extends Component {
 
             <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
 
-            <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project} />} />
+            <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project}  userData={this.state.user}  />} />
 
             <Route exact path="/projectTask/:id" render={(props) => <TaskCreate proj_id={props.match.params.id} user_id={this.state.user.id}  />} />
 
-            <Route exact path="/taskEdit/:task_id" render={(props) => <TaskEdit task_id={props.match.params.task_id}   />} />
+            <Route exact path="/taskEdit/:task_id" render={(props) => <TaskEdit task_id={props.match.params.task_id} userData={this.state.user} />} />
 
-            <Route exact path="/taskList" render={() => <TaskList  user_id={this.state.userData.id} />} />
+            <Route exact path="/usertasklist/:user_id" render={(props) => <UserTaskList userData={this.state.user}  user_id={props.match.params.user_id} />} />
 
             <Route exact path="/newMessage" render={() => <MessageCreate user={this.state.user}/>} />
 
