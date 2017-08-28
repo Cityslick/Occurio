@@ -10,6 +10,7 @@ class ProjectView extends Component {
     super(props);
     this.state = {
       project: null,
+      user:null,
       projectDataLoaded: false,
       fireRedirect: null,
     }
@@ -17,11 +18,11 @@ class ProjectView extends Component {
   }
   componentDidMount() {
     console.log("Im here ProjectView");
-    console.log(this.props.id)
-
+    console.log(this.props)
     axios.get(`/project/${this.props.id}`)
     .then(res => {
       this.setState({
+        user : this.props.userData,
         project: res.data.data,
         projectDataLoaded: true,
         fireRedirect: true,
@@ -35,6 +36,7 @@ class ProjectView extends Component {
   }
   renderProject(){
     if (this.state.projectDataLoaded){
+        console.log(this.props, "-")
         return <div key={this.state.project.id} className="project">
           <div className="projectView">
             <h3>{this.state.project.name}</h3>

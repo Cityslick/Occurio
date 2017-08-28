@@ -45,7 +45,7 @@ class UserProfileEdit extends Component {
 
     renderUserType(){
       if (this.state.userDataLoaded){
-        if (this.state.user_type==="Manager"){
+        if  (this.props.userData.user_type=="Manager"){
           return(
             <div className="drop-down">
               <div>
@@ -141,7 +141,7 @@ class UserProfileEdit extends Component {
                   </div>
                         <label>Username</label>
 
-                  {this.renderUserType}
+                  {this.renderUserType()}
 
                   <div>
                       <input className="form" type="submit" value="Enter" />

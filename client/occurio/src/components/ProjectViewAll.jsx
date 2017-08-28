@@ -31,7 +31,6 @@ class ViewUserProjects  extends Component {
   }
 
   renderProjectsList(){
-
     if (this.state.projectDataLoaded){
         return this.state.projects.map((project,index) => {
           return <div key={index} className="projects">
@@ -43,12 +42,12 @@ class ViewUserProjects  extends Component {
                         <div className="single-project">
                           <Link className='viewProject'  to={`/projectList/${project.id}`} >More Info</Link>
                         </div>
-                        <div className="add-task">
-                          <Link className='viewProject'  to={`/projectTask/${project.id}`} >Add Task</Link>
-                        </div>
-                        <div className="add-task">
+
+                      {(this.props.user.user_type=="Manager") ? <div className="add-task"><Link className='viewProject'  to={`/projectTask/${project.id}`} >Add Task</Link> </div>: ""}
+
+                        {(this.props.user.user_type=="Manager") ? <div className="add-task">
                           <Link className='viewProject'  to={`/projectCol/${project.id}`} >Add Collaborator</Link>
-                        </div>
+                        </div>: ""}
                       </div>
                     </div>
                 </div>
