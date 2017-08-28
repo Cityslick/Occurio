@@ -1,6 +1,7 @@
 ###### tom's note: will beautify this with images later
 
 # Okurio
+![](https://github.com/Cityslick/Occurio/blob/master/client/occurio/images/project3vanity.png?raw=true)
 ### Okurio is a project management tool optimized for small teams.
 ##### Okurio helps solve the problem of small team project management by aiming to keeping track of tasks among small groups of people. A project manager or administrator can create a profile that allows the creation of tasks/projects, the delegation of tasks, and the ability to keep track and tabs on collaborator activity. By empowering project managers and their subordinates (or collaborators, as we call them), Okurio hopes to boost project productivity and limit the stressfulness of project preparation and delegation, leaving room for teams and managers to focus on the truly difficult tasks.
 
