@@ -19,6 +19,11 @@
 #### Visual Design/Styleguide
 We began with a design phase that examined various popular/modern wireframe layouts and experimented accordingly. The result was a relatively conservative approach to landing and web page layout and dashboard design built to mirror slices of popular project management apps, Apple's constant move for simplicity/efforts away from skeumorphic design, Microsoft's experimentations on "tiled" informational elements in past years' OS', and modern UI-color schemes (gradients included). Our visual style guide (included below) discusses some elements of our design choices. We primarily use the font Quicksand, as well as a combination of bright purple and green motifs on our application.
 
+#### User Stories
+Okurio's focus is to empower project managers and small teams. 
+We focused on the pain points of project managers and collaborators.
+![](https://github.com/Cityslick/Occurio/blob/master/client/occurio/images/userstories.png?raw=true)
+
 #### Initial User Flow/Database
 The team discussed and sketched relational diagrams based on a database pattern that supported various connecting databases that constantly needed to draw from each other. The task of discussing how a project manager would approach daily task delegation at a small cafe allowed for the team to think about this in a more dynamic way. A "head honcho" figure of some sort (manager, owner, head barista) would take a look at their/her/his subordinates, delegate their tasks for the day, sort them in teams, and assign tasks accordingly. Our answer to this? Tables with dynamic relationships. Recognizing that we would need a database heirarchy of multiple tables/relations, the team built a simple relational database migration file consisting of the following: **USERS**, **PROJECTS**, **COLLABORATORS**, and **TASKS**. USERS stores info about our software's registrants. PROJECTS contain data about the project such as category/description, start/end dates, and status. COLLABORATORS define a relationship between PROJECTS and USERS. TASKS describes general details about the activites to be done. The key element of this database allows our app to scale internally, as we expect increasingly larger user teams and project-collaborator relationships.
 
