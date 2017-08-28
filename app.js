@@ -51,6 +51,9 @@ app.use("/collaborator",collaboratorsRoutes);
 const taskRoutes= require("./routes/taskRoutes");
 app.use("/task", taskRoutes);
 
+const messageRoutes= require("./routes/messagesRoutes");
+app.use("/messages", messageRoutes);
+
 app.get("*",(req, res)=>{
   res.status("404").json({
     message: "Page Not found(404)",

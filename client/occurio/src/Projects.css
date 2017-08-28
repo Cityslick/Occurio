@@ -17,6 +17,7 @@ html {
     flex-direction: column;
     width: 100%;
     font-family: 'Quicksand';
+    overflow: scroll;
 }
 
 .project-info {
@@ -35,7 +36,7 @@ html {
 
 .project-info:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5),
-    0 10px 10px rgba(0, 0, 0, 0.22); 
+    0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .project-name {

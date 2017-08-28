@@ -34,6 +34,10 @@ import UserProfile from './components/UserProfile.jsx';
 import UserProfileAll from './components/UserProfileAll.jsx';
 import UserProfileEdit from './components/UserProfileEdit.jsx';
 import UserPasswordEdit from './components/UserPasswordEdit.jsx';
+// MESSAGES
+import MessagesAll from './components/MessagesAll.jsx';
+import MessageCreate from './components/MessageCreate.jsx';
+import MessageSingle from './components/MessageSingle.jsx';
 
 // TEST
 import Todolist from './components/sidenavtest.js'
@@ -215,6 +219,12 @@ class App extends Component {
             <Route exact path="/taskEdit/:task_id" render={(props) => <TaskEdit task_id={props.match.params.task_id}   />} />
 
             <Route exact path="/taskList" render={() => <TaskList  user_id={this.state.userData.id} />} />
+
+            <Route exact path="/newMessage" render={() => <MessageCreate user={this.state.user}/>} />
+
+            <Route exact path="/messages" render={() => <MessagesAll user={this.state.user}/>} />
+
+            <Route exact path="/messages/:id" render={(props) => <MessageSingle id={props.match.params.id} message={this.message} />} />
 
           </main>
           <Footer />
