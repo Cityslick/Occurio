@@ -11,8 +11,8 @@ class ProjectCreate extends Component {
     this.state = {
       name: '',
       description: '',
-      category: '',
-      status: '',
+      category: 'Administrative',
+      status: 'Pending',
       planned_start_date: '',
       planned_end_date: '',
       act_start_date: '',
@@ -21,6 +21,21 @@ class ProjectCreate extends Component {
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleCreateProject= this.handleCreateProject.bind(this);
+    this.clearComponents=this.clearComponents.bind(this);
+  }
+
+  clearComponents(){
+    this.setState({
+      name: '',
+      description: '',
+      category: 'Administrative',
+      status: 'Pending',
+      planned_start_date: '',
+      planned_end_date: '',
+      act_start_date: '',
+      act_end_date: '',
+    })
+
   }
 
   handleCreateProject(e, name, description, category, status, planned_start_date, planned_end_date) {
@@ -35,6 +50,7 @@ class ProjectCreate extends Component {
       planned_end_date,
       user_id,
     }).then(res => {
+      this.clearComponents();
       this.setState({
         user: res.data.user,
         project: res.data,
@@ -86,8 +102,8 @@ class ProjectCreate extends Component {
             <div className="status-input">
               <label> STATUS </label>
               <select  className="select" name="status" value={this.state.status} onChange={this.handleInputChange} required>
-                <option>Started</option>
                 <option>Pending</option>
+                <option>Started</option>
                 <option>Complete</option>
               </select>
             </div>

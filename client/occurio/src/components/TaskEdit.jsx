@@ -30,6 +30,7 @@ class TaskList extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handlerLoadCollaborator = this.handlerLoadCollaborator.bind(this);
     this.getUserInfo=this.getUserInfo.bind(this);
+    this.clearComponents= this.clearComponents.bind(this);
   }
 
   getUserInfo(){
@@ -44,7 +45,7 @@ class TaskList extends Component {
   }
 
   componentDidMount() {
-    this.getUserInfo();
+
     axios.get(`/task/${this.props.task_id}`)
     .then(res=>{
       this.handlerLoadCollaborator(res.data.data.proj_id);
@@ -62,7 +63,8 @@ class TaskList extends Component {
         ticket: res.data.data.ticket,
         taskData:res.data.data,
         taskDataLoaded: true,
-      })
+      });
+      this.getUserInfo();
     }).catch(err=>{
       console.log(err.json);
     })
@@ -79,7 +81,9 @@ class TaskList extends Component {
     })
   }
 
-  handleTaskSubmit(e, user_id, task_id, name, description, start_date, end_date, act_start_date, act_end_date, status, ticket,user_type) {
+  handleTaskSubmit(e, user_id, task_id, name, description, start_date, end_date, act_start_date, act_end_date, status, ticket, user_type) {
+
+    user_type=this.state.user_type;
     e.preventDefault();
     axios.put(`/task/${task_id}`, {
       task_id,
@@ -93,12 +97,12 @@ class TaskList extends Component {
       status,
       ticket,
       user_type,
-    }).then(
+    }).then(()=>{
       this.setState({
         fireRedirect:true,
-
       })
-    ).catch(err => console.log(err));
+      this.clearComponents();
+    }).catch(err => console.log(err));
 
   }
 
@@ -108,6 +112,17 @@ class TaskList extends Component {
     this.setState({
       [name]: value,
     });
+  }
+
+ clearComponents(){
+    this.setState({
+      name:"",
+      description:"",
+      ticket:"",
+      start_date:"",
+      start_date:"",
+      status:"Pending",
+    })
   }
 
   renderformNormalUser(){

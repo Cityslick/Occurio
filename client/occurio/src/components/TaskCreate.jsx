@@ -49,11 +49,14 @@ class TaskList extends Component {
   }
 
   clearComponents(){
-    document.getElementById("name").value="";
-    document.getElementById("description").value="";
-    document.getElementById("ticket").value="";
-    document.getElementById("start_date").value="";
-    document.getElementById("end_date").value="";
+    this.setState({
+      name:"",
+      description:"",
+      ticket:"",
+      start_date:"",
+      start_date:"",
+      status:"Pending",
+    })
   }
 
   handlerLoadCollaborator(){
@@ -152,7 +155,7 @@ class TaskList extends Component {
           {(this.state.taskDataLoaded) ?
             this.state.taskData.map((task,index) => {
               return <tr key={task.id}>
-                <td>{index}</td>
+                <td>{task.id}</td>
                 <td>{task.name}</td>
                 <td>{task.description}</td>
                 <td>{task.start_datestr}</td>
@@ -194,7 +197,7 @@ class TaskList extends Component {
                   { (this.state.collaboratorDataLoaded) ?
                   this.state.collaboratorData.map((collaborator,index) => {
                     return <option key={collaborator.user_id_new} id={collaborator.username}
-                    name="user_id"  value={collaborator.user_id_new} >{collaborator.user_id_new} {collaborator.username}</option>
+                    name="user_id"  value={collaborator.user_id_new} > {collaborator.username}</option>
                   })
                 : ""}
                 </select>

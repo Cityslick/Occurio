@@ -49,6 +49,7 @@ class UserProfileEdit extends Component {
         if  (this.props.userData.user_type=="Manager"){
           return(
             <div className="drop-down">
+              <label>User-Type</label>
               <div>
                 <select  name="user_type" value ={this.state.user_type} onChange={this.handleInputChange}>
                     <option value="Manager"      name="user_type">     Manager</option>
@@ -142,8 +143,6 @@ class UserProfileEdit extends Component {
                         <label>Link to Project</label>
                         <input type="text" name="proj_link" value={this.state.proj_link} placeholder="" onChange={this.handleInputChange} />
                     </div>
-                            <label>User-Type</label>
-
                   {this.renderUserType()}
                     <div>
                         <input className="form" type="submit" value="Enter" />
