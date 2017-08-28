@@ -14,7 +14,7 @@ class Register extends Component {
             email: '',
             img_url: '',
             proj_link: '',
-            user_type: '',
+            user_type: 'Manager',
         }
         this.handleInputChange = this.handleInputChange.bind(this);
     }

@@ -109,7 +109,7 @@ class App extends Component {
     //   }).catch(err => console.log(err));
    }
 
-   handleRegisterSubmit(e, username, firstname, lastname, password, email, user_type) {
+   handleRegisterSubmit(e, username, firstname, lastname, password, email, img_url, proj_link,user_type) {
       e.preventDefault();
       axios.post('/auth', {
           username,
@@ -117,6 +117,8 @@ class App extends Component {
           lastname,
           password,
           email,
+          img_url,
+          proj_link,
           user_type,
       }).then(res => {
           this.setState({
@@ -209,7 +211,7 @@ class App extends Component {
 
             <Route exact path="/project/:id" render={(props) => <ProjectView id={props.match.params.id} project={this.project} />} />
 
-            <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project} />} />
+            <Route exact path="/projectList/:id" render={(props) => <ProjectView id={props.match.params.id}   presentDetail={true} project={this.project}  userData={this.state.user}  />} />
 
             <Route exact path="/projectTask/:id" render={(props) => <TaskCreate proj_id={props.match.params.id} user_id={this.state.user.id}  />} />
 

@@ -5,45 +5,62 @@ import '../App.css';
 
 class UserProfileEdit extends Component {
     constructor() {
-        super();
-        this.state = {
-            username: '',
-            firstname: '',
-            lastname: '',
-            password: '',
-            email: '',
-            img_url: '',
-            proj_link: '',
-            user_type: '',
-            userData: null,
-            userDataLoaded: false,
-        }
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleSubmit= this.handleSubmit.bind(this);
-        this.renderUserProfileEdit = this.renderUserProfileEdit.bind(this);
+      super();
+      this.state = {
+        username: '',
+        firstname: '',
+        lastname: '',
+        password: '',
+        email: '',
+        img_url: '',
+        proj_link: '',
+        user_type: '',
+        userData: null,
+        userDataLoaded: false,
+      }
+      this.handleInputChange = this.handleInputChange.bind(this);
+      this.handleSubmit= this.handleSubmit.bind(this);
+      this.renderUserProfileEdit = this.renderUserProfileEdit.bind(this);
+      this.renderUserType= this.renderUserType.bind(this);
     }
 
     componentDidMount() {
-        if (this.props.userData) {
-            axios.get(`/user/id/${this.props.userData.id}`)
-                .then(res => {
-                    this.setState({
-                        userData: res.data.user,
-                        username: res.data.user.username,
-                        firstname: res.data.user.firstname,
-                        lastname: res.data.user.lastname,
-                        email: res.data.user.email,
-                        img_url:res.data.user.img_url,
-                        proj_link: res.data.user.proj_link,
-                        user_type: res.data.user.user_type,
-                        userDataLoaded: true,
-                    })
-                }
-            )
-        }
-
-        //   }).catch(err => console.log(err));
+      if (this.props.userData) {
+        axios.get(`/user/id/${this.props.userData.id}`)
+          .then(res => {
+            this.setState({
+              userData: res.data.user,
+              username: res.data.user.username,
+              firstname: res.data.user.firstname,
+              lastname: res.data.user.lastname,
+              email: res.data.user.email,
+              img_url:res.data.user.img_url,
+              proj_link: res.data.user.proj_link,
+              user_type: res.data.user.user_type,
+              userDataLoaded: true,
+            })
+          }
+        )
       }
+    }
+
+    renderUserType(){
+      if (this.state.userDataLoaded){
+        if  (this.props.userData.user_type=="Manager"){
+          return(
+            <div className="drop-down">
+              <div>
+                <select  name="user_type" value ={this.state.user_type} onChange={this.handleInputChange}>
+                    <option value="Manager"      name="user_type">     Manager</option>
+                    <option value="Collaborator" name="user_type">Collaborator</option>
+                    <option value="Other"        name="user_type">       Other</option>
+                </select>
+              </div>
+            </div>
+          )
+        }
+      }
+    }
 
     handleSubmit(e, username, firstname, lastname, password, email, img_url, proj_link,user_type) {
         e.preventDefault();
@@ -127,16 +144,7 @@ class UserProfileEdit extends Component {
                     </div>
                             <label>User-Type</label>
 
-                    <div className="drop-down">
-                        <div>
-                            <select  name="user_type" value ={this.state.user_type} onChange={this.handleInputChange}>
-                                <option value="Manager"      name="user_type">     Manager</option>
-                                <option value="Collaborator" name="user_type">Collaborator</option>
-                                <option value="Other"        name="user_type">       Other</option>
-                            </select>
-                        </div>
-                    </div>
-
+                  {this.renderUserType()}
                     <div>
                         <input className="form" type="submit" value="Enter" />
                     </div>

@@ -2,8 +2,7 @@ const db= require("../db/config");
 
 const task={
   assignTasks: function(task){
-    console.log(task);
-    return db.one("INSERT INTO tasks(user_id, proj_id, name, description, start_date, end_date, status, ticket) VALUES( $1, $2, $3, $4, $5, $6, $7, $8 RETURNING *)",
+    return db.one("INSERT INTO tasks(user_id, proj_id, name, description, start_date, end_date, status, ticket) VALUES( $1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
                    [task.user_id, task.proj_id, task.name, task.description, task.start_date, task.end_date,
                    task.status, task.ticket])
   },
