@@ -17,8 +17,21 @@ class Register extends Component {
             user_type: 'Manager',
         }
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.clearComponents = this.clearComponents.bind(this);
     }
 
+    clearComponents(){
+        this.setState({
+            username: '',
+            firstname: '',
+            lastname: '',
+            password: '',
+            email: '',
+            img_url: '',
+            proj_link: '',
+            user_type: 'Manager',
+        })
+    }
     handleInputChange(e) {
         const name = e.target.name;
         const value = e.target.value;
@@ -31,7 +44,7 @@ class Register extends Component {
         return(
             <div className="register">
               <div className="register-form">
-                  <form onSubmit={(e) => this.props.handleRegisterSubmit(
+                  <form onSubmit={(e)=>this.props.handleRegisterSubmit(
                     e,
                     this.state.username,
                     this.state.firstname,

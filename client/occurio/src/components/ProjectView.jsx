@@ -30,8 +30,9 @@ class ProjectView extends Component {
     }).catch(err => console.log(err));
   }
   showTask(){
+    console.log(this.props.userData);
     if(this.props.presentDetail){
-      return <TaskList proj_id={this.state.project.id} user_id={0}  proj={true} />
+      return <TaskList proj_id={this.state.project.id}  user_id={this.props.userData.id}  proj={true} />
     }
   }
   renderProject(){
@@ -51,9 +52,13 @@ class ProjectView extends Component {
             <p>{this.state.project.act_start_date}</p>
             <p>{this.state.project.act_end_date}</p>
             <div className="project-view-links">
+              {(this.props.userData.user_type==="Manager") ?
               <Link className='editProject' to={`/projectEdit/${this.state.project.id}`}>Edit</Link>
+              : <Link to="#"></Link>}
               <br/>
-              <Link className='editProject'  to={`/projectTask${this.state.project.id}`} >Add Task</Link>
+              {(this.props.userData.user_type==="Manager") ?
+              <Link className='editProject'  to={`/projectTask/${this.state.project.id}`} >Add Task</Link>
+              : <Link to="#"></Link>}
               <br/>
               <Link className='editProject' to={`/projectList`}>All Projects</Link>
             </div>

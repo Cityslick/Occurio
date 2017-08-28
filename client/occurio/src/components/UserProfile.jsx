@@ -9,6 +9,7 @@ class UserProfile extends Component {
     constructor() {
         super();
         this.state = {
+            user_id:null,
             username: '',
             fullname: '',
             user_type:'',
@@ -21,6 +22,7 @@ class UserProfile extends Component {
             axios.get(`/user/id/${this.props.user.id}`)
                 .then(res => {
                     this.setState({
+                        user_id: res.data.user.id,
                         username: res.data.user.username,
                         fullname: res.data.user.fullname,
                         user_type: res.data.user.user_type,
@@ -70,7 +72,7 @@ class UserProfile extends Component {
                         <i className="fa fa-calendar fa-2x" aria-hidden="true"></i>
                         <h2>{(this.getDateTime()).month} {(this.getDateTime()).date} {(this.getDateTime()).year}</h2>
                     </div>
-                        <div className="links">
+                    <div className="links">
                             <i className="fa fa-plus-square fa-2x" aria-hidden="true"></i>
                     {(this.state.user_type==="Manager") ?
                             <Link to={'/project'}>Create A Project</Link>
@@ -84,7 +86,7 @@ class UserProfile extends Component {
 
                     <div className="links">
                         <i className="fa fa-tasks fa-2x" aria-hidden="true"></i>
-                        <Link to={'/tasks'}>View Your Tasks</Link>
+                        <Link to={`/usertasklist/${this.state.user_id}`}>View Your Tasks</Link>
                     </div>
                 </div>
             </div>

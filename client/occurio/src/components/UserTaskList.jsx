@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {
+  Link
+} from 'react-router-dom';
 
 import TaskView from './TaskView';
 import ProjectView from './ProjectView';
@@ -11,7 +14,6 @@ class TaskList extends Component {
     this.state = {
       taskData: null,
       taskDataLoaded: false,
-      task_id:0,
     },
     this.renderTaskList =this.renderTaskList.bind(this);
     this.handlerDeleteTask = this.handlerDeleteTask.bind(this);
@@ -19,18 +21,16 @@ class TaskList extends Component {
 
   componentDidMount() {
     this.handlerReloadList();
-    this.setState({
-      task_id:this.props.task_id,
-    })
   }
 
   handlerReloadList() {
     //same view to render users or projects task
+    console.log(this.props);
     var taskRout;
     let proj_id=this.props.proj_id;
     let user_id=this.props.user_id;
     let filter="";
-    taskRout=`/task/${this.props.proj_id}`
+    taskRout=(`/task/user/${this.props.user_id}`)
     axios.post(taskRout,{
        proj_id,
        user_id,
@@ -59,7 +59,7 @@ class TaskList extends Component {
   renderTaskList() {
     if (this.state.taskDataLoaded) {
       return this.state.taskData.map((task,index) => {
-        return <TaskView handlerDeleteTask={this.handlerDeleteTask} userData={this.props.userData} task={task} index={index+1} key={task.id} />
+        return <TaskView handlerDeleteTask={this.handlerDeleteTask} task={task}  user_id={this.props.user_id} index={index+1} key={task.id} />
       });
     }
   }
