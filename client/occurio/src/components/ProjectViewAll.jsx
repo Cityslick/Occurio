@@ -10,7 +10,6 @@ class ViewUserProjects  extends Component {
     this.state = {
       projects: null,
       projectDataLoaded: false,
-      fireRedirect:null,
     },
     this.renderProjectsList = this.renderProjectsList.bind(this);
   }
@@ -25,7 +24,6 @@ class ViewUserProjects  extends Component {
       this.setState({
         projects: res.data.data,
         projectDataLoaded: true,
-        fireRedirect: true,
       })
     }).catch(err => console.log(err));
   }
