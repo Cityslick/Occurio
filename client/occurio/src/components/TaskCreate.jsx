@@ -66,7 +66,7 @@ class TaskList extends Component {
         console.log(res.data.data);
         this.setState({
           collaboratorData: res.data.data,
-          user_id:res.data.data[0].user_id_new,
+          user_id: res.data.data[0].user_id_new,
           collaboratorDataLoaded: true,
         })
       }
