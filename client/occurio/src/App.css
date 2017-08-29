@@ -4,6 +4,10 @@
   color: black;
 }
 
+
+textarea{
+  font-size: 18px;
+}
 main {
   background-color: #F5F5F5;
 }

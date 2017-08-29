@@ -221,7 +221,6 @@ class App extends Component {
             <Route exact path="/messages/:id" render={(props) => <MessageSingle id={props.match.params.id} message={this.message} />} />
 
           </main>
-          <Footer />
         </div>
       </Router>
     );
