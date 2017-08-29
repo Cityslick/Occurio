@@ -6,9 +6,9 @@ class Message extends Component {
     super();
     this.state = {
       userDataLoaded: false,
-      user_id: 0,
-      message_id: 0,
-      sentTo: null,
+      sender:null,
+      message: 0,
+      reciever: null,
       new_id: null,
       messagesListData:null,
       messagesListDataLoaded:false,
@@ -23,22 +23,29 @@ class Message extends Component {
     this.renderMessageForm = this.renderMessageForm.bind(this);
   }
   componentDidMount() {
+    this.loadUsersDropDown();
     axios.get('/messages')
       .then(res=> {
         this.setState({
           userDataLoaded: true,
           user: this.props,
+          sender:1,
         })
       })
   }
 
   loadUsersDropDown(){
-    axios.get(`/collaborator/${this.state.user_id}`)
-    .then(res=>{
+    let proj_id=0;
+    let user_id=0;
+    axios.put(`/collaborator`,{
+       proj_id,
+       user_id,})
+       .then(res=>{
       if(res.data.data.length>0){
+        console.log(res.data.data);
         this.setState({
-          messagesListData: res.data.data,
-          messagesListDataLoaded: true,
+          usersList: res.data.data,
+          usersListLoaded: true,
         })
       }
     }).catch(err=>{
@@ -52,14 +59,17 @@ class Message extends Component {
     this.setState({
       [name]: value,
     });
-    console.log(value)
+    console.log(name, "--",value)
   }
 
   handleMessageSubmit(e, sender, message, reciever) {
     e.preventDefault();
+    console.log(sender, message, reciever);
     axios.post('/messages', {
       sender,
       message,
+      reciever,
+      reciever,
       reciever,
     }).then(res => {
       this.setState({
@@ -73,22 +83,23 @@ class Message extends Component {
       <div className="messageform">
         <form onSubmit={(e) => this.handleMessageSubmit(
             e,
-            this.state.user_id,
-            this.state.message_id
+            this.state.sender,
+            this.state.message,
+            this.state.reciever,
           )}>
           <div>
             <label className="labelInput">Collaborator</label>
-            <select id="user_id"  name="user_id" onChange={this.handleInputChange} >
+            <select id="reciever"  name="reciever" onChange={this.handleInputChange} >
               { (this.state.usersListLoaded) ?
               this.state.usersList.map((collaborator,index) => {
                 return <option key={collaborator.id}
-                name="user_id"  value={collaborator.id} >{collaborator.username}</option>
+                name="reciever"  value={collaborator.id} >{collaborator.username}</option>
               })
              : ""}
             </select>
           </div>
           <label> Message
-            <input type="text" name="name"  value={this.state.name} onChange={this.handleInputChange} required />
+            <input type="text" name="message"  value={this.state.message} onChange={this.handleInputChange} required />
           </label>
           <div>
             <input className="form" type="submit" value="Send" />

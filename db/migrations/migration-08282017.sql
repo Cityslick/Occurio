@@ -5,5 +5,5 @@ CREATE TABLE IF NOT EXISTS messages (
   sender INTEGER REFERENCES users(id),
   message TEXT,
   reciever INTEGER REFERENCES users(id),
-  user_id INTEGER REFERENCES users(id)
+  user_id INTEGER REFERENCES users(id),
 )

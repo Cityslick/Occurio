@@ -3,6 +3,7 @@ const Message = require('../models/messages.js')
 messageController = {
 
   create: function(req, res) {
+    console.log("COntroler", req.body)
     Message.create({
       sender: req.body.sender,
       message: req.body.message,
