@@ -2,8 +2,9 @@ const db = require('../db/config');
 const Messages = {}
 
 Messages.create = message => {
+  console.log("Model", message)
   return db.one(`INSERT INTO messages (sender, message, reciever) VALUES ($1, $2, $3) RETURNING * `,
-[message.sender, message.message, message.reciever,])
+[message.sender, message.message, message.reciever])
 }
 
 Messages.findAll = id => {
