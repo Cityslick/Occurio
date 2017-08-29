@@ -7,13 +7,14 @@ Messages.create = message => {
 [message.sender, message.message, message.reciever])
 }
 
-Messages.findAll = id => {
-  return db.query(`SELECT * FROM messages WHERE id = $1`, [id])
+Messages.findAll = sender => {
+  return db.query(`SELECT * FROM messages WHERE sender = $1`, [sender])
 }
 
-Messages.findById = messageId => {
-  return db.one(`SELECT * FROM messages WHERE id = $1`, [messageid])
-}
+Messages.findAllByReceiver = (sender, reciever) => {
+  return db.query(`SELECT * FROM messages WHERE sender = $1 and reciever= $2`, [sender,reciever])
+},
+
 
 Messages.delete = messageId => {
   return db.none(`DELETE FROM messages WHERE id = $1`, [messageId])

@@ -64,6 +64,9 @@ class UserProfile extends Component {
                         <br/>
                         <br/>
                         <Link className='viewProject'  to={`/userPassword/${this.props.user.id}`} >Change Password</Link>
+                        <br/>
+                        <br/>
+                        <Link className='viewProject'  to={`/newMessage`} >Messages</Link>
                     </div>
                 </div>
                 <div className="user-links">
