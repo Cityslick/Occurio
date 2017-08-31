@@ -7,8 +7,8 @@ Messages.create = message => {
 [message.sender, message.message, message.reciever])
 }
 
-Messages.findAll = sender => {
-  return db.query(`SELECT * FROM messages WHERE sender = $1`, [sender])
+Messages.findAll = reciever => {
+  return db.query(`SELECT * FROM messages WHERE reciever = $1`, [reciever])
 }
 
 Messages.findAllByReceiver = (sender, reciever) => {

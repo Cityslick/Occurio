@@ -12,14 +12,6 @@ main {
   background-color: #F5F5F5;
 }
 
-/* Messages */
-.messageform {
-
-  display: flex;
-  justify-content: center;
-  padding-top: 0px;
-}
-
 /* Projects */
 .project-create {
   height: 100vh;
