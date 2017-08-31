@@ -66,15 +66,15 @@ class UserProfile extends Component {
                         <Link className='viewProject'  to={`/userPassword/${this.props.user.id}`} >Change Password</Link>
                         <br/>
                         <br/>
-                        <Link className='viewProject'  to={`/newMessage`} >Messages</Link>
+                        <Link className='viewProject'  to={`/messages`} >Messages</Link>
                     </div>
                 </div>
                 <div className="user-links">
-                    <div className="links" id="timenow">
-                        <span><h2>{(this.getDateTime()).day}</h2></span>
-                        <i className="fa fa-calendar fa-2x" aria-hidden="true"></i>
-                        <h2>{(this.getDateTime()).month} {(this.getDateTime()).date} {(this.getDateTime()).year}</h2>
-                    </div>
+                  <div className="links">
+                      <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+
+                      <Link to={'/messages'}>View Your Messages</Link>
+                  </div>
                     <div className="links">
                             <i className="fa fa-plus-square fa-2x" aria-hidden="true"></i>
                     {(this.state.user_type==="Manager") ?

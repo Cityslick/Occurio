@@ -20,7 +20,7 @@ messageController = {
   },
 
   findAll: function(req, res) {
-    Message.findAll(req.params.sender)
+    Message.findAll(req.params.id)
     .then(message => {
       res.json({
         message: 'Done',

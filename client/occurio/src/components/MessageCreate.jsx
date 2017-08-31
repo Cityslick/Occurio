@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import MessagesAll from './MessagesAll';
 import axios from 'axios';
+import '../Messages.css';
 
 class Message extends Component {
   constructor() {
@@ -15,8 +17,6 @@ class Message extends Component {
       messagesListDataLoaded:false,
       usersList:null,
       usersListLoaded:false,
-      projectData:null,
-      projectDataLoaded:false,
     }
     this.loadUsersDropDown = this.loadUsersDropDown.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -27,13 +27,15 @@ class Message extends Component {
   }
   componentDidMount() {
     this.loadUsersDropDown();
-    axios.get('/messages')
+    axios.post(`/messages/${this.props.user.id}`)
       .then(res=> {
         this.setState({
           userDataLoaded: true,
           user: this.props,
-          sender:this.props.user.id,
+          messages: res.data.data,
+          messageDataLoaded: true,
         })
+        console.log("yo ninja!", this.state.messages);
       })
   }
 
@@ -50,8 +52,7 @@ class Message extends Component {
           usersList: res.data.data,
           usersListLoaded: true,
           reciever: res.data.data[0].id,
-          sender:this.props.user.id
-
+          sender:this.props.user.id,
         })
       }
     }).catch(err=>{
@@ -74,8 +75,6 @@ class Message extends Component {
       sender,
       message,
       reciever,
-      reciever,
-      reciever,
     }).then(res => {
       this.clearMessage();
     }).catch(err => console.log(err));
@@ -90,11 +89,12 @@ class Message extends Component {
   renderMessages() {
     if (this.state.messageDataLoaded){
         return this.state.messages.map((message) => {
-          return <div className="messages">
-                  <h2>{message.name}</h2>
-                  <Link className='viewProject'  to={`/messages/${message.id}`} >View Message</Link>
+          return <div className="message">
+                  <h1>{message.message}</h1>
                   <br/>
-                  <Link className='editProject' to={`/messages`}>All Messages</Link>
+                  <Link className='viewProject'  to={`/messages/${message.reciever}`} >View Message</Link>
+                  <Link className='viewProject'  to={`/messages/${message.reciever}`} >Delete</Link>
+                  <br/>
               </div>
         })}
   }
@@ -134,7 +134,9 @@ class Message extends Component {
     return (
       <div className='messageComponent'>
         {this.renderMessageForm()}
-        {this.renderMessages()}
+        <div className='messages'>
+          {this.renderMessages()}
+        </div>
       </div>
     )
   }
