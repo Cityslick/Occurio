@@ -60,21 +60,18 @@ class UserProfile extends Component {
                         <h1>Hey, {this.state.fullname}.</h1>
                         <h2>{this.state.username}</h2>
                         <h3>{this.state.email}</h3>
-                        <Link className='viewProject'  to={`/userEdit/${this.props.user.id}`} >Edit Profile</Link>
+                        <Link className='link-to' to={`/userEdit/${this.props.user.id}`} >Edit Profile</Link>
                         <br/>
                         <br/>
-                        <Link className='viewProject'  to={`/userPassword/${this.props.user.id}`} >Change Password</Link>
-                        <br/>
-                        <br/>
-                        <Link className='viewProject'  to={`/messages`} >Messages</Link>
+                        <Link className='link-to'   to={`/userPassword/${this.props.user.id}`} >Change Password</Link>
                     </div>
                 </div>
                 <div className="user-links">
-                  <div className="links">
-                      <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
-
-                      <Link to={'/messages'}>View Your Messages</Link>
-                  </div>
+                    <div className="links" id="timenow">
+                        <span><h2>{(this.getDateTime()).day}</h2></span>
+                        <i className="fa fa-calendar fa-2x" aria-hidden="true"></i>
+                        <h2>{(this.getDateTime()).month} {(this.getDateTime()).date} {(this.getDateTime()).year}</h2>
+                    </div>
                     <div className="links">
                             <i className="fa fa-plus-square fa-2x" aria-hidden="true"></i>
                     {(this.state.user_type==="Manager") ?
@@ -90,6 +87,10 @@ class UserProfile extends Component {
                     <div className="links">
                         <i className="fa fa-tasks fa-2x" aria-hidden="true"></i>
                         <Link to={`/usertasklist/${this.state.user_id}`}>View Your Tasks</Link>
+
+                        <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                        <Link to={'/messages'}>View Your Messages</Link>
+
                     </div>
                 </div>
             </div>

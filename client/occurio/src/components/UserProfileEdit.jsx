@@ -44,24 +44,6 @@ class UserProfileEdit extends Component {
       }
     }
 
-    renderUserType(){
-      if (this.state.userDataLoaded){
-        if  (this.props.userData.user_type=="Manager"){
-          return(
-            <div className="drop-down">
-              <label>User-Type</label>
-              <div>
-                <select  name="user_type" value ={this.state.user_type} onChange={this.handleInputChange}>
-                    <option value="Manager"      name="user_type">     Manager</option>
-                    <option value="Collaborator" name="user_type">Collaborator</option>
-                    <option value="Other"        name="user_type">       Other</option>
-                </select>
-              </div>
-            </div>
-          )
-        }
-      }
-    }
 
     handleSubmit(e, username, firstname, lastname, password, email, img_url, proj_link,user_type) {
         e.preventDefault();
@@ -95,13 +77,33 @@ class UserProfileEdit extends Component {
         })
     }
 
+    renderUserType(){
+        if (this.state.userDataLoaded){
+            if  (this.props.userData.user_type=="Manager"){
+                return(
+                    <div className="dropdown-container">
+                        <label>User-Type</label>
+                        <div>
+                            <select  name="user_type" value ={this.state.user_type} onChange={this.handleInputChange}>
+                                <option value="Manager"      name="user_type">     Manager</option>
+                                <option value="Collaborator" name="user_type">Collaborator</option>
+                                <option value="Other"        name="user_type">       Other</option>
+                            </select>
+                        </div>
+                    </div>
+                )
+            }
+        }
+    }
+
     renderUserProfileEdit() {
       if (this.state.userDataLoaded) {
         return (
-          <div className="edit-container">
-            <div className="edit-title">
-                <h1 className='hero-text2'>Edit Profile</h1>
-            </div>
+          <div className="main-container">
+              <div className="sub-container">
+                <div>
+                    <h1 className='hero-text2'>Edit Profile</h1>
+                </div>
                 <div className="edit-form">
                     <form onSubmit={(e) => this.handleSubmit(
                     e,
@@ -114,41 +116,42 @@ class UserProfileEdit extends Component {
                     this.state.proj_link,
                     this.state.user_type
                     )}>
-                    <div className="edit-input">
+                    <div className="input-container">
                         <label>Username</label>
-                        <input type="text" name="username" value={this.state.username} placeholder="" onChange={this.handleInputChange} required/>
+                        <input className="small-input"  type="text" name="username" value={this.state.username} placeholder="" onChange={this.handleInputChange} required/>
                     </div>
 
-                    <div className="edit-input">
+                    <div className="input-container">
                         <label>First Name</label>
-                        <input type="text" name="firstname" value={this.state.firstname} placeholder="" onChange={this.handleInputChange} required />
+                        <input  className="normal-input"  type="text" name="firstname" value={this.state.firstname} placeholder="" onChange={this.handleInputChange} required />
                     </div>
 
-                    <div className="edit-input">
+                    <div className="input-container">
                         <label>Last Name</label>
-                        <input type="text" name="lastname" value={this.state.lastname} placeholder="" onChange={this.handleInputChange} required />
+                        <input  className="normal-input"  type="text" name="lastname" value={this.state.lastname} placeholder="" onChange={this.handleInputChange} required />
                     </div>
 
-                    <div className="edit-input" id="email">
-                            <label>Email</label>
-                        <input type="email" name="email" value={this.state.email} placeholder="" onChange={this.handleInputChange} required />
+                    <div className="input-container" id="email">
+                        <label>Email</label>
+                        <input className="small-input" type="email" name="email" value={this.state.email} placeholder="" onChange={this.handleInputChange} required />
                     </div>
 
-                    <div className="edit-input">
-                            <label>Image URL</label>
-                        <input type="text" name="img_url" value={this.state.img_url} placeholder="" onChange={this.handleInputChange} />
+                    <div className="input-container">
+                        <label>Image URL</label>
+                        <input className="normal-input"  type="text" name="img_url" value={this.state.img_url} placeholder="" onChange={this.handleInputChange} />
                     </div>
 
-                    <div className="edit-input">
+                    <div className="input-container">
                         <label>Link to Project</label>
-                        <input type="text" name="proj_link" value={this.state.proj_link} placeholder="" onChange={this.handleInputChange} />
+                        <input className="normal-input" type="text" name="proj_link" value={this.state.proj_link} placeholder="" onChange={this.handleInputChange} />
                     </div>
-                  {this.renderUserType()}
+                    {this.renderUserType()}
                     <div>
                         <input className="form" type="submit" value="Enter" />
                     </div>
                     </form>
                 </div>
+          </div>
           </div>
         )
       }
@@ -157,8 +160,8 @@ class UserProfileEdit extends Component {
     render(){
         return(
             <div className="register">
-              {this.renderUserProfileEdit()}
-              {this.state.fireRedirect
+                {this.renderUserProfileEdit()}
+                {this.state.fireRedirect
                 ? <Redirect push to={`/user/id/${this.props.userData.id}`} />
                 : ''}
             </div>
