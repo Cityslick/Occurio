@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-
-// LOGIN/REGISTER
-import Login from './Login';
-import Register from './Register';
-import SideNavDrop from './SideNavDrop';
-
+import '../App.css';
 import { Link } from 'react-router-dom';
-
 
 class Header extends Component {
   constructor() {
@@ -32,15 +26,14 @@ class Header extends Component {
     return (
       <header className="header">
             <div className="nav">
-              <h1 className="logo"><Link to={'/'}>Okurio</Link></h1>
+              <h1 className="main-header"><Link to={'/'}>Okurio</Link></h1>
             </div>
             <div className="nav2">
               <ul className="nav-list">
-                <li className="nav-item"><Link to={'/login'}>{this.state.menuDescription}</Link></li>
-                <li className="nav-item" onClick={this.props.logOut()}>Log out</li>
+                <li className="nav-item "><Link to={'/login'}>{this.state.menuDescription}</Link></li>
+                <li className="nav-item" ><Link to={'/'}  > Log out</Link></li>
               </ul>
             </div>
-            <SideNavDrop />
       </header>
     )
   }

@@ -1,20 +1,103 @@
 /* FONTS */
-@import url('https://fonts.googleapis.com/css?family=Quicksand');
+/*@import url('https://fonts.googleapis.com/css?family=Quicksand');
 .editProject {
   color: black;
+}
+*/
+
+* {
+  list-style-type: none;
+  font-family: 'Avenir Next', sans-serif;
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+}
+
+body {
+    font-family: 'Avenir Next', sans-serif;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    margin: 0;
+    margin-top: 44px;
+    background-color: #FEFCF9;
+}
+
+input-label{
+    width: 10vh;
+    color: red;
+    background-color: blue;
+    text-align: right;
+}
+
+.main-header{
+    font-size: 2em;
+}
+
+.nav {
+    display: flex;
+    float: right;
+    width: 80%;
+    font-weight:900;
+}
+
+.nav2 {
+    width: 20%;
+    display: flex;
+    align-items: right;
+}
+
+.nav-list {
+    font-weight: bold;
+    font-size:1.3em;
+}
+
+.nav-item  {
+    margin: auto;
+    color: white
+}
+
+.nav-item a:hover {
+    /* background: white; */
+    color: #00B686;
+    font-size: 1.1em;
+    transition: .3s;
+}
+
+
+ul {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    float: left;
 }
 
 
 textarea{
-  font-size: 18px;
+    border: 1px solid #979797;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+    margin: 10px auto;
+    height: 45vh;
+    width: 83vw;
+    padding: 20px 10px;
+    font-size: 14px;
+    background-color: #FEFCF9;
 }
+
 main {
-  background-color: #F5F5F5;
+    background-color: #F5F5F5;
+}
+
+.main-container{
+    margin-top: 0 auto;
+    padding-top: 10vh;
+    height: 90vh;
+    font-family: 'Avenir Next', sans-serif
 }
 
 /* Messages */
 .messageform {
-
   display: flex;
   justify-content: center;
   padding-top: 0px;
@@ -125,6 +208,7 @@ main {
   margin: 10px;
 }
 
+
 .task-input > input {
   width: 40vw;
 }
@@ -198,13 +282,6 @@ main {
   height: 40px;
 }
 
-* {
-  list-style-type: none;
-  font-family: Quicksand, Helvetica, sans-serif;
-  box-sizing: border-box;
-  outline: none;
-  text-decoration: none;
-}
 
 a {
   color: white;
@@ -315,38 +392,8 @@ a:active {
 }
 
 /* Header */
-.nav {
-  display: flex;
-  float: right;
-  width: 100%;
-  font-weight:900;
-}
 
-.nav2 {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-}
 
-.nav-list {
-  margin: auto;
-  width: 100%;
-}
-
-.nav-item  {
-  width: 100%;
-  padding: 0px 20px 0px 20px;
-  color: white
-}
-.nav-item a {
-  display:block;
-  color:#FFF;
-}
-.nav-item a:hover {
-  /* background: white; */
-  color: #9259E0;
-  transition: .3s;
-}
 .header {
   box-sizing: border-box;
   box-shadow: 0px 0px 6px 1.5px #0E0219;
@@ -520,8 +567,8 @@ a:active {
   /* REGISTER PAGE */
 
   .register {
-    padding-top: 20vh;
-    height: 120vh;
+    height: 95vh;
+    margin: 2vh auto;
   }
 
   .register-input > label {
@@ -553,7 +600,7 @@ a:active {
   /* LOGIN PAGE */
   .login-page {
     padding-top: 20vh;
-    height: 100vh;
+    height: 95vh;
   }
 
   .login-form {
@@ -732,184 +779,3 @@ a:active {
   .App-intro {
     font-size: large;
   }
-  ul {
-    width: 100%;
-    text-align: center;
-    display: flex;
-    justify-content: flex-start;
-    float: left;
-  }
-  /* PARALLAX */
-  /* .parallax { */
-    /* background-image: url("http://www.saga.co.uk/contentlibrary/saga/publishing/verticals/entertainment/films-and-tv/films-hero-1260x600.jpg"); */
-    /* min-height: 800px;  */
-    /* width: 100%; */
-    /* SCROLL */
-    /* background-attachment: fixed; */
-    /* background-position: center; */
-    /* background-repeat: no-repeat; */
-    /* background-size: cover; */
-    /* position: absolute; */
-  /* } */
-  @keyframes App-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-    table {
-      font-family: georgia;
-      font-size: 14px;
-      border-collapse: collapse;
-      width: 100%;
-      background-color: rgba(255,255,153,0.5);
-    }
-  }
-  td, th {
-      border: 1px solid silver;
-      text-align: left;
-      height: 30px;
-      padding: 8px;
-  }
-  th {
-      background-color:lightblue;
-      color: black;
-      font-weight: bold;
-  }
-  td, tr{
-    width: 100px;
-    word-wrap: break-word;
-  }
-  .tdDescription{
-    width:40%;
-  }
-  /*change the color of each row depending if its odd or even*/
-  tr:nth-child(odd) {
-      background-color: silver;
-      color: blue;
-      font-size: 1.5em;
-      width: 100px;
-  }
-  tr:nth-child(even) {
-      background-color: lightblue;
-      color: black;
-      font-size: 1.5em;
-      width: 100px;
-  }
-/* TESTING */
-.testing {
-  border-bottom: 20px purple;
-}
-
-/* SIDE NAVE TEST */
-.seeall-nav {
-  align-content: left;
-}
-
-.sidenav {
-  position: fixed;
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.logo {
- padding: 8px 8px 8px 32px;
- transition: 0.5s;
- font-weight: 400;
- color: white;
-}
-
-.sidenav a:hover, .offcanvas a:focus{
-  color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-/* MEDIA QUERIYES */
-@media only screen and (max-width: 400px) {
-  * {
-    box-shadow: none;
-    color: #FFFFFF;
-    background-color: #6D1CDF;
-  }
-  .header {
-    box-shadow: none;
-  }
-
-  .hero-text {
-    color: #FFFFFF;
-  }
-
-  .home-page3-container {
-    display: block;
-  }
-
-  .home-page3-container .item {
-    width: 100%;
-  }
-}
-
-@media screen and (max-height: 450px) {
-.sidenav {padding-top: 15px;}
-.sidenav a {font-size: 18px;}
-}
-
-.viewProject {
-  padding-top: 10px;
-  font-size: 24px;
-  color:white;
-}
-
-.side-nav-drop nav {
-  position: fixed;
-  z-index: 10000;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #792BE8;
-  color: white;
-  transition: 1s;
-}
-
-.side-nav-drop.is-open nav {
-  top: 0;
-}
-
-/* </head>
-<body>
-
-<div id="mySidenav" class="sidenav">
-<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-<h1 class="logo">Okurio</h1>
-<a href="#">About</a>
-<a href="#">Services</a>
-<a href="#">Clients</a>
-<a href="#">Contact</a>
-</div>
-
-<h2>Animated Sidenav Example</h2>
-<p>Click on the element below to open the side navigation menu.</p>
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Go</span> */
-
-/* SIDE NAV TEST */

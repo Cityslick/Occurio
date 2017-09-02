@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
+import '../Task.css';
 
 class Collaborator extends Component {
   constructor() {
@@ -159,7 +160,7 @@ class Collaborator extends Component {
   renderProjectList(){
     if (!this.props.proj_id){
       return (
-        <div>
+        <div className="register">
           <label className="labelInput">Projects</label>
           <select id="proj_id"  name="proj_id" onChange={this.handleInputChange}  >
             { (this.state.projectDataLoaded) ?
@@ -176,11 +177,11 @@ class Collaborator extends Component {
   render(){
 
     return(
-      <div className="collaborator-page">
+      <div className="register">
         <div className="xx">
-          <h2>Assign Collaborators</h2>
+          <h1>Assign Collaborators</h1>
         </div>
-        <div className="form">
+        <div className="register">
           <form onSubmit={(e) => this.handleCollaboratorSubmit(
               e,
               this.state.user_id,

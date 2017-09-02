@@ -3,8 +3,9 @@
 .user-container {
     margin-top: 0 auto;
     padding-top: 10vh;
-    height: 100vh;
+    height: 90vh;
     font-family: 'Quicksand';
+    overflow: auto;
 }
 
 .user-flex {
@@ -57,7 +58,7 @@
 }
 .viewProject {
     color: black;
-    
+
 }
 #timenow {
     font-size: 18pt;
@@ -84,8 +85,9 @@
     justify-content: space-around;
     align-items: center;
 }
+
 .links {
-    height: 40%;
+    height: 48%;
     width: 46%;
     color: black;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3),
@@ -110,7 +112,7 @@
    background: linear-gradient(#6D1CDF 0%, #4c139c 70%);
    transition: .5s;
    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.5),
-    0 10px 10px rgba(0, 0, 0, 0.22); 
+    0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .user-links > div:nth-child(2) > a,
