@@ -5,25 +5,50 @@ import {
 } from 'react-router-dom';
 
 const TaskView = (props) => {
-  console.log(props.user_id,props.task.user_id);
-  return (
-    <div className="tasks-table">
-      <div className="table-data-num sub">{props.index}</div>
-      <div className="table-data-desc">{props.task.description}</div>
-      <div className="table-data-date">{props.task.start_datestr}</div>
-      <div className="table-data-date">{props.task.end_datestr}</div>
-      <div className="table-data">{props.task.ticket}</div>
-      <div className="table-data-status">{props.task.status}</div>
-      <div className="table-data-name">{props.task.fullname}</div>
+    return (
+        <div  className="task-list-detail"  key={props.index}>
+            <div className="task-no">
+                <h1 className="task-info" >{props.index}</h1>
+            </div>
 
-      <div className="table-data-name">
-        {(props.user_id==props.task.user_id) ?
-        <Link to={`/TaskEdit/${props.task.id}`}><input type="submit" value="Edit"/></Link>
-        :""}
-      </div>
+            <div className="task-name">
+                <h1 className="task-info" >{props.task.name}</h1>
+            </div>
 
-    </div>
-  )
+            <div className="task-description">
+                <h1 className="task-info" >{props.task.description}</h1>
+            </div>
+
+            <div className="task-date">
+                <h1 className="task-info" >{props.task.start_datestr}</h1>
+            </div>
+
+            <div className="task-date">
+                <h1 className="task-info" >{props.task.end_datestr}</h1>
+            </div>
+
+            <div className="task-detail">
+                <h1 className="task-info" >{props.task.ticket}</h1>
+            </div>
+
+            <div className="task-detail">
+                <h1 className="task-info" >{props.task.status}</h1>
+            </div>
+
+            <div className="task-detail">
+                <h1 className="task-info" >{props.task.fullname}</h1>
+            </div>
+
+            <div className="task-button">
+                {(props.user_id==props.task.user_id) ?
+                <Link to={`/TaskEdit/${props.task.id}`}>
+                    <span className="button-span small-button">Edit</span>
+                </Link>
+                :""}
+            </div>
+
+        </div>
+    )
 }
 
 export default TaskView;

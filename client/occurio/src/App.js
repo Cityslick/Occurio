@@ -215,7 +215,7 @@ class App extends Component {
 
             <Route exact path="/messagesAll" render={() => <MessagesAll user={this.state.user}/>} />
 
-            <Route exact path="/messages/:id" render={(props) => <MessageSingle id={props.match.params.id} user={this.state.user} />} />
+            <Route exact path="/  /:id" render={(props) => <MessageSingle id={props.match.params.id} user={this.state.user} />} />
 
           </main>
         </div>

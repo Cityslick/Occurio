@@ -6,74 +6,124 @@ import '../App.css';
 
 
 class ProjectView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      project: null,
-      user:null,
-      projectDataLoaded: false,
-      fireRedirect: null,
+    constructor(props) {
+        super(props);
+        this.state = {
+            project: null,
+            user:null,
+            projectDataLoaded: false,
+            fireRedirect: null,
+        }
+        this.showTask=this.showTask.bind(this);
     }
-    this.showTask=this.showTask.bind(this);
-  }
-  componentDidMount() {
-    console.log("Im here ProjectView");
-    console.log(this.props)
-    axios.get(`/project/${this.props.id}`)
-    .then(res => {
-      this.setState({
-        user : this.props.userData,
-        project: res.data.data,
-        projectDataLoaded: true,
-        fireRedirect: true,
-      })
-    }).catch(err => console.log(err));
-  }
-  showTask(){
-    console.log(this.props.userData);
-    if(this.props.presentDetail){
-      return <TaskList proj_id={this.state.project.id}  user_id={this.props.userData.id}  proj={true} />
+
+    componentDidMount() {
+        axios.get(`/project/${this.props.id}`)
+        .then(res => {
+            this.setState({
+                user : this.props.userData,
+                project: res.data.data,
+                projectDataLoaded: true,
+                fireRedirect: true,
+            })
+        }).catch(err => console.log(err));
     }
-  }
-  renderProject(){
-    if (this.state.projectDataLoaded){
-        console.log(this.props, "-")
-        return <div key={this.state.project.id} className="project">
-          <div className="projectView">
-            <h3>{this.state.project.name}</h3>
-            <h2>Description:</h2>
-            <p>{this.state.project.description}</p>
-            <h2>Category:</h2>
-            <p>{this.state.project.category}</p>
-            <h2>Status:</h2>
-            <p>{this.state.project.status}</p>
-            <p>{this.state.project.planned_start_datesrt}</p>
-            <p>{this.state.project.planned_end_datestr}</p>
-            <p>{this.state.project.act_start_date}</p>
-            <p>{this.state.project.act_end_date}</p>
-            <div className="project-view-links">
-              {(this.props.userData.user_type==="Manager") ?
-              <Link className='editProject' to={`/projectEdit/${this.state.project.id}`}>Edit</Link>
-              : <Link to="#"></Link>}
-              <br/>
-              {(this.props.userData.user_type==="Manager") ?
-              <Link className='editProject'  to={`/projectTask/${this.state.project.id}`} >Add Task</Link>
-              : <Link to="#"></Link>}
-              <br/>
-              <Link className='editProject' to={`/projectList`}>All Projects</Link>
+
+    showTask(){
+        return <TaskList proj_id={this.state.project.id}  user_id={this.props.userData.id}  proj={true} />
+    }
+
+    renderProject(){
+        if (this.state.projectDataLoaded){
+            return <div key={this.state.project.id} className="project">
+                <div className="projectView">
+                    <h3 className="main-project-info">
+                        {this.state.project.name}
+                    </h3>
+
+                    <h1 className="project-info-h">
+                        Description
+                    </h1>
+
+                    <p className="project-info-d">
+                       {this.state.project.description}
+                    </p>
+
+                    <h1 className="project-info-h">
+                        Category
+                    </h1>
+
+                    <p className="project-info-d">
+                        {this.state.project.category}
+                    </p>
+
+                    <h1 className="project-info-h">
+                        Status:
+                    </h1>
+
+                    <p className="project-info-d">
+                        {this.state.project.status}
+                    </p>
+
+                    <h1  className="project-info-h">
+                      Planned start Date
+                    </h1>
+
+                    <p  className="project-info-d">
+                        {this.state.project.planned_start_datesrt}
+                    </p>
+
+                    <h1 className="project-info-h">
+                        Planned end Date
+                    </h1>
+
+                    <p  className="project-info-d">
+                        {this.state.project.planned_end_datestr}
+                    </p>
+
+                    <h1 className="project-info-h">
+                        Started Date
+                    </h1>
+
+                    <p className="project-info-d">
+                        {this.state.project.act_start_date}
+                    </p>
+
+                    <h1 className="project-info-h">
+                        Ended Date
+                    </h1>
+
+                    <p  className="project-info-d">
+                        {this.state.project.act_end_date}
+                    </p>
+
+                    <div className="project-view-links">
+                        {(this.props.userData.user_type==="Manager") ?
+                        <Link className='editProject' to={`/projectEdit/${this.state.project.id}`}>Edit</Link>
+                        : <Link to="#"></Link>}
+                        <br/>
+                        {(this.props.userData.user_type==="Manager") ?
+                        <Link className='editProject'  to={`/projectTask/${this.state.project.id}`} >Add Task</Link>
+                        : <Link to="#"></Link>}
+                        <br/>
+                        <Link className='editProject' to={`/projectList`}>All Projects</Link>
+                    </div>
+                    <br/>
+                </div>
+                {this.showTask()}
             </div>
-            <br/>
-          </div>
-            {this.showTask()}
-        </div>
-      }
+        }
     }
-  render() {
-    return (
-      <div className="viewProject">
-        {this.renderProject()}
-      </div>
-    )
-  }
+
+    render() {
+        return (
+            <div className="main-container">
+                <div className="task-container">
+                    {this.renderProject()}
+                </div>
+            </div>
+
+        )
+    }
 }
 export default ProjectView;

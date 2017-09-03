@@ -134,7 +134,7 @@ class TaskCreate extends Component {
         })
     }
   //task list
-  renderTaskList() {
+    renderTaskList() {
     return (
         <div className="task-list" >
             <div  className="task-list-header">
@@ -172,7 +172,7 @@ class TaskCreate extends Component {
 
             {(this.state.taskDataLoaded) ?
             this.state.taskData.map((task,index) => {
-              return <div  className="task-list-detail"  key={task.id}>
+                return <div  className="task-list-detail"  key={task.id}>
                     <div  className="task-no" >
                         <h1 className="task-info" >{index +1 }</h1>
                     </div>
@@ -205,11 +205,11 @@ class TaskCreate extends Component {
                     <div className="task-button">
                         <input   className="small-button" type="submit" value="Delete" onClick={()=>{this.handlerDeleteTask(task.id)}} />
                     </div>
-               </div>
+                </div>
             })
             : ""}
 
-      </div>
+        </div>
     );
   }
 

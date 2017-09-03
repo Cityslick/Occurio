@@ -87,8 +87,9 @@ class UserProfile extends Component {
                     <div className="links">
                         <i className="fa fa-tasks fa-2x" aria-hidden="true"></i>
                         <Link to={`/usertasklist/${this.state.user_id}`}>View Your Tasks</Link>
-
-                        <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                        <br/>
+                        <br/>
+                        <i className="fa fa-comments fa-2x" aria-hidden="true"></i>
                         <Link to={'/messages'}>View Your Messages</Link>
 
                     </div>
