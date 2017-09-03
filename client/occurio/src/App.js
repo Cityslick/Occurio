@@ -40,8 +40,6 @@ import MessagesAll from './components/MessagesAll.jsx';
 import MessageCreate from './components/MessageCreate.jsx';
 import MessageSingle from './components/MessageSingle.jsx';
 
-// TEST
-import Todolist from './components/sidenavtest.js'
 class App extends Component {
   constructor() {
     super();
@@ -104,16 +102,16 @@ class App extends Component {
   }
 
   logOut() {
-    //console.log("log out");
-    // axios.get('/auth/logout')
-    // .then(res => {
-    //     console.log(res.body);
-    //     this.setState({
-    //         auth: false,
-    //         user:null,
-    //         fireRedirect: true,
-    //     });
-    //   }).catch(err => console.log(err));
+    console.log("log out");
+    axios.get('/auth/logout')
+    .then(res => {
+        console.log(res.body);
+        this.setState({
+            auth: false,
+            user:null,
+            fireRedirect: true,
+        });
+      }).catch(err => console.log(err));
    }
 
 
@@ -153,7 +151,6 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <header className="subheader"></header>
           <Header userData={this.state.user} logOut={this.logOut}/>
           <main>
             <Route exact path='/' render={() => <Home />} />
@@ -214,11 +211,11 @@ class App extends Component {
 
             <Route exact path="/usertasklist/:user_id" render={(props) => <UserTaskList userData={this.state.user}  user_id={props.match.params.user_id} />} />
 
-            <Route exact path="/newMessage" render={() => <MessageCreate user={this.state.user}/>} />
+            <Route exact path="/messages" render={() => <MessageCreate user={this.state.user}/>} />
 
-            <Route exact path="/messages" render={() => <MessagesAll user={this.state.user}/>} />
+            <Route exact path="/messagesAll" render={() => <MessagesAll user={this.state.user}/>} />
 
-            <Route exact path="/messages/:id" render={(props) => <MessageSingle id={props.match.params.id} message={this.message} />} />
+            <Route exact path="/messages/:id" render={(props) => <MessageSingle id={props.match.params.id} user={this.state.user} />} />
 
           </main>
         </div>

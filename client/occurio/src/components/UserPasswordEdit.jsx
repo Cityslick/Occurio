@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import '../App.css';
 
 class UserProfileEdit extends Component {
     constructor() {
@@ -62,43 +63,42 @@ class UserProfileEdit extends Component {
     }
 
     renderUserPassword() {
-      if (this.state.userDataLoaded) {
-        return (
-          <div>
-              <div className="project-page">
-          <h1>Edit Profile</h1>
-            <div className="form">
-                <form onSubmit={(e) => this.handleSubmit(
-                  e,
-                  this.state.newPassword,
-                  this.state.newPasswordConfirm,
-                  )}>
-                  <div>
-                      <label>New Password</label>
-                      <input className="form" type="password" name="newPassword" placeholder="" onChange={this.handleInputChange} required/>
-                  </div>
-                  <div>
-                      <label>Confirm New Password</label>
-                      <input className="form" type="password" name="newPasswordConfirm" placeholder="" onChange={this.handleInputChange} required/>
-                  </div>
+        if (this.state.userDataLoaded) {
+            return (
+                <div className="form">
+                    <div>
+                        <h1  className="page-tittle">Change Password</h1>
+                        <form  className="login-form" onSubmit={(e) => this.handleSubmit(
+                            e,
+                            this.state.newPassword,
+                            this.state.newPasswordConfirm,
+                            )}>
+                            <div className="input-container3">
+                                <label>New Password</label>
+                                <input className="form" type="password" name="newPassword" placeholder="" onChange={this.handleInputChange} required/>
+                            </div>
+                            <div  className="input-container3">
+                                <label>Confirm New Password</label>
+                                <input className="form" type="password" name="newPasswordConfirm" placeholder="" onChange={this.handleInputChange} required/>
+                            </div>
 
-                  <div>
-                      <input className="form" type="submit" value="Enter" />
-                  </div>
+                            <div>
+                                <input type="submit" value="Enter" />
+                            </div>
 
-                </form>
-            </div>
-            </div>
-          </div>
-        )
-      }
+                        </form>
+                    </div>
+
+                </div>
+            )
+        }
     }
 
     render(){
         return(
-            <div className="container">
-              {this.renderUserPassword()}
-              {this.state.fireRedirect
+            <div className="login-page">
+                {this.renderUserPassword()}
+                {this.state.fireRedirect
                 ? <Redirect push to={`/user/id/${this.props.userData.id}`} />
                 : ''}
             </div>

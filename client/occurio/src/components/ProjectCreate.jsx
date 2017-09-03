@@ -69,9 +69,9 @@ class ProjectCreate extends Component {
 
   render() {
     return (
-      <div className="project-create">
-        <div className="project-page">
-          <div className>
+      <div className="main-container">
+        <div className="sub-container">
+          <div >
             <h1 className="hero-text2">Create a Project</h1>
           </div>
           <form onSubmit={(e) => this.handleCreateProject(e,
@@ -82,16 +82,16 @@ class ProjectCreate extends Component {
             this.state.planned_start_date,
             this.state.planned_end_date
           )}>
-            <div className="name-input">
-              <label>NAME</label>
-              <input type="text" name="name" placeholder="" value={this.state.name} onChange={this.handleInputChange} required />
+            <div className="input-container">
+              <label>Name</label>
+              <input  className="normal-input" type="text" name="name" placeholder="" value={this.state.name} onChange={this.handleInputChange} required />
             </div>
-            <div className="desc-input">
-            <label>DESCRIPTION</label>
+            <div className="input-container">
+            <label>Description</label>
               <textarea name="description" value={this.state.description} onChange={this.handleInputChange} required />
             </div>
-            <div className="cat-input">
-              <label>CATEGORY</label>
+            <div className="input-container">
+              <label>Category</label>
               <select className="select" name="category" value={this.state.category} onChange={this.handleInputChange} required>
                 <option>Administrative</option>
                 <option>Design</option>
@@ -99,15 +99,15 @@ class ProjectCreate extends Component {
                 <option>Front End</option>
               </select>
             </div>
-            <div className="status-input">
-              <label> STATUS </label>
+            <div className="input-container">
+              <label> Status</label>
               <select  className="select" name="status" value={this.state.status} onChange={this.handleInputChange} required>
                 <option>Pending</option>
                 <option>Started</option>
                 <option>Complete</option>
               </select>
             </div>
-            <div className="date-input">
+            <div className="input-container2">
               <label>Start Date </label>
               <input type="date" name="planned_start_date" placeholder="Start Date" value={this.state.planned_start_date} onChange={this.handleInputChange} required />
               <label>End Date </label>

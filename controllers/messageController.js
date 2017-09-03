@@ -20,7 +20,20 @@ messageController = {
   },
 
   findAll: function(req, res) {
-    Message.findAll()
+    Message.findAll(req.params.id)
+    .then(message => {
+      res.json({
+        message: 'Done',
+        data: message,
+      });
+    }).catch(err => {
+      res.status(500).json(err);
+    })
+  },
+
+  findAllByReceiver: function(req, res) {
+    console.log(req.body);
+    Message.findAllByReceiver(req.body.sender,req.body.reciever )
     .then(message => {
       res.json({
         message: 'Done',

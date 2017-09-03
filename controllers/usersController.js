@@ -18,7 +18,7 @@ const usersController = {
           user_type: req.body.user_type,
       }).then(user => {
           req.login(user, (err) => {
-            if (err) return next(err);
+              if (err) return console.log("error");
               res.json({
                 user: user,
                 auth: true,

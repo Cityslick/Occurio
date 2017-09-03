@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-// THIS COMPONENT USES THE CUSTOM NPM PACKAGE 
+// THIS COMPONENT USES THE CUSTOM NPM PACKAGE
 
 class SideNavDrop extends React.Component {
     constructor(props) {
@@ -12,7 +12,7 @@ class SideNavDrop extends React.Component {
       };
       this.handleClick = this.handleClick.bind(this);
     }
-  
+
     handleClick() {
       this.setState({
           isOpen: !this.state.isOpen
@@ -28,10 +28,10 @@ class SideNavDrop extends React.Component {
                 <nav>
                 <button onClick={this.handleClick}></button>
                   <div className="sidenav">
-                    <Link to="/home">Home</Link>  
+                    <Link to="/home">Home</Link>
                     <Link to="/contact">About</Link>
-                    <Link to="/contact">Contact</Link>  
-                    <Link to="/contact">Register</Link>    
+                    <Link to="/contact">Contact</Link>
+                    <Link to="/contact">Register</Link>
                   </div>
                 </nav>
             </div>

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import MessagesAll from './MessagesAll';
 import axios from 'axios';
+import '../Messages.css';
 
 class Message extends Component {
   constructor() {
@@ -7,30 +10,32 @@ class Message extends Component {
     this.state = {
       userDataLoaded: false,
       sender:null,
-      message: 0,
+      message: "",
       reciever: null,
       new_id: null,
       messagesListData:null,
       messagesListDataLoaded:false,
       usersList:null,
       usersListLoaded:false,
-      projectData:null,
-      projectDataLoaded:false,
     }
     this.loadUsersDropDown = this.loadUsersDropDown.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleMessageSubmit = this.handleMessageSubmit.bind(this);
     this.renderMessageForm = this.renderMessageForm.bind(this);
+    this.clearMessage = this.clearMessage.bind(this);
+    this.renderMessages = this.renderMessages.bind(this);
   }
   componentDidMount() {
     this.loadUsersDropDown();
-    axios.get('/messages')
+    axios.post(`/messages/${this.props.user.id}`)
       .then(res=> {
         this.setState({
           userDataLoaded: true,
           user: this.props,
-          sender:1,
+          messages: res.data.data,
+          messageDataLoaded: true,
         })
+        console.log("yo ninja!", this.state.messages);
       })
   }
 
@@ -42,10 +47,12 @@ class Message extends Component {
        user_id,})
        .then(res=>{
       if(res.data.data.length>0){
-        console.log(res.data.data);
+        console.log("",res.data.data);
         this.setState({
           usersList: res.data.data,
           usersListLoaded: true,
+          reciever: res.data.data[0].id,
+          sender:this.props.user.id,
         })
       }
     }).catch(err=>{
@@ -59,7 +66,6 @@ class Message extends Component {
     this.setState({
       [name]: value,
     });
-    console.log(name, "--",value)
   }
 
   handleMessageSubmit(e, sender, message, reciever) {
@@ -69,13 +75,28 @@ class Message extends Component {
       sender,
       message,
       reciever,
-      reciever,
-      reciever,
     }).then(res => {
-      this.setState({
-
-      })
+      this.clearMessage();
     }).catch(err => console.log(err));
+  }
+
+  clearMessage() {
+    this.setState({
+      message: ''
+    })
+  }
+
+  renderMessages() {
+    if (this.state.messageDataLoaded){
+        return this.state.messages.map((message) => {
+          return <div className="message">
+                  <h1>{message.message}</h1>
+                  <br/>
+                  <Link className='viewProject'  to={`/messages/${message.reciever}`} >View Message</Link>
+                  <Link className='viewProject'  to={`/messages/${message.reciever}`} >Delete</Link>
+                  <br/>
+              </div>
+        })}
   }
 
   renderMessageForm() {
@@ -88,7 +109,7 @@ class Message extends Component {
             this.state.reciever,
           )}>
           <div>
-            <label className="labelInput">Collaborator</label>
+            <label className="labelInput">Send to:</label>
             <select id="reciever"  name="reciever" onChange={this.handleInputChange} >
               { (this.state.usersListLoaded) ?
               this.state.usersList.map((collaborator,index) => {
@@ -113,6 +134,9 @@ class Message extends Component {
     return (
       <div className='messageComponent'>
         {this.renderMessageForm()}
+        <div className='messages'>
+          {this.renderMessages()}
+        </div>
       </div>
     )
   }

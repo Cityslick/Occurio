@@ -5,22 +5,6 @@ const Home = () => {
   return (
     <div>
     <div className="home-page">
-      {/* <div className="sidenav">
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-      </div>
-      <span onclick="openNav()">&#9776; Go</span> */}
-      {/* <div id="mySidenav" class="sidenav">
-        <a href="javascript: void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">About</a>
-        <a href="#">Home</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-      </div>   */}
-      {/* <h2>Okurio nav</h2> */}
-      {/* <span className="seeall-nav" onclick="openNav()">&#9776;</span> */}
       <div className="hero-container">
           <div>
             <h1 className="hero-text">Okurio</h1>
@@ -44,7 +28,7 @@ const Home = () => {
           </div>
           <h2>Tony L.</h2>
           <div className="lineup"></div>
-          <p><i>"I don't know what else to say. Just what I was looking for. 
+          <p><i>"I don't know what else to say. Just what I was looking for.
             After using Okcurio my business skyrocketed!"</i></p>
           <h4>- Startup Founder/CEO</h4>
         </div>
@@ -53,7 +37,7 @@ const Home = () => {
           </div>
           <h2>Melissa J.</h2>
           <div className="lineup"></div>
-          <p><i>"The very best. This is simply unbelievable! Thank you for making it painless, pleasant and most of all hassle free! 
+          <p><i>"The very best. This is simply unbelievable! Thank you for making it painless, pleasant and most of all hassle free!
             We've seen amazing results already."</i></p>
           <h4>- CTO </h4>
         </div>
@@ -62,7 +46,7 @@ const Home = () => {
           </div>
           <h2>Dana J.</h2>
           <div className="lineup"></div>
-          <p><i>"Okcurio is awesome! Okcurio has got everything I need. I love your system. 
+          <p><i>"Okcurio is awesome! Okcurio has got everything I need. I love your system.
             It's all good. "</i></p>
           <h4>Sr. Project Mgr.</h4>
         </div>
