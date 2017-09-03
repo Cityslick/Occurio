@@ -7,11 +7,8 @@ module.exports = () => {
   });
 
   passport.deserializeUser((username, done) => {
-    console.log('deserializeUsers')
-
     User.findByUserName(username)
       .then(user => {
-        console.log('deserializeUsers2')
         done(null, user);
       }).catch(err => {
         done(err, null);

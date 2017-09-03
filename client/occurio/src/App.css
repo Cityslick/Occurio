@@ -29,7 +29,108 @@ body {
 }
 
 label{
-<<<<<<< HEAD
+    text-align: right;
+    font-size: 20px;
+    margin: 4px;
+    color: #544CAF;
+}
+
+input[type=text],input[type=password]
+input[type=email],input[type=date],input[type=password],
+,input[type=email]{
+    background-color: #FEFCF9;
+    display: inline-block;
+    box-sizing: border-box;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+    border: 1px solid #979797;
+    border-radius: 3px;
+    text-align: left;
+    font-size: 20px;
+}
+
+input[type=radio] {
+    margin-bottom: 25px;
+}
+
+input[type=time],input[type=date] {
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 20px;
+    width: 12vh;
+}
+
+input[type=submit],.button-span {
+    display: inline-block;
+    width: 8em;
+    color: white;
+    background-color:#00B686;
+    padding: 10px 10px;
+    margin: 8px 0;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.5s ease 0s;
+}
+/*
+input[type=submit]:hover ,.button-span:hover {,
+    background-color: #544CAF;
+    color:white;
+    box-shadow: inset 0 0 0 0px #211F1F;
+}*/
+
+input[type=text],input[type=password],select
+input[type=email],input[type=date],input[type=password],
+,input[type=email]:focus {
+    border: 2px solid #8B1BD2;
+    transition: .7s;
+  }
+
+select {
+    background: linear-gradient(#F2F2F2, #D4D4D4);
+    margin:auto;
+    margin-bottom: 2px;
+    display: inline-block;
+    box-shadow: inset 0 2px 0 white;
+    border-radius: 3px;
+    border: 1px solid #979797;
+    font-size: 3vh;
+    text-align: left;
+    width: 50%;
+}
+
+textarea{
+    border: 1px solid #979797;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+    margin: 10px auto;
+    height: 20vh;
+    width: 50%;
+    padding: 20px 10px;
+    font-size: 3vh;
+    background-color: #FEFCF9;
+}
+
+input{
+    margin: 6px 0;
+    align-self: right;
+    padding: 4px;
+    font-size: 2.5vh;
+    border-radius: 5px;
+}
+
+.small-input{
+    width: 40px;
+}
+input:focus{
+    background-color: #FEF9E7;
+}
+
+input[type=submit], .button-span {
+    border-radius: 10px;
+}
+
+label{
     text-align: right;
     font-size: 20px;
     margin: 4px;
@@ -133,111 +234,6 @@ input[type=submit], .button-span {
 
 label{
     text-align: right;
-=======
-    text-align: right;
-    font-size: 20px;
-    margin: 4px;
-    color: #544CAF;
-}
-
-input[type=text],input[type=password]
-input[type=email],input[type=date],input[type=password],
-,input[type=email]{
-    background-color: #FEFCF9;
-    display: inline-block;
-    box-sizing: border-box;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
-    border: 1px solid #979797;
-    border-radius: 3px;
-    text-align: left;
-    font-size: 20px;
-}
-
-input[type=radio] {
-    margin-bottom: 25px;
-}
-
-input[type=time],input[type=date] {
-    font-family: 'Avenir Next', sans-serif;
-    font-size: 20px;
-    width: 12vh;
-}
-
-input[type=submit],.button-span {
-    display: inline-block;
-    width: 8em;
-    color: white;
-    background-color:#00B686;
-    padding: 10px 10px;
-    margin: 8px 0;
-    border: none;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.5s ease 0s;
-}
-
-input[type=submit]:hover ,.button-span:hover {
-    background-color: #544CAF;
-    color:white;
-    box-shadow: inset 0 0 0 0px #211F1F;
-}
-
-input[type=text],input[type=password],select
-input[type=email],input[type=date],input[type=password],
-,input[type=email]:focus {
-    border: 2px solid #8B1BD2;
-    transition: .7s;
-  }
-
-select {
-    background: linear-gradient(#F2F2F2, #D4D4D4);
-    margin:auto;
-    margin-bottom: 2px;
-    display: inline-block;
-    box-shadow: inset 0 2px 0 white;
-    border-radius: 3px;
-    border: 1px solid #979797;
-    font-size: 3vh;
-    text-align: left;
-    width: 50%;
-}
-
-textarea{
-    border: 1px solid #979797;
-    border-radius: 3px;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
-    margin: 10px auto;
-    height: 20vh;
-    width: 50%;
-    padding: 20px 10px;
-    font-size: 14px;
-    background-color: #FEFCF9;
-}
-
-input{
-    margin: 6px 0;
-    align-self: right;
-    padding: 4px;
-    font-size: 2.5vh;
-    border-radius: 5px;
-}
-
-.small-input{
-    width: 40px;
-}
-input:focus{
-    background-color: #FEF9E7;
-}
-
-input[type=submit], .button-span {
-    border-radius: 10px;
-}
-
-label{
-    text-align: right;
->>>>>>> LOst of css
     width:20%;
     margin: 4px;
     font-size: 2.5vh;
@@ -249,6 +245,10 @@ label{
     font-size: 3vh;
     width: 100%;
     font-weight: bolder;
+}
+
+.link-to:hover{
+    color: #00B686;
 }
 
 .main-header{
@@ -376,17 +376,25 @@ label{
 /**************** containers*****************************************************************/
 
 .main-container {
-    height: 100vh;
+    height: 95vh;
     border-radius: 10px;
+    display: flex;
 }
 
 .sub-container {
     width: 60%;
     border-radius: 10px;
     position: relative;
-    left: 20%;
-    top: 15%;
+    margin: auto;
     box-shadow: 0 0 10px #040000;
+}
+
+.task-container {
+    width: 95%;
+    border-radius: 10px;
+    padding: 10vh 0;
+    position: relative;
+    margin: auto;
 }
 
 
@@ -403,7 +411,7 @@ label{
     justify-content: center;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
     0 6px 6px rgba(0, 0, 0, 0.23);
-    margin-top: 0px;
+    margin: auto;
     width: 50%;
     border-radius: 10px;
 }
@@ -470,15 +478,19 @@ main {
 
 /******************task-collaboratos list********************************/
 
+
+.main-task-list{
+  width: 100vh;
+  background-color: red;
+}
 .task-list , .collaborator-list{
-    width: 98%;
+    width: 100%;
     margin: auto;
     background: #f5f5f5;
     box-shadow: 0 0 20px #000;
     color: black;
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
 }
 
 .task-list-header,
@@ -497,8 +509,7 @@ main {
     border-top: 8px solid #00B686;
 }
 
-=======
-}
+
 
 .task-list-header,
 .collaborator-list-header {
@@ -516,7 +527,6 @@ main {
     border-top: 8px solid #00B686;
 }
 
->>>>>>> LOst of css
 .task-list-header > div >.task-info,
 .collaborator-list-header > div >.collaborator-info {
     color: white;
@@ -527,12 +537,14 @@ main {
 .task-list-detail,
 .collaborator-list-detail {
     width: 98%;
+    overflow: auto;
     display: flex;
     margin:  0;
     padding: 0;
     display: flex;
     margin:  0 10px;
-    box-shadow: 0 0 25px #000;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+    0 10px 10px rgba(0,0,0,0.22);
 }
 
 .task-info,
@@ -549,9 +561,9 @@ main {
 .task-detail,.task-no,.task-name, .task-description, .task-date,
 .task-detail,.task-button, .collaborator-button, .collaborator-name
 {
-    border:1px solid silver;
     word-wrap: break-word;
     /*overflow: auto;*/
+    height: 8vh;
     display: flex;
     word-wrap: break-word;
 
@@ -611,9 +623,17 @@ main {
     vertical-align: center;
 
  }
-/*****************************************************************************************/
+/*********************project***************************************************************/
 
+ .main-project-info{
+    color: #6D1CDF;
+    font-weight: bolder;
+ }
 
+ .project-info-h{
+    color: #6D1CDF;
+    font-weight: bolder;
+ }
 
 /****************************************************************************************/
 .messageform {
@@ -624,7 +644,6 @@ main {
 
 
 .project {
-  margin-top: 100px;
   height: 90vh;
 }
 
@@ -653,99 +672,33 @@ main {
 
 .project-view-links {
   background: #6D1CDF;
-  margin-top: 40px;
-  border-top: 5px solid #00B686;
+  border-top: 2vh solid #00B686;
   box-shadow: 0 0 15px black;
   width: 100%;
 }
 
 .projectView {
-  height: 40%;
   width: 46%;
   box-shadow: 0 0 25px #000;
   color: white;
-  background: linear-gradient(#6D1CDF 0%, #8a49e5 70%);
   border-radius: 0.5%;
-  margin: auto;
+  margin:5vh  auto ;
+
 }
 
 .editProject {
-  color: white;
+    color: white;
+    font-size: 3vh;
+    font-weight: bolder;
+}
+.editProject:hover{
+    color: #00B686;
 }
 
 .viewTask {
   color: black;
 }
 
-.task-input {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.task-title {
-  background: #00B686;
-}
-
-.task-input .labelInput {
-  margin: 10px;
-}
-
-
-.task-input > input {
-  width: 40vw;
-}
-
-.task-input > textarea {
-  width: 40%;
-  height: 10vh;
-}
-
-.tasks-table {
-  display: flex;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25),
-  0 10px 10px rgba(0,0,0,0.22);
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 5px;
-}
-
-.table-data {
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 12pt;
-  margin: 10px;
-  width: 8%;
-  margin-right: 20px;
-  text-align: center;
-}
-.table-data-num {
-  width: 2%;
-  color: rgba(0, 0, 0, 0.7);
-}
-.table-data-desc {
-  width: 15%;
-  font-size: 12pt;
-  color: rgba(0, 0, 0, 0.7);
-}
-.table-data-date {
-  width: 12%;
-  font-size: 12pt;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.7);
-}
-.table-data-status {
-  font-size: 12pt;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.7);
-  margin-right: 30px;
-}
-
-.table-data-name {
-  font-size: 12pt;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.7);
-  margin-right: 40px;
-}
 
 .List {
   width: 80%;
@@ -1064,7 +1017,7 @@ a:active {
 
   /* COLLABORATOR SINGLE */
   .collaborator-page {
-    height: 100vh;
+    height: 95vh;
   }
 
   .xx {
