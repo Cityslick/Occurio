@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {
-  Link
+    Link
 } from 'react-router-dom';
 import '../App.css';
 
 class TaskList extends Component {
-  constructor() {
+    constructor() {
     super();
     // state
     this.state = {
-      user_id: null,
-      proj_id: null,
-      name: '',
-      description: '',
-      start_date: '',
-      end_date: '',
-      status: 'Pending',
-      ticket: '',
-      task_id:0,
-      collaboratorData:null,
-      collaboratorDataLoaded:false,
-      taskData: null,
-      taskDataLoaded: false,
-      mainDataLoad:false,
+        user_id: null,
+        proj_id: null,
+        name: '',
+        description: '',
+        start_date: '',
+        end_date: '',
+        status: 'Pending',
+        ticket: '',
+        task_id:0,
+        collaboratorData:null,
+        collaboratorDataLoaded:false,
+        taskData: null,
+        taskDataLoaded: false,
+        mainDataLoad:false,
     },
     this.renderTaskList =this.renderTaskList.bind(this);
     this.handlerDeleteTask = this.handlerDeleteTask.bind(this);
@@ -31,154 +31,196 @@ class TaskList extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.clearComponents= this.clearComponents.bind(this);
     this.handlerLoadCollaborator = this.handlerLoadCollaborator.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({
-      proj_id:this.props.proj_id,
-      mainDataLoad:true,
-    })
-    this.handlerReloadList();
-    this.handlerLoadCollaborator();
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    if (nextState.task_id != this.state.task_id ) {
-      this.handlerReloadList();
     }
-  }
 
-  clearComponents(){
-    this.setState({
-      name:"",
-      description:"",
-      ticket:"",
-      start_date:"",
-      start_date:"",
-      status:"Pending",
-    })
-  }
-
-  handlerLoadCollaborator(){
-    let proj_id=this.props.proj_id;
-     axios.get(`/project/id/${proj_id}`).then(res=>{
-      if(res.data.data.length>0){
-        console.log(res.data.data);
+    componentDidMount() {
         this.setState({
-          collaboratorData: res.data.data,
-          user_id:res.data.data[0].user_id_new,
-          collaboratorDataLoaded: true,
+              proj_id:this.props.proj_id,
+              mainDataLoad:true,
         })
-      }
-    }).catch(err=>{
-      console.log(err.json);
-    })
-  }
+        this.handlerReloadList();
+        this.handlerLoadCollaborator();
+    }
 
-  handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
-    e.preventDefault();
-    axios.post('/task', {
-      user_id,
-      proj_id,
-      name,
-      description,
-      start_date,
-      end_date,
-      status,
-      ticket,
-    }).then(res => {
-      this.clearComponents();
-      this.setState({
-        taskData: res.data.data,
-        task_id:  res.data.data.id,
-        taskDataLoaded:false,
-      })
-    }).catch(err => console.log(err));
+    componentWillUpdate(nextProps, nextState) {
+        if (nextState.task_id != this.state.task_id ) {
+            this.handlerReloadList();
+        }
+    }
 
-  }
+    clearComponents(){
+        this.setState({
+            name:"",
+            description:"",
+            ticket:"",
+            start_date:"",
+            start_date:"",
+            status:"Pending",
+        })
+    }
 
-  handleInputChange(e) {
-    const name = e.target.name;
-    let value = e.target.value;
+    handlerLoadCollaborator(){
+        let proj_id=this.props.proj_id;
+        axios.get(`/project/id/${proj_id}`)
+        .then(res=>{
+            if(res.data.data.length>0){
+                this.setState({
+                    collaboratorData: res.data.data,
+                    user_id:res.data.data[0].user_id_new,
+                    collaboratorDataLoaded: true,
+                })
+            }
+        }).catch(err=>{
+            console.log(err.json);
+        })
+    }
 
-    this.setState({
-      [name]: value,
-    });
-  }
+    handleTaskSubmit(e, user_id, proj_id, name, description, start_date, end_date, status, ticket) {
+        e.preventDefault();
+        axios.post('/task', {
+            user_id,
+            proj_id,
+            name,
+            description,
+            start_date,
+            end_date,
+            status,
+            ticket,
+        }).then(res => {
+            this.clearComponents();
+            this.setState({
+                taskData: res.data.data,
+                task_id:  res.data.data.id,
+                taskDataLoaded:false,
+            })
+        }).catch(err => console.log(err));
+    }
 
-  handlerReloadList() {
-    let proj_id=this.props.proj_id;
-    let user_id=this.state.user_id;
-    let filter="";
-    axios.post(`/task/${proj_id}`,{
-       proj_id,
-       user_id,
-       filter,
-    })
-    .then(res=>{
-      this.setState({
-        taskData: res.data.data,
-        taskDataLoaded: true,
-      })
-    }).catch(err=>{
-      console.log(err.json);
-    })
-  }
+    handleInputChange(e) {
+        const name = e.target.name;
+        let value = e.target.value;
 
-  handlerDeleteTask(task_Id){
+        this.setState({
+            [name]: value,
+        });
+    }
+
+    handlerReloadList() {
+        let proj_id=this.props.proj_id;
+        let user_id=this.state.user_id;
+        let filter="";
+        axios.post(`/task/${proj_id}`,{
+            proj_id,
+            user_id,
+            filter,
+        })
+        .then(res=>{
+            this.setState({
+                taskData: res.data.data,
+                taskDataLoaded: true,
+            })
+        }).catch(err=>{
+            console.log(err.json);
+        })
+    }
+
+    handlerDeleteTask(task_Id){
     axios.delete(`/task/${task_Id}`)
-    .then(()=>{
-      this.handlerReloadList();
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-  }
+        .then(()=>{
+            this.handlerReloadList();
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
   //task list
   renderTaskList() {
     return (
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Ticket</th>
-              <th>Status</th>
-              <th>Collaborator</th>
-            </tr>
-          </thead>
-          <tbody>
-          {(this.state.taskDataLoaded) ?
-            this.state.taskData.map((task,index) => {
-              return <tr key={task.id}>
-                <td>{task.id}</td>
-                <td>{task.name}</td>
-                <td>{task.description}</td>
-                <td>{task.start_datestr}</td>
-                <td>{task.end_datestr}</td>
-                <td>{task.ticket}</td>
-                <td>{task.status}</td>
-                <td>{task.fullname}</td>
-                <td><Link to={`/TaskEdit/${task.id}`}><input type="submit" value="Edit"/></Link></td>
-                <td><input type="submit" value="Delete" onClick={()=>{this.handlerDeleteTask(task.id)}} /></td>
-               </tr>
-          })
-          : ""}
+        <div className="task-list" >
+            <div  className="task-list-header">
+                <div  className="task-no" >
+                    <h1 className="task-info" >#</h1>
+                </div>
+                <div  className="task-name" >
+                    <h1 className="task-info">Name</h1>
+                </div>
+                <div  className="task-description" >
+                    <h1 className="task-info" >Description</h1>
+                </div>
+                <div  className="task-date" >
+                    <h1 className="task-info">Date</h1>
+                </div>
+                <div  className="task-date" >
+                    <h1 className="task-info">Date</h1>
+                </div>
+                <div  className="task-detail" >
+                    <h1 className="task-info">Ticket</h1>
+                </div>
+                <div  className="task-detail">
+                    <h1 className="task-info">Status</h1>
+                </div>
+                <div  className="task-detail" >
+                    <h1 className="task-info">Collaborator</h1>
+                </div>
+                <div className="task-button">
+                </div>
 
-          </tbody>
-        </table>
+                <div className="task-button">
+                </div>
+            </div>
+
+
+            {(this.state.taskDataLoaded) ?
+            this.state.taskData.map((task,index) => {
+              return <div  className="task-list-detail"  key={task.id}>
+                    <div  className="task-no" >
+                        <h1 className="task-info" >{index +1 }</h1>
+                    </div>
+                    <div  className="task-name" >
+                        <h1 className="task-info">{task.name}</h1>
+                    </div>
+                    <div  className="task-description" >
+                        <h1 className="task-info" >{task.description}</h1>
+                    </div>
+                    <div  className="task-date" >
+                        <h1 className="task-info">{task.start_datestr}</h1>
+                    </div>
+                    <div  className="task-date" >
+                        <h1 className="task-info">{task.end_datestr}</h1>
+                    </div>
+                    <div  className="task-detail" >
+                        <h1 className="task-info">{task.ticket}</h1>
+                    </div>
+                    <div  className="task-detail">
+                        <h1 className="task-info">{task.status}</h1>
+                    </div>
+                    <div  className="task-detail" >
+                        <h1 className="task-info">{task.fullname}</h1>
+                    </div>
+                    <div className="task-button">
+                        <Link className='link-to' to={`/TaskEdit/${task.id}`}>
+                            <span className="button-span small-button"> Edit   </span>
+                        </Link>
+                    </div>
+
+                    <div className="task-button">
+                        <input   className="small-button" type="submit" value="Delete" onClick={()=>{this.handlerDeleteTask(task.id)}} />
+                    </div>
+               </div>
+            })
+            : ""}
+
       </div>
     );
   }
 
   renderSubmitform(){
     return(
-      <div className="edit-task-form">
-        <div className="edit-form">
+      <div className="main-container">
+        <div className="sub-container">
+          <div >
+            <h1 className="hero-text2">Add a task to project</h1>
+          </div>
           <form onSubmit={(e) => this.handleTaskSubmit(
             e,
             this.state.user_id,
@@ -190,9 +232,9 @@ class TaskList extends Component {
             this.state.status,
             this.state.ticket
           )}>
-            <div className="edit-task-input">
-              <div>
-                <label className="labelInput">Collaborator</label>
+            <div>
+              <div  className="dropdown-container">
+                <label >Collaborator</label>
                 <select id="user_id"  name="user_id" onChange={this.handleInputChange} >
                   { (this.state.collaboratorDataLoaded) ?
                   this.state.collaboratorData.map((collaborator,index) => {
@@ -203,26 +245,31 @@ class TaskList extends Component {
                 </select>
               </div>
 
-              <div className="task-input">
+              <div className="input-container">
                 <label className="labelInput" >Name </label>
-                <input type="text" name="name" id="name" value={this.state.name} placeholder="" onChange={this.handleInputChange}  required/>
+                <input className="normal-input"  type="text" name="name" id="name" value={this.state.name} placeholder="" onChange={this.handleInputChange}  required/>
               </div>
 
-              <div className="task-input">
+              <div className="input-container">
                 <label className="labelInput" >Description </label>
                 <textarea name="description" id="description" value={this.state.description} placeholder="" onChange={this.handleInputChange} required />
               </div>
 
-              <div className="task-input">
-                <label className="labelInput" >Planned start date </label>
+              <div className="input-container">
+                <label >Ticket</label>
+                <input className="normal-input"  type="text" name="ticket" id="ticket" value={this.state.ticket} placeholder="" onChange={this.handleInputChange}  required/>
+              </div>
+
+              <div className="input-container2">
+                <label >Planned start date </label>
                 <input type="date" name="start_date" id="start_date" value={this.state.start_date} placeholder="" onChange={this.handleInputChange} required />
 
-                <label className="labelInput" >Planned end date </label>
+                <label >Planned end date </label>
                 <input type="date" name="end_date" id="end_date" value={this.state.end_date} placeholder="" onChange={this.handleInputChange} required />
               </div>
 
-              <div>
-                <label className="labelInput">Status</label>
+              <div  className="dropdown-container">
+                <label>Status</label>
                 <select name="status"   id="status"  onChange={this.handleInputChange}>
                   <option name="status" key="1" value={"Done"}>Pending</option>
                   <option name="status" key="2" value={"In progress"}>In progress</option>
@@ -230,10 +277,6 @@ class TaskList extends Component {
                 </select>
               </div>
 
-              <div>
-                <label className="labelInput" >Ticket</label>
-                <input type="text" name="ticket" id="ticket" value={this.state.ticket} placeholder="" onChange={this.handleInputChange}  required/>
-              </div>
               <div>
                   <input type="submit" value="Submit" />
               </div>
@@ -244,14 +287,14 @@ class TaskList extends Component {
     )
   }
 
-  render() {
-    return(
-      <div>
-        {this.renderSubmitform()}
-        {this.renderTaskList()}
-      </div>
-    )
-  }
+    render() {
+        return(
+            <div>
+                {this.renderSubmitform()}
+                {this.renderTaskList()}
+            </div>
+        )
+    }
 }
 
 export default TaskList;

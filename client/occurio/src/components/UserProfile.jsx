@@ -60,10 +60,10 @@ class UserProfile extends Component {
                         <h1>Hey, {this.state.fullname}.</h1>
                         <h2>{this.state.username}</h2>
                         <h3>{this.state.email}</h3>
-                        <Link className='viewProject'  to={`/userEdit/${this.props.user.id}`} >Edit Profile</Link>
+                        <Link className='link-to' to={`/userEdit/${this.props.user.id}`} >Edit Profile</Link>
                         <br/>
                         <br/>
-                        <Link className='viewProject'  to={`/userPassword/${this.props.user.id}`} >Change Password</Link>
+                        <Link className='link-to'   to={`/userPassword/${this.props.user.id}`} >Change Password</Link>
                     </div>
                 </div>
                 <div className="user-links">

@@ -21,31 +21,29 @@ class Login extends Component {
         })
     }
     render(){
-      const { fireRedirect } = this.state;
+        const { fireRedirect } = this.state;
         return(
             <div className="login-page">
-            <div>
-                <h2 className="welcome-text">Welcome to Okurio!</h2>
-            </div>
-            <div className="form">
-                <form className="login-form" onSubmit={(e) => this.props.handleLoginSubmit(
-                    e,
-                    this.state.username,
-                    this.state.password
-                    )}>
-                    <div>
-                    <input className="form" type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleInputChange} />
-                    </div>
-                    <div>
-                    <input className="form" type="Password" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} />
-                    </div>
-                    <div>
-                    <input className="login-button" type="submit" value="Log In" />
-                    </div>
-                    <div>
+                <div>
+                    <h2 className="welcome-text">Welcome to Okurio!</h2>
                 </div>
-                </form>
-            </div>
+                <div className="form">
+                    <form className="login-form" onSubmit={(e) => this.props.handleLoginSubmit(
+                        e,
+                        this.state.username,
+                        this.state.password
+                        )}>
+                        <div>
+                        <input className="form" type="text" name="username" value={this.state.username} placeholder="Username" onChange={this.handleInputChange} />
+                        </div>
+                        <div>
+                        <input className="form" type="Password" name="password" value={this.state.password} placeholder="Password" onChange={this.handleInputChange} />
+                        </div>
+                        <div>
+                        <input className="login-button" type="submit" value="Log In" />
+                        </div>
+                    </form>
+                </div>
             </div>
         )
     }
