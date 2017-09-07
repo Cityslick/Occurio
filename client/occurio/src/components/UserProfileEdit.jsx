@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import {Link, Redirect } from 'react-router-dom';
 import '../App.css';
 
 class UserProfileEdit extends Component {
@@ -146,8 +146,12 @@ class UserProfileEdit extends Component {
                         <input className="normal-input" type="text" name="proj_link" value={this.state.proj_link} placeholder="" onChange={this.handleInputChange} />
                     </div>
                     {this.renderUserType()}
-                    <div>
+                    <div  className="button-container">
                         <input className="form" type="submit" value="Enter" />
+
+                        <Link to={`/user/id/${this.props.userData.id}`} >
+                            <input className="form" type="submit" value="Cancel" />
+                        </Link>
                     </div>
                     </form>
                 </div>
