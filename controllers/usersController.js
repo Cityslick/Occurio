@@ -46,15 +46,15 @@ const usersController = {
         img_url: req.body.img_url,
         proj_link: req.body.proj_link,
         user_type: req.body.user_type,
-      },req.params.id,
+      },req.params.id
     ).then(user => {
         res.json({
-          user: user,
+          user: user
         });
     }).catch(err => {
         console.log(err);
         res.status(500).json({ err });
-    });
+    })
   },
 
   index: function(req, res){

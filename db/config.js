@@ -12,6 +12,8 @@ function setDatabase() {
             database: 'simplemgmt_dev',
             port: 5432,
             host: 'localhost',
+            user:'postgres',
+            password:'Onlyme'
         })
     } else return pgp(process.env.DATABASE_URL);
 }
