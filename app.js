@@ -18,7 +18,7 @@ app.use(
         key: process.env.SECRET_KEY,
         secret: process.env.SECRET_KEY,
         resave: false,
-        saveUninitialized: true,
+        saveUninitialized: true
     })
 )
 
